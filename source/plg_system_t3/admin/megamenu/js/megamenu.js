@@ -1,17 +1,17 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
-var T3AdminMegamenu = window.T3AdminMegamenu || {};
+var CANVASAdminMegamenu = window.CANVASAdminMegamenu || {};
 
 !function ($) {
 	var currentSelected = null,
@@ -22,11 +22,10 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		options = $.extend({}, $.fn.megamenuAdmin.defaults, options);
 		
 		//get the first (top most megamenu)
-		megamenu = $(this).find('.t3-megamenu:first');
+		megamenu = $(this).find('.canvas-megamenu:first');
 
 		//find all class
-		nav_items = megamenu.find('ul[class*="level"]>li[data-id]>:first-child');
-		console.log(nav_items);
+		nav_items = megamenu.find('ul[class*="level"]>li>:first-child');
 		nav_subs = megamenu.find('.nav-child');
 		nav_cols = megamenu.find('[class*="span"]');
 		
@@ -52,7 +51,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		$('.toolbox-action, .toolbox-toggle, .toolbox-input').unbind ("focus blur click change keydown");
 
 		// stop popup event when click in toolbox area
-		$('.t3-admin-mm-row').click (function(event) {
+		$('.canvas-admin-mm-row').click (function(event) {
 			event.stopPropagation();
 			// return false;
 		});
@@ -132,7 +131,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		} else {
 			unbindEvents(sub);
 			// check if have menu-items in sub
-			if (liitem.find('ul.mega-nav.level'+liitem.data('level')).length > 0) {
+			if (liitem.find('ul.level'+liitem.data('level')).length > 0) {
 				sub.css('display','none');
 				liitem.data('hidesub', 1);
 			} else {
@@ -373,14 +372,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 	// toggle screen
 	actions.toggleScreen = function () {
-		if ($('.toolbox-togglescreen').hasClass('t3-fullscreen-full')) {
+		if ($('.toolbox-togglescreen').hasClass('canvas-fullscreen-full')) {
 			$('.subhead-collapse').removeClass ('subhead-fixed');
-			$('#t3-admin-megamenu').closest('.controls').removeClass ('t3-admin-control-fixed');			
-			$('.toolbox-togglescreen').removeClass ('t3-fullscreen-full').find('i').removeClass().addClass(actions.datas.iconfull);
+			$('#canvas-admin-megamenu').closest('.controls').removeClass ('canvas-admin-control-fixed');			
+			$('.toolbox-togglescreen').removeClass ('canvas-fullscreen-full').find('i').removeClass().addClass(actions.datas.iconfull);
 		} else {
 			$('.subhead-collapse').addClass ('subhead-fixed');
-			$('#t3-admin-megamenu').closest('.controls').addClass ('t3-admin-control-fixed');
-			$('.toolbox-togglescreen').addClass ('t3-fullscreen-full').find('i').removeClass().addClass(actions.datas.iconsmall);
+			$('#canvas-admin-megamenu').closest('.controls').addClass ('canvas-admin-control-fixed');
+			$('.toolbox-togglescreen').addClass ('canvas-fullscreen-full').find('i').removeClass().addClass(actions.datas.iconsmall);
 		}
 	}
 
@@ -394,7 +393,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		savebtn.addClass('loading');
 
 		var config = {},
-		items = megamenu.find('ul[class*="level"] > li[data-id]');
+		items = megamenu.find('ul[class*="level"] > li');
 		items.each (function(){
 			var $this = $(this),
 			id = 'item-'+$this.data('id'),
@@ -417,7 +416,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					$cols = $(this).children('[class*="span"]'),
 					j = 0;
 					$cols.each (function(){
-						var li = $(this).find('ul[class*="level"] > li[data-id]:first'),
+						var li = $(this).find('ul[class*="level"] > li:first'),
 						col = {};
 						if (li.length) {
 							col['item'] = li.data('id');
@@ -454,7 +453,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		});
 
 		var menutype = $('#jform_params_mm_type').val(),
-			curconfig = T3AdminMegamenu.config;
+			curconfig = CANVASAdminMegamenu.config;
 
 		if($.isArray(curconfig) && curconfig.length == 0){
 			curconfig = {};
@@ -463,13 +462,13 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		curconfig[menutype] = config;
 
 		$.ajax({
-			url: T3AdminMegamenu.referer,
+			url: CANVASAdminMegamenu.referer,
 			type: 'post',
 			data: {
-				t3action: 'megamenu',
-				t3task: 'save',
-				styleid: T3AdminMegamenu.styleid,
-				template: T3AdminMegamenu.template,
+				canvasaction: 'megamenu',
+				canvastask: 'save',
+				styleid: CANVASAdminMegamenu.styleid,
+				template: CANVASAdminMegamenu.template,
 
 				mmkey: $('#megamenu-key').val(),
 				config: JSON.stringify(config),
@@ -506,14 +505,14 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 	}
 
 	hide_toolbox = function (show_intro) {
-		$('#t3-admin-mm-tb .admin-toolbox').hide();
+		$('#canvas-admin-mm-tb .admin-toolbox').hide();
 		currentSelected = null;
 		if (megamenu && megamenu.data('nav_all')) megamenu.data('nav_all').removeClass ('selected');
 		megamenu.find ('li').removeClass ('open');
 		if (show_intro) {
-			$('#t3-admin-mm-intro').show();
+			$('#canvas-admin-mm-intro').show();
 		} else {
-			$('#t3-admin-mm-intro').hide();
+			$('#canvas-admin-mm-intro').hide();
 		}
 	}
 
@@ -521,7 +520,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		hide_toolbox (false);
 		if (selected) currentSelected = selected;
 		// remove class open for other
-		megamenu.find ('ul[class*="level"] > li[data-id]').each (function(){
+		megamenu.find ('ul[class*="level"] > li').each (function(){
 			if (!$(this).has (currentSelected).length > 0) $(this).removeClass ('open');
 			else $(this).addClass ('open');
 		});            
@@ -530,17 +529,17 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		megamenu.data('nav_all').removeClass ('selected');
 		currentSelected.addClass ('selected');		
 		var type = toolbox_type ();
-		$('#t3-admin-mm-tool' + type).show();
+		$('#canvas-admin-mm-tool' + type).show();
 		update_toolbox (type);
 
-		$('#t3-admin-mm-tb').show();
+		$('#canvas-admin-mm-tb').show();
 	}
 
 	update_toolbox = function (type) {
 		if (!type) type = toolbox_type ();
 		// remove all disabled status
-		$('#t3-admin-mm-tb .disabled').removeClass('disabled');
-		//$('#t3-admin-mm-tb .active').removeClass('active');
+		$('#canvas-admin-mm-tb .disabled').removeClass('disabled');
+		//$('#canvas-admin-mm-tb .active').removeClass('active');
 		switch (type) {
 			case 'item':
 				// value for toggle
@@ -634,8 +633,6 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				/* enable/disable module chosen */
 				if (currentSelected.find ('.mega-nav').length > 0) {
 					$('.toolcol-position').parent().addClass('disabled');
-				} else {
-					$('.toolcol-groupstyle').parent().addClass('disabled');	
 				}
 				// disable choose width if signle column
 				if (currentSelected.parent().children().length == 1) {
@@ -651,10 +648,8 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				} else {
 					// toggle disable
 					update_toggle (toggle, 0);
-				}
-				
-				// toggle group style
-				update_toggle ($('.toolcol-groupstyle'), currentSelected.data('groupstyle') == 'mega-tab' ? 1 : 0);
+				}	
+					
 				break;
 		}
 	}
@@ -708,20 +703,20 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 			case 'position':
 				// replace content if this is not menu-items type
-				if (currentSelected.find ('ul.mega-nav[class*="level"]').length == 0) {
+				if (currentSelected.find ('ul[class*="level"]').length == 0) {
 					// get module content
 					if (value) {
 						$.ajax({
-							url: T3AdminMegamenu.site,
+							url: CANVASAdminMegamenu.site,
 							data: {
-								t3action: 'module',
+								canvasaction: 'module',
 								mid: value,
-								styleid: T3AdminMegamenu.styleid,
-								template: T3AdminMegamenu.template,
+								styleid: CANVASAdminMegamenu.styleid,
+								template: CANVASAdminMegamenu.template,
 
-								t3menu: $('#menu-type').val(),
-								t3acl: $('#access-level').val(),
-								t3lang: $('#menu-type :selected').attr('data-language') || '*',
+								canvasmenu: $('#menu-type').val(),
+								canvasacl: $('#access-level').val(),
+								canvaslang: $('#menu-type :selected').attr('data-language') || '*',
 								rand: Math.random()
 							}
 						}).done(function ( data ) {
@@ -759,14 +754,6 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 						currentSelected.find('.mega-inner').html('');
 					}
 					currentSelected.data (name, value);
-				}
-				break;
-			case 'groupstyle':
-				console.log(name + ':' + value);
-				if (value == 1) {
-					currentSelected.data (name, 'mega-tab').addClass('mega-tab');					
-				} else {
-					currentSelected.data (name, '').removeClass('mega-tab');
 				}
 				break;
 		}
@@ -821,36 +808,36 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 }(jQuery);
 
 !function($){
-	$.extend(T3AdminMegamenu, {
+	$.extend(CANVASAdminMegamenu, {
 		// put megamenu admin panel into right place
 		
-		t3megamenu: function(rsp){
-			$('#t3-admin-mm-container').html(rsp).megamenuAdmin().find(':input').removeAttr('name');
+		canvasmegamenu: function(rsp){
+			$('#canvas-admin-mm-container').html(rsp).megamenuAdmin().find(':input').removeAttr('name');
 		},
 
 		initCustomForm: function(){
 			//copy from J3.0
 			// Turn radios into btn-group
-			if(typeof T3Admin != 'undefined'){
+			if(typeof CANVASAdmin != 'undefined'){
 				return true;
 			}
 
-			var jt3menu = $('.t3-admin-megamenu');
+			var jcanvasmenu = $('.canvas-admin-megamenu');
 
 			//convert to on/off
-			jt3menu.find('.radio').filter(function(){
+			jcanvasmenu.find('.radio').filter(function(){
 			
 				return $(this).find('input').length == 2 && $(this).find('input').filter(function(){
 						return $.inArray(this.value + '', ['0', '1']) !== -1;
 					}).length == 2;
 
-			}).addClass('t3onoff').removeClass('btn-group')
+			}).addClass('canvasonoff').removeClass('btn-group')
 				.find('label').addClass(function(){
 					return $(this).prev('input').val() == '0' ? 'off' : 'on'
 				});
 
 			//action
-			jt3menu.find('.radio label').unbind('click').click(function() {
+			jcanvasmenu.find('.radio label').unbind('click').click(function() {
 				var label = $(this),
 					input = $('#' + label.attr('for'));
 
@@ -861,11 +848,11 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 				}
 			});
 
-			jt3menu.find('.radio input:checked').each(function(){
+			jcanvasmenu.find('.radio input:checked').each(function(){
 				$('label[for=' + $(this).attr('id') + ']').addClass('active');
 			});
 
-			jt3menu.on('update', 'input[type=radio]', function(){
+			jcanvasmenu.on('update', 'input[type=radio]', function(){
 				if(this.checked){
 					$(this)
 						.closest('.radio')
@@ -896,16 +883,16 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					}
 
 					ajax = $.ajax({
-						url: T3AdminMegamenu.site,
+						url: CANVASAdminMegamenu.site,
 						data: {
-							t3action: 'megamenu',
-							t3task: 'display',
-							styleid: T3AdminMegamenu.styleid,
-							template: T3AdminMegamenu.template,
+							canvasaction: 'megamenu',
+							canvastask: 'display',
+							styleid: CANVASAdminMegamenu.styleid,
+							template: CANVASAdminMegamenu.template,
 
-							t3menu: $('#menu-type').val(),
-							t3acl: $('#access-level').val(),
-							t3lang: $('#menu-type :selected').attr('data-language') || '*',
+							canvasmenu: $('#menu-type').val(),
+							canvasacl: $('#access-level').val(),
+							canvaslang: $('#menu-type :selected').attr('data-language') || '*',
 							rand: Math.random()
 						},
 
@@ -913,19 +900,19 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 							clearTimeout(lid);
 
 							//progress bar
-							$('#t3-admin-megamenu').addClass('loading');
+							$('#canvas-admin-megamenu').addClass('loading');
 							if($.support.transition){
-								T3AdminMegamenu.progElm
-									.removeClass('t3-anim-slow t3-anim-finish')
+								CANVASAdminMegamenu.progElm
+									.removeClass('canvas-anim-slow canvas-anim-finish')
 									.css('width', '');
 
 								setTimeout(function(){
-									T3AdminMegamenu.progElm
-										.addClass('t3-anim-slow')
+									CANVASAdminMegamenu.progElm
+										.addClass('canvas-anim-slow')
 										.css('width', 50 + Math.floor(Math.random() * 20) + '%');
 								});
 							} else {
-								T3AdminMegamenu.progElm.stop(true).css({
+								CANVASAdminMegamenu.progElm.stop(true).css({
 									width: '0%',
 									display: 'block'
 								}).animate({
@@ -935,34 +922,34 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 						}
 					}).done(function(rsp){
-						T3AdminMegamenu.t3megamenu(rsp);
+						CANVASAdminMegamenu.canvasmegamenu(rsp);
 					}).fail(function(){
 
 					}).always(function(){
 						clearTimeout(lid);
 						lid = setTimeout(function(){
-							$('#t3-admin-megamenu').removeClass('loading');
+							$('#canvas-admin-megamenu').removeClass('loading');
 
 							//progress bar
 							if($.support.transition){
 								
-								T3AdminMegamenu.progElm
-									.removeClass('t3-anim-slow')
-									.addClass('t3-anim-finish')
+								CANVASAdminMegamenu.progElm
+									.removeClass('canvas-anim-slow')
+									.addClass('canvas-anim-finish')
 									.one($.support.transition.end, function () {
 										setTimeout(function(){
-											if(T3AdminMegamenu.progElm.hasClass('t3-anim-finish')){
-												$(T3AdminMegamenu.progElm).removeClass('t3-anim-finish');
+											if(CANVASAdminMegamenu.progElm.hasClass('canvas-anim-finish')){
+												$(CANVASAdminMegamenu.progElm).removeClass('canvas-anim-finish');
 											}
 
 										}, 1000);
 									});
 
 							} else {
-								$(T3AdminMegamenu.progElm).stop(true).animate({
+								$(CANVASAdminMegamenu.progElm).stop(true).animate({
 									width: '100%'
 								}, function(){
-									$(T3AdminMegamenu.progElm).hide();
+									$(CANVASAdminMegamenu.progElm).hide();
 								});
 							}
 
@@ -975,17 +962,17 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 			//init once
 			doajax();
 
-			T3AdminMegamenu.doajax = doajax;
+			CANVASAdminMegamenu.doajax = doajax;
 		},
 
 		initToolbar: function(){
-			$('#t3-admin-mm-save').off('click.mm').on('click.mm', function(){
+			$('#canvas-admin-mm-save').off('click.mm').on('click.mm', function(){
 				$('.toolbox-saveConfig').trigger('click');
 
 				return false;
 			});
 
-			$('#t3-admin-mm-delete').off('click.mm').on('click.mm', function(){
+			$('#canvas-admin-mm-delete').off('click.mm').on('click.mm', function(){
 
 				var delbtn = $(this);
 
@@ -995,7 +982,7 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 
 				delbtn.addClass('loading');
 
-				T3AdminMegamenu.confirm(function(ok){
+				CANVASAdminMegamenu.confirm(function(ok){
 					if(ok != undefined && !ok){
 						delbtn.removeClass('loading');
 
@@ -1003,20 +990,20 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					}
 
 					$.ajax({
-						url: T3AdminMegamenu.referer,
+						url: CANVASAdminMegamenu.referer,
 						type: 'post',
 						data: {
-							t3action: 'megamenu',
-							t3task: 'delete',
-							styleid: T3AdminMegamenu.styleid,
-							template: T3AdminMegamenu.template,
+							canvasaction: 'megamenu',
+							canvastask: 'delete',
+							styleid: CANVASAdminMegamenu.styleid,
+							template: CANVASAdminMegamenu.template,
 
 							mmkey: $('#megamenu-key').val(),
 							rand: Math.random()
 						}
 					}).done(function(rsp){
 
-						$('#t3-admin-megamenu-dlg').modal('hide');
+						$('#canvas-admin-megamenu-dlg').modal('hide');
 
 						try {
 							rsp = $.parseJSON(rsp);
@@ -1040,15 +1027,15 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 					}).always(function(){
 						delbtn.removeClass('loading');
 
-						T3AdminMegamenu.doajax();
+						CANVASAdminMegamenu.doajax();
 					});
 				});
 
 				return false;
 			});
 
-			$('#t3-admin-mm-close').off('click.mm').on('click.mm', function(){
-				window.location.href = T3AdminMegamenu.referer;
+			$('#canvas-admin-mm-close').off('click.mm').on('click.mm', function(){
+				window.location.href = CANVASAdminMegamenu.referer;
 
 				return false;
 			});
@@ -1061,51 +1048,51 @@ var T3AdminMegamenu = window.T3AdminMegamenu || {};
 		},
 
 		initModalDialog: function(){
-			$('#t3-admin-megamenu-dlg')
+			$('#canvas-admin-megamenu-dlg')
 				.prop('hide', false) //remove mootool hide function
 				.on('click', '.modal-footer button', function(e){
-					if($.isFunction(T3AdminMegamenu.modalCallback)){
-						T3AdminMegamenu.modalCallback($(this).hasClass('yes'));
+					if($.isFunction(CANVASAdminMegamenu.modalCallback)){
+						CANVASAdminMegamenu.modalCallback($(this).hasClass('yes'));
 					} else if($(this).hasClass('yes')){
-						$('#t3-admin-megamenu-dlg').modal('hide');
+						$('#canvas-admin-megamenu-dlg').modal('hide');
 					}
 					return false;
 				}).on('hidden', function(){
-					$('#t3-admin-mm-delete').removeClass('loading');
+					$('#canvas-admin-mm-delete').removeClass('loading');
 				})
 		},
 
 		confirm: function(callback){
-			T3AdminMegamenu.modalCallback = callback;
+			CANVASAdminMegamenu.modalCallback = callback;
 
-			$('#t3-admin-megamenu-dlg').addClass('modal-confirm').modal('show');
+			$('#canvas-admin-megamenu-dlg').addClass('modal-confirm').modal('show');
 		},
 
 		initLoadingBar: function(){
-			if(!T3AdminMegamenu.progElm){
-				T3AdminMegamenu.progElm = $('.t3-progress');
+			if(!CANVASAdminMegamenu.progElm){
+				CANVASAdminMegamenu.progElm = $('.canvas-progress');
 
-				if(!T3AdminMegamenu.progElm.length){
-					T3AdminMegamenu.progElm = $('<div class="t3-progress"></div>');
+				if(!CANVASAdminMegamenu.progElm.length){
+					CANVASAdminMegamenu.progElm = $('<div class="canvas-progress"></div>');
 				}
 
-				T3AdminMegamenu.progElm.appendTo(document.body);
+				CANVASAdminMegamenu.progElm.appendTo(document.body);
 
-				var placed = $('.t3-admin-header');
+				var placed = $('.canvas-admin-header');
 				if(placed.length){
-					T3AdminMegamenu.progElm.appendTo(placed);
+					CANVASAdminMegamenu.progElm.appendTo(placed);
 				}
 			}
 		}
 	});
 
 	$(document).ready(function(){
-		T3AdminMegamenu.initLoadingBar();
-		T3AdminMegamenu.initCustomForm();
-		T3AdminMegamenu.initToolbar();
-		T3AdminMegamenu.initAjaxmenu();
-		T3AdminMegamenu.initModalDialog();
-		T3AdminMegamenu.initAjaxMessage();
+		CANVASAdminMegamenu.initLoadingBar();
+		CANVASAdminMegamenu.initCustomForm();
+		CANVASAdminMegamenu.initToolbar();
+		CANVASAdminMegamenu.initAjaxmenu();
+		CANVASAdminMegamenu.initModalDialog();
+		CANVASAdminMegamenu.initAjaxMessage();
 	});
 
 }(jQuery);

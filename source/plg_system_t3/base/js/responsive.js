@@ -1,13 +1,12 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -15,7 +14,7 @@
 /* responsive */
 jQuery(document).ready(function($){
   var current_layout = '';
-  var responsive_elements = $('[class*="span"], .t3respon');
+  var responsive_elements = $('[class*="span"], .canvasrespon');
   // build data & remove data attribute - make the source better view in inspector
   responsive_elements.each (function(){
     var $this = $(this);

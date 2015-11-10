@@ -1,14 +1,13 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -19,39 +18,39 @@ defined('_JEXEC') or die;
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
-		<title><?php echo JText::_('T3_TM_TITLE'); ?></title>
-		<link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/css/bootstrap.css" />
-		<link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/plugins/miniColors/jquery.miniColors.css" />
-		<link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/thememagic/css/thememagic.css" />
+		<title><?php echo JText::_('CANVAS_TM_TITLE'); ?></title>
+		<link type="text/css" rel="stylesheet" href="<?php echo CANVAS_ADMIN_URL; ?>/admin/bootstrap/css/bootstrap.css" />
+		<link type="text/css" rel="stylesheet" href="<?php echo CANVAS_ADMIN_URL; ?>/admin/plugins/miniColors/jquery.miniColors.css" />
+		<link type="text/css" rel="stylesheet" href="<?php echo CANVAS_ADMIN_URL; ?>/admin/thememagic/css/thememagic.css" />
 
-		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/js/bootstrap.js"></script>
+		<script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/admin/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/admin/bootstrap/js/bootstrap.js"></script>
 	</head>
 
 	<body<?php echo $tplparams->get('themermode', 1) == 0 ? ' class="no-magic"' : ''?>>
 		<div id="wrapper">
 			<?php if($tplparams->get('themermode', 1)): ?>
-			<div id="t3-admin-thememagic">
-				<a href="<?php echo JURI::base(true); ?>" class="themer-minimize"><i class="icon-remove-sign"></i><i class="icon-magic"></i>  <span><?php echo JText::_('T3_TM_MINIMIZE') ; ?></span></a>
-				<a href="<?php echo $backurl; ?>" class="themer-close" title="<?php echo JText::_($isadmin ? 'T3_TM_BACK_TO_ADMIN' : 'T3_TM_EXIT'); ?>"><i class="icon-arrow-left"></i><?php echo JText::_($isadmin ? 'T3_TM_BACK_TO_ADMIN' : 'T3_TM_EXIT'); ?></a>
+			<div id="canvas-admin-thememagic">
+				<a href="<?php echo JURI::base(true); ?>" class="themer-minimize"><i class="icon-remove-sign"></i><i class="icon-magic"></i>  <span><?php echo JText::_('CANVAS_TM_MINIMIZE') ; ?></span></a>
+				<a href="<?php echo $backurl; ?>" class="themer-close" title="<?php echo JText::_($isadmin ? 'CANVAS_TM_BACK_TO_ADMIN' : 'CANVAS_TM_EXIT'); ?>"><i class="icon-arrow-left"></i><?php echo JText::_($isadmin ? 'CANVAS_TM_BACK_TO_ADMIN' : 'CANVAS_TM_EXIT'); ?></a>
 				
-				<div class="t3-admin-tm-header">
-					<div id="t3-admin-tm-recss" class="t3-progress"></div>
-				  <h2><strong><?php echo JText::_('T3_TM_CUSTOMIZING'); ?></strong> <span><?php echo T3_TEMPLATE ?></span></h2>
-				  <form id="t3-admin-tm-form" name="t3-admin-tm-form" class="form-validate form-inline">
+				<div class="canvas-admin-tm-header">
+					<div id="canvas-admin-tm-recss" class="canvas-progress"></div>
+				  <h2><strong><?php echo JText::_('CANVAS_TM_CUSTOMIZING'); ?></strong> <span><?php echo CANVAS_TEMPLATE ?></span></h2>
+				  <form id="canvas-admin-tm-form" name="canvas-admin-tm-form" class="form-validate form-inline">
 					<div class="controls controls-row">
-						<label for="t3-admin-theme-list"><?php echo JText::_('T3_TM_THEME_LABEL'); ?></label>
+						<label for="canvas-admin-theme-list"><?php echo JText::_('CANVAS_TM_THEME_LABEL'); ?></label>
 					  <?php
-						echo JHTML::_('select.genericlist', $themes, 't3-admin-theme-list', 'autocomplete="off"', 'id', 'title', $tplparams->get('theme', -1));
+						echo JHTML::_('select.genericlist', $themes, 'canvas-admin-theme-list', 'autocomplete="off"', 'id', 'title', $tplparams->get('theme', -1));
 					  ?>
 					  <div class="btn-group">
-						<button id="t3-admin-tm-pvbtn" class="btn btn-primary"><?php echo JText::_('T3_TM_PREVIEW') ?></button>
+						<button id="canvas-admin-tm-pvbtn" class="btn btn-primary"><?php echo JText::_('CANVAS_TM_PREVIEW') ?></button>
 						<?php if( $isadmin) : ?>
 						<button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
 						<ul class="dropdown-menu">
-						  <li><a id="t3-admin-tm-save" href="" title="<?php echo JText::_('T3_TM_SAVE') ?>"><?php echo JText::_('T3_TM_SAVE') ?></a></li>
-						  <li><a id="t3-admin-tm-saveas" href="" title="<?php echo JText::_('T3_TM_SAVEAS') ?>"><?php echo JText::_('T3_TM_SAVEAS') ?></a></li>
-						  <li><a id="t3-admin-tm-delete" href="" title="<?php echo JText::_('T3_TM_DELETE') ?>"><?php echo JText::_('T3_TM_DELETE') ?></a></li>
+						  <li><a id="canvas-admin-tm-save" href="" title="<?php echo JText::_('CANVAS_TM_SAVE') ?>"><?php echo JText::_('CANVAS_TM_SAVE') ?></a></li>
+						  <li><a id="canvas-admin-tm-saveas" href="" title="<?php echo JText::_('CANVAS_TM_SAVEAS') ?>"><?php echo JText::_('CANVAS_TM_SAVEAS') ?></a></li>
+						  <li><a id="canvas-admin-tm-delete" href="" title="<?php echo JText::_('CANVAS_TM_DELETE') ?>"><?php echo JText::_('CANVAS_TM_DELETE') ?></a></li>
 						</ul>
 					  	<?php endif; ?>
 					  </div>
@@ -59,12 +58,12 @@ defined('_JEXEC') or die;
 				  </form>
 				</div>
 	
-				<form id="t3-admin-tm-variable-form" name="adminForm" class="form-validate">
-					<div class="accordion" id="t3-admin-tm-accord">
+				<form id="canvas-admin-tm-variable-form" name="adminForm" class="form-validate">
+					<div class="accordion" id="canvas-admin-tm-accord">
 						<?php
 						$i = 0;
 						foreach ($fieldSets as $name => $fieldSet) :
-							$label = !empty($fieldSet->label) ? $fieldSet->label : 'T3_TM_'.$name.'_FIELDSET_LABEL';
+							$label = !empty($fieldSet->label) ? $fieldSet->label : 'CANVAS_TM_'.$name.'_FIELDSET_LABEL';
 
 							if(in_array($name, $disabledFieldSets)){
 								continue;
@@ -73,7 +72,7 @@ defined('_JEXEC') or die;
 							
 						<div class="accordion-group<?php echo $i == 0?' active':'' ?>">
 							<div class="accordion-heading">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#t3-admin-tm-accord" href="#<?php echo preg_replace( '/\s+/', ' ', $name);?>"><?php echo JText::_($label) ?></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#canvas-admin-tm-accord" href="#<?php echo preg_replace( '/\s+/', ' ', $name);?>"><?php echo JText::_($label) ?></a>
 							</div>
 							<div id="<?php echo preg_replace( '/\s+/', ' ', $name);?>" class="accordion-body collapse<?php echo (($i == 0)? ' in' : ''); ?>">
 								<div class="accordion-inner">
@@ -110,7 +109,7 @@ defined('_JEXEC') or die;
 									}
 
 									foreach ($forders as $field) :
-										$hide = ($field->type === 'T3Depend' && $form->getFieldAttribute($field->fieldname, 'function', '', $field->group) == '@group');
+										$hide = ($field->type === 'CANVASDepend' && $form->getFieldAttribute($field->fieldname, 'function', '', $field->group) == '@group');
 										$textinput = $field->input;
 
 										// add placeholder to Text input
@@ -123,13 +122,13 @@ defined('_JEXEC') or die;
 											}
 										}
 									?>
-										<div class="control-group t3-control-group<?php echo $hide ? ' hide' : ''?>">
+										<div class="control-group canvas-control-group<?php echo $hide ? ' hide' : ''?>">
 										<?php if (!$field->hidden) : ?>
-											<div class="control-label t3-control-label">
+											<div class="control-label canvas-control-label">
 												<?php echo preg_replace('/(\s*)for="(.*?)"(\s*)/i', ' ', $field->label); ?>
 											</div>
 										<?php endif; ?>
-											<div class="controls t3-controls">
+											<div class="controls canvas-controls">
 												<?php echo $textinput ?>
 											</div>
 										</div>
@@ -149,38 +148,38 @@ defined('_JEXEC') or die;
 			</div>
 			<?php else :?>
 			
-			<div id="t3-admin-tm-warning" class="modal hide fade">
+			<div id="canvas-admin-tm-warning" class="modal hide fade">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h3><?php echo JText::_('T3_TM_TITLE'); ?></h3>
+					<h3><?php echo JText::_('CANVAS_TM_TITLE'); ?></h3>
 				</div>
 				<div class="modal-body">
-					<p><?php echo JText::_('T3_MSG_ENABLE_THEMEMAGIC'); ?></p>
+					<p><?php echo JText::_('CANVAS_MSG_ENABLE_THEMEMAGIC'); ?></p>
 				</div>
 				<div class="modal-footer">
-					<a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><?php echo JText::_('T3_LBL_OK') ?></a>
+					<a href="#" class="btn btn-primary" data-dismiss="modal" aria-hidden="true"><?php echo JText::_('CANVAS_LBL_OK') ?></a>
 				</div>
 			</div>
 
 			<?php endif;?>
-			<div id="t3-admin-tm-preview">
-				<iframe id="t3-admin-tm-ifr-preview" frameborder="0" src="<?php echo $url ?>"></iframe>
+			<div id="canvas-admin-tm-preview">
+				<iframe id="canvas-admin-tm-ifr-preview" frameborder="0" src="<?php echo $url ?>"></iframe>
 			</div>
 
 		</div>
 
 		<?php if($tplparams->get('themermode', 1)): ?>
-		<div id="t3-admin-thememagic-dlg" class="modal hide fade">
+		<div id="canvas-admin-thememagic-dlg" class="modal hide fade">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3><?php echo JText::_('T3_TM_THEME_MAGIC') ?></h3>
+				<h3><?php echo JText::_('CANVAS_TM_THEME_MAGIC') ?></h3>
 			</div>
 			<div class="modal-body">
 				<div class="row-fluid">
 					<form id="prompt-form" name="prompt-form" class="form-horizontal prompt-block">
-						<span class="help-block"><?php echo JText::_('T3_TM_ASK_ADD_THEME') ?></span>
+						<span class="help-block"><?php echo JText::_('CANVAS_TM_ASK_ADD_THEME') ?></span>
 						<p>
-							<input type="text" id="theme-name" class="span12" placeholder="<?php echo JText::_('T3_TM_THEME_NAME') ?>">
+							<input type="text" id="theme-name" class="span12" placeholder="<?php echo JText::_('CANVAS_TM_THEME_NAME') ?>">
 						</p>
 					</form>
 					<div class="message-block">
@@ -194,13 +193,13 @@ defined('_JEXEC') or die;
 		</div>
 		
 		
-		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/json2.js"></script>
-		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/plugins/miniColors/jquery.miniColors.js"></script>
-		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/includes/depend/js/depend.js"></script>
-		<script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/thememagic/js/thememagic.js"></script>
+		<script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/admin/js/json2.js"></script>
+		<script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/admin/plugins/miniColors/jquery.miniColors.js"></script>
+		<script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/includes/depend/js/depend.js"></script>
+		<script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/admin/thememagic/js/thememagic.js"></script>
 		<script type="text/javascript">
 			// add class active for open 
-			$('#t3-admin-tm-accord .accordion-group').on('hide', function (e) {
+			$('#canvas-admin-tm-accord .accordion-group').on('hide', function (e) {
 				if($(e.target).hasClass('accordion-body')){
 					$(this).removeClass('active');
 				}
@@ -210,17 +209,17 @@ defined('_JEXEC') or die;
 				}
 			});
 			
-			var T3Theme = window.T3Theme || {};
-			T3Theme.admin = <?php echo intval($isadmin); ?>;
-			T3Theme.data = <?php echo json_encode($jsondata); ?>;
-			T3Theme.themes = <?php echo json_encode($themes); ?>;
-			T3Theme.template = '<?php echo T3_TEMPLATE; ?>';
-			T3Theme.templateid = '<?php echo JFactory::getApplication()->input->getInt('id'); ?>';
-			T3Theme.url = '<?php echo JURI::root(true) . '/administrator/index.php'; ?>';
-			T3Theme.langs = <?php echo json_encode($langs); ?>;
-			T3Theme.active = '<?php echo $active_theme ?>';
-			T3Theme.variables = <?php echo ($tplparams->get('theme', -1) == -1 ? '{}' : 'T3Theme.data[T3Theme.active]') ?>;
-			T3Theme.colorimgurl = '<?php echo T3_ADMIN_URL; ?>/admin/plugins/colorpicker/images/ui-colorpicker.png';
+			var CANVASTheme = window.CANVASTheme || {};
+			CANVASTheme.admin = <?php echo intval($isadmin); ?>;
+			CANVASTheme.data = <?php echo json_encode($jsondata); ?>;
+			CANVASTheme.themes = <?php echo json_encode($themes); ?>;
+			CANVASTheme.template = '<?php echo CANVAS_TEMPLATE; ?>';
+			CANVASTheme.templateid = '<?php echo JFactory::getApplication()->input->getInt('id'); ?>';
+			CANVASTheme.url = '<?php echo JURI::root(true) . '/administrator/index.php'; ?>';
+			CANVASTheme.langs = <?php echo json_encode($langs); ?>;
+			CANVASTheme.active = '<?php echo $tplparams->get('theme', 'base')?>';
+			CANVASTheme.variables = <?php echo ($tplparams->get('theme', -1) == -1 ? '{}' : 'CANVASTheme.data[CANVASTheme.active]') ?>;
+			CANVASTheme.colorimgurl = '<?php echo CANVAS_ADMIN_URL; ?>/admin/plugins/colorpicker/images/ui-colorpicker.png';
 
 			//Keepalive
 			setInterval(function(){
@@ -234,7 +233,7 @@ defined('_JEXEC') or die;
 		<?php else :?>
 			<script type="text/javascript">
 				$(document).ready(function(){
-					$('#t3-admin-tm-warning').modal('show')
+					$('#canvas-admin-tm-warning').modal('show')
 				});
 			</script>
 		<?php endif;?>

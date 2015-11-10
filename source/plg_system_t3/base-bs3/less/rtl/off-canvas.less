@@ -1,13 +1,12 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -21,7 +20,7 @@
     }
 
     #off-canvas-nav {
-      .t3-mainnav {
+      .canvas-mainnav {
         -webkit-transform: translateX(100%);
         -ms-transform: translateX(100%);
         transform: translateX(100%);
@@ -31,21 +30,21 @@
 
   .off-canvas-enabled {
     body > *{
-      -webkit-transform: translateX(-@t3-off-canvas-width);
-      -ms-transform: translateX(-@t3-off-canvas-width);
-      transform: translateX(-@t3-off-canvas-width);
+      -webkit-transform: translateX(-@canvas-off-canvas-width);
+      -ms-transform: translateX(-@canvas-off-canvas-width);
+      transform: translateX(-@canvas-off-canvas-width);
     }
   }
 }
 
-.off-canvas-left.t3-off-canvas {
+.off-canvas-left.canvas-off-canvas {
   left: 0;
   right: auto;
 }
 
 .off-canvas-left.old-ie {
-  .t3-off-canvas {
-    left: -@t3-off-canvas-width;
+  .canvas-off-canvas {
+    left: -@canvas-off-canvas-width;
     right: auto;
   }
 }

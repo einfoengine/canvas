@@ -1,28 +1,28 @@
 <?php
 /**
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework
  *------------------------------------------------------------------------------
  */
 
 // No direct access
 defined('_JEXEC') or die();
-T3::import('core/template');
+CANVAS::import('core/template');
 jimport('joomla.utilities.utility');
 
 /**
- * T3Template class provides extended template tools used for T3 framework
+ * CANVASTemplate class provides extended template tools used for CANVAS framework
  *
- * @package T3
+ * @package CANVAS
  */
-class T3TemplateLayout extends T3Template
+class CANVASTemplateLayout extends CANVASTemplate
 {
 	protected $_block = null;
 
@@ -46,7 +46,7 @@ class T3TemplateLayout extends T3Template
 	 */
 	public function getLayout()
 	{
-		return JFactory::getApplication()->input->getCmd('t3layout', $this->_tpl->params->get('mainlayout'));
+		return JFactory::getApplication()->input->getCmd('canvaslayout', $this->_tpl->params->get('mainlayout'));
 	}
 
 	/**
@@ -95,9 +95,9 @@ class T3TemplateLayout extends T3Template
 			$this->_block = $block;
 		}
 
-		$path = T3Path::getPath('tpls/system/' . $block . '.php');
+		$path = CANVASPath::getPath('tpls/system/' . $block . '.php');
 		if (!$path) {
-			$path = T3Path::getPath('tpls/blocks/' . $block . '.php');
+			$path = CANVASPath::getPath('tpls/blocks/' . $block . '.php');
 		}
 
 		ob_start();
@@ -114,7 +114,7 @@ class T3TemplateLayout extends T3Template
 			$this->_block = null;
 		}
 
-		echo isset($vars['spl']) ? $content : ('<div class="t3-admin-layout-section">' . $content . '</div>');
+		echo isset($vars['spl']) ? $content : ('<div class="canvas-admin-layout-section"><h5 class="canvas-block-title">'.ucfirst($block).'</h5>' . $content . '</div>');
 	}
 
 	/**
@@ -125,9 +125,12 @@ class T3TemplateLayout extends T3Template
 	 */
 	function loadLayout($layout)
 	{
-		$path = T3Path::getPath('tpls/' . $layout . '.php', 'tpls/default.php');
-    
-		if ($path) {
+		$path = CANVAS_TEMPLATE_PATH . '/tpls/' . $layout . '.php';
+		if (!is_file($path)) {
+			$path = CANVAS_TEMPLATE_PATH . '/tpls/default.php';
+		}
+
+		if (is_file($path)) {
 			// include $path;
 			$html = $this->loadFile($path);
 
@@ -297,12 +300,12 @@ class T3TemplateLayout extends T3Template
 			
 			$defdv = $this->defdv;
 			if(!$this->responcls && !empty($data)){
-				$data = (isset($params->$defdv) ? ' ' . $params->$defdv : '') . ' t3respon"' . substr($data, 0, strrpos($data, '"'));
+				$data = (isset($params->$defdv) ? ' ' . $params->$defdv : '') . ' canvasrespon"' . substr($data, 0, strrpos($data, '"'));
 			}
 		}
 
 		//remove hidden class
-		$data = preg_replace('@("|\s)?'. preg_quote(T3_BASE_HIDDEN_PATTERN) .'(\s|")?@iU', '$1$2', $data);
+		$data = preg_replace('@("|\s)?'. preg_quote(CANVAS_BASE_HIDDEN_PATTERN) .'(\s|")?@iU', '$1$2', $data);
 
 		echo $data . '" data-vis="' . $this->htmlattr($visible) . '" data-others="' . $this->htmlattr($this->extractKey(array($oinfo), 'others'));
 	}
@@ -337,10 +340,10 @@ class T3TemplateLayout extends T3Template
 
 		$tp = 'tpls/system/tp.php';
 		$path = '';
-		if (is_file(T3_TEMPLATE_PATH . '/' . $tp)) {
-			$path = T3_TEMPLATE_PATH . '/' . $tp;
-		} else if (is_file(T3_PATH . '/' . $tp)) {
-			$path = T3_PATH . '/' . $tp;
+		if (is_file(CANVAS_TEMPLATE_PATH . '/' . $tp)) {
+			$path = CANVAS_TEMPLATE_PATH . '/' . $tp;
+		} else if (is_file(CANVAS_PATH . '/' . $tp)) {
+			$path = CANVAS_PATH . '/' . $tp;
 		}
 
 		return $this->loadFile($path, $attribs);
@@ -362,7 +365,7 @@ class T3TemplateLayout extends T3Template
 	}
 
 	/**
-	 * Add T3 basic head
+	 * Add CANVAS basic head
 	 */
 	function addHead()
 	{
@@ -371,11 +374,11 @@ class T3TemplateLayout extends T3Template
 
 		// BOOTSTRAP CSS
 		//$this->addCss ('bootstrap', false); 
-		//$this->addCss ('t3-admin-layout-preview', false); 
+		//$this->addCss ('canvas-admin-layout-preview', false); 
 
 		// Add scripts
-		//$this->addScript (T3_URL.'/bootstrap/js/jquery.js');
-		//$this->addScript (T3_URL.'/bootstrap/js/bootstrap.js');
+		//$this->addScript (CANVAS_URL.'/bootstrap/js/jquery.js');
+		//$this->addScript (CANVAS_URL.'/bootstrap/js/bootstrap.js');
 	}
 
 	/**
@@ -384,7 +387,7 @@ class T3TemplateLayout extends T3Template
 	 */
 	function megamenu($menutype)
 	{
-		echo "<div class='t3-admin-layout-pos block-nav t3-admin-layout-uneditable'> <h3>Megamenu [$menutype]</h3></div>";
+		echo "<div class='canvas-admin-layout-pos block-nav canvas-admin-layout-uneditable'> <h3>Megamenu [$menutype]</h3></div>";
 	}
 
 	/**
@@ -425,15 +428,15 @@ class T3TemplateLayout extends T3Template
 			//if isset
 			if (!empty($cls)) {
 				//check if this position is hidden
-				$hidden = T3_BASE_HIDDEN_PATTERN && $this->hasclass($cls, T3_BASE_HIDDEN_PATTERN);
+				$hidden = CANVAS_BASE_HIDDEN_PATTERN && $this->hasclass($cls, CANVAS_BASE_HIDDEN_PATTERN);
 				if ($hidden) {
-					$cls = $this->removeclass($cls, T3_BASE_HIDDEN_PATTERN);
+					$cls = $this->removeclass($cls, CANVAS_BASE_HIDDEN_PATTERN);
 				}
 
 				//check if this position is first position
-				$first = T3_BASE_FIRST_PATTERN && $this->hasclass($cls, T3_BASE_FIRST_PATTERN);
+				$first = CANVAS_BASE_FIRST_PATTERN && $this->hasclass($cls, CANVAS_BASE_FIRST_PATTERN);
 				if ($first) {
-					$cls = $this->removeclass($cls, T3_BASE_FIRST_PATTERN);
+					$cls = $this->removeclass($cls, CANVAS_BASE_FIRST_PATTERN);
 				}
 
 				//check for width of this position
@@ -501,9 +504,9 @@ class T3TemplateLayout extends T3Template
 			//if isset
 			if (!empty($cls)) {
 				//check if this position is hidden
-				$hidden = T3_BASE_HIDDEN_PATTERN && $this->hasclass($cls, T3_BASE_HIDDEN_PATTERN);
+				$hidden = CANVAS_BASE_HIDDEN_PATTERN && $this->hasclass($cls, CANVAS_BASE_HIDDEN_PATTERN);
 				if ($hidden) {
-					$cls = $this->removeclass($cls, T3_BASE_HIDDEN_PATTERN);
+					$cls = $this->removeclass($cls, CANVAS_BASE_HIDDEN_PATTERN);
 				}
 
 				//other class

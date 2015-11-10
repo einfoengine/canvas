@@ -1,35 +1,53 @@
 <?php
 /**
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework
  *------------------------------------------------------------------------------
  */
 
 // No direct access
 defined('_JEXEC') or die();
 
-T3::import('lessphp/lessc.inc');
+CANVAS::import('lessphp/lessc.inc');
 
 /**
- * T3LessCompiler class compile less
+ * CANVASLessCompiler class compile less
  *
- * @package T3
+ * @package CANVAS
  */
-class T3LessCompiler
+class CANVASLessCompiler
 {
-	public static function compile ($source, $importdirs) {
+	public static function compile ($source, $path, $todir, $importdirs) {
 		// call Less to compile
 		$parser = new lessc();
 		$parser->setImportDir(array_keys($importdirs));
 		$parser->setPreserveComments(true);
 		$output = $parser->compile($source);
-    return $output;
+		// update url
+		$arr    = preg_split(CANVASLess::$rsplitbegin . CANVASLess::$kfilepath . CANVASLess::$rsplitend, $output, -1, PREG_SPLIT_DELIM_CAPTURE);
+		$output = '';
+		$file   = $relpath = '';
+		$isfile = false;
+
+		foreach ($arr as $s) {
+			if ($isfile) {
+				$isfile  = false;
+				$file    = $s;
+				$relpath = CANVASLess::relativePath($todir, dirname($file));
+				$output .= "\n#".CANVASLess::$kfilepath."{content: \"{$file}\";}\n";
+			} else {
+				$output .= ($file ? CANVASPath::updateUrl($s, $relpath) : $s) . "\n\n";
+				$isfile = true;
+			}
+		}
+
+		return $output;
 	}
 }

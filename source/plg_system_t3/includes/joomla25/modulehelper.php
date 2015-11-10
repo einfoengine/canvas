@@ -8,7 +8,7 @@
  * @copyright       Copyright © 2011 All Rights Reserved
  *                  Brandon IT Consulting (http://www.metamodpro.com)
  *                  NoNumber (http://www.nonumber.nl)
- *                  JoomlArt (http://www.joomlart.com)
+ *                  ThemezArt (http://www.themezart.com)
  * @license         http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  */
 

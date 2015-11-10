@@ -376,7 +376,7 @@ a:focus {
   margin-left: 340px;
 }
 
-.offset3 {
+.offsecanvas {
   margin-left: 260px;
 }
 
@@ -574,12 +574,12 @@ a:focus {
   *margin-left: 33.93617021276596%;
 }
 
-.row-fluid .offset3 {
+.row-fluid .offsecanvas {
   margin-left: 27.659574468085104%;
   *margin-left: 27.5531914893617%;
 }
 
-.row-fluid .offset3:first-child {
+.row-fluid .offsecanvas:first-child {
   margin-left: 25.53191489361702%;
   *margin-left: 25.425531914893618%;
 }

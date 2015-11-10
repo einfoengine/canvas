@@ -1,14 +1,13 @@
-﻿<?php
+<?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -19,35 +18,35 @@ defined('_JEXEC') or die;
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title><?php echo JText::_('T3_NAVIGATION_MM_TITLE'); ?></title>
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/css/bootstrap.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/plugins/chosen/chosen.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/base/css/megamenu.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/megamenu/css/megamenu.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/css/admin.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/fonts/fa4/css/font-awesome.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo T3_ADMIN_URL; ?>/admin/fonts/glyphicon/css/glyphicon.css" />
+  <title><?php echo JText::_('CANVAS_NAVIGATION_MM_TITLE'); ?></title>
+  <link type="text/css" rel="stylesheet" href="<?php echo CANVAS_ADMIN_URL; ?>/admin/bootstrap/css/bootstrap.css" />
+  <link type="text/css" rel="stylesheet" href="<?php echo CANVAS_ADMIN_URL; ?>/admin/plugins/chosen/chosen.css" />
+  <link type="text/css" rel="stylesheet" href="<?php echo CANVAS_ADMIN_URL; ?>/base/css/megamenu.css" />
+  <link type="text/css" rel="stylesheet" href="<?php echo CANVAS_ADMIN_URL; ?>/admin/megamenu/css/megamenu.css" />
+  <link type="text/css" rel="stylesheet" href="<?php echo CANVAS_ADMIN_URL; ?>/admin/css/admin.css" />
+  <link type="text/css" rel="stylesheet" href="<?php echo CANVAS_ADMIN_URL; ?>/admin/fonts/fa4/css/font-awesome.css" />
+  <link type="text/css" rel="stylesheet" href="<?php echo CANVAS_ADMIN_URL; ?>/admin/fonts/glyphicon/css/glyphicon.css" />
 
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/jquery-1.8.3.min.js"></script>
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/bootstrap/js/bootstrap.js"></script>
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/js/json2.js"></script>
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/plugins/chosen/chosen.jquery.min.js"></script>
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/includes/depend/js/depend.js"></script>
-  <script type="text/javascript" src="<?php echo T3_ADMIN_URL; ?>/admin/megamenu/js/megamenu.js"></script>
+  <script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/admin/js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/admin/bootstrap/js/bootstrap.js"></script>
+  <script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/admin/js/json2.js"></script>
+  <script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/admin/plugins/chosen/chosen.jquery.min.js"></script>
+  <script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/includes/depend/js/depend.js"></script>
+  <script type="text/javascript" src="<?php echo CANVAS_ADMIN_URL; ?>/admin/megamenu/js/megamenu.js"></script>
 
 </head>
 <body class="bd">
   <div id="wrapper" class="container-main">
     <div class="header">
-      <h1><?php echo JText::_('T3_NAVIGATION_MM_TITLE'); ?></h1>
+      <h1><?php echo JText::_('CANVAS_NAVIGATION_MM_TITLE'); ?></h1>
     </div>
-    <div class="t3-admin-header clearfix">
+    <div class="canvas-admin-header clearfix">
       <div class="controls-row">
-        <div class="control-group t3-control-group">
-          <div class="control-label t3-control-label">
-            <label id="menu-type-lbl" for="menu-type" class="hasTip" data-placement="right" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_TYPE_LABEL', 'T3_NAVIGATION_MM_TYPE_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_TYPE_LABEL'); ?></label>
+        <div class="control-group canvas-control-group">
+          <div class="control-label canvas-control-label">
+            <label id="menu-type-lbl" for="menu-type" class="hasTip" data-placement="right" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_TYPE_LABEL', 'CANVAS_NAVIGATION_MM_TYPE_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_TYPE_LABEL'); ?></label>
           </div>
-          <div class="controls t3-controls">
+          <div class="controls canvas-controls">
             <select id="menu-type" name="menu-type">
               <?php foreach (self::menus() as $menu) : ?>
                 <option value="<?php echo $menu->value ?>" data-language="<?php echo $menu->language?>"<?php echo ($mm_type && $mm_type == $menu->value) ? ' selected' : '' ?>><?php echo $menu->text ?></option>
@@ -55,11 +54,11 @@ defined('_JEXEC') or die;
             </select>
           </div>
         </div>
-        <div class="control-group t3-control-group">
-          <div class="control-label t3-control-label">
-            <label id="access-level-lbl" for="access-level" class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_ACL_LABEL', 'T3_NAVIGATION_ACL_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_ACL_LABEL'); ?></label>
+        <div class="control-group canvas-control-group">
+          <div class="control-label canvas-control-label">
+            <label id="access-level-lbl" for="access-level" class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_ACL_LABEL', 'CANVAS_NAVIGATION_ACL_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_ACL_LABEL'); ?></label>
           </div>
-          <div class="controls t3-controls">
+          <div class="controls canvas-controls">
             <select id="access-level" name="access-level">
               <?php foreach (self::access() as $access) : ?>
                 <option value="<?php echo $access->value ?>"><?php echo $access->text ?></option>
@@ -70,13 +69,13 @@ defined('_JEXEC') or die;
 
         <div class="btn-toolbar">
           <div class="btn-group">
-            <button id="t3-admin-mm-save" class="btn btn-success"><i class="icon-save"></i>  <?php echo JText::_('T3_TOOLBAR_SAVE') ?></button>
+            <button id="canvas-admin-mm-save" class="btn btn-success"><i class="icon-save"></i>  <?php echo JText::_('CANVAS_TOOLBAR_SAVE') ?></button>
           </div>
           <div class="btn-group">
-            <button id="t3-admin-mm-delete" class="btn btn-danger"><i class="icon-trash"></i>  <?php echo JText::_('T3_TOOLBAR_DELETE') ?></button>
+            <button id="canvas-admin-mm-delete" class="btn btn-danger"><i class="icon-trash"></i>  <?php echo JText::_('CANVAS_TOOLBAR_DELETE') ?></button>
           </div>
           <div class="btn-group">
-            <button id="t3-admin-mm-close" class="btn"><i class="icon-remove"></i>  <?php echo JText::_('T3_TOOLBAR_CLOSE') ?></button>
+            <button id="canvas-admin-mm-close" class="btn"><i class="icon-remove"></i>  <?php echo JText::_('CANVAS_TOOLBAR_CLOSE') ?></button>
           </div> 
         </div>
 
@@ -84,21 +83,21 @@ defined('_JEXEC') or die;
     </div>
 
 
-    <div id="t3-admin-megamenu" class="t3-admin-megamenu t3-admin-form">
+    <div id="canvas-admin-megamenu" class="canvas-admin-megamenu canvas-admin-form">
       <div class="admin-inline-toolbox clearfix">
-        <div class="t3-admin-mm-row clearfix">
+        <div class="canvas-admin-mm-row clearfix">
 
-          <div id="t3-admin-mm-intro" class="pull-left">
-            <h3><?php echo JText::_('T3_NAVIGATION_MM_TOOLBOX') ?></h3>
-            <p><?php echo JText::_('T3_NAVIGATION_MM_TOOLBOX_DESC') ?></p>
+          <div id="canvas-admin-mm-intro" class="pull-left">
+            <h3><?php echo JText::_('CANVAS_NAVIGATION_MM_TOOLBOX') ?></h3>
+            <p><?php echo JText::_('CANVAS_NAVIGATION_MM_TOOLBOX_DESC') ?></p>
           </div>
 
-          <div id="t3-admin-mm-tb">
-            <div id="t3-admin-mm-toolitem" class="admin-toolbox">
-              <h3><?php echo JText::_('T3_NAVIGATION_MM_ITEM_CONF') ?></h3>
+          <div id="canvas-admin-mm-tb">
+            <div id="canvas-admin-mm-toolitem" class="admin-toolbox">
+              <h3><?php echo JText::_('CANVAS_NAVIGATION_MM_ITEM_CONF') ?></h3>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_SUBMENU', 'T3_NAVIGATION_MM_SUBMENU_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_SUBMENU') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_SUBMENU', 'CANVAS_NAVIGATION_MM_SUBMENU_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_SUBMENU') ?></label>
                   <fieldset class="radio btn-group toolitem-sub">
                     <input type="radio" id="toggleSub0" class="toolbox-toggle" data-action="toggleSub" name="toggleSub" value="0"/>
                     <label for="toggleSub0"><?php echo JText::_('JNO') ?></label>
@@ -109,7 +108,7 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_GROUP', 'T3_NAVIGATION_MM_GROUP_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_GROUP') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_GROUP', 'CANVAS_NAVIGATION_MM_GROUP_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_GROUP') ?></label>
                   <fieldset class="radio btn-group toolitem-group">
                     <input type="radio" id="toggleGroup0" class="toolbox-toggle" data-action="toggleGroup" name="toggleGroup" value="0"/>
                     <label for="toggleGroup0"><?php echo JText::_('JNO') ?></label>
@@ -120,16 +119,16 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_POSITIONS', 'T3_NAVIGATION_MM_POSITIONS_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_POSITIONS') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_POSITIONS', 'CANVAS_NAVIGATION_MM_POSITIONS_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_POSITIONS') ?></label>
                   <fieldset class="btn-group">
-                    <a href="" class="btn toolitem-moveleft toolbox-action" data-action="moveItemsLeft" title="<?php echo JText::_('T3_NAVIGATION_MM_MOVE_LEFT') ?>"><i class="icon-arrow-left"></i></a>
-                    <a href="" class="btn toolitem-moveright toolbox-action" data-action="moveItemsRight" title="<?php echo JText::_('T3_NAVIGATION_MM_MOVE_RIGHT') ?>"><i class="icon-arrow-right"></i></a>
+                    <a href="" class="btn toolitem-moveleft toolbox-action" data-action="moveItemsLeft" title="<?php echo JText::_('CANVAS_NAVIGATION_MM_MOVE_LEFT') ?>"><i class="icon-arrow-left"></i></a>
+                    <a href="" class="btn toolitem-moveright toolbox-action" data-action="moveItemsRight" title="<?php echo JText::_('CANVAS_NAVIGATION_MM_MOVE_RIGHT') ?>"><i class="icon-arrow-right"></i></a>
                   </fieldset>
                 </li>
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_EX_CLASS', 'T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_EX_CLASS', 'CANVAS_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_EX_CLASS') ?></label>
                   <fieldset class="">
                     <input type="text" class="input-medium toolitem-exclass toolbox-input" name="toolitem-exclass" data-name="class" value="" />
                   </fieldset>
@@ -137,8 +136,8 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" data-placement="right" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_ICON', 'T3_NAVIGATION_MM_ICON_DESC') ?>">
-                    <a href="http://fortawesome.github.io/Font-Awesome/icons" target="_blank"><i class="icon-search"></i>  <?php echo JText::_('T3_NAVIGATION_MM_ICON') ?></a>
+                  <label class="hasTip" data-placement="right" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_ICON', 'CANVAS_NAVIGATION_MM_ICON_DESC') ?>">
+                    <a href="http://fortawesome.github.io/Font-Awesome/icons" target="_blank"><i class="icon-search"></i>  <?php echo JText::_('CANVAS_NAVIGATION_MM_ICON') ?></a>
                   </label>
                   <fieldset class="">
                     <input type="text" class="input-medium toolitem-xicon toolbox-input" name="toolitem-xicon" data-name="xicon" value="" />
@@ -147,8 +146,8 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_CAPTION', 'T3_NAVIGATION_MM_CAPTION_DESC') ?>">
-                    <?php echo JText::_('T3_NAVIGATION_MM_CAPTION') ?>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_CAPTION', 'CANVAS_NAVIGATION_MM_CAPTION_DESC') ?>">
+                    <?php echo JText::_('CANVAS_NAVIGATION_MM_CAPTION') ?>
                   </label>
                   <fieldset class="">
                     <input type="text" class="input-large toolitem-caption toolbox-input" name="toolitem-caption" data-name="caption" value="" />
@@ -157,11 +156,11 @@ defined('_JEXEC') or die;
               </ul>
             </div>
 
-            <div id="t3-admin-mm-toolsub" class="admin-toolbox">
-              <h3><?php echo JText::_('T3_NAVIGATION_MM_SUBMNEU_CONF') ?></h3>
+            <div id="canvas-admin-mm-toolsub" class="admin-toolbox">
+              <h3><?php echo JText::_('CANVAS_NAVIGATION_MM_SUBMNEU_CONF') ?></h3>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_SUBMNEU_GRID', 'T3_NAVIGATION_MM_SUBMNEU_GRID_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_SUBMNEU_GRID') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_SUBMNEU_GRID', 'CANVAS_NAVIGATION_MM_SUBMNEU_GRID_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_SUBMNEU_GRID') ?></label>
                   <fieldset class="btn-group">
                     <a href="" class="btn toolsub-addrow toolbox-action" data-action="addRow"><i class="icon-plus"></i></a>
                   </fieldset>
@@ -169,7 +168,7 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_HIDE_COLLAPSE', 'T3_NAVIGATION_MM_HIDE_COLLAPSE_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_HIDE_COLLAPSE') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_HIDE_COLLAPSE', 'CANVAS_NAVIGATION_MM_HIDE_COLLAPSE_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_HIDE_COLLAPSE') ?></label>
                   <fieldset class="radio btn-group toolsub-hidewhencollapse">
                     <input type="radio" id="togglesubHideWhenCollapse0" class="toolbox-toggle" data-action="hideWhenCollapse" name="togglesubHideWhenCollapse" value="0" checked="checked"/>
                     <label for="togglesubHideWhenCollapse0"><?php echo JText::_('JNO') ?></label>
@@ -180,7 +179,7 @@ defined('_JEXEC') or die;
               </ul>                    
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX', 'T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_SUBMNEU_WIDTH_PX') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_SUBMNEU_WIDTH_PX', 'CANVAS_NAVIGATION_MM_SUBMNEU_WIDTH_PX_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_SUBMNEU_WIDTH_PX') ?></label>
                   <fieldset class="">
                     <input type="text" class="toolsub-width toolbox-input input-small" name="toolsub-width" data-name="width" value="" />
                   </fieldset>
@@ -188,20 +187,20 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_ALIGN', 'T3_NAVIGATION_MM_ALIGN_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_ALIGN') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_ALIGN', 'CANVAS_NAVIGATION_MM_ALIGN_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_ALIGN') ?></label>
                   <fieldset class="toolsub-alignment">
                     <div class="btn-group">
-                      <a class="btn toolsub-align-left toolbox-action" href="#" data-action="alignment" data-align="left" title="<?php echo JText::_('T3_NAVIGATION_MM_ALIGN_LEFT') ?>"><i class="icon-align-left"></i></a>
-                      <a class="btn toolsub-align-right toolbox-action" href="#" data-action="alignment" data-align="right" title="<?php echo JText::_('T3_NAVIGATION_MM_ALIGN_RIGHT') ?>"><i class="icon-align-right"></i></a>
-                      <a class="btn toolsub-align-center toolbox-action" href="#" data-action="alignment" data-align="center" title="<?php echo JText::_('T3_NAVIGATION_MM_ALIGN_CENTER') ?>"><i class="icon-align-center"></i></a>
-                      <a class="btn toolsub-align-justify toolbox-action" href="#" data-action="alignment" data-align="justify" title="<?php echo JText::_('T3_NAVIGATION_MM_ALIGN_JUSTIFY') ?>"><i class="icon-align-justify"></i></a>
+                      <a class="btn toolsub-align-left toolbox-action" href="#" data-action="alignment" data-align="left" title="<?php echo JText::_('CANVAS_NAVIGATION_MM_ALIGN_LEFT') ?>"><i class="icon-align-left"></i></a>
+                      <a class="btn toolsub-align-right toolbox-action" href="#" data-action="alignment" data-align="right" title="<?php echo JText::_('CANVAS_NAVIGATION_MM_ALIGN_RIGHT') ?>"><i class="icon-align-right"></i></a>
+                      <a class="btn toolsub-align-center toolbox-action" href="#" data-action="alignment" data-align="center" title="<?php echo JText::_('CANVAS_NAVIGATION_MM_ALIGN_CENTER') ?>"><i class="icon-align-center"></i></a>
+                      <a class="btn toolsub-align-justify toolbox-action" href="#" data-action="alignment" data-align="justify" title="<?php echo JText::_('CANVAS_NAVIGATION_MM_ALIGN_JUSTIFY') ?>"><i class="icon-align-justify"></i></a>
                     </div>
                   </fieldset>
                 </li>
               </ul>          
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_EX_CLASS', 'T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_EX_CLASS', 'CANVAS_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_EX_CLASS') ?></label>
                   <fieldset class="">
                     <input type="text" class="toolsub-exclass toolbox-input input-medium" name="toolsub-exclass" data-name="class" value="" />
                   </fieldset>
@@ -209,11 +208,11 @@ defined('_JEXEC') or die;
               </ul>
             </div>
 
-            <div id="t3-admin-mm-toolcol" class="admin-toolbox">
-              <h3><?php echo JText::_('T3_NAVIGATION_MM_COLUMN_CONF') ?></h3>
+            <div id="canvas-admin-mm-toolcol" class="admin-toolbox">
+              <h3><?php echo JText::_('CANVAS_NAVIGATION_MM_COLUMN_CONF') ?></h3>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_ADD_REMOVE_COLUMN', 'T3_NAVIGATION_MM_ADD_REMOVE_COLUMN_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_ADD_REMOVE_COLUMN') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_ADD_REMOVE_COLUMN', 'CANVAS_NAVIGATION_MM_ADD_REMOVE_COLUMN_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_ADD_REMOVE_COLUMN') ?></label>
                   <fieldset class="btn-group">
                     <a href="" class="btn toolcol-addcol toolbox-action" data-action="addColumn"><i class="icon-plus"></i></a>
                     <a href="" class="btn toolcol-removecol toolbox-action" data-action="removeColumn"><i class="icon-minus"></i></a>
@@ -222,7 +221,7 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_HIDE_COLLAPSE', 'T3_NAVIGATION_MM_HIDE_COLLAPSE_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_HIDE_COLLAPSE') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_HIDE_COLLAPSE', 'CANVAS_NAVIGATION_MM_HIDE_COLLAPSE_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_HIDE_COLLAPSE') ?></label>
                   <fieldset class="radio btn-group toolcol-hidewhencollapse">
                     <input type="radio" id="toggleHideWhenCollapse0" class="toolbox-toggle" data-action="hideWhenCollapse" name="toggleHideWhenCollapse" value="0" checked="checked"/>
                     <label for="toggleHideWhenCollapse0"><?php echo JText::_('JNO') ?></label>
@@ -233,7 +232,7 @@ defined('_JEXEC') or die;
               </ul>          
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_WIDTH_SPAN', 'T3_NAVIGATION_MM_WIDTH_SPAN_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_WIDTH_SPAN') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_WIDTH_SPAN', 'CANVAS_NAVIGATION_MM_WIDTH_SPAN_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_WIDTH_SPAN') ?></label>
                   <fieldset class="">
                     <select class="toolcol-width toolbox-input toolbox-select input-mini" name="toolcol-width" data-name="width">
                       <option value="1">1</option>
@@ -254,11 +253,11 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_MODULE', 'T3_NAVIGATION_MM_MODULE_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_MODULE') ?></label>
+                  <label class="hasTip" title="<?php echo self::tooltipText('CANVAS_NAVIGATION_MM_MODULE', 'CANVAS_NAVIGATION_MM_MODULE_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_MODULE') ?></label>
                   <fieldset class="">
-                    <select class="toolcol-position toolbox-input toolbox-select" name="toolcol-position" data-name="position" data-placeholder="<?php echo JText::_('T3_NAVIGATION_MM_SELECT_MODULE') ?>">
+                    <select class="toolcol-position toolbox-input toolbox-select" name="toolcol-position" data-name="position" data-placeholder="<?php echo JText::_('CANVAS_NAVIGATION_MM_SELECT_MODULE') ?>">
                       <option value=""></option>
-                      <?php foreach (T3AdminMegamenu::modules() as $module): ?>
+                      <?php foreach (CANVASAdminMegamenu::modules() as $module): ?>
                         <option value="<?php echo $module->id ?>"><?php echo $module->title ?></option>
                       <?php endforeach; ?>
                     </select>
@@ -267,39 +266,27 @@ defined('_JEXEC') or die;
               </ul>
               <ul>
                 <li>
-                  <label class="hasTip" title="<strong><?php echo self::tooltipText('T3_NAVIGATION_MM_EX_CLASS', 'T3_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_EX_CLASS') ?></label>
+                  <label class="hasTip" title="<strong><?php echo self::tooltipText('CANVAS_NAVIGATION_MM_EX_CLASS', 'CANVAS_NAVIGATION_MM_EX_CLASS_DESC') ?>"><?php echo JText::_('CANVAS_NAVIGATION_MM_EX_CLASS') ?></label>
                   <fieldset class="">
                     <input type="text" class="input-medium toolcol-exclass toolbox-input" name="toolcol-exclass" data-name="class" value="" />
                   </fieldset>
                 </li>
               </ul>
-              <ul>  
-                <li>
-                  <label class="hasTip" title="<?php echo self::tooltipText('T3_NAVIGATION_MM_GROUP_STYLE', 'T3_NAVIGATION_MM_GROUP_STYLE_DESC') ?>"><?php echo JText::_('T3_NAVIGATION_MM_GROUP_STYLE') ?></label>
-                  <fieldset class="radio btn-group toolcol-groupstyle">
-                    <input type="radio" id="toggleGroupStyle0" class="toolbox-input" name="toggleGroupStyle" data-name="groupstyle" value="0" checked="checked"/>
-                    <label for="toggleGroupStyle0"><?php echo JText::_('JNO') ?></label>
-                    <input type="radio" id="toggleGroupStyle1" class="toolbox-input" name="toggleGroupStyle" data-name="groupstyle" value="1"/>
-                    <label for="toggleGroupStyle1"><?php echo JText::_('JYES') ?></label>
-                  </fieldset>
-                </li>
-              </ul>
-              
             </div>    
           </div> 
 
           <div class="toolbox-actions-group hidden">
-            <button class="t3-admin-tog-fullscreen toolbox-action toolbox-togglescreen" data-action="toggleScreen" data-iconfull="icon-resize-full" data-iconsmall="icon-resize-small"><i class="icon-resize-full"></i></button>
-            <button class="btn btn-success toolbox-action toolbox-saveConfig hide" data-action="saveConfig"><i class="icon-save"></i>  <?php echo JText::_('T3_NAVIGATION_MM_SAVE') ?></button>
-            <!--button class="btn btn-danger toolbox-action toolbox-resetConfig"><i class="icon-undo"></i><?php echo JText::_('T3_NAVIGATION_MM_RESET') ?></button-->
+            <button class="canvas-admin-tog-fullscreen toolbox-action toolbox-togglescreen" data-action="toggleScreen" data-iconfull="icon-resize-full" data-iconsmall="icon-resize-small"><i class="icon-resize-full"></i></button>
+            <button class="btn btn-success toolbox-action toolbox-saveConfig hide" data-action="saveConfig"><i class="icon-save"></i>  <?php echo JText::_('CANVAS_NAVIGATION_MM_SAVE') ?></button>
+            <!--button class="btn btn-danger toolbox-action toolbox-resetConfig"><i class="icon-undo"></i><?php echo JText::_('CANVAS_NAVIGATION_MM_RESET') ?></button-->
           </div>
 
         </div>
       </div>
 
-      <div id="t3-admin-mm-container" class="navbar clearfix"></div>
+      <div id="canvas-admin-mm-container" class="navbar clearfix"></div>
       <div class="ajaxloader">
-        <h5><?php echo JText::_('T3_NAVIGATION_MM_LOADING') ?></h5>
+        <h5><?php echo JText::_('CANVAS_NAVIGATION_MM_LOADING') ?></h5>
         <!--div class="progress progress-striped active">
           <div class="bar"></div>
         </div-->
@@ -310,31 +297,31 @@ defined('_JEXEC') or die;
       <strong>Save success full</strong>
     </div>
     <!-- MODAL DIALOG -->
-    <div id="t3-admin-megamenu-dlg" class="modal fade hide">
+    <div id="canvas-admin-megamenu-dlg" class="modal fade hide">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3><?php echo JText::_('T3_NAVIGATION_ASK_DELETE') ?></h3>
+        <h3><?php echo JText::_('CANVAS_NAVIGATION_ASK_DELETE') ?></h3>
       </div>
       <div class="modal-body">
         <div class="message-block">
-          <p class="msg"><?php echo JText::_('T3_NAVIGATION_ASK_DELETE_DESC') ?></p>
+          <p class="msg"><?php echo JText::_('CANVAS_NAVIGATION_ASK_DELETE_DESC') ?></p>
         </div>
       </div>
       <div class="modal-footer">
         <button class="btn cancel" data-dismiss="modal"><?php echo JText::_('JCANCEL') ?></button>
-        <button class="btn btn-danger yes"><?php echo JText::_('T3_NAVIGATION_LABEL_DELETEIT') ?></button>
+        <button class="btn btn-danger yes"><?php echo JText::_('CANVAS_NAVIGATION_LABEL_DELETEIT') ?></button>
       </div>
     </div>
   </div>
   <script type="text/javascript">
     //<![CDATA[
 
-    T3AdminMegamenu = window.T3AdminMegamenu || {};
-    T3AdminMegamenu.referer = '<?php echo $referer; ?>';
-    T3AdminMegamenu.site = '<?php echo JUri::root(); ?>';
-    T3AdminMegamenu.config = <?php echo $currentconfig ?>;
-    T3AdminMegamenu.template = '<?php echo $template ?>';
-    T3AdminMegamenu.styleid = '<?php echo $styleid ?>';
+    CANVASAdminMegamenu = window.CANVASAdminMegamenu || {};
+    CANVASAdminMegamenu.referer = '<?php echo $referer; ?>';
+    CANVASAdminMegamenu.site = '<?php echo JUri::root(); ?>';
+    CANVASAdminMegamenu.config = <?php echo $currentconfig ?>;
+    CANVASAdminMegamenu.template = '<?php echo $template ?>';
+    CANVASAdminMegamenu.styleid = '<?php echo $styleid ?>';
 
     //Keepalive
     setInterval(function(){

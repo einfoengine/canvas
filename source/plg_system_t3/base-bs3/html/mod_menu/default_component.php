@@ -2,7 +2,7 @@
 /**
  * @package     Joomla.Site
  * @subpackage  mod_menu
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -17,7 +17,7 @@ $caret = '';
 if($item->deeper && $item->level < 2){
 	$class .= ' dropdown-toggle';
 	$dropdown = ' data-toggle="dropdown"';
-	$caret = '<em class="caret"></em>';
+	$caret = '<b class="caret"></b>';
 }
 
 if(!empty($class)){

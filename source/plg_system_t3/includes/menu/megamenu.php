@@ -1,25 +1,25 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
-if(!class_exists('T3MenuMegamenuTpl', false)){
-	T3::import('menu/megamenu.tpl');
+if(!class_exists('CANVASMenuMegamenuTpl', false)){
+	CANVAS::import('menu/megamenu.tpl');
 }
-if (is_file(T3_TEMPLATE_PATH.'/html/megamenu.php')) {
-	require_once T3_TEMPLATE_PATH.'/html/megamenu.php';
+if (is_file(CANVAS_TEMPLATE_PATH.'/html/megamenu.php')) {
+	require_once CANVAS_TEMPLATE_PATH.'/html/megamenu.php';
 }
 
-class T3MenuMegamenu {
+class CANVASMenuMegamenu {
 
 	/**
 	 * Internal variables
@@ -325,34 +325,21 @@ class T3MenuMegamenu {
 			->where('m.access IN ('.implode(',', $this->settings['access']).')');
 		$db->setQuery($query);
 		$module = $db->loadObject();
-		$doc = JFactory::getDocument();
 		
 		//check in case the module is unpublish or deleted
 		if ($module && $module->id) {
-			$style   = 'T3Xhtml';
-			$content = $doc->getBuffer('module', $module->module, 
-										array('title'=>$module->title, 'style'=>$style));
-
-			$app = JFactory::getApplication();
-			$frontediting = $app->get('frontediting', 1);
-			$user = JFactory::getUser();
-
-			$canEdit = $user->id && $frontediting && !($app->isAdmin() && $frontediting < 2) && $user->authorise('core.edit', 'com_modules');
-			$menusEditing = ($frontediting == 2) && $user->authorise('core.edit', 'com_menus');
-
-			if ($app->isSite() && $canEdit && trim($content) != '' && $user->authorise('core.edit', 'com_modules.module.' . $module->id))
-			{
-				$displayData = array('moduleHtml' => &$content, 'module' => $module, 'position' => $module->position, 'menusediting' => $menusEditing);
-				JLayoutHelper::render('joomla.edit.frontediting_modules', $displayData);
-			}
-
+			$style   = 'CANVASXhtml';
+			$content = JModuleHelper::renderModule($module, array(
+				'style' => $style
+			));
+			
 			$this->menu .= $content . "\n";
 		}
 	}
 	
 	function _($tmpl, $vars = array()) {
 		$vars['menu'] = $this;
-		$this->menu .= T3MenuMegamenuTpl::_($tmpl, $vars);
+		$this->menu .= CANVASMenuMegamenuTpl::_($tmpl, $vars);
 	}
 	
 	function get($prop) {

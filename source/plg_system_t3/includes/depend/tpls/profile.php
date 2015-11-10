@@ -1,14 +1,13 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -40,7 +39,7 @@ $javersion = new JVersion;
 		}(jQuery);
 	</script>
 
-	<div class="t3-profile">
+	<div class="canvas-profile">
 		<label class="hasTip" for="jform_params_<?php echo $this->field_name?>" id="jform_params_<?php echo $this->field_name?>-lbl" title="<?php echo JText::_($this->element['description'])?>"><?php echo JText::_($this->element["label"])?></label>
 		<?php echo $profileHTML; ?>
 		<div class="profile_action">
@@ -62,7 +61,7 @@ $javersion = new JVersion;
 <?php endif; ?>
 
 <?php		
-$fieldSets = $t3form->getFieldsets('params');
+$fieldSets = $canvasform->getFieldsets('params');
 
 foreach ($fieldSets as $name => $fieldSet) :
 	if (isset($fieldSet->description) && trim($fieldSet->description)){
@@ -70,21 +69,21 @@ foreach ($fieldSets as $name => $fieldSet) :
 	}
 	
 	$hidden_fields = '';
-	foreach ($t3form->getFieldset($name) as $field) :
+	foreach ($canvasform->getFieldset($name) as $field) :
 		if (!$field->hidden) :
 			if($javersion->isCompatible('3.0')) : ?>
-		<div class="control-group t3-control-group">
-			<div class="control-label t3-control-label">
+		<div class="control-group canvas-control-group">
+			<div class="control-label canvas-control-label">
 			<?php else: ?> 
 		<li>
 			<?php endif;
-				echo $t3form->getLabel($field->fieldname,$field->group);
+				echo $canvasform->getLabel($field->fieldname,$field->group);
 			
 				if($javersion->isCompatible('3.0')) : ?>
 			</div>
-			<div class="controls t3-controls">
+			<div class="controls canvas-controls">
 				<?php endif;
-				echo $t3form->getInput($field->fieldname,$field->group);
+				echo $canvasform->getInput($field->fieldname,$field->group);
 				if($javersion->isCompatible('3.0')) : ?>
 			</div>
 		</div>
@@ -92,7 +91,7 @@ foreach ($fieldSets as $name => $fieldSet) :
 		</li>
 			<?php endif;
 		else : 
-			$hidden_fields .= $t3form->getInput($field->fieldname,$field->group);	
+			$hidden_fields .= $canvasform->getInput($field->fieldname,$field->group);	
 		endif;
 	endforeach;
 	echo $hidden_fields; 
@@ -101,9 +100,9 @@ endforeach;
 	
 <?php 
 	if($javersion->isCompatible('3.0')) : ?>
-		<div class="control-group t3-control-group hide">
-			<div class="control-label t3-control-label"></div>
-				<div class="controls t3-controls">
+		<div class="control-group canvas-control-group hide">
+			<div class="control-label canvas-control-label"></div>
+				<div class="controls canvas-controls">
 	<?php else: ?> 
 		<li>
 	<?php endif; ?>

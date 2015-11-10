@@ -1,13 +1,12 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -15,7 +14,7 @@
 
  	$(document).ready(function(){
 
-		if ($.support.t3transform !== false) {
+		if ($.support.canvastransform !== false) {
 
 			var $btn = $('.btn-navbar[data-toggle="collapse"]'),
 				$nav = null,
@@ -28,27 +27,15 @@
 			//mark that we have off-canvas menu
 			$(document.documentElement).addClass('off-canvas-ready');
 
-			$nav = $('<div class="t3-mainnav" />').appendTo($('<div id="off-canvas-nav"></div>').appendTo(document.body));
+			$nav = $('<div class="canvas-mainnav" />').appendTo($('<div id="off-canvas-nav"></div>').appendTo(document.body));
 
 			//not all btn-navbar is used for off-canvas
 			var $navcollapse = $btn.parent().find($btn.data('target') + ':first');
 			if(!$navcollapse.length){
 				$navcollapse = $($btn.data('target') + ':first');
 			}
-			var $ocnav = $navcollapse.clone().appendTo($nav);
-			// enable menu hover
-			$ocnav.find('li.dropdown > a, li.dropdown-submenu > a').on('click tab', function(e) {
-				var $a = $(this), $p = $a.parent();
-				if (!$p.hasClass('open')) {
-					e.stopPropagation();
-					e.preventDefault();
-					$ocnav.find('li.dropdown, li.dropdown-submenu').each(function(){
-						if ($(this).has($a).length==0) $(this).removeClass('open');
-					});
-					$p.addClass('open');
-				}
-			});
-
+			$navcollapse.clone().appendTo($nav);
+			
 			$btn.click (function(e){
 				if ($(this).data('off-canvas') == 'show') {
 					hideNav();

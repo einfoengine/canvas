@@ -1,34 +1,33 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
 /**
  *
  * Admin helper module class
- * @author JoomlArt
+ * @author ThemezArt
  *
  */
-class T3Ajax {
+class CANVASAjax {
 
 	protected static $signature;
 	protected static $modesef;
 
 	public static function render() {
-		// excute action by T3
+		// excute action by CANVAS
 		$input = JFactory::getApplication()->input;
 
-		if ($input->getCmd ('t3ajax')) {
-			JFactory::getDocument()->getBuffer('t3ajax');
+		if ($input->getCmd ('canvasajax')) {
+			JFactory::getDocument()->getBuffer('canvasajax');
 		}
 	}
 
@@ -37,16 +36,16 @@ class T3Ajax {
 		$router = $app->getRouter();
 		
 		if ($app->isSite()) {
-			//self::$signature = 't3ajax';
+			//self::$signature = 'canvasajax';
 			//self::$modesef = ($router->getMode() == JROUTER_MODE_SEF) ? true : false;
 			
-			$router->attachBuildRule(array('T3Ajax', 'buildRule'));
-			//$router->attachParseRule(array('T3Ajax', 'parseRule'));
+			$router->attachBuildRule(array('CANVASAjax', 'buildRule'));
+			//$router->attachParseRule(array('CANVASAjax', 'parseRule'));
 		}
 	}
 
 	public static function buildRule (&$router, &$uri) {
-		$uri->delVar('t3ajax');
+		$uri->delVar('canvasajax');
 	}
 
 	public static function parseRule (&$router, &$uri) {

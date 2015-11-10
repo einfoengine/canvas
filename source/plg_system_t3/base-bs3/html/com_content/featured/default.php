@@ -3,14 +3,14 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
-JHtml::addIncludePath(T3_PATH.'/html/com_content');
+JHtml::addIncludePath(CANVAS_PATH.'/html/com_content');
 JHtml::addIncludePath(dirname(dirname(__FILE__)));
 JHtml::_('behavior.caption');
 

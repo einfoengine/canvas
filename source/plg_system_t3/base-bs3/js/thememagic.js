@@ -1,25 +1,24 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
  
 !function($){
-	T3Theme = window.T3Theme || {};
+	CANVASTheme = window.CANVASTheme || {};
 
-	$.extend(T3Theme, {
+	$.extend(CANVASTheme, {
 		handleLink: function(){
 			var links = document.links,
 				forms = document.forms,
 				origin = [window.location.protocol, '//', window.location.hostname, window.location.port].join(''),
-				tmid = /[?&]t3tmid=([^&]*)/.exec(window.location.search),
+				tmid = /[?&]canvastmid=([^&]*)/.exec(window.location.search),
 				tmparam = 'themer=1',
 				iter, i, il;
 
@@ -43,7 +42,7 @@
 			}
 
 			//10 seconds, if the Less build not complete, we just show the page instead of blank page
-			T3Theme.sid = setTimeout(T3Theme.bodyReady, 10000);
+			CANVASTheme.sid = setTimeout(CANVASTheme.bodyReady, 10000);
 		},
 		
 		applyLess: function(data){
@@ -52,12 +51,12 @@
 
 			if(data && typeof data == 'object'){
 
-				if(data.template == T3Theme.template){
+				if(data.template == CANVASTheme.template){
 					applicable = true;
 
-					T3Theme.vars = data.vars;
-					T3Theme.others = data.others;
-					T3Theme.theme = data.theme;
+					CANVASTheme.vars = data.vars;
+					CANVASTheme.others = data.others;
+					CANVASTheme.theme = data.theme;
 				}
 			}
 			
@@ -67,21 +66,21 @@
 		},
 
 		onCompile: function(completed, total){
-			if(window.parent != window && window.parent.T3Theme){
-				window.parent.T3Theme.onCompile(completed, total);
+			if(window.parent != window && window.parent.CANVASTheme){
+				window.parent.CANVASTheme.onCompile(completed, total);
 			}
 
 			if(completed >= total){
-				T3Theme.bodyReady();
+				CANVASTheme.bodyReady();
 			}
 		},
 
 		bodyReady: function(){
-			clearTimeout(T3Theme.sid);
+			clearTimeout(CANVASTheme.sid);
 
 			if(!this.ready){
 				$(document).ready(function(){
-					T3Theme.ready = 1;
+					CANVASTheme.ready = 1;
 					$(document.body).addClass('ready');
 				});
 			} else {
@@ -91,7 +90,7 @@
 	});
 
 	$(document).ready(function(){
-		T3Theme.handleLink();
+		CANVASTheme.handleLink();
 	});
 	
 }(jQuery);

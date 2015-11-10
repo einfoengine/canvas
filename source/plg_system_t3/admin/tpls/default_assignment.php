@@ -1,14 +1,13 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -20,19 +19,19 @@ $menuTypes = MenusHelper::getMenuLinks();
 $user = JFactory::getUser();
 ?>
 
-<div class="t3-admin-assignment clearfix">
+<div class="canvas-admin-assignment clearfix">
 
-  <div class="t3-admin-fieldset-desc">
-    <?php echo JText::_('T3_MENUS_ASSIGNMENT_DESC'); ?>
+  <div class="canvas-admin-fieldset-desc">
+    <?php echo JText::_('CANVAS_MENUS_ASSIGNMENT_DESC'); ?>
   </div>
 
-  <div class="control-group t3-control-group">
+  <div class="control-group canvas-control-group">
 
-    <div class="control-label t3-control-label">
+    <div class="control-label canvas-control-label">
       <label id="jform_menuselect-lbl" for="jform_menuselect"><?php echo JText::_('JGLOBAL_MENU_SELECTION'); ?></label>
     </div>
 
-    <div class="controls t3-controls">
+    <div class="controls canvas-controls">
       <div class="btn-toolbar">
         <button type="button" class="btn" onclick="$$('.chk-menulink').each(function(el) { el.checked = !el.checked; });">
           <i class="icon-checkbox-partial"></i>  <?php echo JText::_('JGLOBAL_SELECTION_INVERT'); ?>
@@ -60,7 +59,7 @@ $user = JFactory::getUser();
 											<a href="javascript://" class="menu-assignment-toggle" title="<?php echo JText::_('JGLOBAL_SELECTION_INVERT'); ?>">
 												<i class="icon-checkbox-partial"></i>
 											</a>
-											<a href="javascript://" title="<?php echo JText::_('T3_GLOBAL_TOGGLE_FOLDING'); ?>">
+											<a href="javascript://" title="<?php echo JText::_('CANVAS_GLOBAL_TOGGLE_FOLDING'); ?>">
 												<i class="menu-tree-toggle icon-minus"></i>
 											</a>
 										<?php endif ?>

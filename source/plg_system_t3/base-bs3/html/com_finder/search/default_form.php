@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  com_finder
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -61,6 +61,14 @@ defined('_JEXEC') or die;
 	<?php JHtml::_('script', 'com_finder/autocompleter.js', false, true); ?>
 		var url = '<?php echo JRoute::_('index.php?option=com_finder&task=suggestions.display&format=json&tmpl=component', false); ?>';
 		var completer = new Autocompleter.Request.JSON(document.getElementById("q"), url, {'postVar': 'q'});
+<?php endif; ?>
+
+
+<?php if(!$this->params->get('allow_empty_search')) : ?>
+		/* CANVAS document */
+		$('#q').change(function(){
+			$('#smartsearch-btn').toggleClass('disabled', $.trim(this.value).length);
+		});
 <?php endif; ?>
 
 	});

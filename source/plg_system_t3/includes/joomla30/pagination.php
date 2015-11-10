@@ -315,8 +315,8 @@ class JPagination
 		$listOverride = false;
 
 		// $chromePath = JPATH_THEMES . '/' . $app->getTemplate() . '/html/pagination.php';
-		// T3: detect if chrome pagination.php in template or in plugin
-		$chromePath = T3Path::getPath ('html/pagination.php');
+		// CANVAS: detect if chrome pagination.php in template or in plugin
+		$chromePath = CANVASPath::getPath ('html/pagination.php');
 
 		if (file_exists($chromePath))
 		{
@@ -504,8 +504,8 @@ class JPagination
 	{
 		// Keep B/C for overrides done with chromes
 		// $chromePath = JPATH_THEMES . '/' . JFactory::getApplication()->getTemplate() . '/html/pagination.php';
-		// T3: detect if chrome pagination.php in template or in plugin
-		$chromePath = T3Path::getPath ('html/pagination.php');
+		// CANVAS: detect if chrome pagination.php in template or in plugin
+		$chromePath = CANVASPath::getPath ('html/pagination.php');
 
 		if (file_exists($chromePath))
 		{

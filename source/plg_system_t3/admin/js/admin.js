@@ -1,56 +1,55 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
-var T3Admin = window.T3Admin || {};
+var CANVASAdmin = window.CANVASAdmin || {};
 
 !function ($) {
 
-	$.extend(T3Admin, {
+	$.extend(CANVASAdmin, {
 		
 		initToolbar: function(){
-			//t3 added
-			$('#t3-admin-tb-compile-all').on('click', function(){
-				T3Admin.compileLESS();
+			//canvas added
+			$('#canvas-admin-tb-compile-all').on('click', function(){
+				CANVASAdmin.compileLESS();
 				return false;
 			});
 
-			$('#t3-admin-tb-compile-this').on('click', function(){
-				T3Admin.compileLESS($('#jform_params_theme').val() || 'default');
+			$('#canvas-admin-tb-compile-this').on('click', function(){
+				CANVASAdmin.compileLESS($('#jform_params_theme').val() || 'default');
 				return false;
 			});
 
 			$('#jform_params_theme').on('change', function(){
-				var compileThis = $('#t3-admin-tb-compile-this');
+				var compileThis = $('#canvas-admin-tb-compile-this');
 
 				compileThis.find('a').html(compileThis.attr('data-msg').replace('%s', this.value || compileThis.attr('data-default')));
 			});
 
-			$('#t3-admin-tb-themer button').on('click', function(){
-				if(!T3Admin.themermode){
+			$('#canvas-admin-tb-themer button').on('click', function(){
+				if(!CANVASAdmin.themermode){
 					
-					$('#t3-admin-tb-megamenu button').popover('hide');
-					T3Admin.tbmmid = 0;
+					$('#canvas-admin-tb-megamenu button').popover('hide');
+					CANVASAdmin.tbmmid = 0;
 					
 					$(this).popover('show');
 
-					clearTimeout(T3Admin.tbthemerid);
-					T3Admin.tbthemerid = setTimeout(function(){
-						$('#t3-admin-tb-themer button').popover('hide');
+					clearTimeout(CANVASAdmin.tbthemerid);
+					CANVASAdmin.tbthemerid = setTimeout(function(){
+						$('#canvas-admin-tb-themer button').popover('hide');
 					}, 2000);
 				} else {
 					$(this).popover('hide');
 					
-					window.location.href = T3Admin.themerUrl;
+					window.location.href = CANVASAdmin.themerUrl;
 				}
 				return false;
 			}).popover({
@@ -60,20 +59,20 @@ var T3Admin = window.T3Admin || {};
 			});
 		
 
-			$('#t3-admin-tb-megamenu button').on('click', function(){
+			$('#canvas-admin-tb-megamenu button').on('click', function(){
 				
-				if($('#jform_params_navigation_type :checked').val() != 'megamenu' && !T3Admin.tbmmid){
+				if($('#jform_params_navigation_type :checked').val() != 'megamenu' && !CANVASAdmin.tbmmid){
 					
-					$('#t3-admin-tb-themer button').popover('hide');
+					$('#canvas-admin-tb-themer button').popover('hide');
 					$(this).popover('show');
 
-					clearTimeout(T3Admin.tbmmid);
-					T3Admin.tbmmid = setTimeout(function(){
-						$('#t3-admin-tb-megamenu button').popover('hide');
-						T3Admin.tbmmid = 0;
+					clearTimeout(CANVASAdmin.tbmmid);
+					CANVASAdmin.tbmmid = setTimeout(function(){
+						$('#canvas-admin-tb-megamenu button').popover('hide');
+						CANVASAdmin.tbmmid = 0;
 					}, 5000);
 				} else {
-					window.location.href = T3Admin.megamenuUrl;
+					window.location.href = CANVASAdmin.megamenuUrl;
 				}
 				
 				return false;
@@ -84,19 +83,19 @@ var T3Admin = window.T3Admin || {};
 			});		
 
 			//for style toolbar
-			$('#t3-admin-tb-style-save-save').on('click', function(){
+			$('#canvas-admin-tb-style-save-save').on('click', function(){
 				Joomla.submitbutton('style.apply');
 			});
 
-			$('#t3-admin-tb-style-save-close').on('click', function(){
+			$('#canvas-admin-tb-style-save-close').on('click', function(){
 				Joomla.submitbutton('style.save');
 			});
 			
-			$('#t3-admin-tb-style-save-clone').on('click', function(){
+			$('#canvas-admin-tb-style-save-clone').on('click', function(){
 				Joomla.submitbutton('style.save2copy');
 			});
 
-			$('#t3-admin-tb-close').on('click', function(){
+			$('#canvas-admin-tb-close').on('click', function(){
 				Joomla.submitbutton(($(this).hasClass('template') ? 'template' : 'style') + '.cancel');
 			});
 
@@ -147,13 +146,13 @@ var T3Admin = window.T3Admin || {};
 						return $.inArray(this.value + '', ['0', '1']) !== -1;
 					}).length == 2;
 
-			}).addClass('t3onoff')
+			}).addClass('canvasonoff')
 				.find('label').addClass(function(){
 					return $(this).prev('input').val() == '0' ? 'off' : 'on'
 				});
 
 			//support eplicit define class
-			$('.t3onoff').removeClass('btn-group').find('label').removeClass('btn');
+			$('.canvasonoff').removeClass('btn-group').find('label').removeClass('btn');
 			
 			//action
 			$('fieldset.radio').find('label').removeClass('btn-success btn-danger btn-primary').unbind('click').click(function() {
@@ -173,7 +172,7 @@ var T3Admin = window.T3Admin || {};
 			});
 
 			//update state
-			$('.t3-admin-form').on('update', 'input[type=radio]', function(){
+			$('.canvas-admin-form').on('update', 'input[type=radio]', function(){
 				if(this.checked){
 					$(this)
 						.closest('.radio')
@@ -235,12 +234,12 @@ var T3Admin = window.T3Admin || {};
 					urlparts = form.action.split('#');
 					
 				if(/apply|save2copy/.test(form['task'].value)){
-					t3active = $('.t3-admin-nav .active a').attr('href').replace(/.*(?=#[^\s]*$)/, '').substr(1);
+					canvasactive = $('.canvas-admin-nav .active a').attr('href').replace(/.*(?=#[^\s]*$)/, '').substr(1);
 
 					if(urlparts[0].indexOf('?') == -1){
-						urlparts[0] += '?t3lock=' + t3active;
+						urlparts[0] += '?canvaslock=' + canvasactive;
 					} else {
-						urlparts[0] += '&t3lock=' + t3active;
+						urlparts[0] += '&canvaslock=' + canvasactive;
 					}
 					
 					form.action = urlparts.join('#');
@@ -253,8 +252,8 @@ var T3Admin = window.T3Admin || {};
 		},
 
 		initChangeStyle: function(){
-			$('#t3-styles-list').on('change', function(){
-				window.location.href = T3Admin.baseurl + '/index.php?option=com_templates&task=style.edit&id=' + this.value + window.location.hash;
+			$('#canvas-styles-list').on('change', function(){
+				window.location.href = CANVASAdmin.baseurl + '/index.php?option=com_templates&task=style.edit&id=' + this.value + window.location.hash;
 			});
 		},
 
@@ -292,9 +291,9 @@ var T3Admin = window.T3Admin || {};
 						jpane = jgroup.closest('.tab-pane'),
 						chretain = Math.max(0, (jgroup.data('chretain') || 0) + (!eq && jinput.data('included') ? 0 : (eq ? -1 : 1)));
 
-					jgroup.data('chretain', chretain).toggleClass('t3-changed', !!(chretain));
+					jgroup.data('chretain', chretain).toggleClass('canvas-changed', !!(chretain));
 
-					$('.t3-admin-nav .nav li').eq(jpane.index()).toggleClass('t3-changed', !!(!eq || jpane.find('.t3-changed').length));
+					$('.canvas-admin-nav .nav li').eq(jpane.index()).toggleClass('canvas-changed', !!(!eq || jpane.find('.canvas-changed').length));
 
 					if(this.type == 'radio'){
 						jinput = jinput.add(jgroup.find('[name="' + this.name + '"]'));
@@ -306,16 +305,16 @@ var T3Admin = window.T3Admin || {};
 
 		initCheckupdate: function(){
 			
-			var tinfo = $('#t3-admin-tpl-info dd'),
-				finfo = $('#t3-admin-frmk-info dd');
+			var tinfo = $('#canvas-admin-tpl-info dd'),
+				finfo = $('#canvas-admin-frmk-info dd');
 
-			T3Admin.chkupdating = null;
-			T3Admin.tplname = tinfo.eq(0).html();
-			T3Admin.tplversion = tinfo.eq(1).html();
-			T3Admin.frmkname = finfo.eq(0).html();
-			T3Admin.frmkversion = finfo.eq(1).html();
+			CANVASAdmin.chkupdating = null;
+			CANVASAdmin.tplname = tinfo.eq(0).html();
+			CANVASAdmin.tplversion = tinfo.eq(1).html();
+			CANVASAdmin.frmkname = finfo.eq(0).html();
+			CANVASAdmin.frmkversion = finfo.eq(1).html();
 			
-			$('#t3-admin-framework-home .updater, #t3-admin-template-home .updater').on('click', 'a.btn', function(){
+			$('#canvas-admin-framework-home .updater, #canvas-admin-template-home .updater').on('click', 'a.btn', function(){
 				
 				//if it is outdated, then we go direct to link
 				if($(this).closest('.updater').hasClass('outdated')){
@@ -323,14 +322,14 @@ var T3Admin = window.T3Admin || {};
 				}
 
 				//if we are checking, ignore this click, wait for it complete
-				if(T3Admin.chkupdating){
+				if(CANVASAdmin.chkupdating){
 					return false;
 				}
 
 				//checking
 				$(this).addClass('loading');
-				T3Admin.chkupdating = this;
-				T3Admin.checkUpdate();
+				CANVASAdmin.chkupdating = this;
+				CANVASAdmin.checkUpdate();
 
 				return false;
 			});
@@ -338,11 +337,11 @@ var T3Admin = window.T3Admin || {};
 
 		checkUpdate: function(){
 			$.ajax({
-				url: T3Admin.t3updateurl,
-				data: {eid: T3Admin.eids},
+				url: CANVASAdmin.canvasupdateurl,
+				data: {eid: CANVASAdmin.eids},
 				success: function(data) {
-					var jfrmk = $('#t3-admin-framework-home .updater:first'),
-						jtemp = $('#t3-admin-template-home .updater:first');
+					var jfrmk = $('#canvas-admin-framework-home .updater:first'),
+						jtemp = $('#canvas-admin-template-home .updater:first');
 
 					jfrmk.find('.btn').removeClass('loading');
 					jtemp.find('.btn').removeClass('loading');
@@ -350,7 +349,7 @@ var T3Admin = window.T3Admin || {};
 					try {
 						var ulist = $.parseJSON(data);
 					} catch(e) {
-						T3Admin.alert(T3Admin.langs.updateFailedGetList, T3Admin.chkupdating);
+						CANVASAdmin.alert(CANVASAdmin.langs.updateFailedGetList, CANVASAdmin.chkupdating);
 					}
 
 					if (ulist instanceof Array) {
@@ -362,45 +361,45 @@ var T3Admin = window.T3Admin || {};
 							if(chkfrmk || chktemp){
 								for(var i = 0, il = ulist.length; i < il; i++){
 
-									if(chkfrmk && ulist[i].element == T3Admin.felement && ulist[i].type == 'plugin'){
+									if(chkfrmk && ulist[i].element == CANVASAdmin.felement && ulist[i].type == 'plugin'){
 										jfrmk.addClass('outdated');
-										jfrmk.find('.btn').attr('href', T3Admin.jupdateUrl).html(T3Admin.langs.updateDownLatest);
-										jfrmk.find('h3').html(T3Admin.langs.updateHasNew.replace(/%s/g, T3Admin.frmkname));
+										jfrmk.find('.btn').attr('href', CANVASAdmin.jupdateUrl).html(CANVASAdmin.langs.updateDownLatest);
+										jfrmk.find('h3').html(CANVASAdmin.langs.updateHasNew.replace(/%s/g, CANVASAdmin.frmkname));
 										
 										var ridx = 0,
-											rvals = [T3Admin.frmkversion, T3Admin.frmkname, ulist[i].version];
-										jfrmk.find('p').html(T3Admin.langs.updateCompare.replace(/%s/g, function(){
+											rvals = [CANVASAdmin.frmkversion, CANVASAdmin.frmkname, ulist[i].version];
+										jfrmk.find('p').html(CANVASAdmin.langs.updateCompare.replace(/%s/g, function(){
 											return rvals[ridx++];
 										}));
 
-										T3Admin.langs.updateCompare.replace(/%s/g, function(){ return '' })
+										CANVASAdmin.langs.updateCompare.replace(/%s/g, function(){ return '' })
 									}
-									if(chktemp && ulist[i].element == T3Admin.telement && ulist[i].type == 'template'){
+									if(chktemp && ulist[i].element == CANVASAdmin.telement && ulist[i].type == 'template'){
 										jtemp.addClass('outdated');
-										jtemp.find('.btn').attr('href', T3Admin.jupdateUrl).html(T3Admin.langs.updateDownLatest);
+										jtemp.find('.btn').attr('href', CANVASAdmin.jupdateUrl).html(CANVASAdmin.langs.updateDownLatest);
 
-										jtemp.find('h3').html(T3Admin.langs.updateHasNew.replace(/%s/g, T3Admin.tplname));
+										jtemp.find('h3').html(CANVASAdmin.langs.updateHasNew.replace(/%s/g, CANVASAdmin.tplname));
 										
 										var ridx = 0,
-											rvals = [T3Admin.tplversion, T3Admin.tplname, ulist[i].version];
-										jtemp.find('p').html(T3Admin.langs.updateCompare.replace(/%s/g, function(){
+											rvals = [CANVASAdmin.tplversion, CANVASAdmin.tplname, ulist[i].version];
+										jtemp.find('p').html(CANVASAdmin.langs.updateCompare.replace(/%s/g, function(){
 											return rvals[ridx++];
 										}));
 									}
 								}
 
-								T3Admin.alert(T3Admin.langs.updateChkComplete, T3Admin.chkupdating);
+								CANVASAdmin.alert(CANVASAdmin.langs.updateChkComplete, CANVASAdmin.chkupdating);
 							}
 						}
 					} else {
-						T3Admin.alert(T3Admin.langs.updateFailedGetList, T3Admin.chkupdating);
+						CANVASAdmin.alert(CANVASAdmin.langs.updateFailedGetList, CANVASAdmin.chkupdating);
 					}
 
-					T3Admin.chkupdating = null;
+					CANVASAdmin.chkupdating = null;
 				},
 				error: function() {
-					T3Admin.alert(T3Admin.langs.updateFailedGetList, T3Admin.chkupdating);
-					T3Admin.chkupdating = null;
+					CANVASAdmin.alert(CANVASAdmin.langs.updateFailedGetList, CANVASAdmin.chkupdating);
+					CANVASAdmin.chkupdating = null;
 				}
 			});
 		},
@@ -418,24 +417,24 @@ var T3Admin = window.T3Admin || {};
 					'</dl>').hide().appendTo($('#system-message-container'));
 			}
 
-			T3Admin.message = jmessage;
+			CANVASAdmin.message = jmessage;
 		},
 
 		systemMessage: function(msg){
-			T3Admin.message.show();
-			if(T3Admin.message.find('li:first').length){
-				T3Admin.message.find('li:first').html(msg).show();
+			CANVASAdmin.message.show();
+			if(CANVASAdmin.message.find('li:first').length){
+				CANVASAdmin.message.find('li:first').html(msg).show();
 			} else {
-				T3Admin.message.html('' + 
+				CANVASAdmin.message.html('' + 
 					'<div class="alert">' +
 						'<h4>Message</h4>' + 
 						'<p>' + msg + '</p>' +
 					'</div>');
 			}
 			
-			clearTimeout(T3Admin.msgid);
-			T3Admin.msgid = setTimeout(function(){
-				T3Admin.message.hide();
+			clearTimeout(CANVASAdmin.msgid);
+			CANVASAdmin.msgid = setTimeout(function(){
+				CANVASAdmin.message.hide();
 			}, 5000);
 		},
 
@@ -450,28 +449,28 @@ var T3Admin = window.T3Admin || {};
 		},
 
 		initLoadingBar: function(){
-			if(!T3Admin.progElm){
-				T3Admin.progElm = $('.t3-progress');
+			if(!CANVASAdmin.progElm){
+				CANVASAdmin.progElm = $('.canvas-progress');
 
-				if(!T3Admin.progElm.length){
-					T3Admin.progElm = $('<div class="t3-progress"></div>')
+				if(!CANVASAdmin.progElm.length){
+					CANVASAdmin.progElm = $('<div class="canvas-progress"></div>')
 				}
 
-				T3Admin.progElm.appendTo(document.body);
+				CANVASAdmin.progElm.appendTo(document.body);
 
 				var placed = $('#toolbar-box');
 				if(!placed.length){
-					placed = $('#t3-admin-toolbar');
+					placed = $('#canvas-admin-toolbar');
 				}
 
 				if(placed.length){
-					T3Admin.progElm.appendTo(placed);
+					CANVASAdmin.progElm.appendTo(placed);
 				}
 			}
 		},
 
 		switchTab: function () {
-			$('.t3-admin-nav a[data-toggle="tab"]').on('shown', function (e) {
+			$('.canvas-admin-nav a[data-toggle="tab"]').on('shown', function (e) {
 				var url = e.target.href;
 			  	window.location.hash = url.substring(url.indexOf('#')).replace ('_params', '');
 			});
@@ -480,11 +479,11 @@ var T3Admin = window.T3Admin || {};
 			if (hash) {
 				$('a[href="' + hash + '_params' + '"]').tab ('show');
 			} else {
-				var url = $('.t3-admin-nav .nav-tabs li.active a').attr('href');
+				var url = $('.canvas-admin-nav .nav-tabs li.active a').attr('href');
 				if (url) {
 			  		window.location.hash = url.substring(url.indexOf('#')).replace ('_params', '');
 				} else {
-					$('.t3-admin-nav .nav-tabs li:first a').tab ('show');
+					$('.canvas-admin-nav .nav-tabs li:first a').tab ('show');
 				}
 			}
 		},
@@ -573,38 +572,38 @@ var T3Admin = window.T3Admin || {};
 		},
 
 		compileLESS: function(theme){
-			var recompile = $('#t3-admin-tb-recompile');
+			var recompile = $('#canvas-admin-tb-recompile');
 
 			//progress bar
 			recompile.addClass('loading');
 			if($.support.transition){
-				T3Admin.progElm
-					.removeClass('t3-anim-slow t3-anim-finish')
+				CANVASAdmin.progElm
+					.removeClass('canvas-anim-slow canvas-anim-finish')
 					.css('width', '');
 
 				setTimeout(function(){
 					var width = 5 + Math.floor(Math.random() * 10),
 						iid = null;
 
-					T3Admin.progElm
-						.addClass('t3-anim-slow')
+					CANVASAdmin.progElm
+						.addClass('canvas-anim-slow')
 						.css('width', width + '%');
 
 					iid = setInterval(function(){
-						if(!T3Admin.progElm.hasClass('t3-anim-slow')) {
+						if(!CANVASAdmin.progElm.hasClass('canvas-anim-slow')) {
 							clearInterval(iid);
 							return false;
 						}
 
 						width += Math.floor(Math.random() * 5);
 
-						T3Admin.progElm
-							.addClass('t3-anim-slow')
+						CANVASAdmin.progElm
+							.addClass('canvas-anim-slow')
 							.css('width', Math.min(90, width) + '%');
 					}, 3000);
 				});
 			} else {
-				T3Admin.progElm.stop(true).css({
+				CANVASAdmin.progElm.stop(true).css({
 					width: '0%',
 					display: 'block'
 				}).animate({
@@ -613,30 +612,30 @@ var T3Admin = window.T3Admin || {};
 			}
 
 			$.ajax({
-				url: T3Admin.adminurl,
-				data: {'t3action': 'lesscall', 'styleid': T3Admin.templateid, 'theme': theme || '' }
+				url: CANVASAdmin.adminurl,
+				data: {'canvasaction': 'lesscall', 'styleid': CANVASAdmin.templateid, 'theme': theme || '' }
 			}).always(function(){
 				
 				//progress bar
 				recompile.removeClass('loading');
 				if($.support.transition){
 					
-					T3Admin.progElm
-						.removeClass('t3-anim-slow')
-						.addClass('t3-anim-finish')
+					CANVASAdmin.progElm
+						.removeClass('canvas-anim-slow')
+						.addClass('canvas-anim-finish')
 						.one($.support.transition.end, function () {
 							setTimeout(function(){
-								if(T3Admin.progElm.hasClass('t3-anim-finish')){
-									$(T3Admin.progElm).removeClass('t3-anim-finish');
+								if(CANVASAdmin.progElm.hasClass('canvas-anim-finish')){
+									$(CANVASAdmin.progElm).removeClass('canvas-anim-finish');
 								}
 							}, 1000);
 						});
 
 				} else {
-					$(T3Admin.progElm).stop(true).animate({
+					$(CANVASAdmin.progElm).stop(true).animate({
 						width: '100%'
 					}, function(){
-						$(T3Admin.progElm).hide();
+						$(CANVASAdmin.progElm).hide();
 					});
 				}
 				
@@ -660,22 +659,22 @@ var T3Admin = window.T3Admin || {};
 							json = $.parseJSON(json);
 						} catch (e){
 							json = {
-								error: T3Admin.langs.unknownError
+								error: CANVASAdmin.langs.unknownError
 							}
 						}
 					}
 
-					T3Admin.systemMessage(rsp || json.error || json.successful);
+					CANVASAdmin.systemMessage(rsp || json.error || json.successful);
 				}
 
 			}).fail(function(){
 				recompile.removeClass('loading');
-				T3Admin.systemMessage(T3Admin.langs.unknownError);
+				CANVASAdmin.systemMessage(CANVASAdmin.langs.unknownError);
 			});
 		},
 
-		initT3ThemeExtras: function(){
-			$('.t3-extra-setting').on('change', function(e, val){
+		initCANVASThemeExtras: function(){
+			$('.canvas-extra-setting').on('change', function(e, val){
 				if(val.selected == '0' || val.selected == '-1'){
 					$(e.target).val(val.selected).trigger('liszt:updated');
 				} else {
@@ -699,7 +698,7 @@ var T3Admin = window.T3Admin || {};
             $('input[name="jform[params][responsive]"]').on('change', function(){
                 // this is radio
                 if ($(this).data('org-val') != $(this).prop('checked')) {
-                    T3Admin.systemMessage(T3Admin.langs['switchResponsiveMode']);
+                    CANVASAdmin.systemMessage(CANVASAdmin.langs['switchResponsiveMode']);
                 }
             })
         },
@@ -708,21 +707,21 @@ var T3Admin = window.T3Admin || {};
 	});
 	
 	$(document).ready(function(){
-		T3Admin.initSystemMessage();
-		T3Admin.initLoadingBar();
-		T3Admin.improveMarkup();
-		T3Admin.initMarkChange();
-		T3Admin.initToolbar();
-		T3Admin.initRadioGroup();
-		T3Admin.initChosen();
-		T3Admin.initPreSubmit();
-		T3Admin.hideDisabled();
-		T3Admin.initChangeStyle();
-		T3Admin.initT3ThemeExtras();
-		//T3Admin.initCheckupdate();
-		T3Admin.switchTab();
-		T3Admin.fixValidate();
-        T3Admin.noticeChange ();
+		CANVASAdmin.initSystemMessage();
+		CANVASAdmin.initLoadingBar();
+		CANVASAdmin.improveMarkup();
+		CANVASAdmin.initMarkChange();
+		CANVASAdmin.initToolbar();
+		CANVASAdmin.initRadioGroup();
+		CANVASAdmin.initChosen();
+		CANVASAdmin.initPreSubmit();
+		CANVASAdmin.hideDisabled();
+		CANVASAdmin.initChangeStyle();
+		CANVASAdmin.initCANVASThemeExtras();
+		//CANVASAdmin.initCheckupdate();
+		CANVASAdmin.switchTab();
+		CANVASAdmin.fixValidate();
+        CANVASAdmin.noticeChange ();
 	});
 	
 }(jQuery);

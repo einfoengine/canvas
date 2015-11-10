@@ -1,14 +1,13 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -25,10 +24,10 @@ defined('_JEXEC') or die;
   </head>
 
   <body>
-    <section id="t3-mainbody" class="container t3-mainbody">
+    <section id="canvas-mainbody" class="container canvas-mainbody">
       <div class="row">
-        <div id="t3-content" class="t3-content span12">
-          <jdoc:include type="t3ajax" />
+        <div id="canvas-content" class="canvas-content span12">
+          <jdoc:include type="canvasajax" />
         </div>
       </div>
     </section>

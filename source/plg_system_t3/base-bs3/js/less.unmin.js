@@ -2703,7 +2703,7 @@ function _math(fn, unit, n) {
     return new(tree.Dimension)(fn(parseFloat(n.value)), unit);
 }
 
-//T3: Overwrite
+//CANVAS: Overwrite
 if(window.MooTools){
 	_math.bind = function (oThis) {
 	  if (typeof this !== 'function') {
@@ -2726,7 +2726,7 @@ if(window.MooTools){
 	  return fBound;
 	}
 }
-//End T3
+//End CANVAS
 
 // ~ End of Math
 
@@ -7315,7 +7315,7 @@ if (dumpLineNumbers) {
 }
 
 var typePattern = /^text\/(x-)?less$/;
-/* T3 framework */
+/* CANVAS framework */
 var cache = {
     storage: {
     },
@@ -7696,16 +7696,16 @@ function getXMLHttpRequest() {
 }
 
 function doXHR(url, type, callback, errback) {
-    /* T3 framework: check if the file is loaded and store in cache */
-    var lessContent = cache ? (T3Theme.cache && T3Theme.cache[url]) || cache.getItem(url + ':less') : false;
-    if(lessContent || typeof T3Theme.cache[url] != 'undefined'){
+    /* CANVAS framework: check if the file is loaded and store in cache */
+    var lessContent = cache ? (CANVASTheme.cache && CANVASTheme.cache[url]) || cache.getItem(url + ':less') : false;
+    if(lessContent || typeof CANVASTheme.cache[url] != 'undefined'){
         var xhr = {
             responseText: lessContent,
             status: 200
         };
     } else {
 
-    /* T3 framework: end modified*/
+    /* CANVAS framework: end modified*/
         
         var xhr = getXMLHttpRequest();
         var async = isFileProtocol ? less.fileAsync : less.async;
@@ -7727,8 +7727,8 @@ function doXHR(url, type, callback, errback) {
         }
     }
 
-    /* T3 framework */
-    function t3Filename(url){
+    /* CANVAS framework */
+    function canvasFilename(url){
         //this removes the anchor at the end, if there is one
         url = url.substring(0, (url.indexOf('#') == -1) ? url.length : url.indexOf('#'));
         //this removes the query after the file name, if there is one
@@ -7739,21 +7739,21 @@ function doXHR(url, type, callback, errback) {
         return url;
     }
 
-    function t3Preprocess (xhr, url) {
+    function canvasPreprocess (xhr, url) {
         //store the less content
         cache.setItem(url + ':less', xhr.responseText || '/*dummy*/' );
         
         var res = {'data': xhr.responseText + '', 'lastModified': xhr.getResponseHeader ? xhr.getResponseHeader("Last-Modified") : new Date().toString()};
         
-        var fname = t3Filename(url);
+        var fname = canvasFilename(url);
         if(
-            window.T3Theme &&                                               //must be in thememagic mode
-            T3Theme.others[fname] &&                                        //must have the same file in theme folder
-            url.indexOf(T3Theme.template + '/less/') != -1 &&               //this file must be from templete 'less' folder
-            url.indexOf('themes/' + T3Theme.theme + '/' + fname) == -1 &&   //this file must not be in theme folder
-            url.indexOf('t3/base-bs3') == -1                                //this file must not be in t3/base-bs3 folder
+            window.CANVASTheme &&                                               //must be in thememagic mode
+            CANVASTheme.others[fname] &&                                        //must have the same file in theme folder
+            url.indexOf(CANVASTheme.template + '/less/') != -1 &&               //this file must be from templete 'less' folder
+            url.indexOf('themes/' + CANVASTheme.theme + '/' + fname) == -1 &&   //this file must not be in theme folder
+            url.indexOf('canvas/base-bs3') == -1                                //this file must not be in canvas/base-bs3 folder
             ){
-           res.data = res.data + "\n" + '@import "themes/' + T3Theme.theme + '/' + fname + '";' + "\n";
+           res.data = res.data + "\n" + '@import "themes/' + CANVASTheme.theme + '/' + fname + '";' + "\n";
         }
 
         regex = /.*@import\s+\"(.*)vars\.less\".*/;
@@ -7767,26 +7767,19 @@ function doXHR(url, type, callback, errback) {
         res.lastModified += 1;
 
         //extend vars with new params
-        var vars = window.T3Theme ? T3Theme.vars : false,
+        var vars = window.CANVASTheme ? CANVASTheme.vars : false,
             variables = '';
 
         if(vars){
             for (v in vars) {
                 if (vars.hasOwnProperty(v)) {
-                    if (v == 'import-external-urls') {
-                        var urls = vars[v].split('\n');
-                        for (i=0; i< urls.length; i++) {
-                            variables += '@import url(' + urls[i] + ');\n';
-                        }
-                    } else {
-                        variables += '@' + v + ': ' + vars[v] + ";\n";
-                    }
+                    variables += '@' + v + ': ' + vars[v] + ";\n";
                 }
             }
         }
 
         //svars
-        vars = window.T3Theme ? T3Theme.svars : false;
+        vars = window.CANVASTheme ? CANVASTheme.svars : false;
         if(vars){
             for (v in vars) {
                 if (vars.hasOwnProperty(v)) {
@@ -7801,8 +7794,8 @@ function doXHR(url, type, callback, errback) {
 
     if (isFileProtocol && !less.fileAsync) {
         if (xhr.status === 0 || (xhr.status >= 200 && xhr.status < 300)) {
-            /* T3 framework: preprocess output before compile */
-            var res = t3Preprocess (xhr, url);
+            /* CANVAS framework: preprocess output before compile */
+            var res = canvasPreprocess (xhr, url);
             callback(res.data);
         } else {
             errback(xhr.status, url);
@@ -7810,14 +7803,14 @@ function doXHR(url, type, callback, errback) {
     } else if (async) {
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
-                /* T3 framework: preprocess output before compile */
-                var res = t3Preprocess (xhr, url);
+                /* CANVAS framework: preprocess output before compile */
+                var res = canvasPreprocess (xhr, url);
                 handleResponse(xhr, res, callback, errback);
             }
         };
     } else {
-        /* T3 framework: preprocess output before compile */
-        var res = t3Preprocess (xhr, url);
+        /* CANVAS framework: preprocess output before compile */
+        var res = canvasPreprocess (xhr, url);
         handleResponse(xhr, res, callback, errback);
     }
 }
@@ -7932,7 +7925,7 @@ function loadStyleSheet(sheet, callback, reload, remaining, modifyVars) {
 function loadStyleSheets(callback, reload, modifyVars) {
     for (var i = 0; i < less.sheets.length; i++) {
 
-        /* T3 framework: compile with a timeout to prevent Unresponsive script 
+        /* CANVAS framework: compile with a timeout to prevent Unresponsive script 
            This may cause other expected behavior since javascript may run before all lesses compiled completed
         */
         (function(i){
@@ -7981,7 +7974,7 @@ less.watch   = function () {
 less.unwatch = function () {clearInterval(less.watchTimer); this.watchMode = false; return false; };
 
 
-/* T3 framework */
+/* CANVAS framework */
 /*
 if (/!watch/.test(location.hash)) {
     less.watch();
@@ -7993,7 +7986,7 @@ if (less.env != 'development') {
     } catch (_) {}
 }
 */
-/*  //T3 framework */
+/*  //CANVAS framework */
 
 //
 // Get all <link> tags with the 'rel' attribute set to "stylesheet/less"
@@ -8021,9 +8014,9 @@ less.refresh = function (reload, modifyVars) {
     var startTime, endTime;
     startTime = endTime = new Date();
 
-    /* T3 framework */
-    if(typeof T3Theme != 'undefined') {
-        T3Theme.onCompile(0, less.sheets.length);
+    /* CANVAS framework */
+    if(typeof CANVASTheme != 'undefined') {
+        CANVASTheme.onCompile(0, less.sheets.length);
     }
 
     loadStyleSheets(function (e, root, _, sheet, env) {
@@ -8043,9 +8036,9 @@ less.refresh = function (reload, modifyVars) {
             log("less has finished. css generated in " + (new Date() - startTime) + 'ms', logLevel.info);
         }
 
-        /* T3 framework */
-        if(typeof T3Theme != 'undefined') {
-            T3Theme.onCompile(less.sheets.length - env.remaining, less.sheets.length);
+        /* CANVAS framework */
+        if(typeof CANVASTheme != 'undefined') {
+            CANVASTheme.onCompile(less.sheets.length - env.remaining, less.sheets.length);
         }
 
         endTime = new Date();
@@ -8058,9 +8051,9 @@ less.refreshStyles = loadStyles;
 
 less.Parser.fileLoader = loadFile;
 
-/* T3 framework */
+/* CANVAS framework */
 /* less.refresh(less.env === 'development'); */
-/* End T3 framework */
+/* End CANVAS framework */
 
 // amd.js
 //

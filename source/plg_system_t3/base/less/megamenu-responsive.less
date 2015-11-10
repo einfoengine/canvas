@@ -1,13 +1,12 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -20,7 +19,7 @@
 // Bootstrap mixins
 @import "../bootstrap/less/mixins.less";
 
-// T3 Base variables
+// CANVAS Base variables
 @import "variables.less";
 
 
@@ -30,7 +29,7 @@
 // ---------------------------------------------------------
 @media (max-width: @navbarCollapseWidth) {
 
-  .t3-megamenu {
+  .canvas-megamenu {
 
     // THE MEGAMENU
     //------------------------------------------------------
@@ -38,7 +37,7 @@
     // Global Menu Inner padding
     // -------------------------
     .mega-inner {
-      padding: (@T3globalPadding / 2) @T3globalPadding;
+      padding: (@CANVASglobalPadding / 2) @CANVASglobalPadding;
     }
 
     // Inner Padding for 1 column
@@ -63,7 +62,7 @@
     }
 
     .row-fluid + .row-fluid  {
-      padding-top: @T3globalPadding / 2;
+      padding-top: @CANVASglobalPadding / 2;
       border-top: 1px solid @hrBorder;
     }
 
@@ -91,7 +90,7 @@
   // --------------------------------------------------------------
   // 
   html[dir="rtl"] {
-    .t3-megamenu {
+    .canvas-megamenu {
       // Menu Grids
       // ----------
       .row-fluid,

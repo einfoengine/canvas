@@ -366,14 +366,14 @@ class JLayoutFile extends JLayoutBase
 		// (1 - lower priority) Frontend base layouts
 		$this->addIncludePaths(JPATH_ROOT . '/layouts');
 
-		// (2.1) - T3 base layout overridden
-		$this->addIncludePaths(T3_PATH . '/html/layouts');
+		// (2.1) - CANVAS base layout overridden
+		$this->addIncludePaths(CANVAS_PATH . '/html/layouts');
 
 		// (2) Standard Joomla! layouts overriden
 		$this->addIncludePaths(JPATH_THEMES . '/' . JFactory::getApplication()->getTemplate() . '/html/layouts');
 
 		// (2.1) - user custom layout overridden
-		if (!defined('T3_LOCAL_DISABLED')) $this->addIncludePaths(T3_LOCAL_PATH . '/html/layouts');
+		if (!defined('CANVAS_LOCAL_DISABLED')) $this->addIncludePaths(CANVAS_LOCAL_PATH . '/html/layouts');
 
 		// Component layouts & overrides if exist
 		$component = $this->options->get('component', null);

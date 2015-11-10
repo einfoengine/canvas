@@ -27,13 +27,13 @@ class JDocumentRendererMegamenuRender extends JDocumentRenderer
 	 */
 	public function render($info = null, $params = array(), $content = null)
 	{
-		T3::import('menu/megamenu');
+		CANVAS::import('menu/megamenu');
 
-		$t3app = T3::getApp();
+		$canvasapp = CANVAS::getApp();
 
 		//we will check from params
-		$menutype      = empty($params['menutype']) ? (empty($params['name']) ? $t3app->getParam('mm_type', 'mainmenu') : $params['name']) : $params['menutype'];
-		$currentconfig = json_decode($t3app->getParam('mm_config', ''), true);
+		$menutype      = empty($params['menutype']) ? (empty($params['name']) ? $canvasapp->getParam('mm_type', 'mainmenu') : $params['name']) : $params['menutype'];
+		$currentconfig = json_decode($canvasapp->getParam('mm_config', ''), true);
 
 		//force to array
 		if (!is_array($currentconfig)) {
@@ -67,6 +67,9 @@ class JDocumentRendererMegamenuRender extends JDocumentRenderer
 						$mmkey    = $key;
 						$menutype = $type;
 						break 2;
+					} else if (isset($currentconfig[$type])){
+						$mmkey    = $menutype = $type;
+						break 2;
 					}
 				}
 			}
@@ -78,18 +81,12 @@ class JDocumentRendererMegamenuRender extends JDocumentRenderer
 			}
 		}
 
-		JDispatcher::getInstance()->trigger('onT3Megamenu', array(&$menutype, &$mmconfig, &$viewLevels));
+		JDispatcher::getInstance()->trigger('onCANVASMegamenu', array(&$menutype, &$mmconfig, &$viewLevels));
 
 		$mmconfig['access'] = $viewLevels;
-		$menu = new T3MenuMegamenu ($menutype, $mmconfig, $t3app->_tpl->params);
-
-		$buffer = $menu->render(true);
-
-		if (isset($params['return_result']) && $params['return_result']) {
-			return $buffer;
-		} else {
-			$t3app->setBuffer($buffer, 'megamenu', empty($params['name']) ? null : $params['name'], null);
-			return '';
-		}
+		$menu = new CANVASMenuMegamenu ($menutype, $mmconfig, $canvasapp->_tpl->params);
+		
+		$canvasapp->setBuffer($menu->render(true), 'megamenu', empty($params['name']) ? null : $params['name'], null);
+		return '';
 	}
 }

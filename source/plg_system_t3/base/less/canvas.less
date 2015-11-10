@@ -1,0 +1,36 @@
+/** 
+ *------------------------------------------------------------------------------
+ * @package       CANVAS Framework for Joomla!
+ *------------------------------------------------------------------------------
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
+ * @license       GNU General Public License version 2 or later; see LICENSE.txt
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         https://github.com/canvasframework/ 
+ *------------------------------------------------------------------------------
+*/
+
+//
+// INCLUDES VARIOUS FUNCTIONS FOR CANVAS
+// ---------------------------------------------------------
+
+
+// Logo control class
+// ---------------------------------------------------------
+.logo-control {
+  .logo-img-sm {
+    display: none;
+  }
+  .logo-img {
+    display: block;
+  }
+}
+
+
+// for interact with javascript
+// ---------------------------------------------------------------------------
+// place holder class to detect the grid variables value in javascript
+.body-data-holder:before {
+	display: none;
+	content: "grid-float-breakpoint:@{navbarCollapseWidth} screen-xs:600px screen-sm:@{gridRowWidth768} screen-md:@{gridRowWidth} screen-lg:@{gridRowWidth1200}";
+}

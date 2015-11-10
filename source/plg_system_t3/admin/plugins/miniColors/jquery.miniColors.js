@@ -528,14 +528,14 @@ if(jQuery) (function($) {
 				} else {
 					var t1 = v;
 					var t2 = (255 - s) * v / 255;
-					var t3 = (t1 - t2) * (h % 60) / 60;
+					var canvas = (t1 - t2) * (h % 60) / 60;
 					if( h === 360 ) h = 0;
-					if( h < 60 ) { rgb.r = t1; rgb.b = t2; rgb.g = t2 + t3; }
-					else if( h < 120 ) {rgb.g = t1; rgb.b = t2; rgb.r = t1 - t3; }
-					else if( h < 180 ) {rgb.g = t1; rgb.r = t2; rgb.b = t2 + t3; }
-					else if( h < 240 ) {rgb.b = t1; rgb.r = t2; rgb.g = t1 - t3; }
-					else if( h < 300 ) {rgb.b = t1; rgb.g = t2; rgb.r = t2 + t3; }
-					else if( h < 360 ) {rgb.r = t1; rgb.g = t2; rgb.b = t1 - t3; }
+					if( h < 60 ) { rgb.r = t1; rgb.b = t2; rgb.g = t2 + canvas; }
+					else if( h < 120 ) {rgb.g = t1; rgb.b = t2; rgb.r = t1 - canvas; }
+					else if( h < 180 ) {rgb.g = t1; rgb.r = t2; rgb.b = t2 + canvas; }
+					else if( h < 240 ) {rgb.b = t1; rgb.r = t2; rgb.g = t1 - canvas; }
+					else if( h < 300 ) {rgb.b = t1; rgb.g = t2; rgb.r = t2 + canvas; }
+					else if( h < 360 ) {rgb.r = t1; rgb.g = t2; rgb.b = t1 - canvas; }
 					else { rgb.r = 0; rgb.g = 0; rgb.b = 0; }
 				}
 				return {

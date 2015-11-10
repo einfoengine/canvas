@@ -1,13 +1,12 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -18,7 +17,7 @@
 // Prevent Bootstrap Upgrading errors
 @import "../bootstrap/less/variables.less";
 
-// T3 Base variables
+// CANVAS Base variables
 @import "variables.less";
 
 
@@ -60,7 +59,7 @@
       backface-visibility: hidden;
     }
     
-    #t3-mainnav .nav-collapse,
+    #canvas-mainnav .nav-collapse,
     #ja-mainnav .nav-collapse {
       display: none;
     }
@@ -73,12 +72,12 @@
       width: 0;
       z-index: 1;
       background: none;
-      .t3-mainnav {
+      .canvas-mainnav {
         margin: 0;
         position: absolute;
         left: 0;
         top: 0;        
-        width: @T3OffCanvasWidth;
+        width: @CANVASOffCanvasWidth;
          
         -webkit-transform: translateX(-100%);
         -moz-transform: translateX(-100%);
@@ -99,13 +98,13 @@
   // --------
   .off-canvas-enabled {
     body > *{
-      -webkit-transform: translateX(@T3OffCanvasWidth);
-      -moz-transform: translateX(@T3OffCanvasWidth);
-      -o-transform: translateX(@T3OffCanvasWidth);
-      transform: translateX(@T3OffCanvasWidth);
+      -webkit-transform: translateX(@CANVASOffCanvasWidth);
+      -moz-transform: translateX(@CANVASOffCanvasWidth);
+      -o-transform: translateX(@CANVASOffCanvasWidth);
+      transform: translateX(@CANVASOffCanvasWidth);
     }
 
-    #t3-mainnav {
+    #canvas-mainnav {
       display: block;
     }
     //End

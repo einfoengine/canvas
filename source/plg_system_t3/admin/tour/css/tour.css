@@ -1,20 +1,20 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
  
 
 /* Tour overlay 
 -------------------*/
-#t3-admin-tour-overlay {
+#canvas-admin-tour-overlay {
   position:fixed;
   width:100%;
   height:100%;
@@ -23,7 +23,7 @@
   z-index:10000;
 }
 
-.t3-admin-tour-overlay {
+.canvas-admin-tour-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -36,7 +36,7 @@
 
 /* Tour Intro
 -------------------*/
-.t3-admin-tour-intro {
+.canvas-admin-tour-intro {
   position: fixed;
   top: 30%;
   left: 50%;
@@ -58,50 +58,50 @@
   -webkit-box-sizing: border-box;
 }
 
-.t3-admin-tour-intro h1 {
+.canvas-admin-tour-intro h1 {
   font-size: 30px;
   margin: 0 0 5px;
   line-height: normal;
   font-weight: normal;
 }
 
-.t3-admin-tour-intro .btn-large {
+.canvas-admin-tour-intro .btn-large {
   font-size: 16px !important;
 }
 
-.t3-admin-tour-intro-msg {
+.canvas-admin-tour-intro-msg {
   margin-bottom: 20px;
 }
 
-.t3-admin-tour-starttour {
+.canvas-admin-tour-starttour {
   width: 60%;
 }
 
-.t3-admin-tour-activated .t3-admin-tour-intro {
+.canvas-admin-tour-activated .canvas-admin-tour-intro {
   display: none;
 }
 
 
 /* Tour Control
 -------------------*/
-#t3-admin-tour-controls {
+#canvas-admin-tour-controls {
   display: none;
 }
 
-#t3-admin-tour-controls .btn-group {
+#canvas-admin-tour-controls .btn-group {
   margin-left: 0;
 }
 
-.popover-controls #t3-admin-tour-controls {
+.popover-controls #canvas-admin-tour-controls {
   display: block;
 }
 
-.t3-admin-tour-controls .t3-admin-tour-controls-btns {
+.canvas-admin-tour-controls .canvas-admin-tour-controls-btns {
   text-align: center;
 }
 
-.t3-admin-tour-controls .t3-admin-tour-controls-btns .btn,
-.t3-admin-tour-intro-action .btn {
+.canvas-admin-tour-controls .canvas-admin-tour-controls-btns .btn,
+.canvas-admin-tour-intro-action .btn {
   font-size: 14px;
 }
 
@@ -113,14 +113,14 @@
 }
 
 /* show prev, next button when tour is started */
-.t3-admin-tour-activated #prevtourstep,
-.t3-admin-tour-activated #nexttourstep {
+.canvas-admin-tour-activated #prevtourstep,
+.canvas-admin-tour-activated #nexttourstep {
   display: inline-block;
 }
 
 /* hide intro, start button when tour is started */
-.t3-admin-tour-activated .t3-admin-tour-intro,
-.t3-admin-tour-activated #activatetour {
+.canvas-admin-tour-activated .canvas-admin-tour-intro,
+.canvas-admin-tour-activated #activatetour {
   display: none;
 }
 
@@ -131,7 +131,7 @@
   z-index: 10010;
 }
 
-.t3-admin-tour-popover {
+.canvas-admin-tour-popover {
   width: 350px;
   max-width: 350px;
   font-size: 14px;
@@ -139,7 +139,7 @@
   color: #666;
 }
 
-.t3-admin-tour-popover .popover-title {
+.canvas-admin-tour-popover .popover-title {
   background: none;
   padding: 20px 20px 0;
   font-size: 22px;
@@ -149,11 +149,11 @@
   color: #333;
 }
 
-.t3-admin-tour-popover .popover-content {
+.canvas-admin-tour-popover .popover-content {
   padding: 10px 20px 20px;
 }
 
-.t3-admin-tour-popover .popover-content .t3-admin-tour-img {
+.canvas-admin-tour-popover .popover-content .canvas-admin-tour-img {
   border: 1px solid #ccc;
   margin: 10px 0 20px;
   border-radius: 5px;
@@ -163,15 +163,15 @@
   overflow: hidden;
 }
 
-.t3-admin-tour-popover .popover-content .t3-admin-tour-img img {
+.canvas-admin-tour-popover .popover-content .canvas-admin-tour-img img {
   width: 100%;
 }
 
-.t3-admin-tour-popover .popover-controls {
+.canvas-admin-tour-popover .popover-controls {
   padding: 0 20px 20px;
 }
 
-.t3-admin-tour-count {
+.canvas-admin-tour-count {
   line-height: 18px;
   padding: 8px 0 0;
   font-size: 12px;
@@ -183,7 +183,7 @@
 
 /* Tour icon in tab 
 --------------------*/
-.t3-admin-tour-help {
+.canvas-admin-tour-help {
   font-size: 28px;
   position: absolute;
   right: 30px;
@@ -191,7 +191,7 @@
   cursor: pointer;
 }
 
-.t3-admin-fieldset-desc {
+.canvas-admin-fieldset-desc {
   padding-right: 70px;
   position: relative;
 }
@@ -199,7 +199,7 @@
 
 /* Quick Help 
 --------------------*/
-.t3-admin-tour-quickhelp {
+.canvas-admin-tour-quickhelp {
   background: #FEFFDE;
   border-radius: 2px;
   border: 1px solid #ccc;
@@ -213,11 +213,11 @@
   margin-left: 20px;
 }
 
-.subhead:hover .t3-admin-tour-quickhelp {
+.subhead:hover .canvas-admin-tour-quickhelp {
   margin-left: 10px;
 }
 
-.t3-admin-tour-quickhelp::before {
+.canvas-admin-tour-quickhelp::before {
   display: block;
   content: " ";
   float: left;
@@ -231,7 +231,7 @@
   margin-left: -15px;
 }
 
-.t3-admin-tour-quickhelp::after {
+.canvas-admin-tour-quickhelp::after {
   display: block;
   content: " ";
   float: left;
@@ -245,7 +245,7 @@
   margin-left: -14px;
 }
 
-.t3-admin-tour-quickhelp .close {
+.canvas-admin-tour-quickhelp .close {
   margin-top: 1px;
   padding: 0;
 }

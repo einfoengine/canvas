@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fields name="params" addfieldpath="/plugins/system/t3/includes/depend">
+	<fields name="params" addfieldpath="/plugins/system/canvas/includes/depend">
 
-		<fieldset name="general_params" label="T3_GENERAL_LABEL" description="T3_GENERAL_DESC">
-			<field name="t3_template" type="hidden" default="1" value="1"/>
+		<fieldset name="general_params" label="CANVAS_GENERAL_LABEL" description="CANVAS_GENERAL_DESC">
+			<field name="canvas_template" type="hidden" default="1" value="1"/>
 
-			<field name="general_params_default" type="t3depend" function="@group">
+			<field name="general_params_default" type="canvasdepend" function="@group">
 				<option for="devmode" value="0" hide="0">
 					minify, minify_js
 				</option>
@@ -17,88 +17,89 @@
 
 			<field name="devmode" type="radio" default="0"
 						 global="1"
-						 label="T3_GENERAL_DEVELOPMENT_LABEL"
-						 description="T3_GENERAL_DEVELOPMENT_DESC">
+						 label="CANVAS_GENERAL_DEVELOPMENT_LABEL"
+						 description="CANVAS_GENERAL_DEVELOPMENT_DESC">
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
 
 			<field name="themermode" type="radio" default="1"
 						 global="1"
-						 label="T3_GENERAL_THEMER_LABEL"
-						 description="T3_GENERAL_THEMER_DESC">
+						 label="CANVAS_GENERAL_THEMER_LABEL"
+						 description="CANVAS_GENERAL_THEMER_DESC">
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
 
 			<field name="responsive" type="radio" default="1"
 						 global="1"
-						 label="T3_GENERAL_RESPONSIVE_LABEL"
-						 description="T3_GENERAL_RESPONSIVE_DESC">
+						 label="CANVAS_GENERAL_RESPONSIVE_LABEL"
+						 description="CANVAS_GENERAL_RESPONSIVE_DESC">
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
 
 			<field name="build_rtl" type="radio" default="0"
 						 global="1"
-						 label="T3_GENERAL_BUILD_RTL_LABEL"
-						 description="T3_GENERAL_BUILD_RTL_DESC">
+						 label="CANVAS_GENERAL_BUILD_RTL_LABEL"
+						 description="CANVAS_GENERAL_BUILD_RTL_DESC">
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
 
-			<field name="t3-assets" type="text" default="t3-assets"
+			<field name="canvas-assets" type="text" default="canvas-assets"
 						 global="1"
-						 label="T3_GENERAL_ASSETS_FOLDER_LABEL"
-						 description="T3_GENERAL_ASSETS_FOLDER_DESC"/>
+						 label="CANVAS_GENERAL_ASSETS_FOLDER_LABEL"
+						 description="CANVAS_GENERAL_ASSETS_FOLDER_DESC"/>
 
-			<field name="t3-rmvlogo" type="radio" default="1"
+			<field name="canvas-rmvlogo" type="radio" default="1"
 						 global="1"
-						 label="T3_GENERAL_REMOVE_T3LOGO_LABEL"
-						 description="T3_GENERAL_REMOVE_T3LOGO_DESC">
+						 label="CANVAS_GENERAL_REMOVE_CANVASLOGO_LABEL"
+						 description="CANVAS_GENERAL_REMOVE_CANVASLOGO_DESC">
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
+			<field name="canvas_logo_position" type="canvasmodpositions" default="brand" label="CANVAS_BRAND_LOGO_POSITION_LABEL" description="CANVAS_BRAND_LOGO_POSITION_DESC" hide_none="false" />
 
-			<field name="general_optimize_legend" type="t3depend" function="@legend" label="T3_GENERAL_OPTIMIZE_LABEL"
-						 description="T3_GENERAL_OPTIMIZE_DESC"/>
+			<field type="canvasdepend" function="@legend" label="CANVAS_GENERAL_OPTIMIZE_LABEL"
+						 description="CANVAS_GENERAL_OPTIMIZE_DESC"/>
 
 			<field name="minify" type="radio" default="0"
 						 global="1"
-						 label="T3_GENERAL_ASSETS_MINIFY_LABEL"
-						 description="T3_GENERAL_ASSETS_MINIFY_DESC">
+						 label="CANVAS_GENERAL_ASSETS_MINIFY_LABEL"
+						 description="CANVAS_GENERAL_ASSETS_MINIFY_DESC">
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
 
 			<field name="minify_js" type="radio" default="0"
 						 global="1"
-						 label="T3_GENERAL_ASSETS_MINIFYJS_LABEL"
-						 description="T3_GENERAL_ASSETS_MINIFYJS_DESC">
+						 label="CANVAS_GENERAL_ASSETS_MINIFYJS_LABEL"
+						 description="CANVAS_GENERAL_ASSETS_MINIFYJS_DESC">
 				<option value="0" class="off">JNO</option>
 				<option value="1" class="on">JYES</option>
 			</field>
 
 			<field name="minify_js_tool" type="list" default="jsmin"
 						 global="1"
-						 label="T3_GENERAL_ASSETS_MINIFYJS_TOOL_LABEL"
-						 description="T3_GENERAL_ASSETS_MINIFYJS_TOOL_DESC">
-				<option value="jsmin">T3_GENERAL_ASSETS_MINIFYJS_TOOL_JSMIN</option>
-				<option value="closurecompiler">T3_GENERAL_ASSETS_MINIFYJS_TOOL_CLOSURE</option>
+						 label="CANVAS_GENERAL_ASSETS_MINIFYJS_TOOL_LABEL"
+						 description="CANVAS_GENERAL_ASSETS_MINIFYJS_TOOL_DESC">
+				<option value="jsmin">CANVAS_GENERAL_ASSETS_MINIFYJS_TOOL_JSMIN</option>
+				<option value="closurecompiler">CANVAS_GENERAL_ASSETS_MINIFYJS_TOOL_CLOSURE</option>
 			</field>
 
 			<field name="minify_exclude" type="text" default=""
 						 global="1"
-						 label="T3_GENERAL_ASSETS_MINIFYJS_EXCLUDE_LABEL"
-						 description="T3_GENERAL_ASSETS_MINIFYJS_EXCLUDE_DESC"/>
+						 label="CANVAS_GENERAL_ASSETS_MINIFYJS_EXCLUDE_LABEL"
+						 description="CANVAS_GENERAL_ASSETS_MINIFYJS_EXCLUDE_DESC"/>
 
 
-            <field name="general_jcore_legend" type="t3depend" function="@legend" label="T3_GENERAL_JCORE_LABEL"
-                   description="T3_GENERAL_JCORE_DESC"/>
+            <field type="canvasdepend" function="@legend" label="CANVAS_GENERAL_JCORE_LABEL"
+                   description="CANVAS_GENERAL_JCORE_DESC"/>
 
             <field name="link_titles" type="list" global="1"
-                   description="T3_GENERAL_JCORE_LINKED_TITLES_DESC"
-                   label="T3_GENERAL_JCORE_LINKED_TITLES_LABEL"
+                   description="CANVAS_GENERAL_JCORE_LINKED_TITLES_DESC"
+                   label="CANVAS_GENERAL_JCORE_LINKED_TITLES_LABEL"
                     >
                 <option value="">JGLOBAL_USE_GLOBAL</option>
                 <option value="0">JNO</option>
@@ -107,72 +108,74 @@
 
 		</fieldset>
 
-		<fieldset name="theme_params" label="T3_THEME_LABEL" description="T3_THEME_DESC">
+		<fieldset name="theme_params" label="CANVAS_THEME_LABEL" description="CANVAS_THEME_DESC">
 
-			<field name="theme_params_default" type="t3depend" function="@group">
+			<field name="theme_params_default" type="canvasdepend" function="@group">
 				<option for="logotype" value="image">
-					logoimage, logoimage_sm, enable_logoimage_sm
+					logoimage, logoimage_sm
 				</option>
 				<option for="enable_logoimage_sm" value="1">
 					logoimage_sm
 				</option>
 			</field>
 
-			<field name="theme" type="t3folderlist" default=""
-						 label="T3_THEME_THEME_LABEL"
-						 description="T3_THEME_THEME_DESC"
+			<field name="theme" type="canvasfolderlist" default=""
+						 label="CANVAS_THEME_THEME_LABEL"
+						 description="CANVAS_THEME_THEME_DESC"
 						 filter=".*"
 						 directory="less/themes"
 						 stripext="true"
 						 hide_none="true"/>
 
 			<field name="logotype" type="list" default="image"
-						 label="T3_THEME_LOGOTYPE_LABEL"
-						 description="T3_THEME_LOGOTYPE_DESC">
-				<option value="text">T3_THEME_LOGOTYPE_TEXT</option>
-				<option value="image">T3_THEME_LOGOTYPE_IMAGE</option>
+						 label="CANVAS_THEME_LOGOTYPE_LABEL"
+						 description="CANVAS_THEME_LOGOTYPE_DESC">
+				<option value="text">CANVAS_THEME_LOGOTYPE_TEXT</option>
+				<option value="image">CANVAS_THEME_LOGOTYPE_IMAGE</option>
 			</field>
 
 			<field name="sitename" type="text" default="" filter="RAW" size="50"
-						 label="T3_THEME_SITENAME_LABEL"
-						 description="T3_THEME_SITENAME_DESC"
-						 placeholder="T3_THEME_SITENAME_HINT"
+						 label="CANVAS_THEME_SITENAME_LABEL"
+						 description="CANVAS_THEME_SITENAME_DESC"
+						 placeholder="CANVAS_THEME_SITENAME_HINT"
 				/>
 			<field name="slogan" type="text" default="" filter="RAW" size="50"
-						 label="T3_THEME_SLOGAN_LABEL"
-						 description="T3_THEME_SLOGAN_DESC"
-						 placeholder="T3_THEME_SLOGAN_HINT"
+						 label="CANVAS_THEME_SLOGAN_LABEL"
+						 description="CANVAS_THEME_SLOGAN_DESC"
+						 placeholder="CANVAS_THEME_SLOGAN_HINT"
 				/>
 
-			<field name="logoimage" type="t3media" default=""
-						 label="T3_THEME_LOGOIMAGE_LABEL"
-						 description="T3_THEME_LOGOIMAGE_DESC"/>
+			<field name="logoimage" type="canvasmedia" default=""
+						 label="CANVAS_THEME_LOGOIMAGE_LABEL"
+						 description="CANVAS_THEME_LOGOIMAGE_DESC"/>
 
-			<field name="enable_logoimage_sm" type="radio" class="t3onoff" default="0"
-						 label="T3_THEME_ENABLE_LOGOIMAGE_SM_LABEL"
-						 description="T3_THEME_ENABLE_LOGOIMAGE_SM_DESC">
+			<field name="enable_logoimage_sm" type="radio" class="canvasonoff" default="0"
+						 label="CANVAS_THEME_ENABLE_LOGOIMAGE_SM_LABEL"
+						 description="CANVAS_THEME_ENABLE_LOGOIMAGE_SM_DESC">
 				<option value="0" class="off">JNO</option>
 				<option value="1" class="on">JYES</option>
 			</field>
 
-			<field name="logoimage_sm" type="t3media" default=""
-						 label="T3_THEME_LOGOIMAGE_SM_LABEL"
-						 description="T3_THEME_LOGOIMAGE_SM_DESC"/>
+			<field name="logoimage_sm" type="canvasmedia" default=""
+						 label="CANVAS_THEME_LOGOIMAGE_SM_LABEL"
+						 description="CANVAS_THEME_LOGOIMAGE_SM_DESC"/>
+
+			<field name="logo_position" type="canvasmodpositions" default="logo" label="CANVAS_LOGO_POSITION_LABEL" description="CANVAS_LOGO_POSITION_DESC" hide_none="false" />
 
 		</fieldset>
 
-		<fieldset name="layout_params" label="T3_LAYOUT_LABEL" description="T3_LAYOUT_DESC">
-			<field name="layout_ajax_default" type="t3depend" function="@ajax">
+		<fieldset name="layout_params" label="CANVAS_LAYOUT_LABEL" description="CANVAS_LAYOUT_DESC">
+			<field name="layout_ajax_default" type="canvasdepend" function="@ajax">
 				<option
 					for="mainlayout"
-					query="t3action=layout&amp;t3task=display&amp;t3tp=layout"
-					func="T3AdminLayout.t3layout">
+					query="canvasaction=layout&amp;canvastask=display&amp;canvastp=layout"
+					func="CANVASAdminLayout.canvaslayout">
 				</option>
 			</field>
 
-			<field name="mainlayout" type="t3filelist" default="default-joomla-3.x"
-						 label="T3_LAYOUT_LAYOUT_LABEL"
-						 description="T3_LAYOUT_LAYOUT_DESC"
+			<field name="mainlayout" type="canvasfilelist" default="default-joomla-3.x"
+						 label="CANVAS_LAYOUT_LAYOUT_LABEL"
+						 description="CANVAS_LAYOUT_LAYOUT_DESC"
 						 filter=".*\.php"
 						 directory="tpls"
 						 stripext="true"
@@ -180,20 +183,10 @@
 						 hide_default="true"
 				/>
 
-            <field name="sublayout" type="t3filelist" default=""
-                   label="T3_LAYOUT_SUBLAYOUT_LABEL"
-                   description="T3_LAYOUT_SUBLAYOUT_DESC"
-                   filter=".*\.php"
-                   directory="tpls"
-                   stripext="true"
-                   hide_none="true"
-                   hide_default="false"
-                    />
-
 		</fieldset>
 
-		<fieldset name="navigation_params" label="T3_NAVIGATION_LABEL" description="T3_NAVIGATION_DESC">
-			<field name="navigation_group_default" type="t3depend" function="@group">
+		<fieldset name="navigation_params" label="CANVAS_NAVIGATION_LABEL" description="CANVAS_NAVIGATION_DESC">
+			<field name="navigation_group_default" type="canvasdepend" function="@group">
 				<option for="navigation_type" value="megamenu">
 					mm_type,navigation_animation,navigation_animation_duration
 				</option>
@@ -209,40 +202,40 @@
 
 			<field name="navigation_trigger" type="list" default="hover"
 						 global="1"
-						 label="T3_NAVIGATION_TRIGGER_LABEL"
-						 description="T3_NAVIGATION_TRIGGER_DESC">
+						 label="CANVAS_NAVIGATION_TRIGGER_LABEL"
+						 description="CANVAS_NAVIGATION_TRIGGER_DESC">
 				<option value="hover">Mouse Hover</option>
 				<option value="click">Mouse Click</option>
 			</field>
-
+			
 			<field name="navigation_collapse_offcanvas" type="radio" default="1"
 						 global="1"
-						 label="T3_NAVIGATION_COLLAPSE_OFFCANVAS"
-						 description="T3_NAVIGATION_COLLAPSE_OFFCANVAS_DESC">
+						 label="CANVAS_NAVIGATION_COLLAPSE_OFFCANVAS"
+						 description="CANVAS_NAVIGATION_COLLAPSE_OFFCANVAS_DESC">
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
 
 			<field name="navigation_collapse_showsub" type="radio" default="1"
 						 global="1"
-						 label="T3_NAVIGATION_COLLAPSE_LABEL"
-						 description="T3_NAVIGATION_COLLAPSE_DESC">
+						 label="CANVAS_NAVIGATION_COLLAPSE_LABEL"
+						 description="CANVAS_NAVIGATION_COLLAPSE_DESC">
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>
 
 			<field name="navigation_type" type="list" class="btn-group" default="joomla"
 						 global="1"
-						 label="T3_NAVIGATION_TYPE_LABEL"
-						 description="T3_NAVIGATION_TYPE_DESC">
+						 label="CANVAS_NAVIGATION_TYPE_LABEL"
+						 description="CANVAS_NAVIGATION_TYPE_DESC">
 				<option value="joomla">Joomla Module</option>
 				<option value="megamenu">Megamenu</option>
 			</field>
 
 			<field name="navigation_animation" type="list" default=""
 						 global="1"
-						 label="T3_NAVIGATION_ANIMATION_LABEL"
-						 description="T3_NAVIGATION_ANIMATION_DESC">
+						 label="CANVAS_NAVIGATION_ANIMATION_LABEL"
+						 description="CANVAS_NAVIGATION_ANIMATION_DESC">
 				<option value="">None</option>
 				<option value="fading">Fading</option>
 				<option value="slide">Slide</option>
@@ -251,63 +244,221 @@
 			</field>
 			<field name="navigation_animation_duration" type="text" default="400"
 						 global="1"
-						 label="T3_NAVIGATION_ANIMATION_DURATION_LABEL"
-						 description="T3_NAVIGATION_ANIMATION_DURATION_DESC"/>
+						 label="CANVAS_NAVIGATION_ANIMATION_DURATION_LABEL"
+						 description="CANVAS_NAVIGATION_ANIMATION_DURATION_DESC"/>
 
 			<field name="mm_type" type="menu" default="mainmenu"
-						 label="T3_NAVIGATION_MM_TYPE_LABEL"
-						 description="T3_NAVIGATION_MM_TYPE_DESC"
+						 label="CANVAS_NAVIGATION_MM_TYPE_LABEL"
+						 description="CANVAS_NAVIGATION_MM_TYPE_DESC"
 				/>
-
+			<field name="mainnav_position" type="canvasmodpositions" default="mainnav" label="CANVAS_NAV_POSITION_LABEL" description="CANVAS_NAV_POSITION_DESC" hide_none="false" />
+			
+			<field name="navigation_fixed_top" type="radio" class="canvasonoff" default="0"
+						 global="1"
+						 label="CANVAS_NAVIGATION_FIXED_TOP_LABEL"
+						 description="CANVAS_NAVIGATION_FIXED_TOP_DESC">
+				<option value="0" class="off">JNO</option>
+				<option value="1" class="on">JYES</option>
+			</field>
+			
 			<field name="mm_config" type="hidden" hide="true" global="1"
 						 label=""
 						 description=""
 				/>
 
 		</fieldset>
+		<fieldset name="addon_params" label="CANVAS_ADDON_LABEL" description="CANVAS_ADDON_DESC">
+			<field name="addon_group_default" type="canvasdepend" function="@group">
+				<option for="addon_comingsoon_enable" value="1">
+					comingsoon_title, comingsoon_day, comingsoon_month, comingsoon_year, comingsoon_content
+				</option>
+			</field>
 
-		<fieldset name="injection_params" label="T3_INJECTION_LABEL" description="T3_INJECTION_DESC">
+			<!--coming soon -->
+
+			<field type="canvasdepend" function="@legend" label="CANVAS_ADDON_COMING_SOON_LABEL"
+						 description="CANVAS_ADDON_COMING_SOON_DESC"/>
+
+			<field name="addon_comingsoon_enable" type="radio" default="1"
+						 global="1"
+						 label="CANVAS_ADDON_COMINGSOON_ENABLE_LABEL"
+						 description="CANVAS_ADDON_COMINGSOON_ENABLE_DESC">
+				<option value="0" class="off">JNO</option>
+				<option value="1" class="on">JYES</option>
+			</field>
+			
+			<field name="comingsoon_title" type="text" default="Coming Soon Title" label="Title"/>
+			<field name="comingsoon_day" type="list" default="01" label="Date">
+				<option value="01">1</option>
+				<option value="02">2</option>
+				<option value="03">3</option>
+				<option value="04">4</option>
+				<option value="05">5</option>
+				<option value="06">6</option>
+				<option value="07">7</option>
+				<option value="08">8</option>
+				<option value="09">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+				<option value="31">31</option>
+			</field> 
+			<field name="comingsoon_month" type="list" default="01" label="Month">
+				<option value="01">JANUARY</option>
+				<option value="02">FEBRUARY</option>
+				<option value="03">MARCH</option>
+				<option value="04">APRIL</option>
+				<option value="05">MAY</option>
+				<option value="06">JUNE</option>
+				<option value="07">JULY</option>
+				<option value="08">AUGUST</option>
+				<option value="09">SEPTEMBER</option>
+				<option value="10">OCTOBER</option>
+				<option value="11">NOVEMBER</option>
+				<option value="12">DECEMBER</option>
+			</field>    
+			<field name="comingsoon_year" type="text" default="2030" size="40" label="Year" />
+			<field name="comingsoon_content" type="editor" default="Coming soon content" label="Content" />     
+			
+			<!-- end coming soon-->
+			
+			<field type="canvasdepend" function="@legend" label="CANVAS_ADDONS_OVERRIDE_MODULE_STYLE_SPACER_LABEL" description="CANVAS_ADDONS_OVERRIDE_MODULE_STYLE_SPACER_DESC" />
+			
+			<field name="tabs_position" type="canvasmodpositions" class="input-xxlarge" multiple="1" default="" label="CANVAS_ADDONS_TABS_POSITION_LABEL" description="CANVAS_ADDONS_TABS_POSITION_DESC" hide_none="false" />
+			<field name="slider_position" type="canvasmodpositions" class="input-xxlarge" multiple="1" default="" label="CANVAS_ADDONS_SLIDER_POSITION_LABEL" description="CANVAS_ADDONS_SLIDER_POSITION_DESC" hide_none="false" />
+			<field name="modal_position" type="canvasmodpositions" class="input-xxlarge" multiple="1" default="" label="CANVAS_ADDONS_MODAL_POSITION_LABEL" description="CANVAS_ADDONS_MODAL_POSITION_DESC" hide_none="false" />
+			<field name="popover_position" type="canvasmodpositions" class="input-xxlarge" multiple="1" default="" label="CANVAS_ADDONS_POPOVER_POSITION_LABEL" description="CANVAS_ADDONS_POPOVER_POSITION_DESC" hide_none="false" />
+			<field name="raw_position" type="canvasmodpositions" class="input-xxlarge" multiple="1" default="head-search, navhelper" label="CANVAS_ADDONS_RAW_POSITION_LABEL" description="CANVAS_ADDONS_RAW_POSITION_DESC" hide_none="false" />
+			
+		</fieldset>
+		
+		<!-- Widgets Settings -->
+		<fieldset name="widgets_params" label="CANVAS_WIDGETS_LABEL" description="CANVAS_WIDGETS_DESC">
+			
+			<field name="widgets_params_default" type="canvasdepend" function="@group">
+				<option for="enable_totop" value="1">
+					totop_position
+				</option>
+				<option for="enable_fontresizer" value="1">
+					fontresizer_position,fontresizer_selection
+				</option>
+				<option for="enable_date" value="1">
+					date_position,date_formet
+				</option>
+				<option for="enable_social" value="1">
+					social_position,twitter,facebook,gplus,rss
+				</option>
+				<option for="enable_copyrightinfo" value="1">
+					copyrightinfo_position,copyrightinfo
+				</option>
+			</field>
+			<field type="canvasdepend" function="@legend" label="CANVAS_WIDGETS_TO_TOP_TITLE" description="CANVAS_WIDGETS_TO_TOP_DESC" />
+			<field name="enable_totop" type="radio" class="btn-group" default="1" global="1"
+				label="CANVAS_WIDGETS_ENABLE_TOTOP_LABEL" description="CANVAS_WIDGETS_ENABLE_TOTOP_DESC" >
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+			<field name="totop_position" type="canvasmodpositions" default="totop" label="CANVAS_WIDGETS_TOTOP_POSITION_LABEL" description="CANVAS_WIDGETS_TOTOP_POSITION_DESC" hide_none="false" />
+			
+			<field type="canvasdepend" function="@legend" label="CANVAS_WIDGETS_FONT_RESIZER_TITLE" description="CANVAS_WIDGETS_FONT_RESIZER_DESC" />
+			<field name="enable_fontresizer" type="radio" class="btn-group" default="1" global="1"
+				label="CANVAS_WIDGETS_ENABLE_FONTRESIZER_LABEL" description="CANVAS_WIDGETS_ENABLE_FONTRESIZER_DESC" >
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+			<field name="fontresizer_position" type="canvasmodpositions" default="font-resizer" label="CANVAS_WIDGETS_FONTRESIZER_POSITION_LABEL" description="CANVAS_WIDGETS_FONTRESIZER_POSITION_DESC" hide_none="false" />
+			<field name="fontresizer_selection" type="text" class="input-xlarge" default="#canvas-content" label="CANVAS_WIDGETS_FONTRESIZER_SELECTION_LABEL" description="CANVAS_WIDGETS_FONTRESIZER_SELECTION_DESC" hide_none="false" />
+			
+			<field type="canvasdepend" function="@legend" label="CANVAS_WIDGETS_DATE_TITLE" description="CANVAS_WIDGETS_DATE_DESC" />
+			<field name="enable_date" type="radio" class="btn-group" default="1" global="1"
+				label="CANVAS_WIDGETS_ENABLE_DATE_LABEL" description="CANVAS_WIDGETS_ENABLE_DATE_DESC" >
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+			<field name="date_position" type="canvasmodpositions" default="date" label="CANVAS_WIDGETS_DATE_POSITION_LABEL" description="CANVAS_WIDGETS_DATE_POSITION_DESC" hide_none="false" />
+			<field name="date_formet" type="text" default="d M Y" label="CANVAS_WIDGETS_DATE_FORMET_LABEL" description="CANVAS_WIDGETS_DATE_FORMET_DESC" hide_none="false" />
+			
+			<field type="canvasdepend" function="@legend" label="CANVAS_WIDGETS_SOCIAL_TITLE" description="CANVAS_WIDGETS_SOCIAL_DESC" />
+			<field name="enable_social" type="radio" class="btn-group" default="1" global="1" label="CANVAS_WIDGETS_ENABLE_SOCIAL_LABEL" description="CANVAS_WIDGETS_ENABLE_SOCIAL_DESC" >
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+			<field name="social_position" type="canvasmodpositions" default="social" label="CANVAS_WIDGETS_SOCIAL_POSITION_LABEL" description="CANVAS_WIDGETS_SOCIAL_POSITION_DESC" hide_none="false" />
+			<field name="twitter" type="text" default="themezart" label="CANVAS_WIDGETS_TWITTER_LABEL" description="CANVAS_WIDGETS_TWITTER_DESC" hide_none="false" />
+			<field name="facebook" type="text" default="153277898129344" label="CANVAS_WIDGETS_FACEBOOK_LABEL" description="CANVAS_WIDGETS_FACEBOOK_DESC" hide_none="false" />
+			<field name="gplus" type="text" default="+Themezart" label="CANVAS_WIDGETS_GPLUS_LABEL" description="CANVAS_WIDGETS_GPLUS_DESC" hide_none="false" />
+			<field name="rss" type="text" default="?format=feed&amp;type=rss" label="CANVAS_WIDGETS_RSS_LABEL" description="CANVAS_WIDGETS_RSS_DESC" hide_none="false" />
+			
+			<field type="canvasdepend" function="@legend" label="CANVAS_WIDGETS_COPYRIGHTINFO_TITLE" description="CANVAS_WIDGETS_COPYRIGHTINFO_DESC" />
+			<field name="enable_copyrightinfo" type="radio" class="btn-group" default="1" global="1" label="CANVAS_WIDGETS_ENABLE_COPYRIGHTINFO_LABEL" description="CANVAS_WIDGETS_ENABLE_COPYRIGHTINFO_DESC" >
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+			</field>
+			<field name="copyrightinfo_position" type="canvasmodpositions" default="copyright" label="CANVAS_WIDGETS_COPYRIGHTINFO_POSITION_LABEL" description="CANVAS_WIDGETS_COPYRIGHTINFO_POSITION_DESC" hide_none="false" />
+			<field name="copyrightinfo" type="text" class="input-xxlarge" default="Copyright © 2010-2012 ThemezArt, All rights reserved." label="CANVAS_WIDGETS_COPYRIGHT_LABEL" description="CANVAS_WIDGETS_COPYRIGHT_DESC" hide_none="false" />
+			
+		</fieldset>
+		
+		<fieldset name="injection_params" label="CANVAS_INJECTION_LABEL" description="CANVAS_INJECTION_DESC">
 
 			<field name="snippet_open_head" type="textarea"
-						 class="t3-admin-textarea"
+						 class="canvas-admin-textarea"
 						 global="1"
 						 filter="raw"
 						 default=""
-						 label="T3_INJECTION_OPEN_HEAD_LABEL"
-						 description="T3_INJECTION_OPEN_HEAD_DESC"
+						 label="CANVAS_INJECTION_OPEN_HEAD_LABEL"
+						 description="CANVAS_INJECTION_OPEN_HEAD_DESC"
 				/>
 
 			<field name="snippet_close_head" type="textarea"
-						 class="t3-admin-textarea"
+						 class="canvas-admin-textarea"
 						 global="1"
 						 filter="raw"
 						 default=""
-						 label="T3_INJECTION_CLOSE_HEAD_LABEL"
-						 description="T3_INJECTION_CLOSE_HEAD_DESC"
+						 label="CANVAS_INJECTION_CLOSE_HEAD_LABEL"
+						 description="CANVAS_INJECTION_CLOSE_HEAD_DESC"
 				/>
 
 			<field name="snippet_open_body" type="textarea"
-						 class="t3-admin-textarea"
+						 class="canvas-admin-textarea"
 						 global="1"
 						 filter="raw"
 						 default=""
-						 label="T3_INJECTION_OPEN_BODY_LABEL"
-						 description="T3_INJECTION_OPEN_BODY_DESC"
+						 label="CANVAS_INJECTION_OPEN_BODY_LABEL"
+						 description="CANVAS_INJECTION_OPEN_BODY_DESC"
 				/>
 
 			<field name="snippet_close_body" type="textarea"
-						 class="t3-admin-textarea"
+						 class="canvas-admin-textarea"
 						 global="1"
 						 filter="raw"
 						 default=""
-						 label="T3_INJECTION_CLOSE_BODY_LABEL"
-						 description="T3_INJECTION_CLOSE_BODY_DESC"
+						 label="CANVAS_INJECTION_CLOSE_BODY_LABEL"
+						 description="CANVAS_INJECTION_CLOSE_BODY_DESC"
 				/>
 
 			<field name="snippet_debug" type="radio" default="0"
 						 global="1"
-						 label="T3_INJECTION_DEBUG_LABEL"
-						 description="T3_INJECTION_DEBUG_DESC">
+						 label="CANVAS_INJECTION_DEBUG_LABEL"
+						 description="CANVAS_INJECTION_DEBUG_DESC">
 				<option value="0">JNO</option>
 				<option value="1">JYES</option>
 			</field>

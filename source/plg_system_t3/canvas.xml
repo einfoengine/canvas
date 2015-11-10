@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="system" method="upgrade">
+	<name>CANVAS Framework</name>
+	<author>ThemezArt.com</author>
+	<creationDate>Aug 1, 2014</creationDate>
+	<copyright>Copyright (C) 2005 - 2013 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>dev@themezart.com</authorEmail>
+	<authorUrl>http://www.themezart.com/canvas-framework</authorUrl>
+	<version>2.1.4</version>
+	<description>
+	<![CDATA[
+	<div align="center">
+		<div class="alert alert-success">
+		<h1>Canvas Framework</h1>
+		<p>Copyright &copy; 2014 <a href='http://www.themezart.com/' title='Visit ThemezArt.com!'>ThemezArt.com</a>. All Rights Reserved.</p>
+		</div>
+     <style>table.adminform{width: 100%;}</style>
+	 </div>
+		]]>
+	</description>	
+	<scriptfile>canvas.script.php</scriptfile>
+	<files>
+		<filename plugin="canvas">canvas.php</filename>
+		<filename>index.html</filename>
+		<filename>canvas.script.php</filename>
+		<folder>admin</folder>
+		<folder>base</folder>
+		<folder>base-bs3</folder>
+		<folder>includes</folder>
+		<folder>language</folder>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_system_canvas.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_canvas.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field type="spacer" name="myspacer" class="text-warning"
+				label="PLG_CANVAS_MAKE_SURE_WHAT_YOU_ARE_DOING"
+				/>
+				
+				<field name="canvas_local_disabled" type="radio" class="btn-group"
+					description="PLG_CANVAS_CANVAS_LOCAL_DISABLED_DESC"
+					label="PLG_CANVAS_CANVAS_LOCAL_DISABLED_TITLE"
+					default="0"
+				>
+					<option	value="1">JYES</option>
+					<option	value="0">JNO</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+	<updateservers>
+	   <server type="collection">http://www.themezart.com/updates_xml/list.xml</server>
+	</updateservers>	
+</extension>

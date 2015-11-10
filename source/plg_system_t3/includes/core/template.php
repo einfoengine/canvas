@@ -1,28 +1,27 @@
 <?php
 /**
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework
  *------------------------------------------------------------------------------
  */
 
 // No direct access
 defined('_JEXEC') or die();
 
-T3::import('extendable/extendable');
+CANVAS::import('extendable/extendable');
 
 /**
- * T3Template class provides extended template tools used for T3 framework
+ * CANVASTemplate class provides extended template tools used for CANVAS framework
  *
- * @package T3
+ * @package CANVAS
  */
-class T3Template extends ObjectExtendable
+class CANVASTemplate extends ObjectExtendable
 {
 	/**
 	 * Define constants
@@ -65,17 +64,17 @@ class T3Template extends ObjectExtendable
 	public function __construct($template = null)
 	{
 		// merge the base theme information
-		$this->maxgrid      = T3_BASE_MAX_GRID;
-		$this->widthprefix  = T3_BASE_WIDTH_PREFIX;
-		$this->nonrspprefix = T3_BASE_NONRSP_WIDTH_PREFIX;
-		$this->spancls      = T3_BASE_WIDTH_REGEX;
-		$this->responcls    = T3_BASE_RSP_IN_CLASS;
-		$this->rowfluidcls  = T3_BASE_ROW_FLUID_PREFIX;
-		$this->defdv        = T3_BASE_DEFAULT_DEVICE;
-		$this->devices      = json_decode(T3_BASE_DEVICES, true);
-		$this->maxcol       = json_decode(T3_BASE_DV_MAXCOL, true);
-		$this->minspan      = json_decode(T3_BASE_DV_MINWIDTH, true);
-		$this->prefixes     = json_decode(T3_BASE_DV_PREFIX, true);
+		$this->maxgrid      = CANVAS_BASE_MAX_GRID;
+		$this->widthprefix  = CANVAS_BASE_WIDTH_PREFIX;
+		$this->nonrspprefix = CANVAS_BASE_NONRSP_WIDTH_PREFIX;
+		$this->spancls      = CANVAS_BASE_WIDTH_REGEX;
+		$this->responcls    = CANVAS_BASE_RSP_IN_CLASS;
+		$this->rowfluidcls  = CANVAS_BASE_ROW_FLUID_PREFIX;
+		$this->defdv        = CANVAS_BASE_DEFAULT_DEVICE;
+		$this->devices      = json_decode(CANVAS_BASE_DEVICES, true);
+		$this->maxcol       = json_decode(CANVAS_BASE_DV_MAXCOL, true);
+		$this->minspan      = json_decode(CANVAS_BASE_DV_MINWIDTH, true);
+		$this->prefixes     = json_decode(CANVAS_BASE_DV_PREFIX, true);
 
 		// layout settings
 		$this->_layoutsettings = new JRegistry;
@@ -85,19 +84,19 @@ class T3Template extends ObjectExtendable
 			$this->_extend(array($template));
 
 			// merge layout setting
-			$layout = JFactory::getApplication()->input->getCmd('t3layout', '');
+			$layout = JFactory::getApplication()->input->getCmd('canvaslayout', '');
 			if (empty($layout)) {
 				$layout = $template->params->get('mainlayout', 'default');
 			}
 
-			$fconfig = T3Path::getPath('etc/layout/' . $layout . '.ini');
+			$fconfig = CANVASPath::getPath('etc/layout/' . $layout . '.ini');
 			if (is_file($fconfig)) {
 				jimport('joomla.filesystem.file');
 				$this->_layoutsettings->loadString(JFile::read($fconfig), 'INI', array('processSections' => true));
 			}
 		}
 
-		JDispatcher::getInstance()->trigger('onT3TplInit', array($this));
+		JDispatcher::getInstance()->trigger('onCANVASTplInit', array($this));
 	}
 
 
@@ -135,26 +134,7 @@ class T3Template extends ObjectExtendable
 	public function getLayout()
 	{
 		$input = JFactory::getApplication()->input;
-		// get override layout by tmpl
-		$layout = $input->getCmd('tmpl');
-		if ($layout && T3Path::getPath('tpls/' . $layout . '.php')) return $layout;
-		// detect if this is menu page or sub-page if set
-		$menu_page = true;
-		$input = JFactory::getApplication()->input;
-		$active = JFactory::getApplication()->getMenu()->getActive();
-		if ($active && isset($active->query)) {
-			foreach ($active->query as $name => $value) {
-				if ($input->get($name, null, 'raw') != $value) {
-					$menu_page = false;
-					break;
-				}
-			}
-		}
-
-		$mainlayout = $this->getParam('mainlayout', 'default');
-		$sublayout = $this->getParam('sublayout', '');
-
-		return !$menu_page && $sublayout ? $sublayout : $mainlayout;
+		return $input->getCmd('tmpl') ? $input->getCmd('tmpl') : $this->getParam('mainlayout', 'default');
 	}
 
 
@@ -180,7 +160,7 @@ class T3Template extends ObjectExtendable
 	 */
 	function loadBlock($block, $vars = array())
 	{
-		$path = T3Path::getPath('tpls/blocks/' . $block . '.php');
+		$path = CANVASPath::getPath('tpls/blocks/' . $block . '.php');
 		if ($path) {
 			if($block == 'footer'){
 
@@ -188,7 +168,7 @@ class T3Template extends ObjectExtendable
 				include $path;
 				$buffer = ob_get_contents();
 				ob_end_clean();
-				$buffer = T3::fixT3Link($buffer);
+				$buffer = CANVAS::fixCANVASLink($buffer);
 				echo $buffer;
 
 			} else {
@@ -209,9 +189,9 @@ class T3Template extends ObjectExtendable
 	 */
 	function loadLayout($layout)
 	{
-		$path = T3Path::getPath('tpls/' . $layout . '.php', 'tpls/default.php');
+		$path = CANVASPath::getPath('tpls/' . $layout . '.php', 'tpls/default.php');
 
-		JDispatcher::getInstance()->trigger('onT3LoadLayout', array(&$path, $layout));
+		JDispatcher::getInstance()->trigger('onCANVASLoadLayout', array(&$path, $layout));
 
 		if (is_file($path)) {
 
@@ -227,7 +207,7 @@ class T3Template extends ObjectExtendable
 			if (preg_match_all ('/(<jdoc:include type="megamenu"[^>]*>)/i', $buffer, $match)) {
 				foreach ($match[1] as $m) {
 					$buffer = str_replace ('type="megamenu"', 'type="megamenurender"', $m).$buffer;
-					T3::import('renderer/megamenurender');
+					CANVAS::import('renderer/megamenurender');
 				}
 			}
 			//output
@@ -245,9 +225,9 @@ class T3Template extends ObjectExtendable
 	 * @param  array   $info       Other information of spotlight
 	 *
 	 * @return null
+	 * modified by themezart
 	 */
-	function spotlight($name, $positions, array $info = array())
-	{
+	function spotlight($name, $positions, array $info = array()){
 		$defdv  = $this->defdv;
 		$defpos = preg_split('/\s*,\s*/', $positions);
 		$vars   = is_array($info) ? $info : array();
@@ -277,7 +257,10 @@ class T3Template extends ObjectExtendable
 
 		// check if there's any modules
 		if (!$this->countModules(implode(' or ', $poss))) {
-			return;
+			// check if there's any widget's enabled
+			if(!$this->checkWidgets($poss)){
+				return;
+			}
 		}
 
 		//empty - so we will use default configuration
@@ -309,29 +292,171 @@ class T3Template extends ObjectExtendable
 		//build data
 		$responsive = $this->getParam('responsive', 1);
 		$datas      = array();
-		foreach ($splparams as $splparam) {
+		
+		//make the spotlight intelligent
+		$makeBalance = true;
+		$totalPositionblock = count($splparams);
+		$totalPositionload = 0;
+		
+		foreach ($splparams as $key => $splparam) {
+			if($this->countModules($splparam->position)){
+				$totalPositionload++;
+			}elseif($this->checkWidget($splparam->position)){
+				$totalPositionload++;
+			}else{
+				unset( $splparams[ $key ] );
+			}
+		}
+		
+		if($totalPositionblock == $totalPositionload){
+			$makeBalance = false;
+		}else{
+			$splparams = array_values( $splparams );
+		}
+		foreach ($splparams as $key => $splparam) {
+			
 			$param = (object)$splparam;
-
+			
 			$data = '';
-
+			
 			if($responsive){
-
+				$tmp_device_data = '';
+				$i = 0;
 				foreach($this->devices as $device){
-
+					
 					if(isset($param->$device)){
 						$prefix = $this->responcls ? ' ' : ' data-' . $device . '="';
 						$posfix = $this->responcls ? '' : '"';
 
-						if(strpos(' ' . $param->$device . ' ', ' hidden ') !== false){
-							$param->$device = str_replace(' hidden ', ' hidden-' . $device . ' ', ' ' . $param->$device . ' ');
+						if($makeBalance){
+							
+							if(CANVAS_CORE_TEMPLATE_BASE == 'base-bs3'){
+								$widthclassprefix = 'col-'.$device.'-';
+							}else{
+								$widthclassprefix = 'span';
+							}
+							
+							switch($totalPositionload){
+								case 1:
+										$tmp_device_data = $widthclassprefix.'12';
+									break;
+								case 2:
+									if($name=='mainbody' and $param->position=='core-component'){
+										if($device =='xs'){
+											$tmp_device_data = $widthclassprefix.'12';
+										}else{
+											$tmp_device_data = $widthclassprefix.'9';
+										}
+									}else{
+										if($device =='xs'){
+											$tmp_device_data = $widthclassprefix.'12';
+										}else{
+											$tmp_device_data = $widthclassprefix.'6';
+										}
+									}
+									break;
+								case 3:
+									if($device =='xs'){
+										if($key == ($totalPositionload-1)){
+											//$tmp_device_data = 'col-'.$device.'-'.'12';
+											$tmp_device_data = $widthclassprefix.'12';
+										}else{
+											//$tmp_device_data = 'col-'.$device.'-'.'6';
+											$tmp_device_data = $widthclassprefix.'6';
+										}
+									}else{
+										//$tmp_device_data = 'col-'.$device.'-'.(12 / $totalPositionload);
+										$tmp_device_data = $widthclassprefix.(12 / $totalPositionload);
+									}
+									break;
+								case 4:
+									if($device =='xs'){
+										//$tmp_device_data = 'col-'.$device.'-6';
+										$tmp_device_data = $widthclassprefix.'6';
+									}else{
+										//$tmp_device_data = 'col-'.$device.'-'.(12 / $totalPositionload);
+										$tmp_device_data = $widthclassprefix .(12 / $totalPositionload);
+									}
+									break;
+								case 5:
+									if($device =='sm'){
+										if($key == ($totalPositionload-1) or $key == ($totalPositionload-2)){
+											//$tmp_device_data = 'col-'.$device.'-6';
+											$tmp_device_data = $widthclassprefix.'6';
+										}else{
+											//$tmp_device_data = 'col-'.$device.'-4';
+											$tmp_device_data = $widthclassprefix.'4';
+										}
+									}elseif($device =='xs'){
+										if($key == ($totalPositionload-1)){
+											//$tmp_device_data = 'col-'.$device.'-12';
+											$tmp_device_data = $widthclassprefix.'12';
+										}else{
+											//$tmp_device_data = 'col-'.$device.'-6';
+											$tmp_device_data = $widthclassprefix.'6';
+										}
+									}else{
+										if($key == ($totalPositionload-1)){
+											//$tmp_device_data = 'col-'.$device.'-4';
+											$tmp_device_data = $widthclassprefix.'4';
+										}else{
+											//$tmp_device_data = 'col-'.$device.'-2';
+											$tmp_device_data = $widthclassprefix.'2';
+										}
+									}
+									
+									break;
+							}
+							
+							if(strpos(' ' . $param->$device . ' ', ' hidden ') !== false){
+								$tmp_device_data = $tmp_device_data . ' hidden-' . $device . ' ';
+							}
+							$param->$device = $tmp_device_data;
+						}else{
+							
+							if(strpos(' ' . $param->$device . ' ', ' hidden ') !== false){
+								$param->$device = str_replace(' hidden ', ' hidden-' . $device . ' ', ' ' . $param->$device . ' ');
+							}
 						}
-
+						
 						$data .= $prefix . $param->$device . $posfix;
 					}
+					$i++;
 				}
 			} else {
 				$data = isset($param->$defdv) ? ' ' . $param->$defdv : '';
-
+				
+				if($makeBalance){
+					if(CANVAS_CORE_TEMPLATE_BASE == 'base-bs3'){
+						$widthclassprefix = 'col-xs-';
+					}else{
+						$widthclassprefix = 'span';
+					}
+					
+					$tmp_device_width = '';
+					switch($totalPositionload){
+						case 1:
+						case 2:
+						case 3:
+						case 4:
+							//$tmp_device_width = 'col-xs-'.(12 / $totalPositionload);
+							$tmp_device_width = $widthclassprefix.(12 / $totalPositionload);
+							
+							break;
+						case 5:
+							if($key == ($totalPositionload-1)){
+								//$tmp_device_width = 'col-xs-4';
+								$tmp_device_width = $widthclassprefix.'4';
+							}else{
+								//$tmp_device_width = 'col-xs-2';
+								$tmp_device_width = $widthclassprefix.'2';
+							}							
+							break;
+					}
+					
+					$data = $tmp_device_width;
+				}
+				
 				if($this->nonrspprefix && ($this->nonrspprefix != $this->widthprefix)){
 					$data = str_replace($this->widthprefix, $this->nonrspprefix, $data);
 				}
@@ -345,8 +470,106 @@ class T3Template extends ObjectExtendable
 		$vars['splparams'] = $splparams;
 		$vars['datas']     = $datas;
 		$vars['cols']      = $cols;
-
-		JDispatcher::getInstance()->trigger('onT3Spotlight', array(&$vars, $name, $positions));
+		
+		//override module position's type
+		$tabsPosition = $this->getParam('tabs_position','');
+		$slider_position = $this->getParam('slider_position','');
+		$modal_position = $this->getParam('modal_position','');
+		$popover_position = $this->getParam('popover_position','');
+		$raw_position = $this->getParam('raw_position','');
+		$feature_position = $this->getParam('feature_position','');
+		if(!empty($tabsPosition) or !empty($slider_position) or !empty($modal_position) or !empty($popover_position) or !empty($raw_position)or !empty($feature_position)){
+			$cstyle = '';
+			$end = '';
+			foreach ($poss as $i => $pos) {
+				$get = false;
+				$cstyle = $cstyle;
+				//first check for tabs
+				if(!empty($tabsPosition)){
+					
+					foreach($tabsPosition as $j=>$tPosition){
+						if($tPosition == $pos){
+							$get = true;
+							$cstyle .=$end.'canvastabs';
+							break;
+						}
+					}
+				}
+				
+				if(!empty($slider_position)){
+					if($get === false){
+						foreach($slider_position as $j=>$tPosition){
+							
+							if($tPosition == $pos){
+								$get = true;
+								$cstyle .=$end.'canvasslider';
+								break;
+							}
+						}
+					}
+				}
+				
+				if(!empty($modal_position)){
+					if($get === false){
+						foreach($modal_position as $j=>$tPosition){
+							
+							if($tPosition == $pos){
+								$get = true;
+								$cstyle .=$end.'canvasmodal';
+								break;
+							}
+						}
+					}
+				}
+				
+				if(!empty($popover_position)){
+					if($get === false){
+						foreach($popover_position as $j=>$tPosition){
+							
+							if($tPosition == $pos){
+								$get = true;
+								$cstyle .=$end.'popover';
+								break;
+							}
+						}
+					}
+				}
+				
+				if(!empty($raw_position)){
+					if($get === false){
+						foreach($raw_position as $j=>$tPosition){
+							
+							if($tPosition == $pos){
+								$get = true;
+								$cstyle .=$end.'raw';
+								break;
+							}
+						}
+					}
+				}
+				
+				if(!empty($feature_position)){
+					if($get === false){
+						foreach($feature_position as $j=>$tPosition){
+							
+							if($tPosition == $pos){
+								$get = true;
+								$cstyle .=$end.'FeatureRow';
+								break;
+							}
+						}
+					}
+				}
+				
+				if($get === false){
+					$cstyle .=$end.'CANVASXhtml';
+				}
+				$end = ', ';
+			}
+			$vars['style'] = $cstyle;
+		}
+		
+		JDispatcher::getInstance()->trigger('onCANVASSpotlight', array(&$vars, $name, $positions));
 
 		$this->loadBlock('spotlight', $vars);
 	}
@@ -559,7 +782,7 @@ class T3Template extends ObjectExtendable
 		$this->_pageclass[] = 'j' . str_replace('.', '', (number_format((float)JVERSION, 1, '.', '')));
 		$this->_pageclass = array_unique($this->_pageclass);
 
-		JDispatcher::getInstance()->trigger('onT3BodyClass', array(&$this->_pageclass));
+		JDispatcher::getInstance()->trigger('onCANVASBodyClass', array(&$this->_pageclass));
 
 		echo implode(' ', $this->_pageclass);
 	}
@@ -572,7 +795,6 @@ class T3Template extends ObjectExtendable
 	 */
 	function snippet()
 	{
-
 		$places   = array();
 		$contents = array();
 
@@ -590,7 +812,7 @@ class T3Template extends ObjectExtendable
 			if(strpos($body, '<body>') !== false){
 				$places[] = '<body>';
 				$contents[] = "<body>\n" . $openbody;
-			} else {	//in case the body has other attribute
+			} else {	//in case the body has other attribute	
 				$body = preg_replace('@<body[^>]*?>@msU', "$0\n" . $openbody, $body);
 				JResponse::setBody($body);
 			}
@@ -599,13 +821,29 @@ class T3Template extends ObjectExtendable
 		// append modules in debug position
 		if ($this->getParam('snippet_debug', 0) && $this->countModules('debug')) {
 			$places[] = '</body>';
-			$contents[] = '<div class="t3-debug">' . $this->getBuffer('modules', 'debug') . "</div>\n</body>";
+			$contents[] = '<div class="canvas-debug">' . $this->getBuffer('modules', 'debug') . "</div>\n</body>";
 		}
 
 		if (($closebody = $this->getParam('snippet_close_body', ''))) {
 			$places[] = '</body>';
 			$contents[] = $closebody . "\n</body>";
 		}
+		
+		//add collaps menu
+		if ($this->getParam('navigation_collapse_enable')){
+				$places[] = '</body>';
+				$contents[] = '
+				<!-- NAVBAR BOTTOM WRAPPER -->
+				<div class="navbar-bottom-wrapper">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".canvas-navbar-collapse">
+						<i class="fa fa-bars icon-bars"></i>
+					</button>
+					<nav class="canvas-navbar-collapse navbar-collapse collapse"></nav>
+				</div>
+				<!-- //NAVBAR BOTTOM WRAPPER -->
+				</body>';
+		}
+		
 
 		if (count($places)) {
 			$body = JResponse::getBody();
@@ -638,8 +876,8 @@ class T3Template extends ObjectExtendable
 	function checkSpotlight($name, $positions)
 	{
 		$poss = array();
-
-		for ($i = 1; $i <= $this->maxgrid; $i++) {
+		
+		for ($i = 1; $i <= $this->maxgrid; $i++){
 			$param = $this->getLayoutSetting('block' . $i . '@' . $name);
 			if (empty($param)) {
 				break;
@@ -653,7 +891,7 @@ class T3Template extends ObjectExtendable
 			$poss = preg_split('/\s*,\s*/', $positions);
 		}
 
-		return $this->_tpl && method_exists($this->_tpl, 'countModules') ? $this->_tpl->countModules(implode(' or ', $poss)) : 0;
+		return $this->_tpl && method_exists($this->_tpl, 'countModules') ? ($this->_tpl->countModules(implode(' or ', $poss)) or $this->checkWidgets($poss)) : 0;
 	}
 
 
@@ -767,7 +1005,7 @@ class T3Template extends ObjectExtendable
 
 			$defdv = $this->defdv;
 			if(!$this->responcls && !empty($data)){
-				$data = (isset($param->$defdv) ? ' ' . $param->$defdv : '') . ' t3respon"' . substr($data, 0, strrpos($data, '"'));
+				$data = (isset($param->$defdv) ? ' ' . $param->$defdv : '') . ' canvasrespon"' . substr($data, 0, strrpos($data, '"'));
 			}
 		}
 
@@ -787,11 +1025,11 @@ class T3Template extends ObjectExtendable
 		$themermode = $this->getParam('themermode', 1);
 		$responsive = $addresponsive && !$this->responcls ? $this->getParam('responsive', 1) : false;
 
-		if (($devmode || ($themermode && defined('T3_THEMER'))) && ($url = T3Path::getUrl('less/' . $name . '.less', '', true, false))) {
-			T3::import('core/less');
-			T3Less::addStylesheet($url);
+		if (($devmode || ($themermode && defined('CANVAS_THEMER'))) && ($url = CANVASPath::getUrl('less/' . $name . '.less', '', true, false))) {
+			CANVAS::import('core/less');
+			CANVASLess::addStylesheet($url);
 		} else {
-			$this->addStyleSheet(T3_TEMPLATE_URL . '/css/' . $name . '.css');
+			$this->addStyleSheet(CANVAS_TEMPLATE_URL . '/css/' . $name . '.css');
 		}
 
 		if ($responsive && !$this->responcls) {
@@ -800,7 +1038,7 @@ class T3Template extends ObjectExtendable
 	}
 
 	/**
-	 * Add T3 basic head
+	 * Add CANVAS basic head
 	 *
 	 * @return  null
 	 */
@@ -824,7 +1062,7 @@ class T3Template extends ObjectExtendable
 		// LEGACY COMPATIBLE
 		if($legacycss){
 			$this->addCss('legacy-grid');	//legacy grid
-			$this->addStyleSheet(T3_URL . '/fonts/font-awesome/css/font-awesome' . ($this->getParam('devmode', 0) ? '' : '.min') . '.css'); //font awesome 3
+			$this->addStyleSheet(CANVAS_URL . '/fonts/font-awesome/css/font-awesome' . ($this->getParam('devmode', 0) ? '' : '.min') . '.css'); //font awesome 3
 		}
 
 		// FRONTEND EDITING
@@ -832,15 +1070,8 @@ class T3Template extends ObjectExtendable
 			$this->addCss('frontend-edit');
 		}
 
-		// Clear current css to put bootstrap css on top
-		$_stylesheets = $this->_styleSheets;
-		$this->_styleSheets = array();
-
 		// BOOTSTRAP CSS
 		$this->addCss('bootstrap', false);
-
-		// Append current css to bootstrap
-		$this->_styleSheets = array_merge($this->_styleSheets, $_stylesheets);
 
 		// TEMPLATE CSS
 		$this->addCss('template', false);
@@ -853,7 +1084,7 @@ class T3Template extends ObjectExtendable
 			if(preg_match('/^(-?\d*\.?\d+)(px|%|em|rem|pc|ex|in|deg|s|ms|pt|cm|mm|rad|grad|turn)?/', $nonrespwidth, $match)){
 				$nonrespwidth = $match[1] . (!empty($match[2]) ? $match[2] : 'px');
 			}
-			$this->addStyleDeclaration('.container {width: ' . $nonrespwidth . ' !important;} .t3-wrapper, .wrap {min-width: ' . $nonrespwidth . ' !important;}');
+			$this->addStyleDeclaration('.container {width: ' . $nonrespwidth . ' !important;} .canvas-wrapper, .wrap {min-width: ' . $nonrespwidth . ' !important;}');
 
 		} else if($responsive && !$this->responcls){
 			// responsive for BS2
@@ -871,11 +1102,11 @@ class T3Template extends ObjectExtendable
 
 			// If the template does not overwrite megamenu.less & megamenu-responsive.less
 			// We check and included predefined megamenu style in base
-			if(!is_file(T3_TEMPLATE_PATH . '/less/megamenu.less')){
-				$this->addStyleSheet(T3_URL . '/css/megamenu.css');
+			if(!is_file(CANVAS_TEMPLATE_PATH . '/less/megamenu.less')){
+				$this->addStyleSheet(CANVAS_URL . '/css/megamenu.css');
 
 				if ($responsive && !$this->responcls){
-					$this->addStyleSheet(T3_URL . '/css/megamenu-responsive.css');
+					$this->addStyleSheet(CANVAS_URL . '/css/megamenu-responsive.css');
 				}
 			}
 
@@ -901,8 +1132,8 @@ class T3Template extends ObjectExtendable
 			}
 
 			if (!$jqueryIncluded) {
-				$this->addScript(T3_URL . '/js/jquery-1.11.2' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js');
-				$this->addScript(T3_URL . '/js/jquery.noconflict.js');
+				$this->addScript(CANVAS_URL . '/js/jquery-1.8.3' . ($this->getParam('devmode', 0) ? '' : '.min') . '.js');
+				$this->addScript(CANVAS_URL . '/js/jquery.noconflict.js');
 			}
 		}
 
@@ -910,35 +1141,35 @@ class T3Template extends ObjectExtendable
 
 
 		// As joomla 3.0 bootstrap is buggy, we will not use it
-		$this->addScript(T3_URL . '/bootstrap/js/bootstrap.js');
+		$this->addScript(CANVAS_URL . '/bootstrap/js/bootstrap.js');
 		// a jquery tap plugin
-		$this->addScript(T3_URL . '/js/jquery.tap.min.js');
+		$this->addScript(CANVAS_URL . '/js/jquery.tap.min.js');
 
 		// add css/js for off-canvas
 		if ($offcanvas && ($this->responcls || $responsive)) {
 			$this->addCss('off-canvas', false);
-			$this->addScript(T3_URL . '/js/off-canvas.js');
+			$this->addScript(CANVAS_URL . '/js/off-canvas.js');
 		}
 
-		$this->addScript(T3_URL . '/js/script.js');
+		$this->addScript(CANVAS_URL . '/js/script.js');
 
 		//menu control script
 		if ($navtrigger == 'hover') {
 			$this->addPageClass('mm-hover');
 		}
 
-		//if($navtrigger == 'hover' || $this->responcls){
-			$this->addScript(T3_URL . '/js/menu.js');
-		//}
+		if($navtrigger == 'hover' || $this->responcls){
+			$this->addScript(CANVAS_URL . '/js/menu.js');
+		}
 
 		//reponsive script
 		if ($responsive && !$this->responcls) {
-			$this->addScript(T3_URL . '/js/responsive.js');
+			$this->addScript(CANVAS_URL . '/js/responsive.js');
 		}
 
 		//some helper javascript functions for frontend edit
 		if($frontedit){
-			$this->addScript(T3_URL . '/js/frontend-edit.js');
+			$this->addScript(CANVAS_URL . '/js/frontend-edit.js');
 		}
 
 		//check and add additional assets
@@ -947,7 +1178,7 @@ class T3Template extends ObjectExtendable
 
 	/**
 	 * Update head - detect if devmode or themermode is enabled and less file existed, use less file instead of css
-	 * We also detect and update jQuery, Bootstrap to use T3 assets
+	 * We also detect and update jQuery, Bootstrap to use CANVAS assets
 	 *
 	 * @return  null
 	 */
@@ -955,37 +1186,34 @@ class T3Template extends ObjectExtendable
 	{
 		//state parameters
 		$devmode    = $this->getParam('devmode', 0);
-		$themermode = $this->getParam('themermode', 1) && defined('T3_THEMER');
+		$themermode = $this->getParam('themermode', 1) && defined('CANVAS_THEMER');
 		$theme      = $this->getParam('theme', '');
 		$minify     = $this->getParam('minify', 0);
 		$minifyjs   = $this->getParam('minify_js', 0);
-		// detect RTL
-		$doc = JFactory::getDocument();
-		$dir    = $doc->direction;
-		$is_rtl = ($dir == 'rtl');
 
 		// As Joomla 3.0 bootstrap is buggy, we will not use it
-		// We also prevent both Joomla bootstrap and T3 bootsrap are loaded
+		// We also prevent both Joomla bootstrap and CANVAS bootsrap are loaded
 		// And upgrade jquery as our Framework require jquery 1.7+ if we are loading jquery from google
+		$doc = JFactory::getDocument();
 		$scripts = array();
 
 		if (version_compare(JVERSION, '3.0', 'ge')) {
-			$t3bootstrap = false;
+			$canvasbootstrap = false;
 			$jabootstrap = false;
 
 			foreach ($doc->_scripts as $url => $script) {
-				if (strpos($url, T3_URL . '/bootstrap/js/bootstrap.js') !== false) {
-					$t3bootstrap = true;
-					if ($jabootstrap) { //we already have the Joomla bootstrap and we also replace to T3 bootstrap
+				if (strpos($url, CANVAS_URL . '/bootstrap/js/bootstrap.js') !== false) {
+					$canvasbootstrap = true;
+					if ($jabootstrap) { //we already have the Joomla bootstrap and we also replace to CANVAS bootstrap
 						continue;
 					}
 				}
 
 				if (preg_match('@media/jui/js/bootstrap(.min)?.js@', $url)) {
-					if ($t3bootstrap) { //we have T3 bootstrap, no need to add Joomla bootstrap
+					if ($canvasbootstrap) { //we have CANVAS bootstrap, no need to add Joomla bootstrap
 						continue;
 					} else {
-						$scripts[T3_URL . '/bootstrap/js/bootstrap.js'] = $script;
+						$scripts[CANVAS_URL . '/bootstrap/js/bootstrap.js'] = $script;
 					}
 
 					$jabootstrap = true;
@@ -1012,7 +1240,7 @@ class T3Template extends ObjectExtendable
 					$jqver = explode('.', $jqver[$idx][0]);
 
 					if (isset($jqver[0]) && (int)$jqver[0] <= 1 && isset($jqver[1]) && (int)$jqver[1] < 7) {
-						$scripts[T3_URL . '/js/jquery-1.11.2' . ($devmode ? '' : '.min') . '.js'] = $script;
+						$scripts[CANVAS_URL . '/js/jquery-1.8.3' . ($devmode ? '' : '.min') . '.js'] = $script;
 						$replace = true;
 					}
 				}
@@ -1026,64 +1254,48 @@ class T3Template extends ObjectExtendable
 		$doc->_scripts = $scripts;
 		// end update javascript
 
+		// detect RTL
+		$dir    = $doc->direction;
+		$is_rtl = ($dir == 'rtl');
+
 		//Update css/less based on devmode and themermode
 		$root        = JURI::root(true);
 		$current     = JURI::current();
-		// $regex       = '@' . preg_quote(T3_TEMPLATE_REL) . '/css/(rtl/)?(.*)\.css((\?|\#).*)?$@i';
-		$regex       = '@' . preg_quote(T3_TEMPLATE_REL) . '/(.*)\.css((\?|\#).*)?$@i';
+		$regex       = '@' . preg_quote(CANVAS_TEMPLATE_REL) . '/css/(rtl/)?(.*)\.css((\?|\#).*)?$@i';
 		$stylesheets = array();
 		foreach ($doc->_styleSheets as $url => $css) {
 			// detect if this css in template css
 			if (preg_match($regex, $url, $match)) {
-				$fname = $match[1];
+				$fname = $match[2];
 
-				// remove rtl
-				$fname = preg_replace ('@(^|/)rtl/@mi', '\1', $fname);
-				// remove local
-				$fname = preg_replace ('@^local/@mi', '', $fname);
-
-				// if (($devmode || $themermode) && is_file(T3_TEMPLATE_PATH . '/less/' . $fname . '.less')) {
-				if (($devmode || $themermode)) {
-					// less file
-					$lfname = preg_replace ('@(^|/)css/@mi', '\1less/', $fname);
-
-					if (is_file(T3_TEMPLATE_PATH . '/' . $lfname . '.less')) {
-						if ($themermode) {
-							$newurl = T3_TEMPLATE_URL . '/' . $lfname . '.less';
-							$css['mime'] = 'text/less';
-						} else {
-							T3::import('core/less');
-							$newurl = T3Less::buildCss(T3Path::cleanPath(T3_TEMPLATE_REL . '/' . $lfname . '.less'), true);
-						}
-						$stylesheets[$newurl] = $css;
-						continue;
+				if (($devmode || $themermode) && is_file(CANVAS_TEMPLATE_PATH . '/less/' . $fname . '.less')) {
+					if ($themermode) {
+						$newurl = CANVAS_TEMPLATE_URL . '/less/' . $fname . '.less';
+						$css['mime'] = 'text/less';
+					} else {
+						CANVAS::import('core/less');
+						$newurl = CANVASLess::buildCss(CANVASPath::cleanPath('templates/'.CANVAS_TEMPLATE.'/less/'.$fname.'.less'), true);
 					}
-				}
+					$stylesheets[$newurl] = $css;
+				} else {
+					$uri = null;
+					// detect css available base on direction & theme
+					if ($is_rtl && $theme) {
+						$uri = CANVASPath::getUrl ('css/rtl/themes' . $theme . '/' . $fname . '.css');
+					}
+					if (!$uri && $is_rtl) {
+						$uri = CANVASPath::getUrl ('css/rtl/' . $fname . '.css');
+					}
+					if (!$uri && $theme) {
+						$uri = CANVASPath::getUrl ('css/themes/' . $theme . '/' . $fname . '.css');
+					}
+					if (!$uri) {
+						$uri = CANVASPath::getUrl ('css/' . $fname . '.css');
+					}
 
-				$uri = null;
-				// detect css available base on direction & theme
-				if ($is_rtl && $theme) {
-					// rtl css file
-					$altfname = preg_replace ('@(^|/)css/@mi', '\1css/rtl/' . $theme . '/', $fname);
-					$uri = T3Path::getUrl ($altfname . '.css');
-				}
-
-				if (!$uri && $is_rtl) {
-					$altfname = preg_replace ('@(^|/)css/@mi', '\1css/rtl/', $fname);
-					$uri = T3Path::getUrl ($altfname . '.css');
-				}
-
-				if (!$uri && $theme) {
-					$altfname = preg_replace ('@(^|/)css/@mi', '\1css/themes/' . $theme . '/', $fname);
-					$uri = T3Path::getUrl ($altfname . '.css');
-				}
-
-				if (!$uri) {
-					$uri = T3Path::getUrl ($fname . '.css');
-				}
-
-				if ($uri) {
-					$stylesheets[$uri] = $css;
+					if ($uri) {
+						$stylesheets[$uri] = $css;
+					}
 				}
 				continue;
 			}
@@ -1096,12 +1308,12 @@ class T3Template extends ObjectExtendable
 
 		//only check for minify if devmode is disabled
 		if (!$devmode && ($minify || $minifyjs)) {
-			T3::import('core/minify');
+			CANVAS::import('core/minify');
 			if($minify){
-				T3Minify::optimizecss($this);
+				CANVASMinify::optimizecss($this);
 			}
 			if($minifyjs){
-				T3Minify::optimizejs($this);
+				CANVASMinify::optimizejs($this);
 			}
 		}
 	}
@@ -1116,7 +1328,7 @@ class T3Template extends ObjectExtendable
 		$base = JURI::base(true);
 		$regurl = '#(http|https)://([a-zA-Z0-9.]|%[0-9A-Za-z]|/|:[0-9]?)*#iu';
 
-		$afiles = T3Path::getAllPath('etc/assets.xml');
+		$afiles = CANVASPath::getAllPath('etc/assets.xml');
 		foreach ($afiles as $afile) {
 			if (is_file($afile)) {
 				//load xml
@@ -1150,7 +1362,7 @@ class T3Template extends ObjectExtendable
 								} else if ($url[0] == '/') { //absolute link from based folder
 									$url = is_file(JPATH_ROOT . $url) ? $base . $url : false;
 								} else if (!preg_match($regurl, $url)) { //not match a full url -> sure internal link
-									$url = T3Path::getUrl($url); // so get it
+									$url = CANVASPath::getUrl($url); // so get it
 								}
 
 								if ($url) {
@@ -1192,6 +1404,22 @@ class T3Template extends ObjectExtendable
 				}
 			}
 		}
+	
+		// load addon lib scripts/styles
+		// -------------------------------------------
+		// load holder.js
+		if($this->params->get('load_holder_js',1)){
+			$this->addScript(CANVAS_URL . '/js/holder.js');
+		}
+		// load wow.js
+		if($this->params->get('load_wow_js',1)){
+			$this->addScript(CANVAS_URL . '/js/wow.min.js');
+		}
+		// load animate.css
+		if($this->params->get('load_animate_css',1)){
+			$this->addStyleSheet(CANVAS_URL . '/css/animate.min.css');
+		}
+		
 	}
 
 
@@ -1202,7 +1430,7 @@ class T3Template extends ObjectExtendable
 	 * @param   boolean  $isurl  Is url?
 	 *
 	 * @return  string   The css style string
-	 * @deprecated   This function is no longer used in T3
+	 * @deprecated   This function is no longer used in CANVAS
 	 */
 	function paramToStyle($style, $pname = '', $isurl = false)
 	{
@@ -1271,4 +1499,131 @@ class T3Template extends ObjectExtendable
 
 		return $result;
 	}
+	
+	/**
+	 * internal function
+	 * $positions array
+	 * match the components positions's with spotlight position
+	 *
+	 * return true or false
+	 * added by themezart
+	 */
+	static $comPosition = 'core-component';
+	/*
+	* core com position
+	*/
+	function checkCom($positions){
+
+		//check if its already checked and has the component position
+		$positionMatch = array_intersect($comPosition, $positions);
+		if(count($positionMatch)>0)
+			return true;
+		else 
+			return false;
+	}
+	
+	/**
+	 * internal function
+	 * $positions array
+	 * match the widget positions's with spotlight position
+	 *
+	 * return true or false
+	 * added by themezart
+	 */
+	
+	public $widgetPosition = array();
+	
+	function checkWidgets($positions=null){
+		
+		// get all widgets position
+		
+		if(count($this->widgetPosition) < 1){
+			
+			//specialWidget is component area position
+			$this->widgetPosition['component'] = 'core-component';
+			
+			$this->widgetPosition['logo_position'] = $this->getParam('logo_position','logo');
+			$this->widgetPosition['mainnav_position'] = $this->getParam('mainnav_position','mainnav');
+			
+			$enable_totop = $this->getParam('enable_totop','1');
+			if($enable_totop) $this->widgetPosition['totop_position'] = $this->getParam('totop_position','totop');
+			
+			$enable_login = $this->getParam('enable_login','1');
+			if($enable_login) $this->widgetPosition['login_position'] = $this->getParam('login_position','login');
+			
+			$enable_fontresizer = $this->getParam('enable_fontresizer','1');
+			if($enable_fontresizer) $this->widgetPosition['fontresizer_position'] = $this->getParam('fontresizer_position','fontresizer');
+			
+			$enable_date = $this->getParam('enable_date','1');
+			if($enable_date) $this->widgetPosition['date_position'] = $this->getParam('date_position','date');
+			
+			$enable_social = $this->getParam('enable_social','1');
+			if($enable_social) $this->widgetPosition['social_position'] = $this->getParam('social_position','social');
+			
+			$enable_copyrightinfo = $this->getParam('enable_copyrightinfo','1');
+			if($enable_copyrightinfo) $this->widgetPosition['copyrightinfo_position'] = $this->getParam('copyrightinfo_position','copyright');
+			
+			$enable_canvas_rmvlogo = $this->getParam('canvas-rmvlogo','1');
+			if($enable_canvas_rmvlogo) $this->widgetPosition['canvas_logo_position'] = $this->getParam('canvas_logo_position','brand');
+		}
+		
+		//check if its already checked and has widget position
+		if($positions){
+			$positionMatch = array_intersect($this->widgetPosition, $positions);
+			if(count($positionMatch)>0)
+				return true;
+			else
+				return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * internal function
+	 * $position
+	 * match the widget positions's with spotlight position
+	 *
+	 * return true or false
+	 * added by themezart
+	 */
+	function checkWidget($position){
+		
+		if(count($this->widgetPosition) < 1){
+			$this->checkWidgets();
+		}
+		
+		//check if its already checked and has widget position
+		$positionMatch = array_intersect($this->widgetPosition, array($position));
+		
+		if(count($positionMatch)>0) return true;
+			else return false;
+	}
+	
+	public function renderWidget($position)
+	{
+		
+		$data = '';
+		
+		//check if its already checked and has widget position
+		$positionMatchs = array_intersect($this->widgetPosition, array($position));
+		
+		foreach($positionMatchs as $name=>$key){
+			$widgetname = str_replace('_position','',$name);
+			$data .= $this->getWidget($widgetname);
+		}		
+		
+		return $data;
+		
+	}
+	
+	function getWidget($tpl)
+	{
+		CANVAS::import('core/widget');
+		CANVAS::import('widgets/'.$tpl);
+		$objectClass = 'CANVASTemplateWidget'.ucfirst($tpl);
+		$object = new $objectClass($this->_tpl->params); 
+		return  $object->renders();
+	}
+	
+	
 }

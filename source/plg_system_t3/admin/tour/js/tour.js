@@ -1,20 +1,19 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
 !function ($) {
 	var Tour = function(option){
 		// JOOM: all tour elements
-		var options = $.extend({}, $.fn.t3tour.defaults, option);
+		var options = $.extend({}, $.fn.canvastour.defaults, option);
 		if(!options.tours.length){
 			return false;
 		}
@@ -52,9 +51,9 @@
 		**/
 		startTour: function(){
 			// add class activated to control
-			// $('#t3-admin-tour-overlay').addClass ('t3-admin-tour-activated');
+			// $('#canvas-admin-tour-overlay').addClass ('canvas-admin-tour-activated');
 			this.activated = true;
-			$('.t3-admin-tour-intro').hide();
+			$('.canvas-admin-tour-intro').hide();
 			this.nextStep();
 		},
 		
@@ -89,8 +88,8 @@
 			this.step = 0;
 			this.currentTip = null;
 			this.activeIntro = activeIntro;
-			$('#t3-admin-tour-controls .t3-admin-tour-idx').text (this.step);
-			$('#t3-admin-tour-controls .t3-admin-tour-total').text (this.total_steps);			
+			$('#canvas-admin-tour-controls .canvas-admin-tour-idx').text (this.step);
+			$('#canvas-admin-tour-controls .canvas-admin-tour-total').text (this.total_steps);			
 			return true;
 		},
 
@@ -152,7 +151,7 @@
 				html: true,
 				placement: this.currentTip.position,
 				trigger: 'manual',
-				template: '<div class="popover t3-admin-tour-popover"><div class="arrow"></div><div class="popover-inner">'
+				template: '<div class="popover canvas-admin-tour-popover"><div class="arrow"></div><div class="popover-inner">'
 							+ '<h3 class="popover-title"></h3>'
 							+ '<div class="popover-content"><div></div></div>'
 							+ '<div class="popover-controls"></div>'
@@ -163,17 +162,17 @@
 			tip.popover ('show');
 
 			// add active/highlight class
-			if (this.currentTip.highlighter) $(this.currentTip.highlighter).addClass ('t3-admin-tour-hilite');
-			tip.addClass ('t3-admin-tour-active t3-admin-tour-hilite')
+			if (this.currentTip.highlighter) $(this.currentTip.highlighter).addClass ('canvas-admin-tour-hilite');
+			tip.addClass ('canvas-admin-tour-active canvas-admin-tour-hilite')
 
 			if ($.isFunction(this.currentTip.afterShow)){
 				this.currentTip.afterShow.apply(this);
 			}
 
 			// controls
-			if ($('.popover-controls').length) $('.popover-controls').html('').append($('#t3-admin-tour-controls'));
+			if ($('.popover-controls').length) $('.popover-controls').html('').append($('#canvas-admin-tour-controls'));
 			if (atip !== undefined) {
-				$('.popover-controls').addClass ('t3-admin-tour-single-tip');
+				$('.popover-controls').addClass ('canvas-admin-tour-single-tip');
 			}
 
 			this.focusTip();
@@ -184,9 +183,9 @@
 			$('html, body').stop(true);
 
 			setTimeout(function(){
-				var tipover = $('.t3-admin-tour-popover');
+				var tipover = $('.canvas-admin-tour-popover');
 			
-				tipover.t3imgload(function(){
+				tipover.canvasimgload(function(){
 					if(tipover.offset().top < $(window).scrollTop() || (tipover.offset().top + tipover.outerHeight(true)) > ($(window).scrollTop() + $(window).height())){
 						$('html, body').animate({
 							scrollTop: Math.max(0, tipover.offset().top - ($(window).height() - tipover.outerHeight(true))/ 2)
@@ -198,26 +197,26 @@
 
 		hideTip: function () {
 			// hide current tips
-			$('#t3-admin-tour-controls').appendTo ($('body'));
+			$('#canvas-admin-tour-controls').appendTo ($('body'));
 			if (this.currentTip) {
 				var tip = $(this.currentTip.element)
 				tip.popover('destroy');
-				if (this.currentTip.highlighter) $(this.currentTip.highlighter).removeClass ('t3-admin-tour-hilite');
-				tip.removeClass ('t3-admin-tour-active t3-admin-tour-hilite');
+				if (this.currentTip.highlighter) $(this.currentTip.highlighter).removeClass ('canvas-admin-tour-hilite');
+				tip.removeClass ('canvas-admin-tour-active canvas-admin-tour-hilite');
 				this.currentTip = null;
 			}
 
-			if ($(document.body).data ('t3-admin-tour-contextTip')) {
-				var tip = $(document.body).data ('t3-admin-tour-contextTip');
-				$(document.body).data ('t3-admin-tour-contextTip', null);
+			if ($(document.body).data ('canvas-admin-tour-contextTip')) {
+				var tip = $(document.body).data ('canvas-admin-tour-contextTip');
+				$(document.body).data ('canvas-admin-tour-contextTip', null);
 				this.unbindContextTip (tip);
 			}
 		},
 
 		actionStatus: function () {
-			if (this.step <= 1) $('.t3-admin-tour-prevtourstep').addClass ('disabled'); else $('.t3-admin-tour-prevtourstep').removeClass ('disabled');
-			if (this.step >= this.total_steps) $('.t3-admin-tour-nexttourstep').addClass ('disabled'); else $('.t3-admin-tour-nexttourstep').removeClass ('disabled');
-			$('#t3-admin-tour-controls .t3-admin-tour-idx').text (this.step);
+			if (this.step <= 1) $('.canvas-admin-tour-prevtourstep').addClass ('disabled'); else $('.canvas-admin-tour-prevtourstep').removeClass ('disabled');
+			if (this.step >= this.total_steps) $('.canvas-admin-tour-nexttourstep').addClass ('disabled'); else $('.canvas-admin-tour-nexttourstep').removeClass ('disabled');
+			$('#canvas-admin-tour-controls .canvas-admin-tour-idx').text (this.step);
 		},
 
 		bind: function(){
@@ -228,27 +227,27 @@
 			Tour.isbind = true;
 
 			var self = this;
-			$(document.body).on('click', '.t3-admin-tour-starttour, .t3-admin-tour-canceltour, .t3-admin-tour-endtour, .t3-admin-tour-restarttour, .t3-admin-tour-nexttourstep, .t3-admin-tour-prevtourstep', function(){
+			$(document.body).on('click', '.canvas-admin-tour-starttour, .canvas-admin-tour-canceltour, .canvas-admin-tour-endtour, .canvas-admin-tour-restarttour, .canvas-admin-tour-nexttourstep, .canvas-admin-tour-prevtourstep', function(){
 				var $this = $(this);
 				if ($this.hasClass ('disabled')) return;
 				
-				if ($this.hasClass ('t3-admin-tour-starttour')) {
+				if ($this.hasClass ('canvas-admin-tour-starttour')) {
 					self.startTour();
 				}
 
-				if ($this.hasClass ('t3-admin-tour-endtour')) {
+				if ($this.hasClass ('canvas-admin-tour-endtour')) {
 					self.endTour();
 				}
 
-				if ($this.hasClass ('t3-admin-tour-restarttour')) {
+				if ($this.hasClass ('canvas-admin-tour-restarttour')) {
 					self.restartTour();
 				}
 
-				if ($this.hasClass ('t3-admin-tour-nexttourstep')) {
+				if ($this.hasClass ('canvas-admin-tour-nexttourstep')) {
 					self.nextStep();
 				}
 
-				if ($this.hasClass ('t3-admin-tour-prevtourstep')) {
+				if ($this.hasClass ('canvas-admin-tour-prevtourstep')) {
 					self.prevStep();
 				}
 
@@ -280,8 +279,8 @@
 			});
 
 			// add help button to tab description
-			$('.t3-admin-fieldset-desc').append ('<span class="t3-admin-tour-help"><i class="icon-question-sign"></i></span>');
-			$('.t3-admin-tour-help').click(function(){
+			$('.canvas-admin-fieldset-desc').append ('<span class="canvas-admin-tour-help"><i class="icon-question-sign"></i></span>');
+			$('.canvas-admin-tour-help').click(function(){
 				self.showControls();
 			})
 		},
@@ -293,32 +292,32 @@
 
 			if (this.moveControls === undefined) {
 				this.moveControls = true;
-				$('#t3-admin-tour-overlay').appendTo ($('body'));
-				// $('#t3-admin-tour-controls').appendTo ($('body'));
+				$('#canvas-admin-tour-overlay').appendTo ($('body'));
+				// $('#canvas-admin-tour-controls').appendTo ($('body'));
 			}
 			if (!this.activateTour(firstTour)) return;
 
 			if (this.activeIntro) {
-				$('.t3-admin-tour-intro').show().children('.t3-admin-tour-intro-msg').html (this.activeIntro);
+				$('.canvas-admin-tour-intro').show().children('.canvas-admin-tour-intro-msg').html (this.activeIntro);
 			} else {
 				this.startTour();
 			}
-			// $('#t3-admin-tour-controls').show();
-			$('#t3-admin-tour-overlay').show();
+			// $('#canvas-admin-tour-controls').show();
+			$('#canvas-admin-tour-overlay').show();
 		},
 		
 		hideControls: function(){
-			// $('#t3-admin-tour-controls').hide();
-			// $('#t3-admin-tour-controls').removeClass ('t3-admin-tour-activated');
-			$('#t3-admin-tour-overlay').hide();
+			// $('#canvas-admin-tour-controls').hide();
+			// $('#canvas-admin-tour-controls').removeClass ('canvas-admin-tour-activated');
+			$('#canvas-admin-tour-overlay').hide();
 		},
 
 		bindContextTip: function (tip) {
 			$(tip.element).on (tip.monitor, function (event) {
 				event.stopPropagation();
-				if ($(document.body).data ('t3-admin-tour-contextTip')) return;
-				$(document.body).data('t3tour').showTip (tip);
-				$(document.body).data('t3-admin-tour-contextTip', tip);
+				if ($(document.body).data ('canvas-admin-tour-contextTip')) return;
+				$(document.body).data('canvastour').showTip (tip);
+				$(document.body).data('canvas-admin-tour-contextTip', tip);
 				$(tip.element).off(tip.monitor);
 			});
 		}, 
@@ -332,14 +331,14 @@
 		},
 
 		firstShow: function () {
-			if (!$.cookie('t3-admin-tour-firstshow')) {
+			if (!$.cookie('canvas-admin-tour-firstshow')) {
 				//this.defaultTour();
 
-				var placed = $('#t3-admin-tb-help'),
-					tip = $('#t3-admin-tour-quickhelp');
+				var placed = $('#canvas-admin-tb-help'),
+					tip = $('#canvas-admin-tour-quickhelp');
 
 				tip
-				.appendTo($('#t3-admin-toolbar'))
+				.appendTo($('#canvas-admin-toolbar'))
 				.css({
 					display: 'inline-block',
 					opacity: 0,
@@ -352,7 +351,7 @@
 							$(this).remove();
 						});
 
-						$.cookie('t3-admin-tour-firstshow', '1', { expires: 365, path: '/' });
+						$.cookie('canvas-admin-tour-firstshow', '1', { expires: 365, path: '/' });
 						
 						return false;
 					});
@@ -360,14 +359,14 @@
 		}
 	};
 
-	$.fn.t3tour = function(option){
+	$.fn.canvastour = function(option){
 		return this.each(function () {
 			var jelm = $(this),
-				data = jelm.data('t3tour'),
+				data = jelm.data('canvastour'),
 				options = typeof option == 'object' && option;
 			
 			if (!data) {
-				jelm.data('t3tour', (data = new Tour(options)));
+				jelm.data('canvastour', (data = new Tour(options)));
 			} else {
 				if (typeof option == 'string' && data[option]){
 					data[option]()
@@ -376,7 +375,7 @@
 		})
 	};
 
-	$.fn.t3tour.defaults = {
+	$.fn.canvastour.defaults = {
 		// JOOM: all tour elements
 		tours: [],
 		//define if steps should change automatically

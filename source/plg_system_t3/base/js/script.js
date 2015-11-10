@@ -1,29 +1,20 @@
 /**
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework
  *------------------------------------------------------------------------------
  */
 
 !function($){
 
-    // legacy for $.browser to detect IE
-    if ($.browser == undefined || $.browser.msie == undefined) {
-      $.browser={msie:false,version:0};
-      if (match = navigator.userAgent.match (/MSIE ([0-9]{1,}[\.0-9]{0,})/) || navigator.userAgent.match (/Trident.*rv:([0-9]{1,}[\.0-9]{0,})/)) {
-        $.browser.msie=true;
-        $.browser.version=match[1];
-      }
-    }
-    // add ie version to html tag
-    if ($.browser.msie) {
-      $('html').addClass('ie'+ Math.floor($.browser.version));
+    // detect & add ie version to html tag
+    if (match = navigator.userAgent.match (/MSIE ([0-9]{1,}[\.0-9]{0,})/) || navigator.userAgent.match (/Trident.*rv:([0-9]{1,}[\.0-9]{0,})/)) {
+        $('html').addClass('ie'+parseInt (match[1]));
     }
 
     // Detect grid-float-breakpoint value and put to $(body) data
@@ -70,7 +61,7 @@
 
     //detect transform (https://github.com/cubiq/)
     (function(){
-        $.support.t3transform = (function () {
+        $.support.canvastransform = (function () {
             var style = document.createElement('div').style,
                 vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'],
                 transform, i = 0, l = vendors.length;
@@ -200,8 +191,8 @@
                                 parseInt(nav.css('bottom'));
 
                     if(!$.support.transition){
-                        nav.parent().css('height', !btn.hasClass('collapsed') && btn.data('t3-clicked') ? '' : wheight);
-                        btn.data('t3-clicked', 1);
+                        nav.parent().css('height', !btn.hasClass('collapsed') && btn.data('canvas-clicked') ? '' : wheight);
+                        btn.data('canvas-clicked', 1);
                     }
 
                     nav

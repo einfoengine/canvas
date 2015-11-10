@@ -728,14 +728,14 @@ class JViewLegacy extends JObject
 				{
 					$component = preg_replace('/[^A-Z0-9_\.-]/i', '', $component);
 					
-					//if it is T3 template, update search path for template
-					$this->_addPath('template', T3_PATH . '/html/' . $component . '/' . $this->getName());
+					//if it is CANVAS template, update search path for template
+					$this->_addPath('template', CANVAS_PATH . '/html/' . $component . '/' . $this->getName());
 
 					$fallback = JPATH_THEMES . '/' . $app->getTemplate() . '/html/' . $component . '/' . $this->getName();
 					$this->_addPath('template', $fallback);
 
 					//search path for user custom folder
-					if (!defined('T3_LOCAL_DISABLED')) $this->_addPath('template', T3_LOCAL_PATH . '/html/' . $component . '/' . $this->getName());
+					if (!defined('CANVAS_LOCAL_DISABLED')) $this->_addPath('template', CANVAS_LOCAL_PATH . '/html/' . $component . '/' . $this->getName());
 				}
 				break;
 		}

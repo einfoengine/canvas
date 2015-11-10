@@ -1,19 +1,19 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
 
 /* -------------------------------------------------*/
-/* T3 MEGAMENU ADMIN UI
+/* CANVAS MEGAMENU ADMIN UI
 ---------------------------------------------------*/
 
 body.bd {
@@ -34,7 +34,7 @@ body.bd {
   line-height: normal;
 }
 
-#t3-admin-megamenu {
+#canvas-admin-megamenu {
   min-height: 800px;
   padding: 0 20px;
   position: relative;
@@ -45,7 +45,7 @@ body.bd {
   line-height: 20px;
 }
 
-.bd .t3-admin-header {
+.bd .canvas-admin-header {
   border: 0;
   border-bottom: 1px solid #ccc;
   padding-left: 20px;
@@ -54,23 +54,23 @@ body.bd {
   position: relative;
 }
 
-.t3-admin-header .btn-toolbar {
+.canvas-admin-header .btn-toolbar {
   margin: 15px 0;
 }
 
 
 /* Intro
 ---------------------*/
-#t3-admin-mm-intro {
+#canvas-admin-mm-intro {
   float: left;
   padding: 20px 200px 20px 20px;
 }
 
-#t3-admin-mm-intro h3 {
+#canvas-admin-mm-intro h3 {
   margin-top: 0;
 }
 
-#t3-admin-mm-intro p {
+#canvas-admin-mm-intro p {
   display: block;
   color: #999999;
   max-height: 50px;
@@ -81,18 +81,18 @@ body.bd {
 
 /* Toolbox
 ---------------------*/
-#t3-admin-mm-tb {
+#canvas-admin-mm-tb {
   float: left;
 }
 
-#t3-admin-megamenu .admin-inline-toolbox {
+#canvas-admin-megamenu .admin-inline-toolbox {
   height: 128px;
   border-bottom: 1px solid #e6e6e6;
   margin: 0 -20px 20px;
   background: #f2f2f2;
 }
 
-#t3-admin-mm-tb .admin-toolbox {
+#canvas-admin-mm-tb .admin-toolbox {
   height: 128px;
   padding: 20px;
   display: none;
@@ -102,55 +102,55 @@ body.bd {
   -o-box-sizing: border-box;
 }
 
-#t3-admin-mm-tb .admin-toolbox h3 {
+#canvas-admin-mm-tb .admin-toolbox h3 {
   margin-top: 0;
 }
 
-#t3-admin-mm-tb .admin-toolbox ul {
+#canvas-admin-mm-tb .admin-toolbox ul {
   margin-right: 20px;
   float: left;
 }
 
-#t3-admin-mm-tb .admin-toolbox li > label {
+#canvas-admin-mm-tb .admin-toolbox li > label {
   font-size: 11px;
   color: #999999;
   display: inline-block;
 
 }
 
-#t3-admin-mm-tb .btn [class^="icon-"],
-#t3-admin-mm-tb .btn [class*=" icon-"] {
+#canvas-admin-mm-tb .btn [class^="icon-"],
+#canvas-admin-mm-tb .btn [class*=" icon-"] {
   margin-right: 0;
 }
 
 
 /* Toolbox Actions ---- */
-.t3-admin-mm-row .toolbox-actions-group {
+.canvas-admin-mm-row .toolbox-actions-group {
   position: absolute;
   right: 20px;
   top: 20px;
 }
 
-.t3-admin-mm-row .toolbox-actions-group button {
+.canvas-admin-mm-row .toolbox-actions-group button {
 }
 
 
 /* Fullscreen Toggle */
-#t3-admin-megamenu .t3-admin-tog-fullscreen {
+#canvas-admin-megamenu .canvas-admin-tog-fullscreen {
   display: none !important;
   /*position: absolute;
   right: 0;
   top: -50px;*/
 }
 
-#t3-admin-megamenu .toolbox-saveConfig {
+#canvas-admin-megamenu .toolbox-saveConfig {
   display: none !important;
 }
 
 
 /* The Menu
 ---------------------*/
-#t3-admin-mm-container {
+#canvas-admin-mm-container {
   float: left;
   transition: opacity .2s ease-out;
   -o-transition: opacity .2s ease-out;
@@ -160,18 +160,18 @@ body.bd {
 
 
 /* Global Menu Inner padding ---*/
-.t3-megamenu .mega-inner {
+.canvas-megamenu .mega-inner {
   padding: 10px;
 }
 
 
 /* Menu Grid ---*/
-.t3-megamenu .row-fluid + .row-fluid {
+.canvas-megamenu .row-fluid + .row-fluid {
   margin-top: 0;
   border-top: 0;
 }
 
-.t3-megamenu .row-fluid [class*="span"] {
+.canvas-megamenu .row-fluid [class*="span"] {
   border: 1px dotted #ccc;
   border-radius: 0;
   background: white;
@@ -179,17 +179,17 @@ body.bd {
 
 
 /* The Nav ---*/
-.t3-megamenu .span12.mega-col-nav .mega-inner,
-.t3-megamenu .mega-group .span12.mega-col-nav .mega-inner {
+.canvas-megamenu .span12.mega-col-nav .mega-inner,
+.canvas-megamenu .mega-group .span12.mega-col-nav .mega-inner {
   padding: 10px;
 }
 
-.t3-megamenu .nav > li {
+.canvas-megamenu .nav > li {
   margin-right: 20px;
 }
 
-.t3-megamenu .nav > li > a,
-.t3-megamenu .nav > li > span {
+.canvas-megamenu .nav > li > a,
+.canvas-megamenu .nav > li > span {
   border: 1px solid #ccc;
   padding: 7px 10px;
   background: #f2f2f2;
@@ -199,7 +199,7 @@ body.bd {
 }
 
 /* The caret */
-.t3-megamenu .mega-nav .dropdown-submenu > a::after {
+.canvas-megamenu .mega-nav .dropdown-submenu > a::after {
   margin-right: -10px;
 }
 
@@ -209,12 +209,12 @@ body.bd {
 
 
 /* Dropdown ---*/
-.t3-megamenu .dropdown-menu::before,
-.t3-megamenu .dropdown-menu::after {
+.canvas-megamenu .dropdown-menu::before,
+.canvas-megamenu .dropdown-menu::after {
   display: none !important; /* Hide the Arrow */
 }
 
-.t3-megamenu .dropdown-menu {
+.canvas-megamenu .dropdown-menu {
   border: 1px solid #aaa;
   padding: 10px;
   margin-top: 10px;
@@ -226,26 +226,26 @@ body.bd {
   /* Fixed overlap with the Joomla Toolbar */
 }
 
-.t3-megamenu .dropdown-menu .dropdown-menu {
+.canvas-megamenu .dropdown-menu .dropdown-menu {
   margin-top: 0;
   margin-left: 10px;
 }
 
-.t3-megamenu .dropdown-submenu.mega-align-right .dropdown-menu {
+.canvas-megamenu .dropdown-submenu.mega-align-right .dropdown-menu {
   margin-left: 0;
   margin-right: 11px;
 }
 
-.t3-megamenu .mega-nav li {
+.canvas-megamenu .mega-nav li {
   margin-bottom: 5px;
 }
 
-.t3-megamenu .mega-nav li:last-child {
+.canvas-megamenu .mega-nav li:last-child {
   margin-bottom: 0;
 }
 
-.t3-megamenu .mega-nav li > a,
-.t3-megamenu .mega-nav li > span {
+.canvas-megamenu .mega-nav li > a,
+.canvas-megamenu .mega-nav li > span {
   padding: 5px 20px 5px 10px;
   border: 1px dotted #ccc;
   background: #fff;
@@ -256,15 +256,15 @@ body.bd {
 
 
 /* The group ---*/
-.t3-megamenu .mega-nav .mega-group-title,
-.t3-megamenu .mega-nav .mega-group > .mega-group-title,
-.t3-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title {
+.canvas-megamenu .mega-nav .mega-group-title,
+.canvas-megamenu .mega-nav .mega-group > .mega-group-title,
+.canvas-megamenu .dropdown-menu .mega-nav .mega-group > .mega-group-title {
   padding: 5px 10px;
   cursor: pointer;
   border: 1px dotted #ccc;
 }
 
-.t3-megamenu .mega-group-ct {
+.canvas-megamenu .mega-group-ct {
   border: 1px solid #ddd;
   padding: 10px;
   margin: 10px 0 10px 0;
@@ -272,20 +272,20 @@ body.bd {
   background: #f2f2f2;
 }
 
-.t3-megamenu .mega-group-ct > .row-fluid > [class*="span"] > .mega-inner {
+.canvas-megamenu .mega-group-ct > .row-fluid > [class*="span"] > .mega-inner {
   padding: 10px;
 }
 
 
 /* Module in Menu ---*/
-.t3-megamenu .t3-module {
+.canvas-megamenu .canvas-module {
   pointer-events: none;
   cursor: default;
   position: relative;
   margin: 0;
 }
 
-.t3-megamenu .t3-module:after {
+.canvas-megamenu .canvas-module:after {
   display: block;
   position: absolute;
   background: #eeeeee;
@@ -303,32 +303,32 @@ body.bd {
   border-width: 1px 0 0 1px;
 }
 
-.t3-megamenu .t3-module .module-inner {
+.canvas-megamenu .canvas-module .module-inner {
   opacity: .3;
   font-size: 12px;
 }
 
-.t3-megamenu .t3-module .module-title {
+.canvas-megamenu .canvas-module .module-title {
   margin-top: 0;
   margin-bottom: 5px;
   font-size: 14px;
   line-height: normal;
 }
 
-.t3-megamenu .t3-module .module-ct {
+.canvas-megamenu .canvas-module .module-ct {
   overflow: hidden;
   zoom: 1;
 }
 
 /* Reset List Style in Module */
-.t3-megamenu .t3-module ul,
-.t3-megamenu .t3-module .nav,
-.t3-megamenu .dropdown-menu .nav {
+.canvas-megamenu .canvas-module ul,
+.canvas-megamenu .canvas-module .nav,
+.canvas-megamenu .dropdown-menu .nav {
   margin: 0 0 0 15px;
 }
-.t3-megamenu .t3-module ul li,
-.t3-megamenu .t3-module .nav li,
-.t3-megamenu .dropdown-menu .nav li {
+.canvas-megamenu .canvas-module ul li,
+.canvas-megamenu .canvas-module .nav li,
+.canvas-megamenu .dropdown-menu .nav li {
   list-style: disc;
   display: list-item;
   float: none;
@@ -336,9 +336,9 @@ body.bd {
   padding: 0;
   border: 0;
 }
-.t3-megamenu .t3-module ul li a,
-.t3-megamenu .t3-module .nav li a,
-.t3-megamenu .dropdown-menu .t3-module li a {
+.canvas-megamenu .canvas-module ul li a,
+.canvas-megamenu .canvas-module .nav li a,
+.canvas-megamenu .dropdown-menu .canvas-module li a {
   display: inline;
   padding: 0;
   margin: 0;
@@ -348,26 +348,26 @@ body.bd {
   font: inherit;
   white-space: normal;
 }
-.t3-megamenu .t3-module ul li a:hover,
-.t3-megamenu .t3-module .nav li a:hover,
-.t3-megamenu .dropdown-menu .t3-module li a:hover,
-.t3-megamenu .t3-module ul li a:active,
-.t3-megamenu .t3-module .nav li a:active,
-.t3-megamenu .dropdown-menu .t3-module li a:active,
-.t3-megamenu .t3-module ul li a:focus,
-.t3-megamenu .t3-module .nav li a:focus,
-.t3-megamenu .dropdown-menu .t3-module li a:focus,
-.t3-megamenu .t3-module ul li a:visited,
-.t3-megamenu .t3-module .nav li a:visited,
-.t3-megamenu .dropdown-menu .t3-module li a:visited {
+.canvas-megamenu .canvas-module ul li a:hover,
+.canvas-megamenu .canvas-module .nav li a:hover,
+.canvas-megamenu .dropdown-menu .canvas-module li a:hover,
+.canvas-megamenu .canvas-module ul li a:active,
+.canvas-megamenu .canvas-module .nav li a:active,
+.canvas-megamenu .dropdown-menu .canvas-module li a:active,
+.canvas-megamenu .canvas-module ul li a:focus,
+.canvas-megamenu .canvas-module .nav li a:focus,
+.canvas-megamenu .dropdown-menu .canvas-module li a:focus,
+.canvas-megamenu .canvas-module ul li a:visited,
+.canvas-megamenu .canvas-module .nav li a:visited,
+.canvas-megamenu .dropdown-menu .canvas-module li a:visited {
   background: none;
   color: inherit;
   font: inherit;
 }
 
 
-.t3-megamenu [class*="span"].hover .t3-module:after,
-.t3-megamenu [class*="span"].selected .t3-module:after {
+.canvas-megamenu [class*="span"].hover .canvas-module:after,
+.canvas-megamenu [class*="span"].selected .canvas-module:after {
   border-style: solid;
   border-color: #07b;
   background: #07b;
@@ -375,79 +375,79 @@ body.bd {
 }
 
 /* Fix Form display problem in Modules */
-.t3-megamenu .t3-module .control-group {
+.canvas-megamenu .canvas-module .control-group {
   margin-bottom: 5px;
 }
 
-.t3-megamenu .t3-module .controls {
+.canvas-megamenu .canvas-module .controls {
   margin-left: 3px;
 }
 
 
 /* Open Item ---*/
-.t3-megamenu .nav > li.open > a,
-.t3-megamenu .open > a,
-.t3-megamenu .open > .mega-group-title {
+.canvas-megamenu .nav > li.open > a,
+.canvas-megamenu .open > a,
+.canvas-megamenu .open > .mega-group-title {
   background: #07b !important;
   border-color: #07b !important;
   color: #fff !important;
   text-shadow: none !important;
 }
 
-.t3-megamenu .open > .mega-group-title > a {
+.canvas-megamenu .open > .mega-group-title > a {
   color: #fff !important;
 }
 
-.t3-megamenu .nav > li.open > a > .caret,
-.t3-megamenu .open > a > .caret {
+.canvas-megamenu .nav > li.open > a > .caret,
+.canvas-megamenu .open > a > .caret {
   border-top-color: #fff !important;
 }
 
 
 /* Hover Item ---*/
-.t3-megamenu .nav-child.hover,
-.t3-megamenu ul[class*="level"] > li > a.hover,
-.t3-megamenu ul[class*="level"] > li > span.hover,
-.t3-megamenu .row-fluid [class*="span"].hover {
+.canvas-megamenu .nav-child.hover,
+.canvas-megamenu ul[class*="level"] > li > a.hover,
+.canvas-megamenu ul[class*="level"] > li > span.hover,
+.canvas-megamenu .row-fluid [class*="span"].hover {
   border-style: solid !important;
   border-color: #07b !important;
 }
 
-.t3-megamenu ul[class*="level"] > li > a:hover,
-.t3-megamenu ul[class*="level"] > li > a:focus,
-.t3-megamenu ul[class*="level"] > li > a:active {
+.canvas-megamenu ul[class*="level"] > li > a:hover,
+.canvas-megamenu ul[class*="level"] > li > a:focus,
+.canvas-megamenu ul[class*="level"] > li > a:active {
   background: #fff!important;
   color: #333 !important;
   text-shadow: none !important;
 }
 
 
-.t3-megamenu ul[class*="level"] > li > a:hover > .caret,
-.t3-megamenu ul[class*="level"] > li > a:focus > .caret,
-.t3-megamenu ul[class*="level"] > li > a:active > .caret {
+.canvas-megamenu ul[class*="level"] > li > a:hover > .caret,
+.canvas-megamenu ul[class*="level"] > li > a:focus > .caret,
+.canvas-megamenu ul[class*="level"] > li > a:active > .caret {
   border-top-color: #333 !important;
 }
 
 /* The caret */
-.t3-megamenu .mega-nav li a.hover:after,
-.t3-megamenu .mega-nav li a.selected:after {
+.canvas-megamenu .mega-nav li a.hover:after,
+.canvas-megamenu .mega-nav li a.selected:after {
   border-left-color: #333333;
 }
 
 /* The seperator */
-.t3-megamenu .mega-nav .divider .separator {
+.canvas-megamenu .mega-nav .divider .separator {
   display: none;
 }
 
 /* The Icons */
-.t3-megamenu .nav [class^="icon-"],
-.t3-megamenu .nav [class*=" icon-"],
-.t3-megamenu .nav .fa {
+.canvas-megamenu .nav [class^="icon-"],
+.canvas-megamenu .nav [class*=" icon-"],
+.canvas-megamenu .nav .fa {
   margin-right: 5px;
 }
 
 /* Selected Item ---*/
-.t3-megamenu .selected {
+.canvas-megamenu .selected {
   border-style: solid !important;
   border-color: #07b !important;
 }
@@ -462,20 +462,20 @@ body.bd {
 
 /* Fix for Joomla! Default Admin Template
 --------------------------------------------------*/
-#t3-admin-megamenu .dropdown-menu a {
+#canvas-admin-megamenu .dropdown-menu a {
   white-space: normal;
 }
 
-#t3-admin-megamenu .row-fluid [class*="span"] {
+#canvas-admin-megamenu .row-fluid [class*="span"] {
   margin-left: 2.12766%;
 }
 
-#t3-admin-megamenu .row-fluid [class*="span"]:first-child {
+#canvas-admin-megamenu .row-fluid [class*="span"]:first-child {
   margin-left: 0;
 }
 
 /* Fix right spacing for chzn chosen in Megamenu Admin UI */
-#t3-admin-megamenu ul.chzn-results {
+#canvas-admin-megamenu ul.chzn-results {
   margin-right: 4px;
   float: none;
 }
@@ -485,17 +485,17 @@ body.bd {
 }
 
 /* Fix submenu auto open on hover */
-#t3-admin-megamenu .dropdown-submenu:hover .dropdown-menu {
+#canvas-admin-megamenu .dropdown-submenu:hover .dropdown-menu {
   display: none;
 }
 
-#t3-admin-megamenu .dropdown-submenu:hover > .dropdown-menu {
+#canvas-admin-megamenu .dropdown-submenu:hover > .dropdown-menu {
   display: block;
 }
 
 
 /* Header Form Control ---*/ 
-.t3-admin-header .control-group {
+.canvas-admin-header .control-group {
   width: auto !important;
   display: block;
   float: left;
@@ -507,18 +507,18 @@ body.bd {
   min-height: 30px;
 }
 
-.t3-admin-header .control-group.hide {
+.canvas-admin-header .control-group.hide {
   display: none;
 }
 
-.t3-admin-header .control-label {
+.canvas-admin-header .control-label {
   width: auto !important;
   display: block;
   float: left;
   padding: 8px 0 0 0;
 }
 
-.t3-admin-header .controls {
+.canvas-admin-header .controls {
   margin: 0 0 0 10px;
   width: auto !important;
   display: block;
@@ -527,15 +527,15 @@ body.bd {
   background: none;
 }
 
-.t3-admin-header .inputbox,
-.t3-admin-header .input {
+.canvas-admin-header .inputbox,
+.canvas-admin-header .input {
   width: 250px;
   font-weight: bold;
 }
 
 
 /* Ajax loader ---*/
-#t3-admin-megamenu .ajaxloader {
+#canvas-admin-megamenu .ajaxloader {
   width: 300px;
   height: 20px;
   position: absolute;
@@ -550,30 +550,30 @@ body.bd {
 }
 
 
-#t3-admin-megamenu .progress {
+#canvas-admin-megamenu .progress {
   border-radius: 0;
 }
 
-#t3-admin-megamenu .ajaxloader .bar {
+#canvas-admin-megamenu .ajaxloader .bar {
   width: 0%;
 }
 
-#t3-admin-megamenu.loading .ajaxloader {
+#canvas-admin-megamenu.loading .ajaxloader {
   left: 20px;
   opacity: 1;
 }
 
-#t3-admin-megamenu.loading .ajaxloader .bar {
+#canvas-admin-megamenu.loading .ajaxloader .bar {
   width: 100%;
 }
 
-#t3-admin-megamenu.loading #t3-admin-mm-container {
+#canvas-admin-megamenu.loading #canvas-admin-mm-container {
   opacity: 0;
 }
 
 /* Hidden */
-#t3-admin-megamenu .hidden,
-#t3-admin-megamenu .hide {
+#canvas-admin-megamenu .hidden,
+#canvas-admin-megamenu .hide {
   display: block;
   visibility: visible;
   opacity: 0.3;
@@ -603,7 +603,7 @@ body.bd {
   opacity: 1;
 }
 
-#t3-admin-megamenu-dlg {
+#canvas-admin-megamenu-dlg {
   font: 14px/20px sans-serif;
   color: #666;
   width: 450px;
@@ -612,7 +612,7 @@ body.bd {
   border-radius: 0;
 }
 
-#t3-admin-megamenu-dlg.fade.in {
+#canvas-admin-megamenu-dlg.fade.in {
   top: 50%;
 }
 
@@ -733,47 +733,4 @@ body.bd {
 
 .modal-footer .btn-group .btn + .btn {
   margin-left: -1px;
-}
-
-.mega-tab {
-  position: relative;
-}
-.mega-tab > div > ul {
-  width: 200px;
-}
-
-.mega-tab > div > ul > li {
-  position: static;
-}
-
-.mega-tab > div > ul > li > .dropdown-menu{
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 200px;
-}
-
-.mega-tab > div > ul > li > .mega-dropdown-menu {
-  	border: none;
-  	box-shadow: none;
-}
-
-.mega-tab > div > ul > li:first-child > .mega-dropdown-menu {
-	display: block;
-  	opacity: 1!important;
-}	
-
-.mega-tab > div > ul > li > .mega-dropdown-menu > div {
-	margin-left: 0!important;
-	transition: none!important;
-}
-/* Fix not hide element in admin when adding hidden class */
-#t3-admin-mm-container .hidden-xs,
-#t3-admin-mm-container .hidden-sm,
-#t3-admin-mm-container .hidden-md,
-#t3-admin-mm-container .hidden-lg,
-#t3-admin-mm-container .hidden-desktop,
-#t3-admin-mm-container .hidden-phone {
-  display: block !important;
 }

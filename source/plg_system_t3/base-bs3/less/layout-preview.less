@@ -1,13 +1,12 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -20,20 +19,20 @@
 // Bootstrap mixins
 @import "../bootstrap/less/mixins.less";
 
-// T3 variables
+// CANVAS variables
 @import "variables.less";
 
-// T3 mixins
+// CANVAS mixins
 @import "mixins.less";
 
 // Layout preview variables
 @import "layout-preview-variables.less";
 
 
-// T3 CUSTOM LAYOUT
+// CANVAS CUSTOM LAYOUT
 // ------------------
 
-.t3-admin-layout-preview {
+.canvas-admin-layout-preview {
 
   *,
   *:before,
@@ -49,7 +48,7 @@
   max-width: 100%;    
 
   //
-  // Grid system - Extended by T3
+  // Grid system - Extended by CANVAS
   // --------------------------------------------------
 
   // Added "wrap" element
@@ -61,16 +60,16 @@
     width: 100%;
   }
 
-  // T3 Note: ensure those elements work good with floating elements
-  .t3-admin-layout-section,
+  // CANVAS Note: ensure those elements work good with floating elements
+  .canvas-admin-layout-section,
   header,
   footer,
   section,
   nav,
-  .t3-spotlight,
-  .t3-content,
-  .t3-sidebar,
-  .t3-mastcol {
+  .canvas-spotlight,
+  .canvas-content,
+  .canvas-sidebar,
+  .canvas-mastcol {
       .clearfix();
   }
 
@@ -171,11 +170,6 @@
   //
   // Note that `.col-sm-12` doesn't get floated on purpose—there's no need since
   // it's full-width.
-  &.sm, &.xs, &.md {
-    .t3-sidebar {
-      min-height: 0 !important;
-    }
-  }
 
   &.sm,
   &.md,

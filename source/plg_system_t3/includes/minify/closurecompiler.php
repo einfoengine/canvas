@@ -49,7 +49,7 @@ class Minify_JS_ClosureCompiler {
             ? mb_strlen($postBody, '8bit')
             : strlen($postBody);
         if ($bytes > 200000) {
-            //T3 Framework
+            //CANVAS Framework
             //instead of throwing error, we use fall back option
             if (is_callable($this->_fallbackFunc)) {
                 $response = "/*\n(Using fallback minifier)\n*/\n";
@@ -132,8 +132,8 @@ class Minify_JS_ClosureCompiler {
      */
     protected function _fallback($js)
     {
-        //T3 Framework
-        T3::import('minify/jsmin');
+        //CANVAS Framework
+        CANVAS::import('minify/jsmin');
         return JSMin::minify($js);
     }
 }

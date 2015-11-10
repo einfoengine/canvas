@@ -1,13 +1,13 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -17,17 +17,16 @@
 		
 		//frontend edit radio on/off - auto convert on-off radio if applicable
 		$('fieldset.radio').filter(function(){
+			
 			return $(this).find('input').length == 2 && $(this).find('input').filter(function(){
 					return $.inArray(this.value + '', ['0', '1']) !== -1;
 				}).length == 2;
-		}).addClass('t3onoff').removeClass('btn-group');
+
+		}).addClass('canvasonoff').removeClass('btn-group');
 
 		//add class on/off
-		$('fieldset.t3onoff').find('label').addClass(function(){
-			var $this = $(this), $input = $this.prev('input'),
-			cls = $this.hasClass('off') || $input.val() == '0' ? 'off' : 'on';
-			cls += $input.prop('checked') ? ' active' : '';
-			return cls;
+		$('fieldset.canvasonoff').find('label').addClass(function(){
+			return $(this).hasClass('off') || $(this).prev('input').val() == '0' ? 'off' : 'on'
 		});
 
 		//listen to all
@@ -42,6 +41,11 @@
 			}
 		});
 
+		//initial state
+		$('.radio input[checked=checked]').each(function(){
+			$('label[for=' + $(this).attr('id') + ']').addClass('active');
+		});
+		
 	});
 	
 }(jQuery);

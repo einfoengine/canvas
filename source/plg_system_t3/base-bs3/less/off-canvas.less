@@ -1,13 +1,12 @@
 /**
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework
  * @credits       Mary Lou - http://tympanus.net/codrops/2013/08/28/transitions-for-off-canvas-navigations/
  *------------------------------------------------------------------------------
  */
@@ -23,10 +22,10 @@
 // Prevent Bootstrap Upgrading errors
 @import "../bootstrap/less/mixins.less";
 
-// T3 Base variables
+// CANVAS Base variables
 @import "variables.less";
 
-// T3 Base mixins
+// CANVAS Base mixins
 @import "mixins.less";
 
 
@@ -54,7 +53,7 @@ body {
   width: 100%;
 }
 
-.t3-wrapper {
+.canvas-wrapper {
   // Need a background (Usually @body-bg). Otherwise the sidebar will overlap.
   background: @body-bg;
   position: relative;
@@ -79,24 +78,11 @@ body {
   }
 }
 
-.t3-mainnav-android {
-	-webkit-transition: -webkit-transform 0.5s;
-	transition: transform 0.5s;
-	&::after {
-		-webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-		transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-	}
-}
-
 .off-canvas-open {
-  .t3-wrapper::after {
+  .canvas-wrapper::after {
     width: 100%;
     height: 10000px;
     opacity: 1;
-    -webkit-transition: opacity 0.5s;
-    transition: opacity 0.5s;
-  }
-  .t3-mainnav-android::after {
     -webkit-transition: opacity 0.5s;
     transition: opacity 0.5s;
   }
@@ -105,13 +91,13 @@ body {
 
 // The Sidebar
 // -------------------
-.t3-off-canvas {
+.canvas-off-canvas {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 100;
   visibility: hidden;
-  width: @t3-off-canvas-width;
+  width: @canvas-off-canvas-width;
   height: 100%;
 
   overflow: hidden;
@@ -133,20 +119,20 @@ body {
   }
 }
 
-.off-canvas-right.t3-off-canvas {
+.off-canvas-right.canvas-off-canvas {
   display: none;
 }
-.off-canvas-right .off-canvas-right.t3-off-canvas {
+.off-canvas-right .off-canvas-right.canvas-off-canvas {
   display: block;
 }
 
-html[dir="ltr"] .off-canvas-right.t3-off-canvas {
+html[dir="ltr"] .off-canvas-right.canvas-off-canvas {
   left: auto;
   right: 0;
 }
 
 .off-canvas-open {
-  .t3-off-canvas::after {
+  .canvas-off-canvas::after {
     width: 0;
     height: 0;
     opacity: 0;
@@ -158,7 +144,7 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
     visibility: visible;
   }
 
-  .t3-off-canvas {
+  .canvas-off-canvas {
     overflow-y: auto;
   }
 }
@@ -169,18 +155,18 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
 // OFF-CANVAS CONTENT STYLES
 // -------------------------------------
 
-.t3-off-canvas {
+.canvas-off-canvas {
 
   // Generic
   // -----------------------------------
-  background: @t3-off-canvas-background;
-  color: @t3-off-canvas-text-color;
+  background: @canvas-off-canvas-background;
+  color: @canvas-off-canvas-text-color;
 
   // Header
   // -----------------------------------
-  .t3-off-canvas-header {
-    background: @t3-off-canvas-header-background;
-    color: @t3-off-canvas-header-text-color;
+  .canvas-off-canvas-header {
+    background: @canvas-off-canvas-header-background;
+    color: @canvas-off-canvas-header-text-color;
     padding: @padding-base-vertical @padding-base-horizontal;
 
     // Title
@@ -197,18 +183,18 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
 
   // Body
   // ----------------------------------
-  .t3-off-canvas-body {
+  .canvas-off-canvas-body {
 
     padding: @padding-base-vertical @padding-base-horizontal;
 
     // Links
     // ------------
     a {
-      color: @t3-off-canvas-link-color;
+      color: @canvas-off-canvas-link-color;
 
       &:hover,
       &:focus {
-        color: @t3-off-canvas-link-hover-color;
+        color: @canvas-off-canvas-link-hover-color;
       }
 
       &:focus {
@@ -237,7 +223,7 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
 
     // Modules
     // ------------
-    .t3-module {
+    .canvas-module {
     }
 
   // End Off-Canvas Body
@@ -254,22 +240,22 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
 
 // Effect 1: Slide in on top
 // -------------------------
-.off-canvas-effect-1.t3-off-canvas {
+.off-canvas-effect-1.canvas-off-canvas {
   -webkit-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
 }
 
-.off-canvas-effect-1.off-canvas-open .off-canvas-effect-1.t3-off-canvas {
+.off-canvas-effect-1.off-canvas-open .off-canvas-effect-1.canvas-off-canvas {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
-.off-canvas-effect-1.t3-off-canvas::after {
+.off-canvas-effect-1.canvas-off-canvas::after {
   display: none;
 }
 
 // off-canvas on right side
-.off-canvas-right.off-canvas-effect-1.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-1.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
 }
@@ -277,59 +263,59 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
 
 // Effect 2: Reveal
 // ----------------
-.off-canvas-effect-2.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
-  transform: translate3d(@t3-off-canvas-width, 0, 0);
+.off-canvas-effect-2.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-effect-2.t3-off-canvas {
+.off-canvas-effect-2.canvas-off-canvas {
   z-index: 1;
 }
 
-.off-canvas-effect-2.off-canvas-open .off-canvas-effect-2.t3-off-canvas {
+.off-canvas-effect-2.off-canvas-open .off-canvas-effect-2.canvas-off-canvas {
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
 }
 
-.off-canvas-effect-2.t3-off-canvas::after {
+.off-canvas-effect-2.canvas-off-canvas::after {
   display: none;
 }
 
 // off-canvas on right side
-.off-canvas-right.off-canvas-effect-2.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(-@t3-off-canvas-width, 0, 0);
-  transform: translate3d(-@t3-off-canvas-width, 0, 0);
+.off-canvas-right.off-canvas-effect-2.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(-@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(-@canvas-off-canvas-width, 0, 0);
 }
 
 
 // Effect 3: Push
 // --------------
-.off-canvas-effect-3.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
-  transform: translate3d(@t3-off-canvas-width, 0, 0);
+.off-canvas-effect-3.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-effect-3.t3-off-canvas {
+.off-canvas-effect-3.canvas-off-canvas {
   -webkit-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
 }
 
-.off-canvas-effect-3.off-canvas-open .off-canvas-effect-3.t3-off-canvas {
+.off-canvas-effect-3.off-canvas-open .off-canvas-effect-3.canvas-off-canvas {
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
 }
 
-.off-canvas-effect-3.t3-off-canvas::after {
+.off-canvas-effect-3.canvas-off-canvas::after {
   display: none;
 }
 
 // off-canvas on right side
-.off-canvas-right.off-canvas-effect-3.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(-@t3-off-canvas-width, 0, 0);
-  transform: translate3d(-@t3-off-canvas-width, 0, 0);
+.off-canvas-right.off-canvas-effect-3.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(-@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(-@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-right.off-canvas-effect-3.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-3.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
 }
@@ -337,37 +323,35 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
 
 // Effect 4: Slide along
 // ---------------------
-.off-canvas-effect-4.off-canvas-open .t3-wrapper,
-.off-canvas-effect-4.off-canvas-open .t3-mainnav-android {
-  -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
-  transform: translate3d(@t3-off-canvas-width, 0, 0);
+.off-canvas-effect-4.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-effect-4.t3-off-canvas {
+.off-canvas-effect-4.canvas-off-canvas {
   z-index: 1;
   -webkit-transform: translate3d(-50%, 0, 0);
   transform: translate3d(-50%, 0, 0);
 }
 
-.off-canvas-effect-4.off-canvas-open .off-canvas-effect-4.t3-off-canvas {
+.off-canvas-effect-4.off-canvas-open .off-canvas-effect-4.canvas-off-canvas {
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
-.off-canvas-effect-4.t3-off-canvas::after {
+.off-canvas-effect-4.canvas-off-canvas::after {
   display: none;
 }
 
 // off-canvas on right side
-.off-canvas-right.off-canvas-effect-4.off-canvas-open .t3-wrapper,
-.off-canvas-right.off-canvas-effect-4.off-canvas-open .t3-mainnav-android {
-  -webkit-transform: translate3d(-@t3-off-canvas-width, 0, 0);
-  transform: translate3d(-@t3-off-canvas-width, 0, 0);
+.off-canvas-right.off-canvas-effect-4.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(-@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(-@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-right.off-canvas-effect-4.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-4.canvas-off-canvas {
   -webkit-transform: translate3d(50%, 0, 0);
   transform: translate3d(50%, 0, 0);
 }
@@ -375,18 +359,18 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
 
 // Effect 5: Reverse slide out
 // ---------------------------
-.off-canvas-effect-5.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
-  transform: translate3d(@t3-off-canvas-width, 0, 0);
+.off-canvas-effect-5.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-effect-5.t3-off-canvas {
+.off-canvas-effect-5.canvas-off-canvas {
   z-index: 1;
   -webkit-transform: translate3d(50%, 0, 0);
   transform: translate3d(50%, 0, 0);
 }
 
-.off-canvas-effect-5.off-canvas-open .off-canvas-effect-5.t3-off-canvas {
+.off-canvas-effect-5.off-canvas-open .off-canvas-effect-5.canvas-off-canvas {
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   -webkit-transform: translate3d(0, 0, 0);
@@ -394,12 +378,12 @@ html[dir="ltr"] .off-canvas-right.t3-off-canvas {
 }
 
 // off-canvas on right side
-.off-canvas-right.off-canvas-effect-5.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(-@t3-off-canvas-width, 0, 0);
-  transform: translate3d(-@t3-off-canvas-width, 0, 0);
+.off-canvas-right.off-canvas-effect-5.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(-@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(-@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-right.off-canvas-effect-5.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-5.canvas-off-canvas {
   z-index: 1;
   -webkit-transform: translate3d(-50%, 0, 0);
   transform: translate3d(-50%, 0, 0);
@@ -413,7 +397,7 @@ body.off-canvas-effect-6 {
   perspective: 1500px;
 }
 
-.off-canvas-effect-6 .t3-wrapper {
+.off-canvas-effect-6 .canvas-wrapper {
   -webkit-transform-origin: 0% 50%;
   transform-origin: 0% 50%;
   -webkit-transform-style: preserve-3d;
@@ -422,36 +406,36 @@ body.off-canvas-effect-6 {
   overflow: hidden;
 }
 
-.off-canvas-effect-6.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0) rotateY(-15deg);
-  transform: translate3d(@t3-off-canvas-width, 0, 0) rotateY(-15deg);
+.off-canvas-effect-6.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(@canvas-off-canvas-width, 0, 0) rotateY(-15deg);
+  transform: translate3d(@canvas-off-canvas-width, 0, 0) rotateY(-15deg);
 }
 
-.off-canvas-effect-6.t3-off-canvas {
+.off-canvas-effect-6.canvas-off-canvas {
   -webkit-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
 }
 
-.off-canvas-effect-6.off-canvas-open .off-canvas-effect-6.t3-off-canvas {
+.off-canvas-effect-6.off-canvas-open .off-canvas-effect-6.canvas-off-canvas {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
-.off-canvas-effect-6.t3-off-canvas::after {
+.off-canvas-effect-6.canvas-off-canvas::after {
   display: none;
 }
 
-.off-canvas-right.off-canvas-effect-6 .t3-wrapper {
+.off-canvas-right.off-canvas-effect-6 .canvas-wrapper {
   -webkit-transform-origin: 100% 50%;
   transform-origin: 100% 50%;
 }
 
-.off-canvas-right.off-canvas-effect-6.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(-@t3-off-canvas-width, 0, 0) rotateY(15deg);
-  transform: translate3d(-@t3-off-canvas-width, 0, 0) rotateY(15deg);
+.off-canvas-right.off-canvas-effect-6.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(-@canvas-off-canvas-width, 0, 0) rotateY(15deg);
+  transform: translate3d(-@canvas-off-canvas-width, 0, 0) rotateY(15deg);
 }
 
-.off-canvas-right.off-canvas-effect-6.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-6.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
 }
@@ -466,17 +450,17 @@ body.off-canvas-effect-7 {
   perspective-origin: 0% 50%;
 }
 
-.off-canvas-effect-7 .t3-wrapper {
+.off-canvas-effect-7 .canvas-wrapper {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-7.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
-  transform: translate3d(@t3-off-canvas-width, 0, 0);
+.off-canvas-effect-7.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-effect-7.t3-off-canvas {
+.off-canvas-effect-7.canvas-off-canvas {
   -webkit-transform: translate3d(-100%, 0, 0) rotateY(-90deg);
   transform: translate3d(-100%, 0, 0) rotateY(-90deg);
   -webkit-transform-origin: 100% 50%;
@@ -485,7 +469,7 @@ body.off-canvas-effect-7 {
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-7.off-canvas-open .off-canvas-effect-7.t3-off-canvas {
+.off-canvas-effect-7.off-canvas-open .off-canvas-effect-7.canvas-off-canvas {
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   -webkit-transform: translate3d(-100%, 0, 0) rotateY(0deg);
@@ -498,19 +482,19 @@ body.off-canvas-effect-7.off-canvas-right {
   perspective-origin: 100% 50%;
 }
 
-.off-canvas-right.off-canvas-effect-7.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(-@t3-off-canvas-width, 0, 0);
-  transform: translate3d(-@t3-off-canvas-width, 0, 0);
+.off-canvas-right.off-canvas-effect-7.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(-@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(-@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-right.off-canvas-effect-7.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-7.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0) rotateY(90deg);
   transform: translate3d(100%, 0, 0) rotateY(90deg);
   -webkit-transform-origin: 0 50%;
   transform-origin: 0 50%;
 }
 
-.off-canvas-right.off-canvas-effect-7.off-canvas-open .off-canvas-right.off-canvas-effect-7.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-7.off-canvas-open .off-canvas-right.off-canvas-effect-7.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0) rotateY(0deg);
   transform: translate3d(100%, 0, 0) rotateY(0deg);
 }
@@ -525,17 +509,17 @@ body.off-canvas-effect-8 {
   perspective-origin: 0% 50%;
 }
 
-.off-canvas-effect-8 .t3-wrapper {
+.off-canvas-effect-8 .canvas-wrapper {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-8.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
-  transform: translate3d(@t3-off-canvas-width, 0, 0);
+.off-canvas-effect-8.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-effect-8.t3-off-canvas {
+.off-canvas-effect-8.canvas-off-canvas {
   -webkit-transform: translate3d(-100%, 0, 0) rotateY(90deg);
   transform: translate3d(-100%, 0, 0) rotateY(90deg);
   -webkit-transform-origin: 100% 50%;
@@ -544,14 +528,14 @@ body.off-canvas-effect-8 {
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-8.off-canvas-open .off-canvas-effect-8.t3-off-canvas {
+.off-canvas-effect-8.off-canvas-open .off-canvas-effect-8.canvas-off-canvas {
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   -webkit-transform: translate3d(-100%, 0, 0) rotateY(0deg);
   transform: translate3d(-100%, 0, 0) rotateY(0deg);
 }
 
-.off-canvas-effect-8.t3-off-canvas::after {
+.off-canvas-effect-8.canvas-off-canvas::after {
   display: none;
 }
 
@@ -562,19 +546,19 @@ body.off-canvas-effect-8.off-canvas-right {
 }
 
 
-.off-canvas-right.off-canvas-effect-8.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(-@t3-off-canvas-width, 0, 0);
-  transform: translate3d(-@t3-off-canvas-width, 0, 0);
+.off-canvas-right.off-canvas-effect-8.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(-@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(-@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-right.off-canvas-effect-8.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-8.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0) rotateY(-90deg);
   transform: translate3d(100%, 0, 0) rotateY(-90deg);
   -webkit-transform-origin: 0 50%;
   transform-origin: 0 50%;
 }
 
-.off-canvas-right.off-canvas-effect-8.off-canvas-open .off-canvas-right.off-canvas-effect-8.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-8.off-canvas-open .off-canvas-right.off-canvas-effect-8.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0) rotateY(0deg);
   transform: translate3d(100%, 0, 0) rotateY(0deg);
 }
@@ -587,35 +571,35 @@ body.off-canvas-effect-9 {
   perspective: 1500px;
 }
 
-.off-canvas-effect-9 .t3-wrapper {
+.off-canvas-effect-9 .canvas-wrapper {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-9.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(0, 0, -@t3-off-canvas-width);
-  transform: translate3d(0, 0, -@t3-off-canvas-width);
+.off-canvas-effect-9.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(0, 0, -@canvas-off-canvas-width);
+  transform: translate3d(0, 0, -@canvas-off-canvas-width);
 }
 
-.off-canvas-effect-9.t3-off-canvas {
+.off-canvas-effect-9.canvas-off-canvas {
   opacity: 1;
   -webkit-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
 }
 
-.off-canvas-effect-9.off-canvas-open .off-canvas-effect-9.t3-off-canvas {
+.off-canvas-effect-9.off-canvas-open .off-canvas-effect-9.canvas-off-canvas {
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
-.off-canvas-effect-9.t3-off-canvas::after {
+.off-canvas-effect-9.canvas-off-canvas::after {
   display: none;
 }
 
 // off-canvas on right side
-.off-canvas-right.off-canvas-effect-9.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-9.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
 }
@@ -629,19 +613,19 @@ body.off-canvas-effect-10 {
   perspective-origin: 0% 50%;
 }
 
-.off-canvas-effect-10.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
-  transform: translate3d(@t3-off-canvas-width, 0, 0);
+.off-canvas-effect-10.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-effect-10.t3-off-canvas {
+.off-canvas-effect-10.canvas-off-canvas {
   z-index: 1;
   opacity: 1;
-  -webkit-transform: translate3d(0, 0, -@t3-off-canvas-width);
-  transform: translate3d(0, 0, -@t3-off-canvas-width);
+  -webkit-transform: translate3d(0, 0, -@canvas-off-canvas-width);
+  transform: translate3d(0, 0, -@canvas-off-canvas-width);
 }
 
-.off-canvas-effect-10.off-canvas-open .off-canvas-effect-10.t3-off-canvas {
+.off-canvas-effect-10.off-canvas-open .off-canvas-effect-10.canvas-off-canvas {
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   -webkit-transform: translate3d(0, 0, 0);
@@ -654,9 +638,9 @@ body.off-canvas-effect-10.off-canvas-right {
   perspective-origin: 100% 50%;
 }
 
-.off-canvas-right.off-canvas-effect-10.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(-@t3-off-canvas-width, 0, 0);
-  transform: translate3d(-@t3-off-canvas-width, 0, 0);
+.off-canvas-right.off-canvas-effect-10.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(-@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(-@canvas-off-canvas-width, 0, 0);
 }
 
 
@@ -667,42 +651,42 @@ body.off-canvas-effect-11 {
   perspective: 1500px;
 }
 
-.off-canvas-effect-11 .t3-wrapper {
+.off-canvas-effect-11 .canvas-wrapper {
   height: auto;
   overflow: hidden;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-11.off-canvas-open .t3-wrapper {
+.off-canvas-effect-11.off-canvas-open .canvas-wrapper {
   -webkit-transform: translate3d(100px, 0, -600px) rotateY(-20deg);
   transform: translate3d(100px, 0, -600px) rotateY(-20deg);
 }
 
-.off-canvas-effect-11.t3-off-canvas {
+.off-canvas-effect-11.canvas-off-canvas {
   opacity: 1;
   -webkit-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
 }
 
-.off-canvas-effect-11.off-canvas-open .off-canvas-effect-11.t3-off-canvas {
+.off-canvas-effect-11.off-canvas-open .off-canvas-effect-11.canvas-off-canvas {
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
-.off-canvas-effect-11.t3-off-canvas::after {
+.off-canvas-effect-11.canvas-off-canvas::after {
   display: none;
 }
 
 // off-canvas on right side
-.off-canvas-right.off-canvas-effect-11.off-canvas-open .t3-wrapper {
+.off-canvas-right.off-canvas-effect-11.off-canvas-open .canvas-wrapper {
   -webkit-transform: translate3d(-100px, 0, -600px) rotateY(20deg);
   transform: translate3d(-100px, 0, -600px) rotateY(20deg);
 }
 
-.off-canvas-right.off-canvas-effect-11.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-11.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
 }
@@ -715,7 +699,7 @@ body.off-canvas-effect-12 {
   perspective: 1500px;
 }
 
-.off-canvas-effect-12 .t3-wrapper {
+.off-canvas-effect-12 .canvas-wrapper {
   height: auto;
   overflow: hidden;
   -webkit-transform-origin: 100% 50%;
@@ -724,40 +708,40 @@ body.off-canvas-effect-12 {
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-12.off-canvas-open .t3-wrapper {
+.off-canvas-effect-12.off-canvas-open .canvas-wrapper {
   -webkit-transform: rotateY(-10deg);
   transform: rotateY(-10deg);
 }
 
-.off-canvas-effect-12.t3-off-canvas {
+.off-canvas-effect-12.canvas-off-canvas {
   opacity: 1;
   -webkit-transform: translate3d(-100%, 0, 0);
   transform: translate3d(-100%, 0, 0);
 }
 
-.off-canvas-effect-12.off-canvas-open .off-canvas-effect-12.t3-off-canvas {
+.off-canvas-effect-12.off-canvas-open .off-canvas-effect-12.canvas-off-canvas {
   -webkit-transition: -webkit-transform 0.5s;
   transition: transform 0.5s;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
-.off-canvas-effect-12.t3-off-canvas::after {
+.off-canvas-effect-12.canvas-off-canvas::after {
   display: none;
 }
 
 // off-canvas on right side
-.off-canvas-right.off-canvas-effect-12 .t3-wrapper {
+.off-canvas-right.off-canvas-effect-12 .canvas-wrapper {
   -webkit-transform-origin: 0 50%;
   transform-origin: 0 50%;
 }
 
-.off-canvas-right.off-canvas-effect-12.off-canvas-open .t3-wrapper {
+.off-canvas-right.off-canvas-effect-12.off-canvas-open .canvas-wrapper {
   -webkit-transform: rotateY(10deg);
   transform: rotateY(10deg);
 }
 
-.off-canvas-right.off-canvas-effect-12.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-12.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0);
   transform: translate3d(100%, 0, 0);
 }
@@ -772,19 +756,19 @@ body.off-canvas-effect-13 {
   perspective-origin: 0% 50%;
 }
 
-.off-canvas-effect-13.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
-  transform: translate3d(@t3-off-canvas-width, 0, 0);
+.off-canvas-effect-13.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-effect-13.t3-off-canvas {
+.off-canvas-effect-13.canvas-off-canvas {
   z-index: 1;
   opacity: 1;
   -webkit-transform: translate3d(0, -100%, 0);
   transform: translate3d(0, -100%, 0);
 }
 
-.off-canvas-effect-13.off-canvas-open .off-canvas-effect-13.t3-off-canvas {
+.off-canvas-effect-13.off-canvas-open .off-canvas-effect-13.canvas-off-canvas {
   -webkit-transition-timing-function: ease-in-out;
   transition-timing-function: ease-in-out;
   -webkit-transition-property: -webkit-transform;
@@ -801,9 +785,9 @@ body.off-canvas-effect-13.off-canvas-right {
   perspective-origin: 100% 50%;
 }
 
-.off-canvas-right.off-canvas-effect-13.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(-@t3-off-canvas-width, 0, 0);
-  transform: translate3d(-@t3-off-canvas-width, 0, 0);
+.off-canvas-right.off-canvas-effect-13.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(-@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(-@canvas-off-canvas-width, 0, 0);
 }
 
 
@@ -816,17 +800,17 @@ body.off-canvas-effect-14 {
   perspective-origin: 0% 50%;
 }
 
-.off-canvas-effect-14 .t3-wrapper {
+.off-canvas-effect-14 .canvas-wrapper {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-14.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(@t3-off-canvas-width, 0, 0);
-  transform: translate3d(@t3-off-canvas-width, 0, 0);
+.off-canvas-effect-14.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-effect-14.t3-off-canvas {
+.off-canvas-effect-14.canvas-off-canvas {
   -webkit-transform: translate3d(-100%, 0, 0) rotateY(90deg);
   transform: translate3d(-100%, 0, 0) rotateY(90deg);
   -webkit-transform-origin: 0% 50%;
@@ -835,7 +819,7 @@ body.off-canvas-effect-14 {
   transform-style: preserve-3d;
 }
 
-.off-canvas-effect-14.off-canvas-open .off-canvas-effect-14.t3-off-canvas {
+.off-canvas-effect-14.off-canvas-open .off-canvas-effect-14.canvas-off-canvas {
   -webkit-transition-delay: 0.1s;
   transition-delay: 0.1s;
   -webkit-transition-timing-function: ease-in-out;
@@ -852,19 +836,19 @@ body.off-canvas-effect-14.off-canvas-right {
   perspective-origin: 100% 50%;
 }
 
-.off-canvas-right.off-canvas-effect-14.off-canvas-open .t3-wrapper {
-  -webkit-transform: translate3d(-@t3-off-canvas-width, 0, 0);
-  transform: translate3d(-@t3-off-canvas-width, 0, 0);
+.off-canvas-right.off-canvas-effect-14.off-canvas-open .canvas-wrapper {
+  -webkit-transform: translate3d(-@canvas-off-canvas-width, 0, 0);
+  transform: translate3d(-@canvas-off-canvas-width, 0, 0);
 }
 
-.off-canvas-right.off-canvas-effect-14.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-14.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0) rotateY(-90deg);
   transform: translate3d(100%, 0, 0) rotateY(-90deg);
   -webkit-transform-origin: 100% 50%;
   transform-origin: 100% 50%;
 }
 
-.off-canvas-right.off-canvas-effect-14.off-canvas-open .off-canvas-right.off-canvas-effect-14.t3-off-canvas {
+.off-canvas-right.off-canvas-effect-14.off-canvas-open .off-canvas-right.off-canvas-effect-14.canvas-off-canvas {
   -webkit-transform: translate3d(100%, 0, 0) rotateY(0deg);
   transform: translate3d(100%, 0, 0) rotateY(0deg);
 }
@@ -875,16 +859,16 @@ body.off-canvas-effect-14.off-canvas-right {
 // that don't support 3D transforms
 // -----------------------------------------------------
 .old-ie {
-  .t3-off-canvas {
+  .canvas-off-canvas {
     z-index: 100!important;
-    left: -@t3-off-canvas-width;
+    left: -@canvas-off-canvas-width;
   }
 }
 
 
 html[dir="ltr"] .off-canvas-right.old-ie {
-  .t3-off-canvas {
-    right: -@t3-off-canvas-width;
+  .canvas-off-canvas {
+    right: -@canvas-off-canvas-width;
     left: auto;
   }
 }
@@ -892,6 +876,6 @@ html[dir="ltr"] .off-canvas-right.old-ie {
 //
 // Fix conflict with modal
 // -----------------------------------------------------
-.modal-open .t3-wrapper {
+.modal-open .canvas-wrapper {
   position: static;
 }

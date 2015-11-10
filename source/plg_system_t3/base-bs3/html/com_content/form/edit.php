@@ -3,13 +3,12 @@
  * @package     Joomla.Site
  * @subpackage  com_content
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('_JEXEC') or die;
 
-JHtml::_('behavior.tabstate');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.calendar');
 JHtml::_('behavior.formvalidation');
@@ -31,7 +30,7 @@ if (!$editoroptions)
 	$params->show_urls_images_frontend = '0';
 }
 
-//T3: customize
+//CANVAS: customize
 $fieldsets   = $this->form->getFieldsets('attribs');
 $extrafields = array();
 
@@ -49,7 +48,7 @@ if(count($extrafields)){
 	$tmp->attribs = $this->item->attribs;
 	$this->form->bind($tmp);
 }
-//T3: customize
+//CANVAS: customize
 ?>
 
 <script type="text/javascript">
@@ -77,7 +76,7 @@ if(count($extrafields)){
 			<ul class="nav nav-tabs">
 				<li class="active"><a href="#editor" data-toggle="tab"><?php echo JText::_('JEDITOR') ?></a></li>
 				<?php if(count($extrafields)) : ?>
-				<li><a href="#extrafields" data-toggle="tab"><?php echo JText::_('T3_EXTRA_FIELDS_GROUP_LABEL') ?></a></li>
+				<li><a href="#extrafields" data-toggle="tab"><?php echo JText::_('CANVAS_EXTRA_FIELDS_GROUP_LABEL') ?></a></li>
 				<?php endif; ?>
 				<?php if ($params->get('show_urls_images_frontend') ) : ?>
 				<li><a href="#images" data-toggle="tab"><?php echo JText::_('COM_CONTENT_IMAGES_AND_URLS') ?></a></li>

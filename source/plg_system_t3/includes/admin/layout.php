@@ -1,14 +1,13 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -18,7 +17,7 @@ jimport('joomla.filesystem.folder');
 /**
  * Layout helper module class
  */
-class T3AdminLayout
+class CANVASAdminLayout
 {
 	public static function response($result = array())
 	{
@@ -43,7 +42,7 @@ class T3AdminLayout
 			$tpl = $app->getTemplate(true);
 			
 			// get template name
-			if ($input->getCmd('t3action') && ($styleid = $input->getInt('styleid', '')) && $tpl->id != $styleid) {
+			if ($input->getCmd('canvasaction') && ($styleid = $input->getInt('styleid', '')) && $tpl->id != $styleid) {
 				$db    = JFactory::getDbo();
 				$query = $db->getQuery(true);
 				$query->select('template, params');
@@ -62,7 +61,7 @@ class T3AdminLayout
 				
 				if (!$tpl) {
 					die(json_encode(array(
-						'error' => JText::_('T3_MSG_UNKNOW_ACTION')
+						'error' => JText::_('CANVAS_MSG_UNKNOW_ACTION')
 					)));
 				}
 			}
@@ -72,12 +71,12 @@ class T3AdminLayout
 			$tplid = $input->getCmd('view') == 'style' ? $input->getCmd('id', 0) : false;
 			if (!$tplid) {
 				die(json_encode(array(
-					'error' => JText::_('T3_MSG_UNKNOW_ACTION')
+					'error' => JText::_('CANVAS_MSG_UNKNOW_ACTION')
 				)));
 			}
 			
 			$cache = JFactory::getCache('com_templates', '');
-			if (!$templates = $cache->get('t3tpl')) {
+			if (!$templates = $cache->get('canvastpl')) {
 				// Load styles
 				$db    = JFactory::getDbo();
 				$query = $db->getQuery(true);
@@ -94,7 +93,7 @@ class T3AdminLayout
 					$registry->loadString($template->params);
 					$template->params = $registry;
 				}
-				$cache->store($templates, 't3tpl');
+				$cache->store($templates, 'canvastpl');
 			}
 			
 			if (isset($templates[$tplid])) {
@@ -105,15 +104,15 @@ class T3AdminLayout
 		}
 		
 		//load language for template
-		JFactory::getLanguage()->load('tpl_' . T3_TEMPLATE, JPATH_SITE);
+		JFactory::getLanguage()->load('tpl_' . CANVAS_TEMPLATE, JPATH_SITE);
 		
 		//clean all unnecessary datas
 		if(ob_get_length()){
 			@ob_end_clean();
 		}
-		$t3app  = T3::getSite($tpl);
-		$layout = $t3app->getLayout();
-		$t3app->loadLayout($layout);
+		$canvasapp  = CANVAS::getSite($tpl);
+		$layout = $canvasapp->getLayout();
+		$canvasapp->loadLayout($layout);
 		$lbuffer = ob_get_clean();
 		die($lbuffer);
 	}
@@ -125,26 +124,28 @@ class T3AdminLayout
 		$template = $input->getCmd('template');
 		$layout   = $input->getCmd('layout');
 		if (!$template || !$layout) {
-			return self::error(JText::_('T3_LAYOUT_INVALID_DATA_TO_SAVE'));
+			return self::error(JText::_('CANVAS_LAYOUT_INVALID_DATA_TO_SAVE'));
 		}
 
 		// store layout configuration into custom directory
-    $file = T3Path::getLocalPath ('etc/layout/' . $layout . '.ini');
+		$file = CANVASPath::getLocalPath ('etc/layout/' . $layout . '.ini');
 
 		if (!is_dir(dirname($file))) {
 			JFolder::create(dirname($file));
 		}
+		//TODO::
+		//print_r($_POST);die;
 		
 		$params = new JRegistry();
 		$params->loadObject($_POST);
 		
 		$data = $params->toString('INI');
 		if (!@JFile::write($file, $data)) {
-			return self::error(JText::_('T3_LAYOUT_OPERATION_FAILED'));
+			return self::error(JText::_('CANVAS_LAYOUT_OPERATION_FAILED'));
 		}
 		
 		return self::response(array(
-			'successful' => JText::sprintf('T3_LAYOUT_SAVE_SUCCESSFULLY', $layout),
+			'successful' => JText::sprintf('CANVAS_LAYOUT_SAVE_SUCCESSFULLY', $layout),
 			'layout' => $layout,
 			'type' => 'new'
 		));
@@ -162,15 +163,15 @@ class T3AdminLayout
 		$layout = JApplication::stringURLSafe($layout);
 		
 		if (!$template || !$original || !$layout) {
-			return self::error(JText::_('T3_LAYOUT_INVALID_DATA_TO_SAVE'));
+			return self::error(JText::_('CANVAS_LAYOUT_INVALID_DATA_TO_SAVE'));
 		}
 
 
 		// clone to CUSTOM dir
-		$source = T3Path::getPath('tpls/' . $original . '.php');
-    $dest   = T3Path::getLocalPath('tpls/' . $layout . '.php');
-		$confsource = T3Path::getPath('etc/layout/'. $layout . '.ini');
-    $confdest   = T3Path::getLocalPath('etc/layout/'. $layout . '.ini');
+		$source = CANVASPath::getPath('tpls/' . $original . '.php');
+    $dest   = CANVASPath::getLocalPath('tpls/' . $layout . '.php');
+		$confsource = CANVASPath::getPath('etc/layout/'. $layout . '.ini');
+    $confdest   = CANVASPath::getLocalPath('etc/layout/'. $layout . '.ini');
 
 		$params = new JRegistry();
 		$params->loadObject($_POST);
@@ -186,7 +187,7 @@ class T3AdminLayout
 		}
 		
 		if ($data && !@JFile::write($confdest, $data)) {
-			return self::error(JText::_('T3_LAYOUT_OPERATION_FAILED'));
+			return self::error(JText::_('CANVAS_LAYOUT_OPERATION_FAILED'));
 		}
 		
 		// Check if original file exists
@@ -194,21 +195,21 @@ class T3AdminLayout
 			// Check if the desired file already exists
 			if (!JFile::exists($dest)) {
 				if (!JFile::copy($source, $dest)) {
-					return self::error(JText::_('T3_LAYOUT_OPERATION_FAILED'));
+					return self::error(JText::_('CANVAS_LAYOUT_OPERATION_FAILED'));
 				}
 				//clone configuration file, we only copy if the target file does not exist
 				if (!JFile::exists($confdest) && JFile::exists($confsource)) {
 					JFile::copy($confsource, $confdest);
 				}
 			} else {
-				return self::error(JText::_('T3_LAYOUT_EXISTED'));
+				return self::error(JText::_('CANVAS_LAYOUT_EXISTED'));
 			}
 		} else {
-			return self::error(JText::_('T3_LAYOUT_NOT_FOUND'));
+			return self::error(JText::_('CANVAS_LAYOUT_NOT_FOUND'));
 		}
 		
 		return self::response(array(
-			'successful' => JText::_('T3_LAYOUT_SAVE_SUCCESSFULLY'),
+			'successful' => JText::_('CANVAS_LAYOUT_SAVE_SUCCESSFULLY'),
 			'original' => $original,
 			'layout' => $layout,
 			'type' => 'clone'
@@ -223,18 +224,18 @@ class T3AdminLayout
 		$template = $input->getCmd('template');
 		
 		if (!$layout) {
-			return self::error(JText::_('T3_LAYOUT_UNKNOW_ACTION'));
+			return self::error(JText::_('CANVAS_LAYOUT_UNKNOW_ACTION'));
 		}
 		
 		// delete custom layout    
-		$layoutfile = T3Path::getLocalPath('tpls/' . $layout . '.php');
-		$initfile   = T3Path::getLocalPath('etc/layout/' . $layout . '.ini');
+		$layoutfile = CANVASPath::getLocalPath('tpls/' . $layout . '.php');
+		$initfile   = CANVASPath::getLocalPath('etc/layout/' . $layout . '.ini');
 
 		if (!@JFile::delete($layoutfile) || !@JFile::delete($initfile)) {
-			return self::error(JText::_('T3_LAYOUT_DELETE_FAIL'));
+			return self::error(JText::_('CANVAS_LAYOUT_DELETE_FAIL'));
 		} else {
 			return self::response(array(
-				'successful' => JText::_('T3_LAYOUT_DELETE_SUCCESSFULLY'),
+				'successful' => JText::_('CANVAS_LAYOUT_DELETE_SUCCESSFULLY'),
 				'layout' => $layout,
 				'type' => 'delete'
 			));
@@ -249,24 +250,24 @@ class T3AdminLayout
 		$template = $input->getCmd('template');
 
 		if (!$layout) {
-			return self::error(JText::_('T3_LAYOUT_UNKNOW_ACTION'));
+			return self::error(JText::_('CANVAS_LAYOUT_UNKNOW_ACTION'));
 		}
 
 		// delete custom layout
-		$layoutfile = T3Path::getLocalPath('tpls/' . $layout . '.php');
-		$initfile   = T3Path::getLocalPath('etc/layout/' . $layout . '.ini');
+		$layoutfile = CANVASPath::getLocalPath('tpls/' . $layout . '.php');
+		$initfile   = CANVASPath::getLocalPath('etc/layout/' . $layout . '.ini');
 
 		// delete default layout
-		$defaultlayoutfile = T3_TEMPLATE_PATH . '/tpls/' . $layout . '.php';
-		$defaultinitfile   = T3_TEMPLATE_PATH . '/etc/layout/' . $layout . '.ini';
+		$defaultlayoutfile = CANVAS_TEMPLATE_PATH . '/tpls/' . $layout . '.php';
+		$defaultinitfile   = CANVAS_TEMPLATE_PATH . '/etc/layout/' . $layout . '.ini';
 
 		if (!@JFile::delete($layoutfile) || !@JFile::delete($defaultlayoutfile)
         || !@JFile::delete($initfile) || !@JFile::delete($defaultinitfile)
       ) {
-			return self::error(JText::_('T3_LAYOUT_DELETE_FAIL'));
+			return self::error(JText::_('CANVAS_LAYOUT_DELETE_FAIL'));
 		} else {
 			return self::response(array(
-				'successful' => JText::_('T3_LAYOUT_DELETE_SUCCESSFULLY'),
+				'successful' => JText::_('CANVAS_LAYOUT_DELETE_SUCCESSFULLY'),
 				'layout' => $layout,
 				'type' => 'delete'
 			));
@@ -311,7 +312,7 @@ class T3AdminLayout
 	public static function getPositions()
 	{
 		
-		$template = T3_TEMPLATE;
+		$template = CANVAS_TEMPLATE;
 		$path     = JPATH_SITE;
 		$lang     = JFactory::getLanguage();
 		
@@ -336,8 +337,15 @@ class T3AdminLayout
 		}
 		
 		// Add custom position to options
-		$customGroupText                  = JText::_('T3_LAYOUT_CUSTOM_POSITION');
+		$customGroupText                  = JText::_('CANVAS_LAYOUT_CUSTOM_POSITION');
 		$customPositions                  = self::getDbPositions($clientId);
+		$templateGroups[$customGroupText] = self::createOptionGroup($customGroupText, $customPositions);
+		
+		// Add custom position to options for com
+		$options = array();
+		$options[] = JHtml::_('select.option', 'core-component', JText::_('CANVAS_CORE_COMPONENT'));
+		$customGroupText                  = JText::_('CANVAS_JCOMPONENT_TITLE');
+		$customPositions                  = $options;
 		$templateGroups[$customGroupText] = self::createOptionGroup($customGroupText, $customPositions);
 		
 		return JHtml::_('select.groupedlist', $templateGroups, '', array(

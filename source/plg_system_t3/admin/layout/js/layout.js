@@ -1,21 +1,20 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
-T3AdminLayout = window.T3AdminLayout || {};
+CANVASAdminLayout = window.CANVASAdminLayout || {};
 
 !function ($) {
 
-	$.extend(T3AdminLayout, {
+	$.extend(CANVASAdminLayout, {
 		layout: {
 			maxcol: {
 				'default': 6,
@@ -65,44 +64,44 @@ T3AdminLayout = window.T3AdminLayout || {};
 			form.onsubmit = function(e){
 
 				(form.task.value && form.task.value.indexOf('.cancel') != -1) ?
-					($.isFunction(onsubmit) ? onsubmit() : false) : T3AdminLayout.t3savelayout(onsubmit);
+					($.isFunction(onsubmit) ? onsubmit() : false) : CANVASAdminLayout.canvassavelayout(onsubmit);
 			};
 		},
 
 		initPrepareLayout: function(){
-			var jlayout = $('#t3-admin-layout').appendTo($('#jform_params_mainlayout').closest('.controls')),
-				jelms = $('#t3-admin-layout-container'),
-				jdevices = jlayout.find('.t3-admin-layout-devices'),
-				jresetdevice = jlayout.find('.t3-admin-layout-reset-device'),
-				jresetposition = jlayout.find('.t3-admin-layout-reset-position'),
-				jresetall = jlayout.find('.t3-admin-layout-reset-all'),
-				jfullscreen = jlayout.find('.t3-admin-tog-fullscreen'),
-				jselect = $('#t3-admin-layout-tpl-positions');
+			var jlayout = $('#canvas-admin-layout').appendTo($('#jform_params_mainlayout').closest('.controls')),
+				jelms = $('#canvas-admin-layout-container'),
+				jdevices = jlayout.find('.canvas-admin-layout-devices'),
+				jresetdevice = jlayout.find('.canvas-admin-layout-reset-device'),
+				jresetposition = jlayout.find('.canvas-admin-layout-reset-position'),
+				jresetall = jlayout.find('.canvas-admin-layout-reset-all'),
+				jfullscreen = jlayout.find('.canvas-admin-tog-fullscreen'),
+				jselect = $('#canvas-admin-layout-tpl-positions');
 
 			jlayout
-				.find('.t3-admin-layout-modes')
+				.find('.canvas-admin-layout-modes')
 				.on('click', 'li', function(){
-					if($(this).hasClass('t3-admin-layout-mode-layout')){
-						jelms.removeClass('t3-admin-layout-mode-m').addClass('t3-admin-layout-mode-r');
-						T3AdminLayout.layout.mode = 1;
+					if($(this).hasClass('canvas-admin-layout-mode-layout')){
+						jelms.removeClass('canvas-admin-layout-mode-m').addClass('canvas-admin-layout-mode-r');
+						CANVASAdminLayout.layout.mode = 1;
 
 						jdevices.removeClass('hide');
 						jresetdevice.removeClass('hide');
 						jresetposition.addClass('hide');
 						jselect.hide();
 
-						jelms.find('.t3-admin-layout-vis').each(T3AdminLayout.t3updatevisible);
+						jelms.find('.canvas-admin-layout-vis').each(CANVASAdminLayout.canvasupdatevisible);
 						jdevices.find('[data-device]:first').removeClass('active').trigger('click');
 					} else {
-						jelms.removeClass('t3-admin-layout-mode-r').addClass('t3-admin-layout-mode-m');
-						T3AdminLayout.layout.mode = 0;
+						jelms.removeClass('canvas-admin-layout-mode-r').addClass('canvas-admin-layout-mode-m');
+						CANVASAdminLayout.layout.mode = 0;
 
 						jdevices.addClass('hide');
 						jresetdevice.addClass('hide');
 						jresetposition.removeClass('hide');
 
-						jelms.removeClass(T3AdminLayout.layout.clayout).addClass(T3AdminLayout.layout.dlayout);
-						T3AdminLayout.t3updatedevice(T3AdminLayout.layout.dlayout);
+						jelms.removeClass(CANVASAdminLayout.layout.clayout).addClass(CANVASAdminLayout.layout.dlayout);
+						CANVASAdminLayout.canvasupdatedevice(CANVASAdminLayout.layout.dlayout);
 					}
 
 					$(this).addClass('active').siblings().removeClass('active');
@@ -114,36 +113,36 @@ T3AdminLayout = window.T3AdminLayout || {};
 					var nlayout = $(this).attr('data-device');
 					$(this).addClass('active').siblings('.active').removeClass('active');
 
-					jelms.removeClass(T3AdminLayout.layout.clayout);
+					jelms.removeClass(CANVASAdminLayout.layout.clayout);
 					jelms.addClass(nlayout);
 
-					T3AdminLayout.t3updatedevice(nlayout);
+					CANVASAdminLayout.canvasupdatedevice(nlayout);
 				}
 
 				return false;
 			});
 
-			T3AdminLayout.jresetall = jresetall.on('click', T3AdminLayout.t3resetall);
-			T3AdminLayout.jfullscreen = jfullscreen.on('click', T3AdminLayout.t3fullscreen);
-			T3AdminLayout.jresetposition = jresetposition.on('click', T3AdminLayout.t3resetposition);
-			T3AdminLayout.jresetdevice = jresetdevice.on('click', T3AdminLayout.t3resetdevice);
-			T3AdminLayout.jselect = jselect.appendTo(document.body).on('click', function(e){ return false; });
-			T3AdminLayout.jallpos = jselect.find('select');
+			CANVASAdminLayout.jresetall = jresetall.on('click', CANVASAdminLayout.canvasresetall);
+			CANVASAdminLayout.jfullscreen = jfullscreen.on('click', CANVASAdminLayout.canvasfullscreen);
+			CANVASAdminLayout.jresetposition = jresetposition.on('click', CANVASAdminLayout.canvasresetposition);
+			CANVASAdminLayout.jresetdevice = jresetdevice.on('click', CANVASAdminLayout.canvasresetdevice);
+			CANVASAdminLayout.jselect = jselect.appendTo(document.body).on('click', function(e){ return false; });
+			CANVASAdminLayout.jallpos = jselect.find('select');
 
-			T3AdminLayout.jallpos.on('change', function(){
+			CANVASAdminLayout.jallpos.on('change', function(){
 
-				var curspan = T3AdminLayout.curspan;
+				var curspan = CANVASAdminLayout.curspan;
 
 				if(curspan){
-					$(curspan).parent().removeClass('pos-off pos-active').find('h3').html(this.value || T3Admin.langs.emptyLayoutPosition);
+					$(curspan).parent().removeClass('pos-off pos-active').find('h3').html(this.value || CANVASAdmin.langs.emptyLayoutPosition);
 					$(this).closest('.popover').hide();
 
 					var jspl = $(curspan).parent().parent().parent();
 					if(jspl.attr('data-spotlight')){
-						var spanidx = $(curspan).closest('.t3-admin-layout-unit').index();
-						jspl.nextAll('.t3-admin-layout-hiddenpos').children().eq(spanidx).html((this.value || T3Admin.langs.emptyLayoutPosition) + '<i class="icon-eye-close">');
+						var spanidx = $(curspan).closest('.canvas-admin-layout-unit').index();
+						jspl.nextAll('.canvas-admin-layout-hiddenpos').children().eq(spanidx).html((this.value || CANVASAdmin.langs.emptyLayoutPosition) + '<i class="icon-eye-close">');
 					} else {
-						$(curspan).parent().next('.t3-admin-layout-hiddenpos').children().html((this.value || T3Admin.langs.emptyLayoutPosition) + '<i class="icon-eye-close">');
+						$(curspan).parent().next('.canvas-admin-layout-hiddenpos').children().html((this.value || CANVASAdmin.langs.emptyLayoutPosition) + '<i class="icon-eye-close">');
 					}
 
 					if(!this.value){
@@ -151,8 +150,9 @@ T3AdminLayout = window.T3AdminLayout || {};
 					}
 
 					$(this)
-						.next('.t3-admin-layout-rmvbtn').toggleClass('disabled', !this.value)
-						.next('.t3-admin-layout-defbtn').toggleClass('disabled', this.value == $(curspan).closest('[data-original]').attr('data-original'));
+						.next('.canvas-admin-layout-rmvbtn').toggleClass('disabled', !this.value)
+						.next('.canvas-admin-layout-combtn').toggleClass('disabled', this.value == 'core-component')
+						.next('.canvas-admin-layout-defbtn').toggleClass('disabled', this.value == $(curspan).closest('[data-original]').attr('data-original'));
 				}
 
 				return false;
@@ -163,20 +163,25 @@ T3AdminLayout = window.T3AdminLayout || {};
 				}
 			});
 
-			jselect.find('.t3-admin-layout-rmvbtn, .t3-admin-layout-defbtn')
+			jselect.find('.canvas-admin-layout-rmvbtn, .canvas-admin-layout-defbtn, .canvas-admin-layout-combtn')
 				.on('click', function(){
-					var curspan = T3AdminLayout.curspan;
+					var curspan = CANVASAdminLayout.curspan;
 
 					if(curspan && !$(this).hasClass('disabled')){
-						var vdef = $(this).hasClass('t3-admin-layout-defbtn') ? $(curspan).closest('[data-original]').attr('data-original') : '';
-						T3AdminLayout.jallpos.val(vdef).trigger('change');
+						if($(this).hasClass('canvas-admin-layout-combtn')){
+							var vdef = $(this).hasClass('canvas-admin-layout-combtn') ? 'core-component' : '';
+						}else{
+							var vdef = $(this).hasClass('canvas-admin-layout-defbtn') ? $(curspan).closest('[data-original]').attr('data-original') : '';
+						}
+						
+						CANVASAdminLayout.jallpos.val(vdef).trigger('change');
 					}
 
 					return false;
 				});
 
-			$(document).off('click.t3layout').on('click.t3layout', function(){
-				var curspan = T3AdminLayout.curspan;
+			$(document).off('click.canvaslayout').on('click.canvaslayout', function(){
+				var curspan = CANVASAdminLayout.curspan;
 
 				if(curspan){
 					$(curspan).parent().removeClass('pos-active');
@@ -193,26 +198,26 @@ T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		initMarkChange: function(){
-			clearTimeout(T3AdminLayout.chsid);
+			clearTimeout(CANVASAdminLayout.chsid);
 
-			var jgroup = $('#t3-admin-layout').closest('.control-group'),
+			var jgroup = $('#canvas-admin-layout').closest('.control-group'),
 				jpane = jgroup.closest('.tab-pane'),
-				jtab = $('.t3-admin-nav .nav li').eq(jpane.index()),
+				jtab = $('.canvas-admin-nav .nav li').eq(jpane.index()),
 
 			check = function(){
 				if(!jgroup.data('chretain')){
-					var eq = JSON.stringify(T3AdminLayout.t3getlayoutdata()) == T3AdminLayout.curconfig;
+					var eq = JSON.stringify(CANVASAdminLayout.canvasgetlayoutdata()) == CANVASAdminLayout.curconfig;
 
-					jgroup.toggleClass('t3-changed', !eq);
+					jgroup.toggleClass('canvas-changed', !eq);
 
-					jtab.toggleClass('t3-changed', !!(!eq || jpane.find('.t3-changed').length));
+					jtab.toggleClass('canvas-changed', !!(!eq || jpane.find('.canvas-changed').length));
 				}
 
-				T3AdminLayout.chsid = setTimeout(check, 1500);
+				CANVASAdminLayout.chsid = setTimeout(check, 1500);
 			};
 
-			T3AdminLayout.curconfig = JSON.stringify(T3AdminLayout.t3getlayoutdata());
-			T3AdminLayout.chsid = setTimeout(check, 1500);
+			CANVASAdminLayout.curconfig = JSON.stringify(CANVASAdminLayout.canvasgetlayoutdata());
+			CANVASAdminLayout.chsid = setTimeout(check, 1500);
 		},
 
 		initChosen: function(){
@@ -231,44 +236,44 @@ T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		initLayoutClone: function(){
-			$('#t3-admin-layout-clone-dlg')
+			$('#canvas-admin-layout-clone-dlg')
 				.on('show', function(){
-					$('#t3-admin-layout-cloned-name').val($('#jform_params_mainlayout').val() + '-copy');
+					$('#canvas-admin-layout-cloned-name').val($('#jform_params_mainlayout').val() + '-copy');
 				})
 				.on('shown', function(){
-					$('#t3-admin-layout-cloned-name').focus();
+					$('#canvas-admin-layout-cloned-name').focus();
 				});
 
-			$('#t3-admin-layout-clone-btns')
+			$('#canvas-admin-layout-clone-btns')
 				.insertAfter('#jform_params_mainlayout');
-			$('#t3-admin-layout-clone-copy').on('click', function(){
-                T3AdminLayout.prompt(T3Admin.langs.askCloneLayout, T3AdminLayout.t3clonelayout);
+			$('#canvas-admin-layout-clone-copy').on('click', function(){
+                CANVASAdminLayout.prompt(CANVASAdmin.langs.askCloneLayout, CANVASAdminLayout.canvasclonelayout);
                 return false;
             });
-            $('#t3-admin-layout-clone-delete').on('click', function(){
-                T3AdminLayout.confirm(T3Admin.langs.askDeleteLayout, T3Admin.langs.askDeleteLayoutDesc, T3AdminLayout.t3deletelayout);
+            $('#canvas-admin-layout-clone-delete').on('click', function(){
+                CANVASAdminLayout.confirm(CANVASAdmin.langs.askDeleteLayout, CANVASAdmin.langs.askDeleteLayoutDesc, CANVASAdminLayout.canvasdeletelayout);
                 return false;
             });
-            $('#t3-admin-layout-clone-purge').on('click', function(){
-                T3AdminLayout.confirm(T3Admin.langs.askPurgeLayout, T3Admin.langs.askPurgeLayoutDesc, T3AdminLayout.t3purgelayout);
+            $('#canvas-admin-layout-clone-purge').on('click', function(){
+                CANVASAdminLayout.confirm(CANVASAdmin.langs.askPurgeLayout, CANVASAdmin.langs.askPurgeLayoutDesc, CANVASAdminLayout.canvaspurgelayout);
                 return false;
             });
 		},
 
 		initModalDialog: function(){
-			$('#t3-admin-layout-clone-dlg')
+			$('#canvas-admin-layout-clone-dlg')
 				.appendTo(document.body)
 				.prop('hide', false) //remove mootool hide function
 				.on('click', '.modal-footer button', function(e){
-					if($.isFunction(T3AdminLayout.modalCallback)){
-						T3AdminLayout.modalCallback($(this).hasClass('yes'));
+					if($.isFunction(CANVASAdminLayout.modalCallback)){
+						CANVASAdminLayout.modalCallback($(this).hasClass('yes'));
 					} else if($(this).hasClass('yes')){
-						$('#t3-admin-layout-clone-dlg').modal('hide');
+						$('#canvas-admin-layout-clone-dlg').modal('hide');
 					}
 					return false;
 				})
 				.find('.form-horizontal').on('submit', function(){
-					$('#t3-admin-layout-clone-dlg .modal-footer .yes').trigger('click');
+					$('#canvas-admin-layout-clone-dlg .modal-footer .yes').trigger('click');
 
 					return false;
 				});
@@ -276,11 +281,11 @@ T3AdminLayout = window.T3AdminLayout || {};
 
 		alert: function(msg, type, title, placeholder){
 			//remove
-			$('#t3-admin-layout-alert').remove();
+			$('#canvas-admin-layout-alert').remove();
 
 			//add new
 			$([
-				'<div id="t3-admin-layout-alert" class="alert alert-', (type || 'info'), '">',
+				'<div id="canvas-admin-layout-alert" class="alert alert-', (type || 'info'), '">',
 					'<button type="button" class="close" data-dismiss="alert">×</button>',
 					(title ? '<h4 class="alert-heading">' + title + '</h4>' : ''),
 					'<p>', msg, '</p>',
@@ -290,9 +295,9 @@ T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		confirm: function(title, msg, callback){
-			T3AdminLayout.modalCallback = callback;
+			CANVASAdminLayout.modalCallback = callback;
 
-			var jdialog = $('#t3-admin-layout-clone-dlg');
+			var jdialog = $('#canvas-admin-layout-clone-dlg');
 			jdialog.find('h3').html(title);
 			jdialog.find('.prompt-block').hide();
 			jdialog.find('.message-block').show().html(msg);
@@ -305,9 +310,9 @@ T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		prompt: function(msg, callback){
-			T3AdminLayout.modalCallback = callback;
+			CANVASAdminLayout.modalCallback = callback;
 
-			var jdialog = $('#t3-admin-layout-clone-dlg');
+			var jdialog = $('#canvas-admin-layout-clone-dlg');
 			jdialog.find('h3').html(msg);
 			jdialog.find('.message-block').hide();
 			jdialog.find('.prompt-block').show();
@@ -319,47 +324,47 @@ T3AdminLayout = window.T3AdminLayout || {};
 				.modal('show');
 		},
 
-		t3reset: function(){
-			var jlayout = $('#t3-admin-layout'),
-				jelms = $('#t3-admin-layout-container');
+		canvasreset: function(){
+			var jlayout = $('#canvas-admin-layout'),
+				jelms = $('#canvas-admin-layout-container');
 
-			jelms.removeClass('t3-admin-layout-mode-r').addClass('t3-admin-layout-mode-m');
-			jelms.removeClass(T3AdminLayout.layout.clayout).addClass(T3AdminLayout.layout.dlayout);
+			jelms.removeClass('canvas-admin-layout-mode-r').addClass('canvas-admin-layout-mode-m');
+			jelms.removeClass(CANVASAdminLayout.layout.clayout).addClass(CANVASAdminLayout.layout.dlayout);
 
-			T3AdminLayout.layout.mode = 0;
-			T3AdminLayout.layout.clayout = T3AdminLayout.layout.dlayout;
+			CANVASAdminLayout.layout.mode = 0;
+			CANVASAdminLayout.layout.clayout = CANVASAdminLayout.layout.dlayout;
 
-			jlayout.find('.t3-admin-layout-mode-structure').addClass('active').siblings().removeClass('active');
-			jlayout.find('.t3-admin-layout-devices').addClass('hide');
-			jlayout.find('.t3-admin-layout-reset-device').addClass('hide');
-			jlayout.find('.t3-admin-layout-reset-position').removeClass('hide');
+			jlayout.find('.canvas-admin-layout-mode-structure').addClass('active').siblings().removeClass('active');
+			jlayout.find('.canvas-admin-layout-devices').addClass('hide');
+			jlayout.find('.canvas-admin-layout-reset-device').addClass('hide');
+			jlayout.find('.canvas-admin-layout-reset-position').removeClass('hide');
 		},
 
-		t3clonelayout: function(ok){
+		canvasclonelayout: function(ok){
 			if(ok != undefined && !ok){
 				return false;
 			}
 
-			var nname = $('#t3-admin-layout-cloned-name').val();
+			var nname = $('#canvas-admin-layout-cloned-name').val();
 			if(nname){
 				nname = nname.replace(/[^0-9a-zA-Z_-]/g, '').replace(/ /, '').toLowerCase();
 			}
 
 			if(nname == ''){
-				T3AdminLayout.alert(T3Admin.langs.correctLayoutName, 'warning', '', $('#t3-admin-layout-cloned-name').parent());
+				CANVASAdminLayout.alert(CANVASAdmin.langs.correctLayoutName, 'warning', '', $('#canvas-admin-layout-cloned-name').parent());
 				return false;
 			}
 
-			T3AdminLayout.submit({
-				t3action: 'layout',
-				t3task: 'copy',
-				template: T3Admin.template,
+			CANVASAdminLayout.submit({
+				canvasaction: 'layout',
+				canvastask: 'copy',
+				template: CANVASAdmin.template,
 				original: $('#jform_params_mainlayout').val(),
 				layout: nname
-			}, T3AdminLayout.t3getlayoutdata(), function(json){
+			}, CANVASAdminLayout.canvasgetlayoutdata(), function(json){
 				if(typeof json == 'object'){
 					if(json && (json.error || json.successful)){
-						T3Admin.systemMessage(json.error || json.successful);
+						CANVASAdmin.systemMessage(json.error || json.successful);
 					}
 
 					if(json.successful){
@@ -372,7 +377,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 			});
 		},
 
-		t3deletelayout: function(ok){
+		canvasdeletelayout: function(ok){
 			if(ok != undefined && !ok){
 				return false;
 			}
@@ -383,10 +388,10 @@ T3AdminLayout = window.T3AdminLayout || {};
 				return false;
 			}
 
-			T3AdminLayout.submit({
-				t3action: 'layout',
-				t3task: 'delete',
-				template: T3Admin.template,
+			CANVASAdminLayout.submit({
+				canvasaction: 'layout',
+				canvastask: 'delete',
+				template: CANVASAdmin.template,
 				layout: nname
 			}, function(json){
 				if(typeof json == 'object'){
@@ -408,7 +413,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 			});
 		},
 
-		t3purgelayout: function(ok){
+		canvaspurgelayout: function(ok){
 			if(ok != undefined && !ok){
 				return false;
 			}
@@ -419,10 +424,10 @@ T3AdminLayout = window.T3AdminLayout || {};
 				return false;
 			}
 
-			T3AdminLayout.submit({
-				t3action: 'layout',
-				t3task: 'purge',
-				template: T3Admin.template,
+			CANVASAdminLayout.submit({
+				canvasaction: 'layout',
+				canvastask: 'purge',
+				template: CANVASAdmin.template,
 				layout: nname
 			}, function(json){
 				if(typeof json == 'object'){
@@ -444,53 +449,55 @@ T3AdminLayout = window.T3AdminLayout || {};
 			});
 		},
 
-		t3savelayout: function(callback){
+		canvassavelayout: function(callback){
+			//TODO::TEST
+			//console.log(CANVASAdminLayout.canvasgetlayoutdata());
 			$.ajax({
 				async: false,
-				url: T3AdminLayout.mergeurl(
+				url: CANVASAdminLayout.mergeurl(
 					$.param({
-						t3action: 'layout',
-						t3task: 'save',
-						template: T3Admin.template,
+						canvasaction: 'layout',
+						canvastask: 'save',
+						template: CANVASAdmin.template,
 						layout: $('#jform_params_mainlayout').val()
 					})
 				),
 				type: 'post',
-				data: T3AdminLayout.t3getlayoutdata(),
+				data: CANVASAdminLayout.canvasgetlayoutdata(),
 				complete: function(){
 					if($.isFunction(callback)){
 						callback();
 					}
 				}
 			});
-
+			CANVASAdminLayout.canvassaveblocksettings();
 			return false;
 		},
 
-		t3getlayoutdata: function(){
+		canvasgetlayoutdata: function(){
 			var json = {},
-				jcontainer = $(document.adminForm).find('.t3-admin-layout-container'),
-				jblocks = jcontainer.find('.t3-admin-layout-pos'),
+				jcontainer = $(document.adminForm).find('.canvas-admin-layout-container'),
+				jblocks = jcontainer.find('.canvas-admin-layout-pos'),
 				jspls = jcontainer.find('[data-spotlight]'),
-				jsplblocks = jspls.find('.t3-admin-layout-pos');
+				jsplblocks = jspls.find('.canvas-admin-layout-pos');
 
-			jblocks.not(jspls).not(jsplblocks).not('.t3-admin-layout-uneditable').each(function(){
+			jblocks.not(jspls).not(jsplblocks).not('.canvas-admin-layout-uneditable').each(function(){
 				var name = $(this).attr('data-original'),
-					val = $(this).find('.t3-admin-layout-posname').html(),
+					val = $(this).find('.canvas-admin-layout-posname').html(),
 					vis = $(this).closest('[data-vis]').data('data-vis'),
 					others = $(this).closest('[data-others]').data('data-others'),
-					info = T3AdminLayout.t3emptydv();
+					info = CANVASAdminLayout.canvasemptydv();
 					
 				info.position = val ? val : '';
 
 				if(vis){
-					vis = T3AdminLayout.t3visible(0, vis.vals);
-					T3AdminLayout.t3formatvisible(info, vis);
-					T3AdminLayout.t3formatothers(info, others);
+					vis = CANVASAdminLayout.canvasvisible(0, vis.vals);
+					CANVASAdminLayout.canvasformatvisible(info, vis);
+					CANVASAdminLayout.canvasformatothers(info, others);
 				}
 
 				//optimize
-				T3AdminLayout.t3opimizeparam(info);
+				CANVASAdminLayout.canvasopimizeparam(info);
 
 				json[name] = info;
 			});
@@ -504,23 +511,94 @@ T3AdminLayout = window.T3AdminLayout || {};
 
 				$(this).children().each(function(idx){
 					var jpos = $(this),
-						//pname = jpos.find('.t3-admin-layout-pos').attr('data-original'),
-						val = jpos.find('.t3-admin-layout-posname').html(),
-						info = T3AdminLayout.t3emptydv(),
-						width = T3AdminLayout.t3getwidth(idx, widths),
-						visible = T3AdminLayout.t3visible(idx, vis.vals),
-						first = T3AdminLayout.t3first(idx, firsts),
-						other = T3AdminLayout.t3others(idx, others);
+						//pname = jpos.find('.canvas-admin-layout-pos').attr('data-original'),
+						val = jpos.find('.canvas-admin-layout-posname').html(),
+						info = CANVASAdminLayout.canvasemptydv(),
+						width = CANVASAdminLayout.canvasgetwidth(idx, widths),
+						visible = CANVASAdminLayout.canvasvisible(idx, vis.vals),
+						first = CANVASAdminLayout.canvasfirst(idx, firsts),
+						other = CANVASAdminLayout.canvasothers(idx, others);
 					
 					info.position = val ? val : '';
-
-					T3AdminLayout.t3formatwidth(info, width);
-					T3AdminLayout.t3formatvisible(info, visible);
-					T3AdminLayout.t3formatfirst(info, first);
-					T3AdminLayout.t3formatothers(info, other);
+					
+					CANVASAdminLayout.canvasformatwidth(info, width);
+					CANVASAdminLayout.canvasformatvisible(info, visible);
+					CANVASAdminLayout.canvasformatfirst(info, first);
+					CANVASAdminLayout.canvasformatothers(info, other);
 
 					//optimize
-					T3AdminLayout.t3opimizeparam(info);
+					CANVASAdminLayout.canvasopimizeparam(info);
+
+					json['block' + (idx + 1) + '@' + name] = info;
+				
+				});
+			});
+
+			return json;
+		},
+		
+		//TODO:: creating new func to store the blocksettings data 
+		canvassaveblocksettings: function(){
+			CANVASAdminLayout.canvasgetblocksettingsdata();
+			return;
+			$.ajax({
+				async: false,
+				url: CANVASAdminLayout.mergeurl(
+					$.param({
+						canvasaction: 'layout',
+						canvastask: 'save',
+						template: CANVASAdmin.template,
+						layout: $('#jform_params_mainlayout').val()
+					})
+				),
+				type: 'post',
+				data: CANVASAdminLayout.canvasgetblocksettingsdata(),
+				complete: function(){
+					if($.isFunction(callback)){
+						callback();
+					}
+				}
+			});
+			return false;
+		},
+		
+		//TODO:: creating new func to prepare the blocksettings data 
+		canvasgetblocksettingsdata: function(){
+			var json = {},
+				jcontainer = $(document.adminForm).find('.canvas-admin-layout-container'),
+				jblocks = jcontainer.find('.canvas-admin-layout-section'),
+				jspls = jcontainer.find('[data-container]');
+			
+			jspls.each(function(){
+				var name = jspls.find('.canvas-block-title').html();
+				/*,
+				var name = jspls.find('.canvas-block-title'),
+					vis = $(this).data('data-vis'),
+					widths = $(this).data('data-widths'),
+					firsts = $(this).data('data-firsts'),
+					others = $(this).data('data-others');
+				*/
+				console.log(name);
+				return;
+				$(this).children().each(function(idx){
+					var jpos = $(this),
+						//pname = jpos.find('.canvas-admin-layout-pos').attr('data-original'),
+						val = jpos.find('.canvas-admin-layout-posname').html(),
+						info = CANVASAdminLayout.canvasemptydv(),
+						width = CANVASAdminLayout.canvasgetwidth(idx, widths),
+						visible = CANVASAdminLayout.canvasvisible(idx, vis.vals),
+						first = CANVASAdminLayout.canvasfirst(idx, firsts),
+						other = CANVASAdminLayout.canvasothers(idx, others);
+					
+					info.position = val ? val : '';
+					
+					CANVASAdminLayout.canvasformatwidth(info, width);
+					CANVASAdminLayout.canvasformatvisible(info, visible);
+					CANVASAdminLayout.canvasformatfirst(info, first);
+					CANVASAdminLayout.canvasformatothers(info, other);
+
+					//optimize
+					CANVASAdminLayout.canvasopimizeparam(info);
 
 					json['block' + (idx + 1) + '@' + name] = info;
 				
@@ -538,7 +616,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 
 			$.ajax({
 				async: false,
-				url: T3AdminLayout.mergeurl($.param(params)),
+				url: CANVASAdminLayout.mergeurl($.param(params)),
 				type: data ? 'post' : 'get',
 				data: data,
 				success: function(rsp){
@@ -557,7 +635,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 							json = $.parseJSON(json);
 
 							if(json && (json.error || json.successful)){
-								T3Admin.systemMessage(json.error || json.successful);
+								CANVASAdmin.systemMessage(json.error || json.successful);
 							}
 						}
 					}
@@ -567,7 +645,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 					}
 				},
 				complete: function(){
-					$('#t3-admin-layout-clone-dlg').modal('hide');
+					$('#canvas-admin-layout-clone-dlg').modal('hide');
 				}
 			});
 		},
@@ -585,22 +663,22 @@ T3AdminLayout = window.T3AdminLayout || {};
 			return urlparts.join('#');
 		},
 
-		t3fullscreen: function(){
-			if ($(this).hasClass('t3-fullscreen-full')) {
+		canvasfullscreen: function(){
+			if ($(this).hasClass('canvas-fullscreen-full')) {
 				$('.subhead-collapse').removeClass ('subhead-fixed');
-				$('#t3-admin-layout').closest('.controls').removeClass ('t3-admin-control-fixed');
-				$(this).removeClass ('t3-fullscreen-full').find('i').removeClass().addClass('icon-resize-full');
+				$('#canvas-admin-layout').closest('.controls').removeClass ('canvas-admin-control-fixed');
+				$(this).removeClass ('canvas-fullscreen-full').find('i').removeClass().addClass('icon-resize-full');
 			} else {
 				$('.subhead-collapse').addClass ('subhead-fixed');
-				$('#t3-admin-layout').closest('.controls').addClass ('t3-admin-control-fixed');
-				$(this).addClass ('t3-fullscreen-full').find('i').removeClass().addClass('icon-resize-small');
+				$('#canvas-admin-layout').closest('.controls').addClass ('canvas-admin-control-fixed');
+				$(this).addClass ('canvas-fullscreen-full').find('i').removeClass().addClass('icon-resize-small');
 			}
 
 			return false;
 		},
 
-		//this is not a general function, just use for t3 only - better performance
-		t3copy: function(dst, src, valueonly){
+		//this is not a general function, just use for canvas only - better performance
+		canvascopy: function(dst, src, valueonly){
 			for(var p in src){
 				if(src.hasOwnProperty(p)){
 					if(!dst[p]){
@@ -618,9 +696,9 @@ T3AdminLayout = window.T3AdminLayout || {};
 			return dst;
 		},
 
-		t3equalheight: function(){
+		canvasequalheight: function(){
 			// Store the tallest element's height
-			$(T3AdminLayout.jelms.find('.row, .row-fluid').not('.t3-spotlight').get().reverse()).each(function(){
+			$(CANVASAdminLayout.jelms.find('.row, .row-fluid').not('.canvas-spotlight').get().reverse()).each(function(){
 				var jrow = $(this),
 					jchilds = jrow.children(),
 					//offset = jrow.offset().top,
@@ -632,15 +710,15 @@ T3AdminLayout = window.T3AdminLayout || {};
 					maxHeight = (height > maxHeight) ? height : maxHeight;
 				});
 
-				if(T3AdminLayout.layout.clayout != 'mobile'){
+				if(CANVASAdminLayout.layout.clayout != 'mobile'){
 					jchilds.css('min-height', maxHeight);
 				}
 			});
 		},
 
-		t3removeclass: function(clslist, clsremove){
-			var removes = ( clsremove || '' ).split( T3AdminLayout.layout.rspace ),
-				lookup = (' '+ clslist + ' ').replace( T3AdminLayout.layout.rclass, ' '),
+		canvasremoveclass: function(clslist, clsremove){
+			var removes = ( clsremove || '' ).split( CANVASAdminLayout.layout.rspace ),
+				lookup = (' '+ clslist + ' ').replace( CANVASAdminLayout.layout.rclass, ' '),
 				result = [];
 
 			// loop over each item in the removal list
@@ -655,23 +733,23 @@ T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		//we will do this only for not responsive class (old bootstrap spanX style)
-		t3opimizeparam: function(pos){
+		canvasopimizeparam: function(pos){
 
-			if(!T3AdminLayout.layout.responcls){
+			if(!CANVASAdminLayout.layout.responcls){
 
 				//optimize
-				var defdv  = T3AdminLayout.layout.dlayout,
+				var defdv  = CANVASAdminLayout.layout.dlayout,
 					defcls = pos[defdv];
 
 				for(var p in pos){
 					if(pos.hasOwnProperty(p) && pos[p] === defcls && p != defdv){
-						pos[p] = T3AdminLayout.t3removeclass(defcls, pos[p]);
+						pos[p] = CANVASAdminLayout.canvasremoveclass(defcls, pos[p]);
 					}
 				}
 
 				//remove span100, should we do this?
 				if(pos.mobile){
-					pos.mobile = T3AdminLayout.t3removeclass('span100 ' + T3AdminLayout.t3firstclass('mobile'), pos.mobile);
+					pos.mobile = CANVASAdminLayout.canvasremoveclass('span100 ' + CANVASAdminLayout.canvasfirstclass('mobile'), pos.mobile);
 				}
 			}
 			
@@ -685,32 +763,32 @@ T3AdminLayout = window.T3AdminLayout || {};
 			}
 		},
 
-		t3formatwidth: function(result, info){
+		canvasformatwidth: function(result, info){
 			for(var p in info){
 				if(info.hasOwnProperty(p)){
 					//width always be first - no need for a space
-					result[p] += this.t3widthclass(p, T3AdminLayout.t3widthconvert(info[p], p));
+					result[p] += this.canvaswidthclass(p, CANVASAdminLayout.canvaswidthconvert(info[p], p));
 				}
 			}
 		},
 
-		t3formatvisible: function(result, info){
+		canvasformatvisible: function(result, info){
 			for(var p in info){
 				if(info.hasOwnProperty(p) && info[p] == 1){
-					result[p] += ' ' + T3AdminLayout.t3hiddenclass(p);
+					result[p] += ' ' + CANVASAdminLayout.canvashiddenclass(p);
 				}
 			}
 		},
 
-		t3formatfirst: function(result, info){
+		canvasformatfirst: function(result, info){
 			for(var p in info){
 				if(info.hasOwnProperty(p) && info[p] == 1){
-					result[p] += ' ' + T3AdminLayout.t3firstclass(p);
+					result[p] += ' ' + CANVASAdminLayout.canvasfirstclass(p);
 				}
 			}
 		},
 
-		t3formatothers: function(result, info){
+		canvasformatothers: function(result, info){
 			for(var p in info){
 				if(info.hasOwnProperty(p) && info[p] != ''){
 					result[p] += ' ' + info[p];
@@ -719,9 +797,9 @@ T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		//generate auto calculate width
-		t3widthoptimize: function(numpos){
+		canvaswidthoptimize: function(numpos){
 			var result = [],
-				avg = Math.floor(T3AdminLayout.layout.maxgrid / numpos),
+				avg = Math.floor(CANVASAdminLayout.layout.maxgrid / numpos),
 				sum = 0;
 
 			for(var i = 0; i < numpos - 1; i++){
@@ -729,35 +807,35 @@ T3AdminLayout = window.T3AdminLayout || {};
 				sum += avg;
 			}
 
-			result.push(T3AdminLayout.layout.maxgrid - sum);
+			result.push(CANVASAdminLayout.layout.maxgrid - sum);
 
 			return result;
 		},
 
-		t3genwidth: function(layout, numpos){
-			var cminspan = T3AdminLayout.layout.minspan[layout],
+		canvasgenwidth: function(layout, numpos){
+			var cminspan = CANVASAdminLayout.layout.minspan[layout],
 				total = cminspan * numpos;
 
-			if(total <= T3AdminLayout.layout.maxgrid) {
-				return T3AdminLayout.t3widthoptimize(numpos);
+			if(total <= CANVASAdminLayout.layout.maxgrid) {
+				return CANVASAdminLayout.canvaswidthoptimize(numpos);
 			} else {
 
 				var result = [],
-					rows = Math.ceil(total / T3AdminLayout.layout.maxgrid),
+					rows = Math.ceil(total / CANVASAdminLayout.layout.maxgrid),
 					cols = Math.ceil(numpos / rows);
 
 				for(var i = 0; i < rows - 1; i++){
-					result = result.concat(T3AdminLayout.t3widthoptimize(cols));
+					result = result.concat(CANVASAdminLayout.canvaswidthoptimize(cols));
 					numpos -= cols;
 				}
 
-				result = result.concat(T3AdminLayout.t3widthoptimize(numpos));
+				result = result.concat(CANVASAdminLayout.canvaswidthoptimize(numpos));
 			}
 			
 			return result;
 		},
 
-		t3widthbyvisible: function(widths, visibles, numpos){
+		canvaswidthbyvisible: function(widths, visibles, numpos){
 			var i, dv, nvisible,
 				width, visible, visibleIdxs = [];
 
@@ -773,7 +851,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 						}
 					}
 
-					width = T3AdminLayout.t3genwidth(dv, visibleIdxs.length);
+					width = CANVASAdminLayout.canvasgenwidth(dv, visibleIdxs.length);
 
 					for(i = 0; i < visibleIdxs.length; i++){
 						widths[dv][visibleIdxs[i]] = width[i];
@@ -782,8 +860,8 @@ T3AdminLayout = window.T3AdminLayout || {};
 			}
 		},
 
-		t3getwidth: function(pidx, widths){
-			var result = this.t3emptydv(0),
+		canvasgetwidth: function(pidx, widths){
+			var result = this.canvasemptydv(0),
 				dv;
 
 			for(dv in widths){
@@ -795,12 +873,12 @@ T3AdminLayout = window.T3AdminLayout || {};
 			return result;
 		},
 
-		t3widthconvert: function(span, layout){
-			return ((layout || T3AdminLayout.layout.clayout) == 'mobile') ? Math.floor(span / T3AdminLayout.layout.maxgrid * 100) : span;
+		canvaswidthconvert: function(span, layout){
+			return ((layout || CANVASAdminLayout.layout.clayout) == 'mobile') ? Math.floor(span / CANVASAdminLayout.layout.maxgrid * 100) : span;
 		},
 
-		t3visible: function(pidx, visible){
-			var result = this.t3emptydv(0),
+		canvasvisible: function(pidx, visible){
+			var result = this.canvasemptydv(0),
 				dv;
 
 			for(dv in visible){
@@ -812,8 +890,8 @@ T3AdminLayout = window.T3AdminLayout || {};
 			return result;
 		},
 
-		t3first: function(pidx, firsts){
-			var result = this.t3emptydv(0),
+		canvasfirst: function(pidx, firsts){
+			var result = this.canvasemptydv(0),
 				dv;
 
 			for(dv in firsts){
@@ -825,8 +903,8 @@ T3AdminLayout = window.T3AdminLayout || {};
 			return result;
 		},
 
-		t3others: function(pidx, others){
-			var result = this.t3emptydv(),
+		canvasothers: function(pidx, others){
+			var result = this.canvasemptydv(),
 				dv;
 
 			for(dv in others){
@@ -839,13 +917,13 @@ T3AdminLayout = window.T3AdminLayout || {};
 		},
 
 		// change the grid limit 
-		t3updategrid: function (spl) {
+		canvasupdategrid: function (spl) {
 			//update grid and limit for resizable
 			var jspl = $(spl),
-				layout = T3AdminLayout.layout.clayout,
-				cmaxcol = T3AdminLayout.layout.maxcol[layout],
-				junitspan = $('<div class="' + T3AdminLayout.t3widthclass(layout, T3AdminLayout.t3widthconvert(T3AdminLayout.layout.unitspan[layout], layout)) + '"></div>').appendTo(jspl),
-				jminspan = $('<div class="' + T3AdminLayout.t3widthclass(layout, T3AdminLayout.t3widthconvert(T3AdminLayout.layout.minspan[layout], layout)) + '"></div>').appendTo(jspl),
+				layout = CANVASAdminLayout.layout.clayout,
+				cmaxcol = CANVASAdminLayout.layout.maxcol[layout],
+				junitspan = $('<div class="' + CANVASAdminLayout.canvaswidthclass(layout, CANVASAdminLayout.canvaswidthconvert(CANVASAdminLayout.layout.unitspan[layout], layout)) + '"></div>').appendTo(jspl),
+				jminspan = $('<div class="' + CANVASAdminLayout.canvaswidthclass(layout, CANVASAdminLayout.canvaswidthconvert(CANVASAdminLayout.layout.minspan[layout], layout)) + '"></div>').appendTo(jspl),
 				gridgap = parseInt(junitspan.css('marginLeft')),
 				absgap = Math.abs(gridgap),
 				gridsize = Math.floor(junitspan.outerWidth())
@@ -865,82 +943,82 @@ T3AdminLayout = window.T3AdminLayout || {};
 				grid: gridsize + absgap,
 				gap: absgap,
 				minwidth: gridsize,
-				maxwidth: (gridsize + absgap) * (T3AdminLayout.layout.maxgrid / T3AdminLayout.layout.unitspan[layout])  - absgap + 6
+				maxwidth: (gridsize + absgap) * (CANVASAdminLayout.layout.maxgrid / CANVASAdminLayout.layout.unitspan[layout])  - absgap + 6
 			});
 
-			jspl.find('.t3-admin-layout-unit').each(function(idx){
+			jspl.find('.canvas-admin-layout-unit').each(function(idx){
 				if(visible[idx] == 0 || visible[idx] == undefined){ //ignore all hidden spans
-					if(needfirst || (sum + parseInt(width[idx]) > T3AdminLayout.layout.maxgrid)){
-						$(this).addClass(T3AdminLayout.t3firstclass(layout));
+					if(needfirst || (sum + parseInt(width[idx]) > CANVASAdminLayout.layout.maxgrid)){
+						$(this).addClass(CANVASAdminLayout.canvasfirstclass(layout));
 						sum = parseInt(width[idx]);
 						first[idx] = 1;
 						needfirst = false;
 					} else {
-						$(this).removeClass(T3AdminLayout.t3firstclass(layout));
+						$(this).removeClass(CANVASAdminLayout.canvasfirstclass(layout));
 						sum += parseInt(width[idx]);
 						first[idx] = 0;
 					}
 				}
 			});
 
-			jspl.find('.t3-admin-layout-rzhandle').css('right', Math.min(T3AdminLayout.layout.responcls ? -3 : -7, -3.5 - absgap / 2));
+			jspl.find('.canvas-admin-layout-rzhandle').css('right', Math.min(CANVASAdminLayout.layout.responcls ? -3 : -7, -3.5 - absgap / 2));
 		},
 
 		// apply the visibility value for current device - trigger when change device
-		t3updatevisible: function(index, item){
+		canvasupdatevisible: function(index, item){
 			var jvis = $(item),
 				jpos = jvis.parent(),
 				jdata = jvis.closest('[data-vis]'),
-				visible = jdata.data('data-vis').vals[T3AdminLayout.layout.clayout],
+				visible = jdata.data('data-vis').vals[CANVASAdminLayout.layout.clayout],
 				state, idx = 0,
 				spotlight = jdata.attr('data-spotlight');
 
 			//if spotlight -> get the index
 			if(spotlight){
-				idx = jvis.closest('.t3-admin-layout-unit').index();
+				idx = jvis.closest('.canvas-admin-layout-unit').index();
 			}
 			
 			state = visible[idx] || 0;
 			
 			if(spotlight){
-				jvis.closest('.t3-admin-layout-unit').toggle(state == 0);
+				jvis.closest('.canvas-admin-layout-unit').toggle(state == 0);
 
-				var jhiddenpos = jdata.nextAll('.t3-admin-layout-hiddenpos');
+				var jhiddenpos = jdata.nextAll('.canvas-admin-layout-hiddenpos');
 				jhiddenpos.children().eq(idx).toggleClass('hide', state == 0);
-				jhiddenpos.toggleClass('has-pos', !!(jhiddenpos.children().not('.hide, .t3-hide').length));
+				jhiddenpos.toggleClass('has-pos', !!(jhiddenpos.children().not('.hide, .canvas-hide').length));
 			} else {
-				var jhiddenpos = jpos.next('.t3-admin-layout-hiddenpos');
+				var jhiddenpos = jpos.next('.canvas-admin-layout-hiddenpos');
 				if(jhiddenpos.length){
 					jhiddenpos.toggleClass('has-pos', state != 0);
 					jpos.toggleClass('hide', state != 0);
 				}
 			}
 
-			jvis.parent().toggleClass('pos-hidden', state == 1 && T3AdminLayout.layout.mode);
+			jvis.parent().toggleClass('pos-hidden', state == 1 && CANVASAdminLayout.layout.mode);
 			jvis.children().removeClass('icon-eye-close icon-eye-open').addClass(state == 1 ? 'icon-eye-close' : 'icon-eye-open');
 		},
 
 		// apply the change (width, columns) of spotlight block when change device 
-		t3updatespl: function(si, spl){
+		canvasupdatespl: function(si, spl){
 			var jspl = $(spl),
-				layout = T3AdminLayout.layout.clayout,
+				layout = CANVASAdminLayout.layout.clayout,
 				width = jspl.data('data-widths')[layout];
 
 			jspl.children().each(function(idx){
 				//remove all class and reset style width
-				this.className = this.className.replace(T3AdminLayout.layout.spancls, ' ');
-				$(this).css('width', '').addClass(T3AdminLayout.t3widthclass(layout, T3AdminLayout.t3widthconvert(width[idx]))).find('.t3-admin-layout-poswidth').html(width[idx]);
+				this.className = this.className.replace(CANVASAdminLayout.layout.spancls, ' ');
+				$(this).css('width', '').addClass(CANVASAdminLayout.canvaswidthclass(layout, CANVASAdminLayout.canvaswidthconvert(width[idx]))).find('.canvas-admin-layout-poswidth').html(width[idx]);
 			});
 
-			T3AdminLayout.t3updategrid(spl);
+			CANVASAdminLayout.canvasupdategrid(spl);
 		},
 
 		//apply responsive class - maybe we do not need this
-		t3updatedevice: function(nlayout){
+		canvasupdatedevice: function(nlayout){
 			
-			var clayout = T3AdminLayout.layout.clayout;
+			var clayout = CANVASAdminLayout.layout.clayout;
 
-			T3AdminLayout.jrlems.each(function(){
+			CANVASAdminLayout.jrlems.each(function(){
 				var jelm = $(this);
 				// no override for all devices 
 				if (!jelm.data('default')){
@@ -967,24 +1045,24 @@ T3AdminLayout = window.T3AdminLayout || {};
 				}
 			});
 
-			T3AdminLayout.layout.clayout = nlayout;
+			CANVASAdminLayout.layout.clayout = nlayout;
 			
 			//apply width from previous settings
-			T3AdminLayout.jspls.each(T3AdminLayout.t3updatespl);
-			T3AdminLayout.jelms.find('.t3-admin-layout-vis').each(T3AdminLayout.t3updatevisible);
+			CANVASAdminLayout.jspls.each(CANVASAdminLayout.canvasupdatespl);
+			CANVASAdminLayout.jelms.find('.canvas-admin-layout-vis').each(CANVASAdminLayout.canvasupdatevisible);
 
-			T3AdminLayout.t3equalheight();
+			CANVASAdminLayout.canvasequalheight();
 		},
 
-		t3resetdevice: function(){
+		canvasresetdevice: function(){
 			
-			var layout = T3AdminLayout.layout.clayout,
-				jcontainer = T3AdminLayout.jelms,
-				jblocks = jcontainer.find('.t3-admin-layout-pos'),
+			var layout = CANVASAdminLayout.layout.clayout,
+				jcontainer = CANVASAdminLayout.jelms,
+				jblocks = jcontainer.find('.canvas-admin-layout-pos'),
 				jspls = jcontainer.find('[data-spotlight]'),
-				jsplblocks = jspls.find('.t3-admin-layout-pos');
+				jsplblocks = jspls.find('.canvas-admin-layout-pos');
 
-			jblocks.not(jspls).not(jsplblocks).not('.t3-admin-layout-uneditable').each(function(){
+			jblocks.not(jspls).not(jsplblocks).not('.canvas-admin-layout-uneditable').each(function(){
 				var name = $(this).attr('data-original'),
 					vis = $(this).closest('[data-vis]').data('data-vis');
 
@@ -1002,32 +1080,32 @@ T3AdminLayout = window.T3AdminLayout || {};
 					ofirsts = $(this).data('data-ofirsts');
 
 				$.extend(true, vis.vals[layout], vis.deft[layout]);
-				$.extend(true, widths[layout], widths[layout].length == owidths[layout].length ? owidths[layout] : T3AdminLayout.t3genwidth(layout, widths[layout].length));
+				$.extend(true, widths[layout], widths[layout].length == owidths[layout].length ? owidths[layout] : CANVASAdminLayout.canvasgenwidth(layout, widths[layout].length));
 				$.extend(true, firsts[layout], ofirsts[layout]);
 
-				for(var i = vis.deft[layout].length; i < T3AdminLayout.layout.maxcols; i++){
+				for(var i = vis.deft[layout].length; i < CANVASAdminLayout.layout.maxcols; i++){
 					vis.vals[layout][i] = 0;
 				}
 
-				for(var i = firsts[layout].length; i < T3AdminLayout.layout.maxcols; i++){
+				for(var i = firsts[layout].length; i < CANVASAdminLayout.layout.maxcols; i++){
 					firsts[layout][i] = '';
 				}
 			});
 
-			jspls.each(T3AdminLayout.t3updatespl);
-			jcontainer.find('.t3-admin-layout-vis').each(T3AdminLayout.t3updatevisible);
+			jspls.each(CANVASAdminLayout.canvasupdatespl);
+			jcontainer.find('.canvas-admin-layout-vis').each(CANVASAdminLayout.canvasupdatevisible);
 
 			return false;
 		},
 
-		t3resetall: function(){
-			var layout = T3AdminLayout.layout.clayout,
-				jcontainer = T3AdminLayout.jelms,
-				jblocks = jcontainer.find('.t3-admin-layout-pos'),
+		canvasresetall: function(){
+			var layout = CANVASAdminLayout.layout.clayout,
+				jcontainer = CANVASAdminLayout.jelms,
+				jblocks = jcontainer.find('.canvas-admin-layout-pos'),
 				jspls = jcontainer.find('[data-spotlight]'),
-				jsplblocks = jspls.find('.t3-admin-layout-pos');
+				jsplblocks = jspls.find('.canvas-admin-layout-pos');
 
-			jblocks.not(jspls).not(jsplblocks).not('.t3-admin-layout-uneditable').each(function(){
+			jblocks.not(jspls).not(jsplblocks).not('.canvas-admin-layout-uneditable').each(function(){
 				if($(this).find('[data-original]').length){
 					return;
 				}
@@ -1036,7 +1114,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 					vis = $(this).closest('[data-vis]').data('data-vis');
 
 				//change the name
-				$(this).find('.t3-admin-layout-posname').html(name);
+				$(this).find('.canvas-admin-layout-posname').html(name);
 				if(vis){
 					$.extend(true, vis.vals, vis.deft);
 				}
@@ -1044,31 +1122,31 @@ T3AdminLayout = window.T3AdminLayout || {};
 			
 			jspls.each(function(){
 				var jspl = $(this),
-					jhides = jspl.nextAll('.t3-admin-layout-hiddenpos').children(),
+					jhides = jspl.nextAll('.canvas-admin-layout-hiddenpos').children(),
 					vis = jspl.data('data-vis'),
 					widths = jspl.data('data-widths'),
 					original = jspl.attr('data-original').split(','),
 					owidths = jspl.data('data-owidths'),
-					numcols = owidths[T3AdminLayout.layout.dlayout].length,
+					numcols = owidths[CANVASAdminLayout.layout.dlayout].length,
 					html = [];
 
 				for(var i = 0; i < numcols; i++){
 					html = html.concat([
-					'<div class="t3-admin-layout-unit ', T3AdminLayout.t3widthclass(T3AdminLayout.layout.clayout, owidths[T3AdminLayout.layout.dlayout][i]), '">', //we do not need convert width here
-						'<div class="t3-admin-layout-pos block-', original[i], (original[i] == T3Admin.langs.emptyLayoutPosition ? ' pos-off' : ''), '" data-original="', (original[i] || ''), '">',
-							'<span class="t3-admin-layout-edit"><i class="icon-cog"></i></span>',
-							'<span class="t3-admin-layout-poswidth" title="', T3Admin.langs.layoutPosWidth, '">', owidths[T3AdminLayout.layout.dlayout][i], '</span>',
-							'<h3 class="t3-admin-layout-posname" title="', T3Admin.langs.layoutPosName, '">', original[i], '</h3>',
-							'<span class="t3-admin-layout-vis" title="', T3Admin.langs.layoutHidePosition, '"><i class="icon-eye-open"></i></span>',
+					'<div class="canvas-admin-layout-unit ', CANVASAdminLayout.canvaswidthclass(CANVASAdminLayout.layout.clayout, owidths[CANVASAdminLayout.layout.dlayout][i]), '">', //we do not need convert width here
+						'<div class="canvas-admin-layout-pos block-', original[i], (original[i] == CANVASAdmin.langs.emptyLayoutPosition ? ' pos-off' : ''), '" data-original="', (original[i] || ''), '">',
+							'<span class="canvas-admin-layout-edit"><i class="icon-cog"></i></span>',
+							'<span class="canvas-admin-layout-poswidth" title="', CANVASAdmin.langs.layoutPosWidth, '">', owidths[CANVASAdminLayout.layout.dlayout][i], '</span>',
+							'<h3 class="canvas-admin-layout-posname" title="', CANVASAdmin.langs.layoutPosName, '">', original[i], '</h3>',
+							'<span class="canvas-admin-layout-vis" title="', CANVASAdmin.langs.layoutHidePosition, '"><i class="icon-eye-open"></i></span>',
 						'</div>',
-						'<div class="t3-admin-layout-rzhandle" title="', T3Admin.langs.layoutDragResize, '"></div>',
+						'<div class="canvas-admin-layout-rzhandle" title="', CANVASAdmin.langs.layoutDragResize, '"></div>',
 					'</div>']);
 
-					jhides.eq(i).html(original[i] + '<i class="icon-eye-close">').removeClass('t3-hide');
+					jhides.eq(i).html(original[i] + '<i class="icon-eye-close">').removeClass('canvas-hide');
 				}
 
-				for(var i = numcols; i < T3AdminLayout.layout.maxcols; i++){
-					jhides.eq(i).addClass('t3-hide');
+				for(var i = numcols; i < CANVASAdminLayout.layout.maxcols; i++){
+					jhides.eq(i).addClass('canvas-hide');
 				}
 
 				//reset value
@@ -1079,25 +1157,25 @@ T3AdminLayout = window.T3AdminLayout || {};
 				$.extend(true, vis.vals, vis.deft);
 				$.extend(true, widths, owidths);
 
-				$(this).nextAll('.t3-admin-layout-ncolumns').children().eq(owidths[T3AdminLayout.layout.dlayout].length - 1).trigger('click');
+				$(this).nextAll('.canvas-admin-layout-ncolumns').children().eq(owidths[CANVASAdminLayout.layout.dlayout].length - 1).trigger('click');
 			});
 
 			//change to default view
-			jcontainer.prev().find('.t3-admin-layout-mode-structure').trigger('click');
+			jcontainer.prev().find('.canvas-admin-layout-mode-structure').trigger('click');
 
 			return false;
 		},
 
-		t3resetposition: function(){
-			var layout = T3AdminLayout.layout.clayout,
-				jcontainer = T3AdminLayout.jelms,
-				jblocks = jcontainer.find('.t3-admin-layout-pos'),
+		canvasresetposition: function(){
+			var layout = CANVASAdminLayout.layout.clayout,
+				jcontainer = CANVASAdminLayout.jelms,
+				jblocks = jcontainer.find('.canvas-admin-layout-pos'),
 				jspls = jcontainer.find('[data-spotlight]'),
-				jsplblocks = jspls.find('.t3-admin-layout-pos');
+				jsplblocks = jspls.find('.canvas-admin-layout-pos');
 
-			jblocks.not(jspls).not(jsplblocks).not('.t3-admin-layout-uneditable').each(function(){
+			jblocks.not(jspls).not(jsplblocks).not('.canvas-admin-layout-uneditable').each(function(){
 				//reset position
-				$(this).find('.t3-admin-layout-posname')
+				$(this).find('.canvas-admin-layout-posname')
 					.html(
 						$(this).attr('data-original')
 					)
@@ -1107,17 +1185,17 @@ T3AdminLayout = window.T3AdminLayout || {};
 			
 			jspls.each(function(){
 				var original = $(this).attr('data-original').split(','),
-					jhides = $(this).nextAll('.t3-admin-layout-hiddenpos').children();
+					jhides = $(this).nextAll('.canvas-admin-layout-hiddenpos').children();
 
-				$(this).find('.t3-admin-layout-pos').each(function(idx){
+				$(this).find('.canvas-admin-layout-pos').each(function(idx){
 					if(original[idx] != undefined){
-						$(this).toggleClass('pos-off', original[idx] == T3Admin.langs.emptyLayoutPosition)
-						.find('.t3-admin-layout-posname')
+						$(this).toggleClass('pos-off', original[idx] == CANVASAdmin.langs.emptyLayoutPosition)
+						.find('.canvas-admin-layout-posname')
 						.html(original[idx]);
 						
 						jhides.eq(idx).html(original[idx] + '<i class="icon-eye-close">');
 					} else {
-						$(this).addClass('pos-off').find('.t3-admin-layout-posname').html(T3Admin.langs.emptyLayoutPosition);
+						$(this).addClass('pos-off').find('.canvas-admin-layout-posname').html(CANVASAdmin.langs.emptyLayoutPosition);
 					}
 				});
 			});
@@ -1125,12 +1203,12 @@ T3AdminLayout = window.T3AdminLayout || {};
 			return false;
 		},
 
-		t3onvisible: function(){
+		canvasonvisible: function(){
 			var jvis = $(this),
 				jpos = jvis.parent(),
 				jdata = jvis.closest('[data-vis]'),
 				junits = null,
-				layout = T3AdminLayout.layout.clayout,
+				layout = CANVASAdminLayout.layout.clayout,
 				state = jpos.hasClass('pos-hidden'),
 				visible = jdata.data('data-vis').vals[layout],
 				spotlight = jdata.attr('data-spotlight'),
@@ -1138,7 +1216,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 
 			//if spotlight -> the name is based on block, else use the name property
 			if(spotlight){
-				idx = jvis.closest('.t3-admin-layout-unit').index();
+				idx = jvis.closest('.canvas-admin-layout-unit').index();
 				junits = jdata.children();
 			}
 
@@ -1146,11 +1224,11 @@ T3AdminLayout = window.T3AdminLayout || {};
 			state = 1 - state;
 			
 			if(spotlight){
-				jvis.closest('.t3-admin-layout-unit')[state == 0 ? 'show' : 'hide']();
+				jvis.closest('.canvas-admin-layout-unit')[state == 0 ? 'show' : 'hide']();
 			
-				var jhiddenpos = jdata.nextAll('.t3-admin-layout-hiddenpos');
+				var jhiddenpos = jdata.nextAll('.canvas-admin-layout-hiddenpos');
 				jhiddenpos.children().eq(idx).toggleClass('hide', state == 0);
-				jhiddenpos.toggleClass('has-pos', !!(jhiddenpos.children().not('.hide, .t3-hide').length));
+				jhiddenpos.toggleClass('has-pos', !!(jhiddenpos.children().not('.hide, .canvas-hide').length));
 
 				var visibleIdxs = [];
 				for(var i = 0, il = junits.length; i < il; i++){
@@ -1161,18 +1239,18 @@ T3AdminLayout = window.T3AdminLayout || {};
 
 				if(visibleIdxs.length){
 					var widths = jdata.data('data-widths')[layout],
-						width = T3AdminLayout.t3genwidth(layout, visibleIdxs.length),
+						width = CANVASAdminLayout.canvasgenwidth(layout, visibleIdxs.length),
 						vi = 0;
 
 					for(var i = 0, il = visibleIdxs.length; i < il; i++){
 						vi = visibleIdxs[i];
 						widths[vi] = width[i];
-						junits[vi].className = junits[vi].className.replace(T3AdminLayout.layout.spancls, ' ');
-						junits.eq(vi).addClass(T3AdminLayout.t3widthclass(layout, T3AdminLayout.t3widthconvert(width[i]))).find('.t3-admin-layout-poswidth').html(width[i]);
+						junits[vi].className = junits[vi].className.replace(CANVASAdminLayout.layout.spancls, ' ');
+						junits.eq(vi).addClass(CANVASAdminLayout.canvaswidthclass(layout, CANVASAdminLayout.canvaswidthconvert(width[i]))).find('.canvas-admin-layout-poswidth').html(width[i]);
 					}
 				}
 			} else {
-				var jhiddenpos = jpos.next('.t3-admin-layout-hiddenpos');
+				var jhiddenpos = jpos.next('.canvas-admin-layout-hiddenpos');
 				if(jhiddenpos.length){
 					jhiddenpos.toggleClass('has-pos', state != 0);
 					jpos.toggleClass('hide', state != 0);
@@ -1185,14 +1263,14 @@ T3AdminLayout = window.T3AdminLayout || {};
 			visible[idx] = state;
 
 			if(spotlight){
-				T3AdminLayout.t3updategrid(jdata);
+				CANVASAdminLayout.canvasupdategrid(jdata);
 			}
 			return false;
 		},
 
-		t3emptydv: function(val){
+		canvasemptydv: function(val){
 			var result = {},
-				devices = T3AdminLayout.layout.devices;
+				devices = CANVASAdminLayout.layout.devices;
 				
 			val = typeof val != 'undefined' ? val : '';
 
@@ -1203,19 +1281,19 @@ T3AdminLayout = window.T3AdminLayout || {};
 			return result;
 		},
 
-		t3widthclass: function(device, width){
-			return T3AdminLayout.layout.spanptrn.replace('{device}', device).replace('{width}', width);
+		canvaswidthclass: function(device, width){
+			return CANVASAdminLayout.layout.spanptrn.replace('{device}', device).replace('{width}', width);
 		},
 
-		t3hiddenclass: function(device){
-			return T3AdminLayout.layout.hiddenptrn.replace('{device}', device);
+		canvashiddenclass: function(device){
+			return CANVASAdminLayout.layout.hiddenptrn.replace('{device}', device);
 		},
 
-		t3firstclass: function(device){
-			return T3AdminLayout.layout.firstptrn.replace('{device}', device);
+		canvasfirstclass: function(device){
+			return CANVASAdminLayout.layout.firstptrn.replace('{device}', device);
 		},
 
-		t3layout: function(form, ctrlelm, ctrl, rsp){
+		canvaslayout: function(form, ctrlelm, ctrl, rsp){
 			
 			if(rsp){
 				var bdhtml = rsp.match(/<body[^>]*>([\w|\W]*)<\/body>/im),
@@ -1238,9 +1316,9 @@ T3AdminLayout = window.T3AdminLayout || {};
 						jtabpane.addClass('active');
 					}
 
-					var	curspan = T3AdminLayout.curspan = null,
-						jelms = T3AdminLayout.jelms = $('#t3-admin-layout-container').empty().html(bdhtml),
-						jrlems = T3AdminLayout.jrlems = jelms.find('[class*="span"]').each(function(){
+					var	curspan = CANVASAdminLayout.curspan = null,
+						jelms = CANVASAdminLayout.jelms = $('#canvas-admin-layout-container').empty().html(bdhtml),
+						jrlems = CANVASAdminLayout.jrlems = jelms.find('[class*="span"]').each(function(){
 							var jelm = $(this);
 							jelm.data();
 							jelm.removeAttr('data-default data-wide data-normal data-xtablet data-tablet data-mobile');
@@ -1248,22 +1326,27 @@ T3AdminLayout = window.T3AdminLayout || {};
 								jelm.data('default', jelm.attr('class'));
 							}
 						}),
-						jselect = T3AdminLayout.jselect,
-						jallpos = T3AdminLayout.jallpos,
-						jspls = T3AdminLayout.jspls = jelms.find('[data-spotlight]');
+						jselect = CANVASAdminLayout.jselect,
+						jallpos = CANVASAdminLayout.jallpos,
+						jspls = CANVASAdminLayout.jspls = jelms.find('[data-spotlight]');
 
 					//reset
-					T3AdminLayout.t3reset();
+					CANVASAdminLayout.canvasreset();
 
 					jelms
 						.find('.logo h1:first')
-						.html(T3Admin.langs.logoPresent);
+						.html(CANVASAdmin.langs.logoPresent);
 
 					jelms
-						.find('.t3-admin-layout-pos')
-						.not('.t3-admin-layout-uneditable')
-						.prepend('<span class="t3-admin-layout-edit" title="' + T3Admin.langs.layoutEditPosition + '"><i class="icon-cog"></i></span>');
-
+						.find('.canvas-admin-layout-pos')
+						.not('.canvas-admin-layout-uneditable')
+						.prepend('<span class="canvas-admin-layout-edit" title="' + CANVASAdmin.langs.layoutEditPosition + '"><i class="icon-cog"></i></span>');
+					
+					jelms
+						.find('.canvas-admin-layout-section')
+						.not('.canvas-admin-layout-uneditable')
+						.prepend('<span class="canvas-admin-block-edit" title="' + CANVASAdmin.langs.layoutEditPosition + '"><i class="icon-fullscreen"></i></span>');
+					
 					jelms
 						.find('[data-vis]')
 						.not('[data-spotlight]')
@@ -1274,48 +1357,66 @@ T3AdminLayout = window.T3AdminLayout || {};
 								.attr('data-vis', '')
 								.attr('data-others', '')
 						})
-						.find('.t3-admin-layout-pos')
+						.find('.canvas-admin-layout-pos')
 						.each(function(){
 							var jpos = $(this);
 
 							jpos
-							.append('<span class="t3-admin-layout-vis" title="' + T3Admin.langs.layoutHidePosition + '"><i class="icon-eye-open"></i></span>')
-							.after(['<div class="t3-admin-layout-hiddenpos" title="', T3Admin.langs.layoutHiddenposDesc, '">',
-									'<span class="pos-hidden" title="', T3Admin.langs.layoutShowPosition, '">', jpos.find('h3').html() ,'<i class="icon-eye-close"></i></span>',
+							.append('<span class="canvas-admin-layout-vis" title="' + CANVASAdmin.langs.layoutHidePosition + '"><i class="icon-eye-open"></i></span>')
+							.after(['<div class="canvas-admin-layout-hiddenpos" title="', CANVASAdmin.langs.layoutHiddenposDesc, '">',
+									'<span class="pos-hidden" title="', CANVASAdmin.langs.layoutShowPosition, '">', jpos.find('h3').html() ,'<i class="icon-eye-close"></i></span>',
 								'</div>'].join(''))
 							.next()
 							.find('.pos-hidden')
 								.on('click', function(){
-									T3AdminLayout.t3onvisible.call(jpos.find('.t3-admin-layout-vis'));
+									CANVASAdminLayout.canvasonvisible.call(jpos.find('.canvas-admin-layout-vis'));
 									return false;
 								});
 						});
 						
 
 					jelms
-						.find('.t3-admin-layout-pos')
+						.find('.canvas-admin-layout-pos')
 						.find('h3, h1')
-						.addClass('t3-admin-layout-posname')
-						.attr('title', T3Admin.langs.layoutPosName)
+						.addClass('canvas-admin-layout-posname')
+						.attr('title', CANVASAdmin.langs.layoutPosName)
 						.each(function(){
 							var jparent = $(this).parentsUntil('.row-fluid, .row').last(),
 								span = parseInt(jparent.prop('className').replace(/(.*?)span(\d+)(.*)/, "$2"));
 
 							if(isNaN(span)){
-								span = T3Admin.langs.layoutUnknownWidth;
+								span = CANVASAdmin.langs.layoutUnknownWidth;
 							}
 
-							$(this).before('<span class="t3-admin-layout-poswidth" title="' + T3Admin.langs.layoutPosWidth + '">' + span + '</span>');
+							$(this).before('<span class="canvas-admin-layout-poswidth" title="' + CANVASAdmin.langs.layoutPosWidth + '">' + span + '</span>');
 						});
-
+					
+					//TODO:: added full-width data-container option on html
 					jelms
-						.off('click.t3lvis').off('click.t3ledit')
-						.on('click.t3lvis', '.t3-admin-layout-vis', T3AdminLayout.t3onvisible)
-						.on('click.t3ledit', '.t3-admin-layout-edit', function(e){
+						.on('click', '.canvas-admin-block-edit', function(e){
+							var current_block = $(this),
+								active = current_block.parent().attr('data-container');
+							
+							if(!active){	//if not active, then we show it
+								current_block.parent().attr('data-container','container-fluid');
+								current_block.addClass('displayblock');
+								current_block.find('i').addClass('text-success');
+							}else{
+								current_block.parent().removeAttr('data-container');
+								current_block.removeClass('displayblock');
+								current_block.find('i').removeClass('text-success');
+							}
+							
+						});
+						
+					jelms
+						.off('click.canvaslvis').off('click.canvasledit')
+						.on('click.canvaslvis', '.canvas-admin-layout-vis', CANVASAdminLayout.canvasonvisible)
+						.on('click.canvasledit', '.canvas-admin-layout-edit', function(e){
 							if(curspan){
 								$(curspan).parent().removeClass('pos-active');
 							}
-							curspan = T3AdminLayout.curspan = this;
+							curspan = CANVASAdminLayout.curspan = this;
 
 							var jspan = $(this),
 								offs = $(this).offset();
@@ -1338,8 +1439,9 @@ T3AdminLayout = window.T3AdminLayout || {};
 							}).show()
 								.find('select')
 								.val(jspan.siblings('h3').html())
-								.next('.t3-admin-layout-rmvbtn').toggleClass('disabled', !jallpos.val())
-								.next('.t3-admin-layout-defbtn').toggleClass('disabled', jspan.siblings('h3').html() == jspan.closest('[data-original]').attr('data-original'));
+								.next('.canvas-admin-layout-rmvbtn').toggleClass('disabled', !jallpos.val())
+								.next('.canvas-admin-layout-defbtn').toggleClass('disabled', jspan.siblings('h3').html() == jspan.closest('[data-original]').attr('data-original'))
+								.next('.canvas-admin-layout-combtn').toggleClass('disabled', jspan.siblings('h3').html() == 'core-component');
 
 							jallpos.scrollTop(Math.min(jallpos.prop('scrollHeight') - jallpos.height(), jallpos.prop('selectedIndex') * (jallpos.prop('scrollHeight') / jallpos[0].options.length)));
 							
@@ -1349,13 +1451,13 @@ T3AdminLayout = window.T3AdminLayout || {};
 						jspls.each(function(){
 
 							var jncols = $([
-								'<div class="btn-group t3-admin-layout-ncolumns">',
-									'<span class="btn" title="', T3Admin.langs.layoutChangeNumpos, '">1</span>',
-									'<span class="btn" title="', T3Admin.langs.layoutChangeNumpos, '">2</span>',
-									'<span class="btn" title="', T3Admin.langs.layoutChangeNumpos, '">3</span>',
-									'<span class="btn" title="', T3Admin.langs.layoutChangeNumpos, '">4</span>',
-									'<span class="btn" title="', T3Admin.langs.layoutChangeNumpos, '">5</span>',
-									'<span class="btn" title="', T3Admin.langs.layoutChangeNumpos, '">6</span>',
+								'<div class="btn-group canvas-admin-layout-ncolumns">',
+									'<span class="btn" title="', CANVASAdmin.langs.layoutChangeNumpos, '">1</span>',
+									'<span class="btn" title="', CANVASAdmin.langs.layoutChangeNumpos, '">2</span>',
+									'<span class="btn" title="', CANVASAdmin.langs.layoutChangeNumpos, '">3</span>',
+									'<span class="btn" title="', CANVASAdmin.langs.layoutChangeNumpos, '">4</span>',
+									'<span class="btn" title="', CANVASAdmin.langs.layoutChangeNumpos, '">5</span>',
+									'<span class="btn" title="', CANVASAdmin.langs.layoutChangeNumpos, '">6</span>',
 								'</div>'].join('')).appendTo(this.parentNode),
 
 								jcols = $(this).children(),
@@ -1377,46 +1479,46 @@ T3AdminLayout = window.T3AdminLayout || {};
 								.data('data-ofirsts', ofirsts).removeAttr('data-ofirsts', '') //store and clean the data
 								.data('data-firsts', firsts).removeAttr('data-firsts', '') //store and clean the data
 								.data('data-others', $.parseJSON($(this).attr('data-others'))).removeAttr('data-others', '') //store and clean the data
-								.parent().addClass('t3-admin-layout-splgroup');
+								.parent().addClass('canvas-admin-layout-splgroup');
 
 							jcols.each(function(idx){
 								positions[idx] = $(this).find('h3').html();
 
 								$(this)
-								.addClass('t3-admin-layout-unit')
-								.find('.t3-admin-layout-pos')
+								.addClass('canvas-admin-layout-unit')
+								.find('.canvas-admin-layout-pos')
 								.attr('data-original', defpos[idx])
-								.append('<span class="t3-admin-layout-vis" title="' + T3Admin.langs.layoutHidePosition + '"><i class="icon-eye-open"></i></span>');
+								.append('<span class="canvas-admin-layout-vis" title="' + CANVASAdmin.langs.layoutHidePosition + '"><i class="icon-eye-open"></i></span>');
 							});
 
 							for(var i = numpos; i < 6; i++){
-								positions[i] = defpos[i] || T3Admin.langs.emptyLayoutPosition;
+								positions[i] = defpos[i] || CANVASAdmin.langs.emptyLayoutPosition;
 							}
 
 							var jhides = $([
-								'<div class="t3-admin-layout-hiddenpos" title="', T3Admin.langs.layoutHiddenposDesc, '">',
-									'<span class="pos-hidden" title="', T3Admin.langs.layoutShowPosition, '">', positions[0], '<i class="icon-eye-close"></i></span>',
-									'<span class="pos-hidden" title="', T3Admin.langs.layoutShowPosition, '">', positions[1], '<i class="icon-eye-close"></i></span>',
-									'<span class="pos-hidden" title="', T3Admin.langs.layoutShowPosition, '">', positions[2], '<i class="icon-eye-close"></i></span>',
-									'<span class="pos-hidden" title="', T3Admin.langs.layoutShowPosition, '">', positions[3], '<i class="icon-eye-close"></i></span>',
-									'<span class="pos-hidden" title="', T3Admin.langs.layoutShowPosition, '">', positions[4], '<i class="icon-eye-close"></i></span>',
-									'<span class="pos-hidden" title="', T3Admin.langs.layoutShowPosition, '">', positions[5], '<i class="icon-eye-close"></i></span>',
+								'<div class="canvas-admin-layout-hiddenpos" title="', CANVASAdmin.langs.layoutHiddenposDesc, '">',
+									'<span class="pos-hidden" title="', CANVASAdmin.langs.layoutShowPosition, '">', positions[0], '<i class="icon-eye-close"></i></span>',
+									'<span class="pos-hidden" title="', CANVASAdmin.langs.layoutShowPosition, '">', positions[1], '<i class="icon-eye-close"></i></span>',
+									'<span class="pos-hidden" title="', CANVASAdmin.langs.layoutShowPosition, '">', positions[2], '<i class="icon-eye-close"></i></span>',
+									'<span class="pos-hidden" title="', CANVASAdmin.langs.layoutShowPosition, '">', positions[3], '<i class="icon-eye-close"></i></span>',
+									'<span class="pos-hidden" title="', CANVASAdmin.langs.layoutShowPosition, '">', positions[4], '<i class="icon-eye-close"></i></span>',
+									'<span class="pos-hidden" title="', CANVASAdmin.langs.layoutShowPosition, '">', positions[5], '<i class="icon-eye-close"></i></span>',
 								'</div>'].join('')).appendTo(this.parentNode),
 								jhcols = jhides.children();
 
-							for(var i = 0; i < T3AdminLayout.layout.maxcols; i++){
-								jhcols.eq(i).toggleClass('t3-hide', i >= numpos);	
+							for(var i = 0; i < CANVASAdminLayout.layout.maxcols; i++){
+								jhcols.eq(i).toggleClass('canvas-hide', i >= numpos);	
 							}
 
 							//temporary calculate the widths for each devices size
-							T3AdminLayout.t3copy(widths, twidths); //first - clone the current object
-							T3AdminLayout.t3widthbyvisible(widths, visibles.vals, numpos); //then extend it with autogenerate width
-							T3AdminLayout.t3copy(widths, twidths); // if widths has value, it should be priority
+							CANVASAdminLayout.canvascopy(widths, twidths); //first - clone the current object
+							CANVASAdminLayout.canvaswidthbyvisible(widths, visibles.vals, numpos); //then extend it with autogenerate width
+							CANVASAdminLayout.canvascopy(widths, twidths); // if widths has value, it should be priority
 							
 							$(spotlight).xresize({
 								grid: false,
 								gap: 0,
-								selector: '.t3-admin-layout-unit'
+								selector: '.canvas-admin-layout-unit'
 							});
 
 							jncols.on('click', '.btn', function(e){
@@ -1424,31 +1526,31 @@ T3AdminLayout = window.T3AdminLayout || {};
 								if(!e.isTrigger){
 									numpos = $(this).index() + 1;
 									for(var i = 0; i < numpos; i++){
-										if(!positions[i] || positions[i] == T3Admin.langs.emptyLayoutPosition){
-											positions[i] = defpos[i] || T3Admin.langs.emptyLayoutPosition;
+										if(!positions[i] || positions[i] == CANVASAdmin.langs.emptyLayoutPosition){
+											positions[i] = defpos[i] || CANVASAdmin.langs.emptyLayoutPosition;
 										}
 
-										jhcols.eq(i).html(positions[i] + '<i class="icon-eye-close">').removeClass('t3-hide');
+										jhcols.eq(i).html(positions[i] + '<i class="icon-eye-close">').removeClass('canvas-hide');
 									}
 
-									for(var i = numpos; i < T3AdminLayout.layout.maxcols; i++){
-										jhcols.eq(i).addClass('t3-hide');	
+									for(var i = numpos; i < CANVASAdminLayout.layout.maxcols; i++){
+										jhcols.eq(i).addClass('canvas-hide');	
 									}
 
 									//automatic re-calculate the widths for each devices size
-									T3AdminLayout.t3widthbyvisible(widths, visibles.vals, numpos);
+									CANVASAdminLayout.canvaswidthbyvisible(widths, visibles.vals, numpos);
 
 									var html = [];
 									for(i = 0; i < numpos; i++){
 										html = html.concat([
-										'<div class="t3-admin-layout-unit ', T3AdminLayout.t3widthclass(T3AdminLayout.layout.clayout, widths[T3AdminLayout.layout.dlayout][i]), '">',
-											'<div class="t3-admin-layout-pos block-', positions[i], (positions[i] == T3Admin.langs.emptyLayoutPosition ? ' pos-off' : ''), '" data-original="', (defpos[i] || ''), '">',
-												'<span class="t3-admin-layout-edit"><i class="icon-cog"></i></span>',
-												'<span class="t3-admin-layout-poswidth" title="', T3Admin.langs.layoutPosWidth, '">', widths[T3AdminLayout.layout.dlayout][i], '</span>',
-												'<h3 class="t3-admin-layout-posname" title="', T3Admin.langs.layoutPosName, '">', positions[i], '</h3>',
-												'<span class="t3-admin-layout-vis" title="', T3Admin.langs.layoutHidePosition, '"><i class="icon-eye-open"></i></span>',
+										'<div class="canvas-admin-layout-unit ', CANVASAdminLayout.canvaswidthclass(CANVASAdminLayout.layout.clayout, widths[CANVASAdminLayout.layout.dlayout][i]), '">',
+											'<div class="canvas-admin-layout-pos block-', positions[i], (positions[i] == CANVASAdmin.langs.emptyLayoutPosition ? ' pos-off' : ''), '" data-original="', (defpos[i] || ''), '">',
+												'<span class="canvas-admin-layout-edit"><i class="icon-cog"></i></span>',
+												'<span class="canvas-admin-layout-poswidth" title="', CANVASAdmin.langs.layoutPosWidth, '">', widths[CANVASAdminLayout.layout.dlayout][i], '</span>',
+												'<h3 class="canvas-admin-layout-posname" title="', CANVASAdmin.langs.layoutPosName, '">', positions[i], '</h3>',
+												'<span class="canvas-admin-layout-vis" title="', CANVASAdmin.langs.layoutHidePosition, '"><i class="icon-eye-open"></i></span>',
 											'</div>',
-											'<div class="t3-admin-layout-rzhandle" title="', T3Admin.langs.layoutDragResize, '"></div>',
+											'<div class="canvas-admin-layout-rzhandle" title="', CANVASAdmin.langs.layoutDragResize, '"></div>',
 										'</div>']);
 									}
 
@@ -1459,30 +1561,30 @@ T3AdminLayout = window.T3AdminLayout || {};
 								}
 
 								//change gridsize for resize 
-								T3AdminLayout.t3updategrid(spotlight);
+								CANVASAdminLayout.canvasupdategrid(spotlight);
 
 								$(this).addClass('active').siblings().removeClass('active');
 
 							}).children().removeClass('active').eq(numpos -1).addClass('active').trigger('click');
 
 							jhides.on('click', 'span', function(){
-								T3AdminLayout.t3onvisible.call($(spotlight).children().eq($(this).index()).find('.t3-admin-layout-vis'));
+								CANVASAdminLayout.canvasonvisible.call($(spotlight).children().eq($(this).index()).find('.canvas-admin-layout-vis'));
 								return false;
 							});
 						});
 
-					T3AdminLayout.t3equalheight();
+					CANVASAdminLayout.canvasequalheight();
 
 					if(!active){	//restore current status
 						jtabpane.removeClass('active');
 					}
 
-					$('#t3-admin-layout').removeClass('hide');
+					$('#canvas-admin-layout').removeClass('hide');
 
-					T3AdminLayout.initMarkChange();
+					CANVASAdminLayout.initMarkChange();
 
 				} else {
-					jcontrol.find('.controls').html('<p class="t3-admin-layout-error">' + T3Admin.langs.layoutCanNotLoad + '</p>');
+					jcontrol.find('.controls').html('<p class="canvas-admin-layout-error">' + CANVASAdmin.langs.layoutCanNotLoad + '</p>');
 				}
 			}
 		}
@@ -1490,14 +1592,14 @@ T3AdminLayout = window.T3AdminLayout || {};
 	});
 	
 	$(document).ready(function(){
-		T3AdminLayout.initPrepareLayout();
-		T3AdminLayout.initLayoutClone();
-		T3AdminLayout.initModalDialog();
-		T3AdminLayout.initPreSubmit();
+		CANVASAdminLayout.initPrepareLayout();
+		CANVASAdminLayout.initLayoutClone();
+		CANVASAdminLayout.initModalDialog();
+		CANVASAdminLayout.initPreSubmit();
 	});
 
 	$(window).load(function(){
-		T3AdminLayout.initChosen();
+		CANVASAdminLayout.initChosen();
 	});
 	
 }(jQuery);
@@ -1524,13 +1626,13 @@ T3AdminLayout = window.T3AdminLayout || {};
 
 			$(curelm).parent().children().each(function(idx){
 				if(memvisible[idx] == 0 || memvisible[idx] == undefined){
-					if(needfirst || ((sum + parseInt(memwidth[idx]) > T3AdminLayout.layout.maxgrid) || (rzindex + 1 == idx && sum + parseInt(memwidth[idx]) == T3AdminLayout.layout.maxgrid && (rwidth > owidth)))){
-						$(this).addClass(T3AdminLayout.t3firstclass(rzlayout));
+					if(needfirst || ((sum + parseInt(memwidth[idx]) > CANVASAdminLayout.layout.maxgrid) || (rzindex + 1 == idx && sum + parseInt(memwidth[idx]) == CANVASAdminLayout.layout.maxgrid && (rwidth > owidth)))){
+						$(this).addClass(CANVASAdminLayout.canvasfirstclass(rzlayout));
 						memfirst[idx] = 1;
 						sum = parseInt(memwidth[idx]);
 						needfirst = false;
 					} else {
-						$(this).removeClass(T3AdminLayout.t3firstclass(rzlayout));
+						$(this).removeClass(CANVASAdminLayout.canvasfirstclass(rzlayout));
 						memfirst[idx] = 0;
 						sum += parseInt(memwidth[idx]);
 					}
@@ -1562,7 +1664,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 				memwidth[rzindex] = rzminspan * ((width + opts.gap) / opts.grid) >> 0;
 				owidth = width;
 
-				$(curelm).find('.t3-admin-layout-poswidth').html(memwidth[rzindex]);
+				$(curelm).find('.canvas-admin-layout-poswidth').html(memwidth[rzindex]);
 			}
 
 			curelm.style['width'] = (togrid ? width : rwidth) + 'px';
@@ -1584,8 +1686,8 @@ T3AdminLayout = window.T3AdminLayout || {};
 				width = opts.maxwidth;
 			}
 
-			curelm.className = curelm.className.replace(T3AdminLayout.layout.spancls, ' ');
-			$(curelm).css('width', '').addClass(T3AdminLayout.t3widthclass(rzlayout, T3AdminLayout.t3widthconvert((rzminspan * ((width + opts.gap) / opts.grid) >> 0))));
+			curelm.className = curelm.className.replace(CANVASAdminLayout.layout.spancls, ' ');
+			$(curelm).css('width', '').addClass(CANVASAdminLayout.canvaswidthclass(rzlayout, CANVASAdminLayout.canvaswidthconvert((rzminspan * ((width + opts.gap) / opts.grid) >> 0))));
 			spanfirst(width);
 		},
 
@@ -1595,11 +1697,11 @@ T3AdminLayout = window.T3AdminLayout || {};
 			rzleft = e.pageX;
 			owidth = rzwidth  = $(curelm).outerWidth();
 
-			var jdata = $(this).closest('.t3-admin-layout-xresize');
+			var jdata = $(this).closest('.canvas-admin-layout-xresize');
 			
 			opts = jdata.data('rzdata');
-			rzlayout = T3AdminLayout.layout.clayout;
-			rzminspan = T3AdminLayout.layout.unitspan[rzlayout];
+			rzlayout = CANVASAdminLayout.layout.clayout;
+			rzminspan = CANVASAdminLayout.layout.unitspan[rzlayout];
 			rzindex = $(this).parent().index();
 			memwidth = jdata.data('data-widths')[rzlayout];
 			memfirst = jdata.data('data-firsts')[rzlayout];
@@ -1627,9 +1729,9 @@ T3AdminLayout = window.T3AdminLayout || {};
 
 	$.fn.xresize = function(opts) {
 		return this.each(function () {
-			$(opts.selector ? $(this).find(opts.selector) : this).append('<div class="t3-admin-layout-rzhandle" title="' + T3Admin.langs.layoutDragResize + '"></div>');			
+			$(opts.selector ? $(this).find(opts.selector) : this).append('<div class="canvas-admin-layout-rzhandle" title="' + CANVASAdmin.langs.layoutDragResize + '"></div>');			
 			$(this)
-			.addClass('t3-admin-layout-xresize')
+			.addClass('canvas-admin-layout-xresize')
 			.data('rzdata', $.extend({
 				selector: '',
 				minwidth: 0,
@@ -1639,7 +1741,7 @@ T3AdminLayout = window.T3AdminLayout || {};
 				grid: 0,
 				gap: 0
 			}, opts))
-			.on('mousedown.wresize', '.t3-admin-layout-rzhandle', mousedown);
+			.on('mousedown.wresize', '.canvas-admin-layout-rzhandle', mousedown);
 		});
 	};
 

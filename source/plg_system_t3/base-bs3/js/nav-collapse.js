@@ -1,33 +1,33 @@
 /**
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework
  *------------------------------------------------------------------------------
  */
 
 jQuery(document).ready(function ($) {
 
-    // clone the collapse menu from mainnav (.t3-navbar)
-    $('.t3-navbar').each(function(){
+    // clone the collapse menu from mainnav (.canvas-navbar)
+    $('.canvas-navbar').each(function(){
         var $navwrapper  = $(this),
             $menu        = null,
             $placeholder = null;
 
-        if ($navwrapper.find('.t3-megamenu').length) {
+        if ($navwrapper.find('.canvas-megamenu').length) {
             
             // clone for megamenu
             $menu        = $navwrapper.find('ul.level0').clone(),
-            $placeholder = $navwrapper.prev('.navbar-collapse');
+            //$placeholder = $navwrapper.prev('.navbar-collapse');
+            $placeholder = $('.canvas-navbar-collapse');
 
             if(!$placeholder.length){
                 //get the empty one
-                $placeholder = $navwrapper.closest('.container, .t3-mainnav').find('.navbar-collapse:empty');
+                $placeholder = $navwrapper.closest('.container, .canvas-mainnav').find('.navbar-collapse:empty');
             }
             
             var lis = $menu.find('li[data-id]'),
@@ -101,7 +101,7 @@ jQuery(document).ready(function ($) {
         } else {
             // clone for bootstrap menu
             $menu = $navwrapper.find ('ul.nav').clone();
-            $placeholder = $('.t3-navbar-collapse:empty, .navbar-collapse:empty').eq(0);
+            $placeholder = $('.canvas-navbar-collapse:empty, .navbar-collapse:empty').eq(0);
         }
         
         //so we have all structure, add standard bootstrap class
@@ -114,7 +114,7 @@ jQuery(document).ready(function ($) {
                 return 'dropdown' + ($(this).data('level') > 1 ? ' dropdown-submenu' : '');
             });
 
-        // inject into .t3-navbar-collapse
+        // inject into .canvas-navbar-collapse
         $menu.appendTo ($placeholder);
 
     });

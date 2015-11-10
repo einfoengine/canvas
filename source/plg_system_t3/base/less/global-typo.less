@@ -1,13 +1,12 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -22,35 +21,35 @@
 
 .jumbotron {
   position: relative;
-  padding: (@T3globalPadding * 2) 0;
+  padding: (@CANVASglobalPadding * 2) 0;
 }
 
 .jumbotron h1 {
   font-size: @baseFontSize * 4;
   letter-spacing: -1px;
   line-height: 1;
-  margin: 0 0 (@T3globalMargin / 2) 0;
+  margin: 0 0 (@CANVASglobalMargin / 2) 0;
 }
 
 .jumbotron p {
   font-size: @baseFontSize * 1.5;
   line-height: 1.275;
-  margin: 0 0 @T3globalMargin 0;
+  margin: 0 0 @CANVASglobalMargin 0;
 }
 
 .jumbotron .btn {
-  margin-top: @T3globalMargin / 2;
+  margin-top: @CANVASglobalMargin / 2;
 }
 
 .jumbotron .btn-large {
-  margin-top: @T3globalMargin;
+  margin-top: @CANVASglobalMargin;
   font-size: @baseFontSize + 4px;
 }
 
 // Masthead
 // --------
 .masthead {
-  padding: (@T3globalPadding * 4) 0 (@T3globalPadding * 3);
+  padding: (@CANVASglobalPadding * 4) 0 (@CANVASglobalPadding * 3);
   text-align: center;
 }
 
@@ -87,7 +86,7 @@
 
 // Make wrapper ul behave like the grid
 .thumbnails {
-  margin-bottom: @T3globalMargin;
+  margin-bottom: @CANVASglobalMargin;
   margin-left: -@gridGutterWidth;
   list-style: none;
   .clearfix();
@@ -102,13 +101,13 @@
 .thumbnails > li {
   float: left; // Explicity set the float since we don't require .span* classes
   position: relative;
-  margin-bottom: @T3globalMargin;
+  margin-bottom: @CANVASglobalMargin;
   margin-left: @gridGutterWidth;
 }
 
 // The actual thumbnail (can be `a` or `div`)
 .thumbnail {
-  border: 1px solid @T3borderColor;
+  border: 1px solid @CANVASborderColor;
   display: block;
   padding: 4px;
   line-height: @baseLineHeight;
@@ -180,10 +179,10 @@ a.thumbnail:hover {
 
 
 // ---------------------------------------------------------
-// T3 Logo
+// CANVAS Logo
 // ---------------------------------------------------------
-.t3-logo,
-.t3-logo-small {
+.canvas-logo,
+.canvas-logo-small {
   display: block;
   text-decoration: none;
   text-indent: -9999em;
@@ -193,41 +192,41 @@ a.thumbnail:hover {
 }
 
 // Sizes
-.t3-logo {
+.canvas-logo {
   width: 182px;
   height: 50px;
 }
 
-.t3-logo-small {
+.canvas-logo-small {
   width: 60px;
   height: 30px;
 }
 
 // Styles
-.t3-logo,
-.t3-logo-color {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-color.png");
+.canvas-logo,
+.canvas-logo-color {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jacanvasv3-documents/logo-complete/canvaslogo-big-color.png");
 }
 
-.t3-logo-small,
-.t3-logo-small.t3-logo-color {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-color.png");
+.canvas-logo-small,
+.canvas-logo-small.canvas-logo-color {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jacanvasv3-documents/logo-complete/canvaslogo-small-color.png");
 }
 
-.t3-logo-dark {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-dark.png");
+.canvas-logo-dark {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jacanvasv3-documents/logo-complete/canvaslogo-big-dark.png");
 }
 
-.t3-logo-small.t3-logo-dark {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-dark.png");
+.canvas-logo-small.canvas-logo-dark {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jacanvasv3-documents/logo-complete/canvaslogo-small-dark.png");
 }
 
-.t3-logo-light {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-big-light.png");
+.canvas-logo-light {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jacanvasv3-documents/logo-complete/canvaslogo-big-light.png");
 }
 
-.t3-logo-small.t3-logo-light {
-  background-image: url("http://joomlart.s3.amazonaws.com/images/jat3v3-documents/logo-complete/t3logo-small-light.png");
+.canvas-logo-small.canvas-logo-light {
+  background-image: url("http://joomlart.s3.amazonaws.com/images/jacanvasv3-documents/logo-complete/canvaslogo-small-light.png");
 }
 
 

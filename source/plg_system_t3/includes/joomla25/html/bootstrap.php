@@ -222,7 +222,7 @@ abstract class JHtmlBootstrap
 	 */
 	public static function framework($debug = null)
 	{
-    return; // T3 already load framework
+    return; // CANVAS already load framework
 	}
 
 	/**

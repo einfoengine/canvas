@@ -1,32 +1,32 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
 // Define constant
-class T3Admin {
+class CANVASAdmin {
 
 	protected $langs = array();
 
 	/**
 	 * function render
-	 * render T3 administrator configuration form
+	 * render CANVAS administrator configuration form
 	 *
 	 * @return render success or not
 	 */
 	public function render(){
 		$input  = JFactory::getApplication()->input;
 		$body   = JResponse::getBody();
-		$layout = T3_ADMIN_PATH . '/admin/tpls/default.php';
+		$layout = CANVAS_ADMIN_PATH . '/admin/tpls/default.php';
 
 		if(file_exists($layout) && 'style' == $input->getCmd('view')){
 			
@@ -78,53 +78,53 @@ class T3Admin {
 	public function addAssets(){
 
 		// load template language
-		JFactory::getLanguage()->load ('tpl_'.T3_TEMPLATE.'.sys', JPATH_ROOT, null, true);
+		JFactory::getLanguage()->load ('tpl_'.CANVAS_TEMPLATE.'.sys', JPATH_ROOT, null, true);
 
 		$langs = array(
-			'unknownError' => JText::_('T3_MSG_UNKNOWN_ERROR'),
+			'unknownError' => JText::_('CANVAS_MSG_UNKNOWN_ERROR'),
 
-			'logoPresent' => JText::_('T3_LAYOUT_LOGO_TEXT'),
-			'emptyLayoutPosition' => JText::_('T3_LAYOUT_EMPTY_POSITION'),
-			'defaultLayoutPosition' => JText::_('T3_LAYOUT_DEFAULT_POSITION'),
+			'logoPresent' => JText::_('CANVAS_LAYOUT_LOGO_TEXT'),
+			'emptyLayoutPosition' => JText::_('CANVAS_LAYOUT_EMPTY_POSITION'),
+			'defaultLayoutPosition' => JText::_('CANVAS_LAYOUT_DEFAULT_POSITION'),
 			
-			'layoutConfig' => JText::_('T3_LAYOUT_CONFIG_TITLE'),
-			'layoutConfigDesc' => JText::_('T3_LAYOUT_CONFIG_DESC'),
-			'layoutUnknownWidth' => JText::_('T3_LAYOUT_UNKN_WIDTH'),
-			'layoutPosWidth' => JText::_('T3_LAYOUT_POS_WIDTH'),
-			'layoutPosName' => JText::_('T3_LAYOUT_POS_NAME'),
+			'layoutConfig' => JText::_('CANVAS_LAYOUT_CONFIG_TITLE'),
+			'layoutConfigDesc' => JText::_('CANVAS_LAYOUT_CONFIG_DESC'),
+			'layoutUnknownWidth' => JText::_('CANVAS_LAYOUT_UNKN_WIDTH'),
+			'layoutPosWidth' => JText::_('CANVAS_LAYOUT_POS_WIDTH'),
+			'layoutPosName' => JText::_('CANVAS_LAYOUT_POS_NAME'),
 
-			'layoutCanNotLoad' => JText::_('T3_LAYOUT_LOAD_ERROR'),
+			'layoutCanNotLoad' => JText::_('CANVAS_LAYOUT_LOAD_ERROR'),
 
-			'askCloneLayout' => JText::_('T3_LAYOUT_ASK_ADD_LAYOUT'),
-			'correctLayoutName' => JText::_('T3_LAYOUT_ASK_CORRECT_NAME'),
-			'askDeleteLayout' => JText::_('T3_LAYOUT_ASK_DEL_LAYOUT'),
-			'askDeleteLayoutDesc' => JText::_('T3_LAYOUT_ASK_DEL_LAYOUT_DESC'),
-			'askPurgeLayout' => JText::_('T3_LAYOUT_ASK_DEL_LAYOUT'),
-			'askPurgeLayoutDesc' => JText::_('T3_LAYOUT_ASK_PURGE_LAYOUT_DESC'),
+			'askCloneLayout' => JText::_('CANVAS_LAYOUT_ASK_ADD_LAYOUT'),
+			'correctLayoutName' => JText::_('CANVAS_LAYOUT_ASK_CORRECT_NAME'),
+			'askDeleteLayout' => JText::_('CANVAS_LAYOUT_ASK_DEL_LAYOUT'),
+			'askDeleteLayoutDesc' => JText::_('CANVAS_LAYOUT_ASK_DEL_LAYOUT_DESC'),
+			'askPurgeLayout' => JText::_('CANVAS_LAYOUT_ASK_DEL_LAYOUT'),
+			'askPurgeLayoutDesc' => JText::_('CANVAS_LAYOUT_ASK_PURGE_LAYOUT_DESC'),
 
-			'lblDeleteIt' => JText::_('T3_LAYOUT_LABEL_DELETEIT'),
-			'lblCloneIt' => JText::_('T3_LAYOUT_LABEL_CLONEIT'),
+			'lblDeleteIt' => JText::_('CANVAS_LAYOUT_LABEL_DELETEIT'),
+			'lblCloneIt' => JText::_('CANVAS_LAYOUT_LABEL_CLONEIT'),
 
-			'layoutEditPosition' => JText::_('T3_LAYOUT_EDIT_POSITION'),
-			'layoutShowPosition' => JText::_('T3_LAYOUT_SHOW_POSITION'),
-			'layoutHidePosition' => JText::_('T3_LAYOUT_HIDE_POSITION'),
-			'layoutChangeNumpos' => JText::_('T3_LAYOUT_CHANGE_NUMPOS'),
-			'layoutDragResize' => JText::_('T3_LAYOUT_DRAG_RESIZE'),
-			'layoutHiddenposDesc' => JText::_('T3_LAYOUT_HIDDEN_POS_DESC'),
+			'layoutEditPosition' => JText::_('CANVAS_LAYOUT_EDIT_POSITION'),
+			'layoutShowPosition' => JText::_('CANVAS_LAYOUT_SHOW_POSITION'),
+			'layoutHidePosition' => JText::_('CANVAS_LAYOUT_HIDE_POSITION'),
+			'layoutChangeNumpos' => JText::_('CANVAS_LAYOUT_CHANGE_NUMPOS'),
+			'layoutDragResize' => JText::_('CANVAS_LAYOUT_DRAG_RESIZE'),
+			'layoutHiddenposDesc' => JText::_('CANVAS_LAYOUT_HIDDEN_POS_DESC'),
 			
-			'updateFailedGetList' => JText::_('T3_OVERVIEW_FAILED_GETLIST'),
-			'updateDownLatest' => JText::_('T3_OVERVIEW_GO_DOWNLOAD'),
-			'updateCheckUpdate' => JText::_('T3_OVERVIEW_CHECK_UPDATE'),
-			'updateChkComplete' => JText::_('T3_OVERVIEW_CHK_UPDATE_OK'),
-			'updateHasNew' => JText::_('T3_OVERVIEW_TPL_NEW'),
-			'updateCompare' => JText::_('T3_OVERVIEW_TPL_COMPARE'),
-			'switchResponsiveMode' => JText::_('T3_MSG_SWITCH_RESPONSIVE_MODE')
+			'updateFailedGetList' => JText::_('CANVAS_OVERVIEW_FAILED_GETLIST'),
+			'updateDownLatest' => JText::_('CANVAS_OVERVIEW_GO_DOWNLOAD'),
+			'updateCheckUpdate' => JText::_('CANVAS_OVERVIEW_CHECK_UPDATE'),
+			'updateChkComplete' => JText::_('CANVAS_OVERVIEW_CHK_UPDATE_OK'),
+			'updateHasNew' => JText::_('CANVAS_OVERVIEW_TPL_NEW'),
+			'updateCompare' => JText::_('CANVAS_OVERVIEW_TPL_COMPARE'),
+			'switchResponsiveMode' => JText::_('CANVAS_MSG_SWITCH_RESPONSIVE_MODE')
 		);
 		
 		$japp   = JFactory::getApplication();
 		$jdoc   = JFactory::getDocument();
 		$db     = JFactory::getDbo();
-		$params = T3::getTplParams();
+		$params = CANVAS::getTplParams();
 		$input  = $japp->input;
 
 		//just in case
@@ -137,8 +137,8 @@ class T3Admin {
 		$query
 			->select('extension_id')
 			->from('#__extensions')
-			->where('(element='. $db->quote(T3_TEMPLATE) . ' AND type=' . $db->quote('template') . ') 
-					OR (element=' . $db->quote(T3_ADMIN) . ' AND type=' . $db->quote('plugin'). ')');
+			->where('(element='. $db->quote(CANVAS_TEMPLATE) . ' AND type=' . $db->quote('template') . ') 
+					OR (element=' . $db->quote(CANVAS_ADMIN) . ' AND type=' . $db->quote('plugin'). ')');
 
 		$db->setQuery($query);
 		$results = $db->loadRowList();
@@ -151,65 +151,65 @@ class T3Admin {
 		if(version_compare(JVERSION, '3.0', 'ge')){
 			JHtml::_('bootstrap.framework');
 		} else {
-			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/bootstrap/css/bootstrap.css');
+			$jdoc->addStyleSheet(CANVAS_ADMIN_URL . '/admin/bootstrap/css/bootstrap.css');
 
-			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery-1.8.3.min.js');
-			$jdoc->addScript(T3_ADMIN_URL . '/admin/bootstrap/js/bootstrap.js');
-			$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jquery.noconflict.js');
+			$jdoc->addScript(CANVAS_ADMIN_URL . '/admin/js/jquery-1.8.3.min.js');
+			$jdoc->addScript(CANVAS_ADMIN_URL . '/admin/bootstrap/js/bootstrap.js');
+			$jdoc->addScript(CANVAS_ADMIN_URL . '/admin/js/jquery.noconflict.js');
 		}
 
 		if(!$this->checkAssetsLoaded('chosen.css', '_styleSheets')){
-			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/plugins/chosen/chosen.css');
+			$jdoc->addStyleSheet(CANVAS_ADMIN_URL . '/admin/plugins/chosen/chosen.css');
 		}
 
-		$jdoc->addStyleSheet(T3_ADMIN_URL . '/includes/depend/css/depend.css');
-		$jdoc->addStyleSheet(T3_URL . '/css/layout-preview.css');
-		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/layout/css/layout.css');
-		if(file_exists(T3_TEMPLATE_PATH . '/admin/layout-custom.css')) {
-			$jdoc->addStyleSheet(T3_TEMPLATE_URL . '/admin/layout-custom.css');
+		$jdoc->addStyleSheet(CANVAS_ADMIN_URL . '/includes/depend/css/depend.css');
+		$jdoc->addStyleSheet(CANVAS_URL . '/css/layout-preview.css');
+		$jdoc->addStyleSheet(CANVAS_ADMIN_URL . '/admin/layout/css/layout.css');
+		if(file_exists(CANVAS_TEMPLATE_PATH . '/admin/layout-custom.css')) {
+			$jdoc->addStyleSheet(CANVAS_TEMPLATE_URL . '/admin/layout-custom.css');
 		}
-		$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin.css');
+		$jdoc->addStyleSheet(CANVAS_ADMIN_URL . '/admin/css/admin.css');
 
 		if(version_compare(JVERSION, '3.0', 'ge')){
-			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin-j30.css');
+			$jdoc->addStyleSheet(CANVAS_ADMIN_URL . '/admin/css/admin-j30.css');
 
 			if($input->get('file') && version_compare(JVERSION, '3.2', 'ge')){
-				$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/file-manager.css');
+				$jdoc->addStyleSheet(CANVAS_ADMIN_URL . '/admin/css/file-manager.css');
 			}
 		} else {
-			$jdoc->addStyleSheet(T3_ADMIN_URL . '/admin/css/admin-j25.css');
+			$jdoc->addStyleSheet(CANVAS_ADMIN_URL . '/admin/css/admin-j25.css');
 		}
 
 		if(!$this->checkAssetsLoaded('chosen.jquery.min.js', '_scripts')){
-			$jdoc->addScript(T3_ADMIN_URL . '/admin/plugins/chosen/chosen.jquery.min.js');	
+			$jdoc->addScript(CANVAS_ADMIN_URL . '/admin/plugins/chosen/chosen.jquery.min.js');	
 		}
 
-		$jdoc->addScript(T3_ADMIN_URL . '/includes/depend/js/depend.js');
-		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/json2.js');
-		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/jimgload.js');
-		$jdoc->addScript(T3_ADMIN_URL . '/admin/layout/js/layout.js');
-		$jdoc->addScript(T3_ADMIN_URL . '/admin/js/admin.js');
+		$jdoc->addScript(CANVAS_ADMIN_URL . '/includes/depend/js/depend.js');
+		$jdoc->addScript(CANVAS_ADMIN_URL . '/admin/js/json2.js');
+		$jdoc->addScript(CANVAS_ADMIN_URL . '/admin/js/jimgload.js');
+		$jdoc->addScript(CANVAS_ADMIN_URL . '/admin/layout/js/layout.js');
+		$jdoc->addScript(CANVAS_ADMIN_URL . '/admin/js/admin.js');
 
 
 		$jdoc->addScriptDeclaration ( '
-			T3Admin = window.T3Admin || {};
-			T3Admin.adminurl = \'' . JUri::getInstance()->toString() . '\';
-			T3Admin.t3adminurl = \'' . T3_ADMIN_URL . '\';
-			T3Admin.baseurl = \'' . JURI::base(true) . '\';
-			T3Admin.rooturl = \'' . JURI::root() . '\';
-			T3Admin.template = \'' . T3_TEMPLATE . '\';
-			T3Admin.templateid = \'' . JFactory::getApplication()->input->get('id') . '\';
-			T3Admin.langs = ' . json_encode($langs) . ';
-			T3Admin.devmode = ' . $params->get('devmode', 0) . ';
-			T3Admin.themermode = ' . $params->get('themermode', 1) . ';
-			T3Admin.eids = [' . implode($eids, ',') .'];
-			T3Admin.telement = \'' . T3_TEMPLATE . '\';
-			T3Admin.felement = \'' . T3_ADMIN . '\';
-			T3Admin.themerUrl = \'' . JUri::getInstance()->toString() . '&t3action=theme&t3task=thememagic' . '\';
-			T3Admin.megamenuUrl = \'' . JUri::getInstance()->toString() . '&t3action=megamenu&t3task=megamenu' . '\';
-			T3Admin.t3updateurl = \'' . JURI::base() . 'index.php?option=com_installer&view=update&task=update.ajax' . '\';
-			T3Admin.t3layouturl = \'' . JURI::base() . 'index.php?t3action=layout' . '\';
-			T3Admin.jupdateUrl = \'' . JURI::base() . 'index.php?option=com_installer&view=update' . '\';'
+			CANVASAdmin = window.CANVASAdmin || {};
+			CANVASAdmin.adminurl = \'' . JUri::getInstance()->toString() . '\';
+			CANVASAdmin.canvasadminurl = \'' . CANVAS_ADMIN_URL . '\';
+			CANVASAdmin.baseurl = \'' . JURI::base(true) . '\';
+			CANVASAdmin.rooturl = \'' . JURI::root() . '\';
+			CANVASAdmin.template = \'' . CANVAS_TEMPLATE . '\';
+			CANVASAdmin.templateid = \'' . JFactory::getApplication()->input->get('id') . '\';
+			CANVASAdmin.langs = ' . json_encode($langs) . ';
+			CANVASAdmin.devmode = ' . $params->get('devmode', 0) . ';
+			CANVASAdmin.themermode = ' . $params->get('themermode', 1) . ';
+			CANVASAdmin.eids = [' . implode($eids, ',') .'];
+			CANVASAdmin.telement = \'' . CANVAS_TEMPLATE . '\';
+			CANVASAdmin.felement = \'' . CANVAS_ADMIN . '\';
+			CANVASAdmin.themerUrl = \'' . JUri::getInstance()->toString() . '&canvasaction=theme&canvastask=thememagic' . '\';
+			CANVASAdmin.megamenuUrl = \'' . JUri::getInstance()->toString() . '&canvasaction=megamenu&canvastask=megamenu' . '\';
+			CANVASAdmin.canvasupdateurl = \'' . JURI::base() . 'index.php?option=com_installer&view=update&task=update.ajax' . '\';
+			CANVASAdmin.canvaslayouturl = \'' . JURI::base() . 'index.php?canvasaction=layout' . '\';
+			CANVASAdmin.jupdateUrl = \'' . JURI::base() . 'index.php?option=com_installer&view=update' . '\';'
 		);
 	}
 
@@ -226,32 +226,32 @@ class T3Admin {
 	 * @return render success or not
 	 */
 	function renderAdmin(){
-		$frwXml = T3_ADMIN_PATH . '/'. T3_ADMIN . '.xml';
-		$tplXml = T3_TEMPLATE_PATH . '/templateDetails.xml';
-		$cusXml = T3Path::getPath('etc/assets.xml');
-		$jtpl = T3_ADMIN_PATH . '/admin/tpls/default.php';
+		$frwXml = CANVAS_ADMIN_PATH . '/'. CANVAS_ADMIN . '.xml';
+		$tplXml = CANVAS_TEMPLATE_PATH . '/templateDetails.xml';
+		$cusXml = CANVASPath::getPath('etc/assets.xml');
+		$jtpl = CANVAS_ADMIN_PATH . '/admin/tpls/default.php';
 		
 		if(file_exists($tplXml) && file_exists($jtpl)){
 			
-			T3::import('depend/t3form');
+			CANVAS::import('depend/canvasform');
 
 			//get the current joomla default instance
 			$form = JForm::getInstance('com_templates.style', 'style', array('control' => 'jform', 'load_data' => true));
 
 			//wrap
-			$form = new T3Form($form);
+			$form = new CANVASForm($form);
 			
 			//remove all fields from group 'params' and reload them again in right other base on template.xml
 			$form->removeGroup('params');
 			//load the template
-			$form->loadFile(T3_PATH . '/params/template.xml');
+			$form->loadFile(CANVAS_PATH . '/params/template.xml');
 			//overwrite / extend with params of template
 			$form->loadFile($tplXml, true, '//config');
 			//overwrite / extend with custom config in custom/etc/assets.xml
 			if ($cusXml && file_exists($cusXml))
 				$form->loadFile($cusXml, true, '//config');
 			// extend parameters
-			T3Bot::prepareForm($form);
+			CANVASBot::prepareForm($form);
 
 			$xml = JFactory::getXML($tplXml);
 			$fxml = JFactory::getXML($frwXml);
@@ -261,7 +261,7 @@ class T3Admin {
 			$query
 				->select('id, title')
 				->from('#__template_styles')
-				->where('template='. $db->quote(T3_TEMPLATE));
+				->where('template='. $db->quote(CANVAS_TEMPLATE));
 			
 			$db->setQuery($query);
 			$styles = $db->loadObjectList();
@@ -270,8 +270,8 @@ class T3Admin {
 			}
 			
 			$session = JFactory::getSession();
-			$t3lock = $session->get('T3.t3lock', 'overview_params');
-			$session->set('T3.t3lock', null);
+			$canvaslock = $session->get('CANVAS.canvaslock', 'overview_params');
+			$session->set('CANVAS.canvaslock', null);
 			$input = JFactory::getApplication()->input;
 
 			include $jtpl;
@@ -295,24 +295,24 @@ class T3Admin {
 	}
 
 	function replaceToolbar($body){
-		$t3toolbar = T3_ADMIN_PATH . '/admin/tpls/toolbar.php';
+		$canvastoolbar = CANVAS_ADMIN_PATH . '/admin/tpls/toolbar.php';
 		$input = JFactory::getApplication()->input;
 
-		if(file_exists($t3toolbar) && class_exists('JToolBar')){
+		if(file_exists($canvastoolbar) && class_exists('JToolBar')){
 			//get the existing toolbar html
 			jimport('joomla.language.help');
-			$params  = T3::getTplParams();
+			$params  = CANVAS::getTplParams();
 			$toolbar = JToolBar::getInstance('toolbar')->render('toolbar');
 			$helpurl = JHelp::createURL($input->getCmd('view') == 'template' ? 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_TEMPLATES_EDIT' : 'JHELP_EXTENSIONS_TEMPLATE_MANAGER_STYLES_EDIT');
 			$helpurl = htmlspecialchars($helpurl, ENT_QUOTES);
 
 			//render our toolbar
 			ob_start();
-			include $t3toolbar;
-			$t3toolbar = ob_get_clean();
+			include $canvastoolbar;
+			$canvastoolbar = ob_get_clean();
 
 			//replace it
-			$body = str_replace($toolbar, $t3toolbar, $body);
+			$body = str_replace($toolbar, $canvastoolbar, $body);
 		}
 
 		return $body;

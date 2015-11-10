@@ -1,14 +1,13 @@
 <?php
 /**
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework
  *------------------------------------------------------------------------------
  */
 
@@ -16,9 +15,9 @@
 defined('_JEXEC') or die();
 
 /**
- * T3Path class
+ * CANVASPath class
  */
-class T3Path extends JObject
+class CANVASPath extends JObject
 {
 
 	/**
@@ -27,69 +26,69 @@ class T3Path extends JObject
 	protected static $srcurl = '';
 
 	/**
-	 * Get path in tpls folder. If found in template, use the path, else try in plugin t3
+	 * Get path in tpls folder. If found in template, use the path, else try in plugin canvas
 	 */
-	public static function getPath($file, $default = '', $relative = false, $include_local = true)
+	public static function getPath($file, $default = '', $relative = false, $include_custom = true)
 	{
-		if (!defined('T3_LOCAL_DISABLED') && $include_local && file_exists (T3_LOCAL_PATH . '/' . $file)) return ($relative ? T3_LOCAL_REL : T3_LOCAL_PATH) . '/' . $file;
-		if (file_exists (T3_TEMPLATE_PATH . '/' . $file)) return ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_PATH) . '/' . $file;
-		if (file_exists (T3_PATH . '/' . $file)) return ($relative ? T3_REL : T3_PATH) . '/' . $file;
+		if (!defined('CANVAS_LOCAL_DISABLED') && $include_custom && file_exists (CANVAS_LOCAL_PATH . '/' . $file)) return ($relative ? CANVAS_LOCAL_REL : CANVAS_LOCAL_PATH) . '/' . $file;
+		if (file_exists (CANVAS_TEMPLATE_PATH . '/' . $file)) return ($relative ? CANVAS_TEMPLATE_REL : CANVAS_TEMPLATE_PATH) . '/' . $file;
+		if (file_exists (CANVAS_PATH . '/' . $file)) return ($relative ? CANVAS_REL : CANVAS_PATH) . '/' . $file;
 		if ($default) return self::getPath($default);
 		return '';
 	}
 
 	/**
-	 * Get path in tpls folder. If found in template, use the path, else try in plugin t3
+	 * Get path in tpls folder. If found in template, use the path, else try in plugin canvas
 	 */
-	public static function getUrl($file, $default = '', $relative = false, $include_local = true)
+	public static function getUrl($file, $default = '', $relative = false, $include_custom = true)
 	{
-		if (!defined('T3_LOCAL_DISABLED') && $include_local && file_exists (T3_LOCAL_PATH . '/' . $file)) return ($relative ? T3_LOCAL_REL : T3_LOCAL_URL) . '/' . $file;
-		if (file_exists (T3_TEMPLATE_PATH . '/' . $file)) return ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_URL) . '/' . $file;
-		if (file_exists (T3_PATH . '/' . $file)) return ($relative ? T3_REL : T3_URL) . '/' . $file;
+		if (!defined('CANVAS_LOCAL_DISABLED') && $include_custom && file_exists (CANVAS_LOCAL_PATH . '/' . $file)) return ($relative ? CANVAS_LOCAL_REL : CANVAS_LOCAL_URL) . '/' . $file;
+		if (file_exists (CANVAS_TEMPLATE_PATH . '/' . $file)) return ($relative ? CANVAS_TEMPLATE_REL : CANVAS_TEMPLATE_URL) . '/' . $file;
+		if (file_exists (CANVAS_PATH . '/' . $file)) return ($relative ? CANVAS_REL : CANVAS_URL) . '/' . $file;
 		if ($default) return self::getUrl($default);
 		return '';
 	}
 
 	/**
-	 * Get path in tpls folder. If found in template, use the path, else try in plugin t3
+	 * Get path in tpls folder. If found in template, use the path, else try in plugin canvas
 	 */
-	public static function getAllPath($file, $relative = false, $include_local = true)
+	public static function getAllPath($file, $relative = false, $include_custom = true)
 	{
 		$return = array();
-		if (file_exists (T3_PATH . '/' . $file)) $return[] = ($relative ? T3_REL : T3_PATH) . '/' . $file;
-		if (file_exists (T3_TEMPLATE_PATH . '/' . $file)) $return[] = ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_PATH) . '/' . $file;
-		if (!defined('T3_LOCAL_DISABLED') && $include_local && file_exists (T3_LOCAL_PATH . '/' . $file)) $return[] = ($relative ? T3_LOCAL_REL : T3_LOCAL_PATH) . '/' . $file;
+		if (file_exists (CANVAS_PATH . '/' . $file)) $return[] = ($relative ? CANVAS_REL : CANVAS_PATH) . '/' . $file;
+		if (file_exists (CANVAS_TEMPLATE_PATH . '/' . $file)) $return[] = ($relative ? CANVAS_TEMPLATE_REL : CANVAS_TEMPLATE_PATH) . '/' . $file;
+		if (!defined('CANVAS_LOCAL_DISABLED') && $include_custom && file_exists (CANVAS_LOCAL_PATH . '/' . $file)) $return[] = ($relative ? CANVAS_LOCAL_REL : CANVAS_LOCAL_PATH) . '/' . $file;
 		return $return;
 	}
 
 	/**
-	 * Get path in tpls folder. If found in template, use the path, else try in plugin t3
+	 * Get path in tpls folder. If found in template, use the path, else try in plugin canvas
 	 */
-	public static function getAllUrl($file, $relative = false, $include_local = true)
+	public static function getAllUrl($file, $relative = false, $include_custom = true)
 	{
 		$return = array();
-		if (file_exists (T3_PATH . '/' . $file)) $return[] = ($relative ? T3_REL : T3_URL) . '/' . $file;
-		if (file_exists (T3_TEMPLATE_PATH . '/' . $file)) $return[] = ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_URL) . '/' . $file;
-		if (!defined('T3_LOCAL_DISABLED') && $include_local && file_exists (T3_LOCAL_PATH . '/' . $file)) $return[] = ($relative ? T3_LOCAL_REL : T3_LOCAL_URL) . '/' . $file;
+		if (file_exists (CANVAS_PATH . '/' . $file)) $return[] = ($relative ? CANVAS_REL : CANVAS_URL) . '/' . $file;
+		if (file_exists (CANVAS_TEMPLATE_PATH . '/' . $file)) $return[] = ($relative ? CANVAS_TEMPLATE_REL : CANVAS_TEMPLATE_URL) . '/' . $file;
+		if (!defined('CANVAS_LOCAL_DISABLED') && $include_custom && file_exists (CANVAS_LOCAL_PATH . '/' . $file)) $return[] = ($relative ? CANVAS_LOCAL_REL : CANVAS_LOCAL_URL) . '/' . $file;
 		return $return;
 	}
 
 	/**
-	 * Get local path. If const T3_LOCAL_DISABLED defined, use template path; other use local path
+	 * Get local path. If const CANVAS_LOCAL_DISABLED defined, use template path; other use local path
 	 */
 	public static function getLocalPath($file, $relative = false)
 	{
-		if (!defined('T3_LOCAL_DISABLED')) return ($relative ? T3_LOCAL_REL : T3_LOCAL_PATH) . '/' . $file;
-		return ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_PATH) . '/' . $file;
+		if (!defined('CANVAS_LOCAL_DISABLED')) return ($relative ? CANVAS_LOCAL_REL : CANVAS_LOCAL_PATH) . '/' . $file;
+		return ($relative ? CANVAS_TEMPLATE_REL : CANVAS_TEMPLATE_PATH) . '/' . $file;
 	}
 
 	/**
-	 * Get local path. If const T3_LOCAL_DISABLED defined, use template path; other use local path
+	 * Get local path. If const CANVAS_LOCAL_DISABLED defined, use template path; other use local path
 	 */
 	public static function getLocalUrl($file, $relative = false)
 	{
-		if (!defined('T3_LOCAL_DISABLED')) return ($relative ? T3_LOCAL_REL : T3_LOCAL_URL) . '/' . $file;
-		return ($relative ? T3_TEMPLATE_REL : T3_TEMPLATE_URL) . '/' . $file;
+		if (!defined('CANVAS_LOCAL_DISABLED')) return ($relative ? CANVAS_LOCAL_REL : CANVAS_LOCAL_URL) . '/' . $file;
+		return ($relative ? CANVAS_TEMPLATE_REL : CANVAS_TEMPLATE_URL) . '/' . $file;
 	}
 
 	/**
@@ -165,10 +164,7 @@ class T3Path extends JObject
 		$path = '';
 		for ($i = 0; $i < min($size1, $size2); $i++) {
 			if ($arr1[$i] == $arr2[$i]) continue;
-			else break;
-		}
-		for ($j=$i; $j<min($size1, $size2); $j++) {
-			$path = '../' . $path . $arr2[$j] . '/';
+			else $path = '../' . $path . $arr2[$i] . '/';
 		}
 		if ($size1 > $size2)
 			for ($i = $size2; $i < $size1; $i++)
@@ -184,8 +180,8 @@ class T3Path extends JObject
 	{
 		self::$srcurl = rtrim($src, '/');
 
-		$css = preg_replace_callback('/@import\\s+([\'"])(.*?)[\'"]/', array('T3Path', 'replaceurl'), $css);
-		$css = preg_replace_callback('/url\\(\\s*([^\\)\\s]+)\\s*\\)/', array('T3Path', 'replaceurl'), $css);
+		$css = preg_replace_callback('/@import\\s+([\'"])(.*?)[\'"]/', array('CANVASPath', 'replaceurl'), $css);
+		$css = preg_replace_callback('/url\\(\\s*([^\\)\\s]+)\\s*\\)/', array('CANVASPath', 'replaceurl'), $css);
 
 		return $css;
 	}

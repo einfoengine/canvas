@@ -1,18 +1,18 @@
 <?php
 /**
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework
  *------------------------------------------------------------------------------
  */
 
-class T3MenuMegamenuTpl
+class CANVASMenuMegamenuTpl
 {
 	static function beginmenu($vars)
 	{
@@ -22,7 +22,7 @@ class T3MenuMegamenuTpl
 		$responsive    = $menu->getParam('responsive', 1);
 		$anim_duration = $menu->getParam('navigation_animation_duration', 0);
 
-		$cls  = ' class="t3-megamenu' . ($trigger == 'hover' && $animation ? ' animate ' . $animation : '') . '"';
+		$cls  = ' class="canvas-megamenu' . ($trigger == 'hover' && $animation ? ' animate ' . $animation : '') . '"';
 		$data = $animation && $anim_duration ? ' data-duration="' . $anim_duration . '"' : '';
 		$data = $data . ($responsive ? ' data-responsive="true"' : '');
 
@@ -68,7 +68,7 @@ class T3MenuMegamenuTpl
 			$cls  .= " {$sub['class']}";
 		}
 		if (isset($setting['alignsub']) && $setting['alignsub'] == 'justify') {
-			$cls  .= ' ' . ($vars['menu']->editmode ? 'span' : T3_BASE_NONRSP_WIDTH_PREFIX) . '12';
+			$cls  .= ' ' . ($vars['menu']->editmode ? 'span' : CANVAS_BASE_NONRSP_WIDTH_PREFIX) . '12';
 		} else {
 			if (isset($sub['width'])) {
 				if ($item->dropdown) $style = ' style="width: ' . str_replace('px', '', $sub['width']) . 'px"';
@@ -88,7 +88,7 @@ class T3MenuMegamenuTpl
 
 	static function beginrow($vars)
 	{
-		return '<div class="' . ($vars['menu']->editmode ? 'row-fluid' : T3_BASE_ROW_FLUID_PREFIX) . '">';
+		return '<div class="' . ($vars['menu']->editmode ? 'row-fluid' : CANVAS_BASE_ROW_FLUID_PREFIX) . '">';
 	}
 
 	static function endrow($vars)
@@ -99,9 +99,9 @@ class T3MenuMegamenuTpl
 	static function begincol($vars)
 	{
 		$setting = isset($vars['setting']) ? $vars['setting'] : array();
-		$width   = isset($setting['width']) ? $setting['width'] : T3_BASE_MAX_GRID;
+		$width   = isset($setting['width']) ? $setting['width'] : CANVAS_BASE_MAX_GRID;
 		$data    = "data-width=\"$width\"";
-		$cls     = ($vars['menu']->editmode ? 'span' : T3_BASE_NONRSP_WIDTH_PREFIX) . $width;
+		$cls     = ($vars['menu']->editmode ? 'span' : CANVAS_BASE_NONRSP_WIDTH_PREFIX) . $width;
 
 		if (isset($setting['position'])) {
 			$cls  .= " mega-col-module";
@@ -116,10 +116,6 @@ class T3MenuMegamenuTpl
 		if (isset($setting['hidewcol'])) {
 			$cls  .= " hidden-collapse";
 			$data .= " data-hidewcol=\"1\"";
-		}
-		if (isset($setting['groupstyle']) && $setting['groupstyle']) {
-			$cls  .= " " . $setting['groupstyle'];
-			$data .= " data-groupstyle=\"{$setting['groupstyle']}\"";
 		}
 
 		return "<div class=\"$cls\" $data><div class=\"mega-inner\">";
@@ -188,7 +184,7 @@ class T3MenuMegamenuTpl
 		if ($item->dropdown && $item->level < 2) {
 			$vars['class']    .= ' dropdown-toggle';
 			$vars['dropdown'] .= ' data-toggle="dropdown"'; // Note: data-target for JomSocial old bootstrap lib
-			$vars['caret']     = '<em class="caret"></em>';
+			$vars['caret']     = '<b class="caret"></b>';
 		}
 
 		if($item->group){
@@ -204,7 +200,7 @@ class T3MenuMegamenuTpl
 		}
 
 		if (isset($setting['xicon']) && $setting['xicon']) {
-			$vars['icon'] = '<span class="' . $setting['xicon'] . '"></span>';
+			$vars['icon'] = '<i class="' . $setting['xicon'] . '"></i>';
 		}
 		if (isset($setting['caption']) && $setting['caption']) {
 			$vars['caption'] = '<span class="mega-caption">' . $setting['caption'] . '</span>';
@@ -309,10 +305,10 @@ class T3MenuMegamenuTpl
 	}
 
 	static function _($tmpl, $vars) {
-		if (function_exists($func = 'T3MenuMegamenuTpl_'.$tmpl)) {
+		if (function_exists($func = 'CANVASMenuMegamenuTpl_'.$tmpl)) {
 			return $func($vars) . "\n";
-		} else if (method_exists('T3MenuMegamenuTpl', $tmpl)) {
-			return T3MenuMegamenuTpl::$tmpl($vars) . "\n";
+		} else if (method_exists('CANVASMenuMegamenuTpl', $tmpl)) {
+			return CANVASMenuMegamenuTpl::$tmpl($vars) . "\n";
 		} else {
 			return "$tmpl\n";
 		}

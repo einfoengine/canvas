@@ -1,24 +1,24 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
 
 /* -------------------------------------------------*/
-/* T3 ADMIN LAYOUT STYLE
+/* CANVAS ADMIN LAYOUT STYLE
 ---------------------------------------------------*/
 
 /* Layout Config Panel
 ---------------------------------------------------*/
-.t3-admin-layout-preview {
+.canvas-admin-layout-preview {
   width: 720px;
   float: left;
   box-sizing: border-box;
@@ -28,14 +28,14 @@
   clear: both;
 }
 
-.t3-admin-layout-container {
+.canvas-admin-layout-container {
   position: relative;
 }
 
 
 /* Reset
 --------*/
-.t3-admin-layout-preview .navbar-inner {
+.canvas-admin-layout-preview .navbar-inner {
   min-height: none;
   padding-left: 0;
   padding-right: 0;
@@ -53,28 +53,28 @@
 
 /* Layout Edit Tabs
 --------------------*/
-.t3-admin-layout-row-device {
+.canvas-admin-layout-row-device {
   padding: 15px 20px;
   background-color: #fff;
   border-bottom: 1px dotted #ccc;
 }
 
-.t3-admin-layout-row-mode .t3-admin-layout-reset-all {
+.canvas-admin-layout-row-mode .canvas-admin-layout-reset-all {
   margin-top: -40px;
   margin-right: 20px;
 }
 
-.t3-admin-layout-row-device .t3-admin-layout-reset-position,
-.t3-admin-layout-row-device .t3-admin-layout-reset-device {
+.canvas-admin-layout-row-device .canvas-admin-layout-reset-position,
+.canvas-admin-layout-row-device .canvas-admin-layout-reset-device {
 }
 
-.t3-admin-layout-devices {
+.canvas-admin-layout-devices {
   display: inline-block;
 }
 
 
 /* Fullscreen Toggle */
-#layout_params .t3-admin-tog-fullscreen {
+#layout_params .canvas-admin-tog-fullscreen {
   position: absolute;
   right: 30px;
   top: -50px;
@@ -84,23 +84,25 @@
 
 /* Layout Panel Styling
 ---------------------------------------------------*/
-.t3-admin-layout-section {
+.canvas-admin-layout-section {
   margin: 0 0 12px;
   padding: 12px 12px 0;
   border-radius: 0;
   background: #f2f2f2;
 }
 
-.t3-admin-layout-section .t3-admin-layout-section {
-  padding: 0;
+.canvas-admin-layout-section .canvas-admin-layout-section {
+/*  padding: 0;
   margin: 0;
+*/
+  background:#eee;
 }
 
-.t3-admin-layout-section .container {
+.canvas-admin-layout-section .container {
   text-align: left;
 }
 
-.t3-admin-layout-pos {
+.canvas-admin-layout-pos {
   background: #fff;
   border: 1px solid #ddd;
   margin-bottom: 12px;
@@ -116,14 +118,14 @@
   -o-box-sizing: border-box;
 }
 
-.t3-admin-layout-pos h3 {
+.canvas-admin-layout-pos h3 {
   margin: 0;
   line-height: normal;
   font-size: 12px;
   white-space: nowrap;
 }
 
-.t3-admin-layout-pos:hover {
+.canvas-admin-layout-pos:hover {
   border-color: #07b;
 }
 
@@ -131,17 +133,17 @@
 
 /* Spotlight Group 
 -------------------*/
-.t3-admin-layout-splgroup {
+.canvas-admin-layout-splgroup {
   background: url(../images/grouper.gif) no-repeat left bottom, url(../images/grouper.gif) no-repeat right bottom;
   margin-bottom: 12px;
 }
 
-.t3-admin-layout-mode-r .t3-admin-layout-splgroup {
+.canvas-admin-layout-mode-r .canvas-admin-layout-splgroup {
   padding-bottom: 26px !important;
   position: relative;
 }
 
-.t3-admin-layout-mode-r .t3-admin-layout-splgroup::before {
+.canvas-admin-layout-mode-r .canvas-admin-layout-splgroup::before {
   content: "Spotlight";
   text-transform: UPPERCASE;
   font-size: 10px;
@@ -163,7 +165,7 @@
 /* User Interation Elements
 --------------------------*/
 /* Edit Button ---*/
-.t3-admin-layout-edit {
+.canvas-admin-layout-edit {
   cursor: pointer;
   position: absolute;
   right: 0;
@@ -180,13 +182,13 @@
   display: none;
 }
 
-.t3-admin-layout-mode-m .t3-admin-layout-pos:hover .t3-admin-layout-edit {
+.canvas-admin-layout-mode-m .canvas-admin-layout-pos:hover .canvas-admin-layout-edit {
   display: block;
 }
 
 
 /* Visibility Button ---*/
-.t3-admin-layout-vis {
+.canvas-admin-layout-vis {
   cursor: pointer;
   position: absolute;
   right: 0;
@@ -203,17 +205,17 @@
   display: none;
 }
 
-.t3-admin-layout-mode-r .t3-admin-layout-pos .t3-admin-layout-vis {
+.canvas-admin-layout-mode-r .canvas-admin-layout-pos .canvas-admin-layout-vis {
   display: block;
 }
 
-.t3-admin-layout-unit {
+.canvas-admin-layout-unit {
   position: relative;
 }
 
 
 /* Resize 2 ---*/
-.t3-admin-layout-rzhandle {
+.canvas-admin-layout-rzhandle {
   display: block;
   cursor: ew-resize;
   width: 7px;
@@ -227,42 +229,42 @@
   opacity: .15;
 }
 
-.t3-admin-layout-rzhandle:hover {
+.canvas-admin-layout-rzhandle:hover {
   opacity: .8;
 }
 
-.t3-admin-layout-mode-m .t3-admin-layout-rzhandle {
+.canvas-admin-layout-mode-m .canvas-admin-layout-rzhandle {
   display: none;
 }
 
 /* Resizer position for different devices */
-.wide .t3-admin-layout-rzhandle {
+.wide .canvas-admin-layout-rzhandle {
   right: -11px;
 }
 
-.normal .t3-admin-layout-rzhandle {
+.normal .canvas-admin-layout-rzhandle {
   right: -9px;
 }
 
-.xtablet .t3-admin-layout-rzhandle,
-.tablet .t3-admin-layout-rzhandle,
-.mobile .t3-admin-layout-rzhandle {
+.xtablet .canvas-admin-layout-rzhandle,
+.tablet .canvas-admin-layout-rzhandle,
+.mobile .canvas-admin-layout-rzhandle {
   right: -8px;
 }
 
 
 /* Column Chooser ---*/
-.t3-admin-layout-ncolumns {
+.canvas-admin-layout-ncolumns {
   display: none;
   text-align: center;
   position: relative;
 }
 
-.t3-admin-layout-mode-m .t3-admin-layout-ncolumns {
+.canvas-admin-layout-mode-m .canvas-admin-layout-ncolumns {
   display: block;
 }
 
-.t3-admin-layout-ncolumns .btn {
+.canvas-admin-layout-ncolumns .btn {
   font-size: 12px;
   background: #eee;
   border-color: #ccc;
@@ -270,8 +272,8 @@
   min-width: 0 !important;
 }
 
-.t3-admin-layout-ncolumns .btn.active,
-.t3-admin-layout-ncolumns .btn:active {
+.canvas-admin-layout-ncolumns .btn.active,
+.canvas-admin-layout-ncolumns .btn:active {
   background: #ccc;
   border-color: #aaa;
 }
@@ -286,19 +288,19 @@
 
 
 /* Layout Clone ---*/
-#t3-admin-layout-clone-btns {
+#canvas-admin-layout-clone-btns {
   display: inline-block;
   margin-left: 10px;
   vertical-align: top;
 }
 
-#t3-admin-layout-clone-btns .btn {
+#canvas-admin-layout-clone-btns .btn {
   margin-left: 5px;
 }
 
 
 /* Layout Clone Modal */
-#t3-admin-layout-clone-dlg {
+#canvas-admin-layout-clone-dlg {
   font: 14px/20px sans-serif;
   color: #666;
   width: 450px;
@@ -307,7 +309,7 @@
   border-radius: 3px;
 }
 
-#t3-admin-layout-clone-dlg.fade.in {
+#canvas-admin-layout-clone-dlg.fade.in {
   top: 50%;
 }
 
@@ -340,8 +342,8 @@
   box-flex: 1;
 }
 
-.t3-admin-layout-preview #t3-content,
-.t3-admin-layout-preview #t3-mainbody .t3-sidebar {
+.canvas-admin-layout-preview #canvas-content,
+.canvas-admin-layout-preview #canvas-mainbody .canvas-sidebar {
   display: -webkit-box;
   display: -moz-box;
   display: -o-box;
@@ -354,7 +356,7 @@
 }
 
 /* Logo ---*/
-.t3-admin-layout-preview .logo {
+.canvas-admin-layout-preview .logo {
   width: auto;
   max-width: none;
   margin-bottom: 12px;
@@ -362,16 +364,16 @@
   font-size: 24px;
 }
 
-.t3-admin-layout-preview .logo a {
+.canvas-admin-layout-preview .logo a {
   color: #333;
 }
 
-.t3-admin-layout-preview .logo-image span {
+.canvas-admin-layout-preview .logo-image span {
   display: none;
 }
 
 /* Off-Canvas --*/
-.t3-off-canvas {
+.canvas-off-canvas {
   position: absolute;
   right: -240px;
   top: 0;
@@ -380,10 +382,10 @@
   padding: 0 12px;
 }
 
-.t3-off-canvas-header-title {
+.canvas-off-canvas-header-title {
 }
 
-.t3-off-canvas-header-title:before {
+.canvas-off-canvas-header-title:before {
   content: "Off-Canvas";
   display: block;
   font-size: 12px;
@@ -391,17 +393,17 @@
 
 .navbar-toggle,
 .off-canvas-toggle,
-.t3-off-canvas-header button.close {
+.canvas-off-canvas-header button.close {
   display: none;
 }
 
 
 /* Copyright --*/
-.t3-admin-layout-preview .t3-footer .copyright {
+.canvas-admin-layout-preview .canvas-footer .copyright {
   margin-bottom: 20px;
 }
 
-.t3-admin-layout-preview  .t3-footer .copyright small {
+.canvas-admin-layout-preview  .canvas-footer .copyright small {
   font-size: 12px;
   color: #999;
 }
@@ -432,7 +434,7 @@
   color: #c00;
 }
 
-.pos-off .t3-admin-layout-edit {
+.pos-off .canvas-admin-layout-edit {
   display: block;
 }
 
@@ -445,7 +447,7 @@
   border: 1px solid #07b;
 }
 
-.t3-admin-layout-mode-m .pos-active .t3-admin-layout-edit {
+.canvas-admin-layout-mode-m .pos-active .canvas-admin-layout-edit {
   display: block;
 }
 
@@ -454,11 +456,11 @@
 }
 
 /* Pos Hidden ---*/
-.t3-admin-layout-hiddenpos {
+.canvas-admin-layout-hiddenpos {
   display: none;
 }
 
-.t3-admin-layout-hiddenpos.has-pos {
+.canvas-admin-layout-hiddenpos.has-pos {
   display: block;
   padding: 0 12px 0 42px;
   margin-bottom: 10px;
@@ -466,7 +468,7 @@
   position: relative;
 }
 
-.t3-admin-layout-hiddenpos::before {
+.canvas-admin-layout-hiddenpos::before {
   content: "\f070";
   font-family: "FontAwesome";
   font-size: 16px;
@@ -503,12 +505,38 @@
   border: 1px solid #07b;
 }
 
-.t3-hide {
+.canvas-hide {
   display: none !important;
 }
 
-.t3-admin-layout-preview .hidden {
+.canvas-admin-layout-preview .hidden {
   opacity: 0.5;
   display: block;
   visibility: visible;
+}
+
+.canvas-admin-layout-section{
+	position: relative;
+}
+.canvas-admin-layout-section:hover > .canvas-admin-block-edit{
+	display:block;
+}
+.canvas-admin-block-edit{
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	border: 1px solid #ddd;
+	border-top: none;
+	border-right: none;
+	color: #666;
+	background: #eee;
+	display: none;
+}
+.displayblock{
+	display:block !important;
 }

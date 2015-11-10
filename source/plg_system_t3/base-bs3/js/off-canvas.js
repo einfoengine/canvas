@@ -1,26 +1,16 @@
 /**
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework
  *------------------------------------------------------------------------------
  */
-jQuery (document).ready(function($){
-    function getAndroidVersion(ua) {
-        var ua = ua || navigator.userAgent;
-        var match = ua.match(/Android\s([0-9\.]*)/);
-        return match ? match[1] : false;
-    };
 
-    if (parseInt(getAndroidVersion()) == 4) {
-        $('#t3-mainnav').addClass('t3-mainnav-android');
-    }
-    var JA_isLoading = false;
+jQuery (document).ready(function($){
     // fix for old ie
     if (/MSIE\s([\d.]+)/.test(navigator.userAgent) ? new Number(RegExp.$1) < 10 : false) {
         $('html').addClass ('old-ie');
@@ -29,10 +19,10 @@ jQuery (document).ready(function($){
     }
 
     var $wrapper = $('body'),
-        $inner = $('.t3-wrapper'),
+        $inner = $('.canvas-wrapper'),
         $toggles = $('.off-canvas-toggle'),
-        $offcanvas = $('.t3-off-canvas'),
-        $close = $('.t3-off-canvas .close'),
+        $offcanvas = $('.canvas-off-canvas'),
+        $close = $('.canvas-off-canvas .close'),
         $btn=null,
         $nav=null,
         direction = 'left',
@@ -69,8 +59,7 @@ jQuery (document).ready(function($){
 
         $btn = $(this);
         $nav = $($btn.data('nav'));
-        if (!$fixed) $fixed = $inner.find('*').filter (function() {return $(this).css("position") === 'fixed';});
-        else $fixed = $fixed.filter (function() {return $(this).css("position") === 'fixed';}).add($inner.find('.affix'));
+        $fixed = $inner.find('*').filter (function() {return $(this).css("position") === 'fixed';});
 
         $nav.addClass ('off-canvas-current');
 
@@ -95,7 +84,7 @@ jQuery (document).ready(function($){
         // disable scroll on page
         var scrollTop = ($('html').scrollTop()) ? $('html').scrollTop() : $('body').scrollTop(); // Works for Chrome, Firefox, IE...
         $('html').addClass('noscroll').css('top',-scrollTop).data('top', scrollTop);
-        $('.t3-off-canvas').css('top',scrollTop);
+        $('.canvas-off-canvas').css('top',scrollTop);
 
         // make the fixed element become absolute
         $fixed.each (function () {
@@ -110,7 +99,7 @@ jQuery (document).ready(function($){
 
         $wrapper.scrollTop (scrollTop);
         // update effect class
-        $wrapper[0].className = $.trim($wrapper[0].className.replace (/\s*off\-canvas\-effect\-\d+\s*/g, ' ')) +
+        $wrapper[0].className = $wrapper[0].className.replace (/\s*off\-canvas\-effect\-\d+\s*/g, ' ').trim() +
             ' ' + $btn.data('effect') + ' ' + 'off-canvas-' + direction;
 
         setTimeout(oc_show, 50);
@@ -118,10 +107,6 @@ jQuery (document).ready(function($){
         return false;
     });
     var oc_show = function () {
-        if (JA_isLoading == true) {
-            return;
-        }
-        JA_isLoading=true;
         $wrapper.addClass ('off-canvas-open');
         $inner.on ('click', oc_hide);
         $close.on ('click', oc_hide);
@@ -130,22 +115,17 @@ jQuery (document).ready(function($){
         // fix for old ie
         if ($.browser.msie && $.browser.version < 10) {
             var p1 = {}, p2 = {};
-            p1['padding-'+direction] = $('.t3-off-canvas').width();
+            p1['padding-'+direction] = $('.canvas-off-canvas').width();
             p2[direction] = 0;
             $inner.animate (p1);
             $nav.animate (p2);
         }
-        setTimeout (function (){JA_isLoading=false;}, 200);
     };
 
     var oc_hide = function () {
-        if (JA_isLoading == true) {
-            return;
-        }
-        JA_isLoading=true;
-
+        
         //remove events
-        $inner.off ('click', oc_hide);
+        $inner.off ('tab', oc_hide);
         $close.off ('click', oc_hide);
         $offcanvas.off ('click', stopBubble);
 
@@ -171,29 +151,20 @@ jQuery (document).ready(function($){
               }
               $(window).data('scroll-events', null);
             }
-            JA_isLoading=false;
-        }, 700);
+        }, 550);
 
         // fix for old ie
         if ($('html').hasClass ('old-ie')) {
             var p1 = {}, p2 = {};
             p1['padding-'+direction] = 0;
-            p2[direction] = -$('.t3-off-canvas').width();
+            p2[direction] = -$('.canvas-off-canvas').width();
             $inner.animate (p1);
             $nav.animate (p2);
         }
-
     };
 
     var stopBubble = function (e) {
         e.stopPropagation();
         return true;
     }
-
-    // preload fixed items
-    $(window).load(function() {
-      setTimeout(function(){
-        $fixed = $inner.find('*').filter (function() {return $(this).css("position") === 'fixed';});
-      }, 100);
-    });
 })

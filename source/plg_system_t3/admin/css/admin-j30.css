@@ -1,33 +1,32 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
 
 /* -------------------------------------------------*/
-/* T3 ADMIN STYLE
+/* CANVAS ADMIN STYLE
 ----------------------------------------------------*/
-.t3-admin {
+.canvas-admin {
 	margin-bottom: 70px;
 }
 
 /* Menu Assignment
 ----------------------------------------------------*/
-.t3-admin-assignment .thumbnail {}
+.canvas-admin-assignment .thumbnail {}
 
 
 /* Responsive
 ----------------------------------------------------*/
 @media (max-width: 767px) {
-  .t3-admin-form {
+  .canvas-admin-form {
     margin-left: -20px;
     margin-right: -20px;
   }
@@ -36,7 +35,7 @@
 
 
 /* -------------------------------------------------*/
-/* T3 TEMPLATE MANAGER
+/* CANVAS TEMPLATE MANAGER
 ----------------------------------------------------*/
 #template-manager {
 	padding: 20px;
@@ -63,7 +62,7 @@
 /* Chosen
 ----------------------------------------------------*/
 .chzn-drop:after {
-	content: "t3";
+	content: "canvas";
 	position: absolute;
 	bottom: -50px;
 	visibility: hidden;

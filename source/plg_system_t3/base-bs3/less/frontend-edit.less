@@ -1,13 +1,12 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -17,10 +16,10 @@
 // Bootstrap mixins
 @import "../bootstrap/less/mixins.less";
 
-// T3 Base variables
+// CANVAS Base variables
 @import "variables.less";
 
-// T3 Base mixins
+// CANVAS Base mixins
 @import "mixins.less";
 
 
@@ -58,7 +57,7 @@
   }
 
   // Hiding useless elements
-  .t3-admin-form-legend {
+  .canvas-admin-form-legend {
     display: none;
   }
 
@@ -78,77 +77,6 @@
 
 }
 
-
-//
-// MODULES OPTIONS FORM
-// ---------------------------------------------------------
-.com_config #modules-form {
-  .input-append,
-  .input-prepend {
-    .add-on {
-      width: 35px;
-    }
-
-    input {
-      display: inline-block;
-    }
-
-    .btn {
-      border: 1px solid @btn-default-border;
-    }
-  }
-
-  // Accordion group
-  // ---------------
-  .accordion-group {
-    margin-bottom: 20px;
-
-    .accordion-heading {
-      .accordion-toggle {
-        border: 1px solid #ddd;
-        border-radius: 5px 5px 0 0;
-        color: #428bca;
-        display: block;
-        padding: 10px;
-        outline: none;
-
-        &.collapsed {
-          border-radius: 5px;
-          color: #666;
-        }
-      }
-    }
-
-    .accordion-body {
-      border: 1px solid #ddd;
-      border-top: 0;
-      border-radius: 0 0 5px 5px;
-      padding-top: 20px;
-
-      .nav-tabs {
-        border-bottom: 0;
-      }
-    }
-
-  }
-
-  // Fix for K2 module
-  // -----------------
-  .radio input[type="radio"] {
-    margin-left: 0;
-    position: relative;
-  }
-
-  .radio label {
-    padding-left: 5px;
-    padding-right: 20px;
-  }
-}
-
-.controls select {
-  vertical-align: middle;
-  width: 220px;
-}
 
 //
 // EDIT & SUBMIT ARTICLE FORM
@@ -200,7 +128,7 @@
 // -----------------------
 .edit {
   .nav-tabs {
-    margin-bottom: @t3-global-margin;
+    margin-bottom: @canvas-global-margin;
   }
   .tab-pane {
     .clearfix();
@@ -354,47 +282,20 @@
 }
 
 
-// Insert Article
-// --------------
-.window.view-articles {
-  .filter {
-    overflow: visible;
-
-    .btn-toolbar {
-      .icon-remove,
-      .icon-search {
-        margin-right: 5px;
-      }
-    }
-  }
-
-  .filters {
-    float: none !important;
-
-    .chzn-container {
-      display: inline-block;
-    }
-
-    .chzn-drop input {
-      float: none;
-    }
-  }
-}
-
-
 //
-// Special Radio Styles for T3
+// Special Radio Styles for CANVAS
 // ------------------------------
-.t3onoff {
-  border: 1px solid #aaa;
-  border-radius: 0;
-  display: block;
+.canvasonoff {
+
+  width: 90px;
   height: 30px;
+  white-space: nowrap;
   overflow: hidden;
+  display: block;
   padding: 0;
   position: relative;
-  white-space: nowrap;
-  width: 90px;
+  border: 1px solid #aaa;
+  border-radius: 0;
 
   input[type=radio] {
     display: none;
@@ -422,6 +323,7 @@
     position: absolute;
     top: 0;
     border-radius: 0;
+    border: 1px solid #aaa;
 
     .transition(all 250ms);
   }

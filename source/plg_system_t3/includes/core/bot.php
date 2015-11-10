@@ -1,28 +1,28 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
 // No direct access
 defined('_JEXEC') or die();
 /**
- * T3Bot class
+ * CANVASBot class
  * Auto trigger
  *
- * @package T3
+ * @package CANVAS
  */
-class T3Bot extends JObject
+class CANVASBot extends JObject
 {
-	// call before checking & loading T3
+	// call before checking & loading CANVAS
 	public static function preload () {
 		// check if menu is alter, then turn a flag to reupdate megamenu configuration
 		$input = JFactory::getApplication()->input;
@@ -65,11 +65,11 @@ class T3Bot extends JObject
 		}
 	}
 
-	// call before call T3::init
+	// call before call CANVAS::init
 	public static function beforeInit () {
 	}
 
-	// call after call T3::init
+	// call after call CANVAS::init
 	public static function afterInit () {
 		
 		$app       = JFactory::getApplication();
@@ -79,14 +79,14 @@ class T3Bot extends JObject
 		if (!$app->isAdmin()) {
 			// check if need update megamenu configuration
 			if ($tplparams->get ('mm_config_needupdate')) {
-				T3::import('menu/megamenu');
-				T3::import('admin/megamenu');
+				CANVAS::import('menu/megamenu');
+				CANVAS::import('admin/megamenu');
 
 				$currentconfig = @json_decode($tplparams->get ('mm_config', ''), true);
 				if (!is_array($currentconfig)){
 					$currentconfig = array();
 				} else {
-					$menuassoc = T3AdminMegamenu::menus();
+					$menuassoc = CANVASAdminMegamenu::menus();
 					$menulangs = array();
 					$menutypes = array();
 
@@ -120,7 +120,7 @@ class T3Bot extends JObject
 
 					$mmconfig['language'] = $menulangs[$menutype];
 					
-					$menu = new T3MenuMegamenu ($menutype, $mmconfig);
+					$menu = new CANVASMenuMegamenu ($menutype, $mmconfig);
 
 					$children = $menu->get ('children');
 
@@ -247,7 +247,7 @@ class T3Bot extends JObject
 				$template->params = $params;
 
 				//update the cache
-				T3::setTemplate(T3_TEMPLATE, $params);
+				CANVAS::setTemplate(CANVAS_TEMPLATE, $params);
 
 				//get all other styles that have the same template
 				$db = JFactory::getDBO();
@@ -255,7 +255,7 @@ class T3Bot extends JObject
 				$query
 					->select('*')
 					->from('#__template_styles')
-					->where('template=' . $db->quote(T3_TEMPLATE))
+					->where('template=' . $db->quote(CANVAS_TEMPLATE))
 					->where('client_id=0');
 
 				$db->setQuery($query);
@@ -292,7 +292,7 @@ class T3Bot extends JObject
 		jimport('joomla.filesystem.file');
 
 		// load add-ons setting
-		$path = T3_TEMPLATE_PATH . '/less/extras';
+		$path = CANVAS_TEMPLATE_PATH . '/less/extras';
 		if (!is_dir ($path)) return ;
 
 		$files = JFolder::files($path, '.less');
@@ -307,22 +307,22 @@ class T3Bot extends JObject
 		if (count($extras)) {
 			
 			//load languages
-			if(!defined('T3_TEMPLATE')){
-				JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
+			if(!defined('CANVAS_TEMPLATE')){
+				JFactory::getLanguage()->load(CANVAS_PLUGIN, JPATH_ADMINISTRATOR);
 			}
 
 			$_xml =
 				'<?xml version="1.0"?>
 				<form>
 					<fields name="params">
-						<fieldset name="addon_params" label="T3_ADDON_LABEL" description="T3_ADDON_DESC">
-					    <field type="t3depend" name="t3_addon_theme_extra" function="@legend" label="T3_ADDON_THEME_EXTRAS_LABEL" description="T3_ADDON_THEME_EXTRAS_DESC" />
+						<fieldset name="addon_params" label="CANVAS_ADDON_LABEL" description="CANVAS_ADDON_DESC">
+					    <field type="canvasdepend" function="@legend" label="CANVAS_ADDON_THEME_EXTRAS_LABEL" description="CANVAS_ADDON_THEME_EXTRAS_DESC" />
 				';
 							foreach ($extras as $extra) {
 								$_xml .= '
-							<field name="theme_extras_'.$extra.'" global="1" type="menuitem" multiple="true" default="" label="'.$extra.'" description="'.$extra.'" published="1" class="t3-extra-setting">
-									<option value="-1">T3_ADDON_THEME_EXTRAS_ALL</option>
-									<option value="0">T3_ADDON_THEME_EXTRAS_NONE</option>
+							<field name="theme_extras_'.$extra.'" global="1" type="menuitem" multiple="true" default="" label="'.$extra.'" description="'.$extra.'" published="true" class="canvas-extra-setting">
+									<option value="-1">CANVAS_ADDON_THEME_EXTRAS_ALL</option>
+									<option value="0">CANVAS_ADDON_THEME_EXTRAS_NONE</option>
 							</field>';
 							}
 
@@ -361,16 +361,16 @@ class T3Bot extends JObject
 				if ($form->getName() == 'com_categories.categorycom_content'){
 					
 					//load languages
-					if(!defined('T3_TEMPLATE')){
-						JFactory::getLanguage()->load(T3_PLUGIN, JPATH_ADMINISTRATOR);
+					if(!defined('CANVAS_TEMPLATE')){
+						JFactory::getLanguage()->load(CANVAS_PLUGIN, JPATH_ADMINISTRATOR);
 					}
 
 					$_xml =
 						'<?xml version="1.0"?>
 						<form>
 							<fields name="params">
-								<fieldset name="t3_extrafields_params" label="T3_EXTRA_FIELDS_GROUP_LABEL" description="T3_EXTRA_FIELDS_GROUP_DESC">
-									<field name="t3_extrafields" type="list" default="" show_none="true" label="T3_EXTRA_FIELDS_LABEL" description="T3_EXTRA_FIELDS_DESC">
+								<fieldset name="canvas_extrafields_params" label="CANVAS_EXTRA_FIELDS_GROUP_LABEL" description="CANVAS_EXTRA_FIELDS_GROUP_DESC">
+									<field name="canvas_extrafields" type="list" default="" show_none="true" label="CANVAS_EXTRA_FIELDS_LABEL" description="CANVAS_EXTRA_FIELDS_DESC">
 										<option value="">JNONE</option>';
 									
 									foreach ($extras as $extra) {
@@ -412,10 +412,10 @@ class T3Bot extends JObject
 						}
 
 						if($params instanceof JRegistry){
-							$extrafile = $path . '/' . $params->get('t3_extrafields') . '.xml';
+							$extrafile = $path . '/' . $params->get('canvas_extrafields') . '.xml';
 							if(is_file($extrafile)){
 								JForm::addFormPath($path);
-								$form->loadFile($params->get('t3_extrafields'), false);
+								$form->loadFile($params->get('canvas_extrafields'), false);
 							}
 						}
 					}

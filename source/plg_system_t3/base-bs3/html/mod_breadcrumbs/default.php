@@ -3,7 +3,7 @@
  * @package     Joomla.Site
  * @subpackage  mod_breadcrumbs
  *
- * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -19,7 +19,7 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 	if ($params->get('showHere', 1)) {
 		echo '<li class="active">' . JText::_('MOD_BREADCRUMBS_HERE') . '&#160;</li>';
 	} else {
-		echo '<li class="active"><span class="hasTooltip"><i class="fa fa-map-marker" data-toggle="tooltip" title="' . JText::_('MOD_BREADCRUMBS_HERE') . '"></i></span></li>';
+		echo '<li class="active"><span class="hasTooltip" data-original-title="' . JText::_('MOD_BREADCRUMBS_HERE') . '"><i class="fa fa-map-marker" data-toggle="tooltip"></i></span></li>';
 	}
 
 	// Get rid of duplicated entries on trail including home page when using multilanguage
@@ -41,22 +41,22 @@ if (version_compare(JVERSION, '3.0', 'ge')) {
 	
 		if ($key != $last_item_key) {
 			// Render all but last item - along with separator
-			echo '<li>';
+			echo '<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">';
 			if (!empty($item->link)) {
-				echo '<a href="' . $item->link . '" class="pathway">' . $item->name . '</a>';
+				echo '<a href="' . $item->link . '" class="pathway" itemprop="url"><span itemprop="title">' . $item->name . '</span></a>';
 			} else {
-				echo '<span>' . $item->name . '</span>';
+				echo '<span itemprop="title">' . $item->name . '</span>';
 			}
 
 			if (($key != $penult_item_key) || $show_last) {
-				echo '<span class="divider">' . $separator . '</span>';
+				//echo '<span class="divider">' . $separator . '</span>';
 			}
 
 			echo '</li>';
 		} elseif ($show_last) {
 			// Render last item if reqd.
-			echo '<li>';
-			echo '<span>' . $item->name . '</span>';
+			echo '<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">';
+			echo '<span itemprop="title">' . $item->name . '</span>';
 			echo '</li>';
 		}
 	endforeach; ?>

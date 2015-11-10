@@ -1,14 +1,13 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -18,14 +17,14 @@ defined('_JEXEC') or die();
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 
-T3::import('core/path');
+CANVAS::import('core/path');
 
 /**
- * T3Minify class provides extended template tools used for T3 framework
+ * CANVASMinify class provides extended template tools used for CANVAS framework
  *
- * @package T3
+ * @package CANVAS
  */
-class T3Minify
+class CANVASMinify
 {
 	/**
 	 * Known Valid CSS Extension Types
@@ -63,7 +62,7 @@ class T3Minify
 	 * @return string
 	 */
 	public static function minifyCss( $css ) {
-		//T3::import('minify/csscompressor');
+		//CANVAS::import('minify/csscompressor');
 
 		$css = preg_replace( '#\s+#', ' ', $css );
 		$css = preg_replace( '#/\*.*?\*/#s', '', $css );
@@ -84,7 +83,7 @@ class T3Minify
 	 */
 	public static function minifyJs( $js ){
 
-		T3::import('minify/' . self::$jstool);
+		CANVAS::import('minify/' . self::$jstool);
 		return call_user_func_array(array(self::$jstools[self::$jstool], 'minify'), array($js));
 	}
 
@@ -204,8 +203,8 @@ class T3Minify
 	 */
 	public static function optimizecss($tpl)
 	{
-		$outputpath = JPATH_ROOT . '/' . $tpl->getParam('t3-assets', 't3-assets') . '/css';
-		$outputurl = JURI::root(true) . '/' . $tpl->getParam('t3-assets', 't3-assets') . '/css';
+		$outputpath = JPATH_ROOT . '/' . $tpl->getParam('canvas-assets', 'canvas-assets') . '/css';
+		$outputurl = JURI::root(true) . '/' . $tpl->getParam('canvas-assets', 'canvas-assets') . '/css';
 		
 		if (!JFile::exists($outputpath)){
 			JFolder::create($outputpath);
@@ -350,7 +349,7 @@ class T3Minify
 						$cssdata[] = "================================================================================*/";
 
 						$cssmin = self::minifyCss($fsheet['data']);
-						$cssmin = T3Path::updateUrl($cssmin, T3Path::relativePath($outputurl, dirname($furl)));
+						$cssmin = CANVASPath::updateUrl($cssmin, CANVASPath::relativePath($outputurl, dirname($furl)));
 
 						$cssdata[] = $cssmin;
 					}
@@ -382,8 +381,8 @@ class T3Minify
 	 * @return bool
 	 */
 	public static function optimizejs($tpl){
-		$outputpath = JPATH_ROOT . '/' . $tpl->getParam('t3-assets', 't3-assets') . '/js';
-		$outputurl = JURI::root(true) . '/' . $tpl->getParam('t3-assets', 't3-assets') . '/js';
+		$outputpath = JPATH_ROOT . '/' . $tpl->getParam('canvas-assets', 'canvas-assets') . '/js';
+		$outputurl = JURI::root(true) . '/' . $tpl->getParam('canvas-assets', 'canvas-assets') . '/js';
 
 		if (!JFile::exists($outputpath)){
 			JFolder::create($outputpath);
@@ -487,7 +486,7 @@ class T3Minify
 						//already minify?
 						if(!preg_match('@.*\.min\.js.*@', $furl)){
 							$jsmin = self::minifyJs($fsheet['data']);
-							//$jsmin = T3Path::updateUrl($jsmin, T3Path::relativePath($outputurl, dirname($furl)));
+							//$jsmin = CANVASPath::updateUrl($jsmin, CANVASPath::relativePath($outputurl, dirname($furl)));
 						}
 
 						$jsdata[] = $jsmin;

@@ -1,38 +1,37 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
 // No direct access
 defined('_JEXEC') or die;
 
-define ('T3_PLUGIN', 'plg_system_t3');
+define ('CANVAS_PLUGIN', 'plg_system_canvas');
 
-//T3 base folder
-define ('T3_ADMIN', 't3');
-define ('T3_ADMIN_PATH', JPATH_ROOT . '/plugins/system/' . T3_ADMIN);
-define ('T3_ADMIN_URL', JURI::root(true) . '/plugins/system/' . T3_ADMIN);
-define ('T3_ADMIN_REL', 'plugins/system/' . T3_ADMIN);
+//CANVAS base folder
+define ('CANVAS_ADMIN', 'canvas');
+define ('CANVAS_ADMIN_PATH', JPATH_ROOT . '/plugins/system/' . CANVAS_ADMIN);
+define ('CANVAS_ADMIN_URL', JURI::root(true) . '/plugins/system/' . CANVAS_ADMIN);
+define ('CANVAS_ADMIN_REL', 'plugins/system/' . CANVAS_ADMIN);
 
-//T3 secondary base theme folder
-define ('T3_EX_BASE_PATH', JPATH_ROOT . '/media/t3/themes');
-define ('T3_EX_BASE_URL', JURI::root(true) . '/media/t3/themes');
-define ('T3_EX_BASE_REL', 'media/t3/themes');
+//CANVAS secondary base theme folder
+define ('CANVAS_EX_BASE_PATH', JPATH_ROOT . '/media/canvas/themes');
+define ('CANVAS_EX_BASE_URL', JURI::root(true) . '/media/canvas/themes');
+define ('CANVAS_EX_BASE_REL', 'media/canvas/themes');
 
-//T3 core base theme
-define ('T3_CORE_BASE', 'base');
-define ('T3_CORE_BASE_PATH', T3_ADMIN_PATH . '/' . T3_CORE_BASE);
-define ('T3_CORE_BASE_URL', T3_ADMIN_URL . '/' . T3_CORE_BASE);
-define ('T3_CORE_BASE_REL', T3_ADMIN_REL . '/' . T3_CORE_BASE);
+//CANVAS core base theme
+define ('CANVAS_CORE_BASE', 'base');
+define ('CANVAS_CORE_BASE_PATH', CANVAS_ADMIN_PATH . '/' . CANVAS_CORE_BASE);
+define ('CANVAS_CORE_BASE_URL', CANVAS_ADMIN_URL . '/' . CANVAS_CORE_BASE);
+define ('CANVAS_CORE_BASE_REL', CANVAS_ADMIN_REL . '/' . CANVAS_CORE_BASE);
 
-// T3 User dir
-define ('T3_LOCAL_DIR', 'local');
+// CANVAS User dir
+define ('CANVAS_LOCAL_DIR', 'local');

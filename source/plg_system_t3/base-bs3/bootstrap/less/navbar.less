@@ -48,6 +48,7 @@
 // content for the user's viewport.
 
 .navbar-collapse {
+  max-height: @navbar-collapse-max-height;
   overflow-x: visible;
   padding-right: @navbar-padding-horizontal;
   padding-left:  @navbar-padding-horizontal;
@@ -55,7 +56,7 @@
   box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
   &:extend(.clearfix all);
   -webkit-overflow-scrolling: touch;
-
+ 
   &.in {
     overflow-y: auto;
   }
@@ -86,18 +87,59 @@
     }
   }
 }
-
-.navbar-fixed-top,
-.navbar-fixed-bottom {
-  .navbar-collapse {
-    max-height: @navbar-collapse-max-height;
-
-    @media (max-device-width: @screen-xs-min) and (orientation: landscape) {
-      max-height: 200px;
-    }
-  }
+//Navber Collapse Styles
+.canvas-navbar-collapse{
+	background-color:@navbar-collapse-menu-bg;
+	position:absolute;
+	top:75px;
+	z-index:100;
+	width:100%;
+	height: 0px;
+	
+	ul > li{
+		cursor: pointer;
+		> a{
+			color:@navbar-collapse-link-color;
+			display:inline-block;
+			text-align:left;
+			width: 95%;
+			&:hover{
+				color:@navbar-collapse-link-hover-color;
+				background-color:transparent;
+			}
+		}
+	}
+	
+	span.menu-toggler{
+		display: inline-block;
+		text-align:right;
+		width:5%;
+		padding:10px;
+		i{
+			font-size:15px;
+			color:@white;
+		}
+	}
+	
+	@media (min-width: @grid-float-breakpoint) {
+		&.collapse {
+		  display: none !important;
+		}
+	}
+	ul.dropdown-menu{
+		li.mega-group,
+		li.dropdown-submenu{
+			.dropdown-menu{
+				display:none;
+			}
+			&.open{
+				.dropdown-menu{
+					display:block;
+				}
+			}
+		}
+	}
 }
-
 
 // Both navbar header and collapse
 //
@@ -172,10 +214,6 @@
     text-decoration: none;
   }
 
-  > img {
-    display: block;
-  }
-
   @media (min-width: @grid-float-breakpoint) {
     .navbar > .container &,
     .navbar > .container-fluid & {
@@ -191,29 +229,41 @@
 // JavaScript plugin.
 
 .navbar-toggle {
-  position: relative;
-  float: right;
+  position: absolute;
+  background-color:@navbar-default-toggle-bg;
   margin-right: @navbar-padding-horizontal;
   padding: 9px 10px;
   .navbar-vertical-align(34px);
-  background-color: transparent;
-  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-  border: 1px solid transparent;
+  //background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid @navbar-default-toggle-border-color;
   border-radius: @border-radius-base;
-
+  top: 20px;
+  z-index:100;
   // We remove the `outline` here, but later compensate by attaching `:hover`
   // styles to `:focus`.
   &:focus {
-    outline: 0;
+    outline: none;
+  }
+  
+  &:hover{
+	background-color:@navbar-default-toggle-hover-bg;
   }
 
   // Bars
+  .icon-bars {
+	background-color:@navbar-default-toggle-icon-bar-bg;
+	color:@navbar-default-brand-color;
+	&:hover{
+		color: @navbar-default-brand-hover-color
+	}
+  }
   .icon-bar {
     display: block;
     width: 22px;
     height: 2px;
     border-radius: 1px;
   }
+  
   .icon-bar + .icon-bar {
     margin-top: 4px;
   }
@@ -274,7 +324,23 @@
         padding-bottom: @navbar-padding-vertical;
       }
     }
+
+    &.navbar-right:last-child {
+      margin-right: -@navbar-padding-horizontal;
+    }
   }
+}
+
+
+// Component alignment
+//
+// Repurpose the pull utilities as their own navbar utilities to avoid specificity
+// issues with parents and chaining. Only do this when the navbar is uncollapsed
+// though so that navbar contents properly stack and align in mobile.
+
+@media (min-width: @grid-float-breakpoint) {
+  .navbar-left  { .pull-left(); }
+  .navbar-right { .pull-right(); }
 }
 
 
@@ -298,10 +364,6 @@
   .form-group {
     @media (max-width: @grid-float-breakpoint-max) {
       margin-bottom: 5px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
     }
   }
 
@@ -317,6 +379,11 @@
     padding-top: 0;
     padding-bottom: 0;
     .box-shadow(none);
+
+    // Outdent the form if last child to line up with content down the page
+    &.navbar-right:last-child {
+      margin-right: -@navbar-padding-horizontal;
+    }
   }
 }
 
@@ -330,8 +397,6 @@
 }
 // Menu position and menu caret support for dropups via extra dropup class
 .navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
-  margin-bottom: 0;
-  .border-top-radius(@navbar-border-radius);
   .border-bottom-radius(0);
 }
 
@@ -363,30 +428,13 @@
     float: left;
     margin-left: @navbar-padding-horizontal;
     margin-right: @navbar-padding-horizontal;
-  }
-}
 
-
-// Component alignment
-//
-// Repurpose the pull utilities as their own navbar utilities to avoid specificity
-// issues with parents and chaining. Only do this when the navbar is uncollapsed
-// though so that navbar contents properly stack and align in mobile.
-//
-// Declared after the navbar components to ensure more specificity on the margins.
-
-@media (min-width: @grid-float-breakpoint) {
-  .navbar-left  { .pull-left(); }
-  .navbar-right {
-    .pull-right();
-    margin-right: -@navbar-padding-horizontal;
-
-    ~ .navbar-right {
+    // Outdent the form if last child to line up with content down the page
+    &.navbar-right:last-child {
       margin-right: 0;
     }
   }
 }
-
 
 // Alternate navbars
 // --------------------------------------------------
@@ -508,20 +556,6 @@
     }
   }
 
-  .btn-link {
-    color: @navbar-default-link-color;
-    &:hover,
-    &:focus {
-      color: @navbar-default-link-hover-color;
-    }
-    &[disabled],
-    fieldset[disabled] & {
-      &:hover,
-      &:focus {
-        color: @navbar-default-link-disabled-color;
-      }
-    }
-  }
 }
 
 // Inverse navbar
@@ -643,18 +677,4 @@
     }
   }
 
-  .btn-link {
-    color: @navbar-inverse-link-color;
-    &:hover,
-    &:focus {
-      color: @navbar-inverse-link-hover-color;
-    }
-    &[disabled],
-    fieldset[disabled] & {
-      &:hover,
-      &:focus {
-        color: @navbar-inverse-link-disabled-color;
-      }
-    }
-  }
 }

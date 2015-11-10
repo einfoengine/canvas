@@ -32,7 +32,7 @@ class JDocumentRendererPageClass extends JDocumentRenderer
 	public function render($info, $params = array(), $content = null)
 	{
 		$input = JFactory::getApplication()->input;
-		$t3tpl = T3::getApp();
+		$canvastpl = CANVAS::getApp();
 		$pageclass = array();
 		if($input->getCmd('option', '')){
 			$pageclass[] = $input->getCmd('option', '');
@@ -67,9 +67,9 @@ class JDocumentRendererPageClass extends JDocumentRenderer
 		}
 
 		$pageclass[] = 'j'.str_replace('.', '', (number_format((float)JVERSION, 1, '.', '')));
-		$pageclass = array_unique(array_merge($pageclass, $t3tpl->getPageclass()));
+		$pageclass = array_unique(array_merge($pageclass, $canvastpl->getPageclass()));
 
-		JDispatcher::getInstance()->trigger('onT3BodyClass', array(&$pageclass));
+		JDispatcher::getInstance()->trigger('onCANVASBodyClass', array(&$pageclass));
 
 		return implode(' ', $pageclass);
 	}

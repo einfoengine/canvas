@@ -1,13 +1,12 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
@@ -20,7 +19,7 @@
 // Bootstrap mixins
 @import "../bootstrap/less/mixins.less";
 
-// T3 Base variables
+// CANVAS Base variables
 @import "variables.less";
 
 
@@ -28,7 +27,7 @@
 // BASIC STYLE FOR MEGAMENU
 // -------------------------
 
-.t3-megamenu {
+.canvas-megamenu {
 
 
   // THE MEGAMENU
@@ -37,7 +36,7 @@
   // Global Menu Inner padding
   // -------------------------
   .mega-inner {
-    padding: @T3globalPadding / 2;
+    padding: @CANVASglobalPadding / 2;
     .clearfix();
   }
 
@@ -52,7 +51,7 @@
   }
 
   .row-fluid + .row-fluid  {
-    padding-top: @T3globalPadding / 2;
+    padding-top: @CANVASglobalPadding / 2;
     border-top: 1px solid @hrBorder;
   }
 
@@ -174,17 +173,17 @@
   }
 
   // The module
-  .t3-module {
-    margin-bottom: @T3globalMargin / 2;
+  .canvas-module {
+    margin-bottom: @CANVASglobalMargin / 2;
   }
 
   // Module Title
-  .t3-module .module-title {
+  .canvas-module .module-title {
     margin-bottom: 0;
   }
 
   // Module Content
-  .t3-module .module-ct {
+  .canvas-module .module-ct {
     margin: 0;
     padding: 0;
   }
@@ -259,38 +258,6 @@
     margin-right: 5px;
   }
 
-
-  // Menu tab
-  // --------------
-  	.mega-tab > div {
-	  position: relative;
-	}
-	.mega-tab > div > ul {
-	  width: @t3-mega-dropdown-min-width;
-	}
-	
-	.mega-tab > div > ul > li {
-	  position: static;
-	}
-	
-	.mega-tab > div > ul > li > .dropdown-menu{
-	  position: absolute;
-	  top: 0;
-	  right: 0;
-	  bottom: 0;
-	  left: @t3-mega-dropdown-min-width;
-	}
-	
-	.mega-tab > div > ul > li > .mega-dropdown-menu {
-	  	border: none;
-	  	box-shadow: none;
-	}
-
-	.mega-tab > div > ul > li > .mega-dropdown-menu > div {
-	  	opacity: 1!important;
-		margin-left: 0!important;
-		transition: none!important;
-	}
   // End
 }
 
@@ -300,7 +267,7 @@
 // --------------------------------------------------------------
 // 
 @media (min-width: @navbarCollapseDesktopWidth) {
-  .t3-megamenu.animate {
+  .canvas-megamenu.animate {
     .mega {
       & > .mega-dropdown-menu {
         transition: all 400ms;

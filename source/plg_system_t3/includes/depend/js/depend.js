@@ -1,19 +1,18 @@
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
 !function($){
 
-	var T3Depend = window.T3Depend = window.T3Depend || { 	
+	var CANVASDepend = window.CANVASDepend = window.CANVASDepend || { 	
 		
 		depends: {},
 		controls: {},
@@ -135,7 +134,7 @@
 			if(this.infos[el.name] && this.infos[el.name].hide){
 				$(el).closest('.adminformlist > li, div.control-group').css('display', 'block');
 			} else {
-				$(el).closest('.controls, .t3-controls').children().removeClass('disabled');
+				$(el).closest('.controls, .canvas-controls').children().removeClass('disabled');
 			}
 		},
 		
@@ -144,7 +143,7 @@
 			if(this.infos[el.name] && this.infos[el.name].hide){
 				$(el).closest('.adminformlist > li, div.control-group').css('display', 'none');
 			} else {
-				$(el).closest('.controls, .t3-controls').children().addClass('disabled');	
+				$(el).closest('.controls, .canvas-controls').children().addClass('disabled');	
 			}
 		},
 		
@@ -178,7 +177,7 @@
 			var ajaxs = this.ajaxs;
 				
 			info = $.extend({
-				url: info.site == 'admin' ? T3Depend.adminurl : T3Depend.rooturl,
+				url: info.site == 'admin' ? CANVASDepend.adminurl : CANVASDepend.rooturl,
 				func: ''
 			}, info);
 
@@ -236,17 +235,17 @@
 			}
 
 			if(!this.progElm){
-				this.progElm = $('.t3-progress');
+				this.progElm = $('.canvas-progress');
 
 				if(!this.progElm.length){
-					this.progElm = $('<div class="t3-progress"></div>')
+					this.progElm = $('<div class="canvas-progress"></div>')
 				}
 
 				this.progElm.appendTo(document.body);
 
 				var placed = $('#toolbar-box');
 				if(!placed.length){
-					placed = $('#t3-admin-toolbar');
+					placed = $('#canvas-admin-toolbar');
 				}
 
 				if(placed.length){
@@ -258,13 +257,13 @@
 			//show it first
 			if($.support.transition){
 				form.progElm
-					.removeClass('t3-anim-slow t3-anim-finish')
+					.removeClass('canvas-anim-slow canvas-anim-finish')
 					.css('width', '');
 
 				setTimeout(function(){
-					if(!form.progElm.hasClass('t3-anim-finish')){
+					if(!form.progElm.hasClass('canvas-anim-finish')){
 						form.progElm
-							.addClass('t3-anim-slow')
+							.addClass('canvas-anim-slow')
 							.css('width', 50 + Math.floor(Math.random() * 20) + '%');
 					}
 				});
@@ -285,12 +284,12 @@
 				if($.support.transition){
 					
 					form.progElm
-						.removeClass('t3-anim-slow')
-						.addClass('t3-anim-finish')
+						.removeClass('canvas-anim-slow')
+						.addClass('canvas-anim-finish')
 						.one($.support.transition.end, function () {
 							setTimeout(function(){
-								if(form.progElm.hasClass('t3-anim-finish')){
-									$(form.progElm).removeClass('t3-anim-finish');
+								if(form.progElm.hasClass('canvas-anim-finish')){
+									$(form.progElm).removeClass('canvas-anim-finish');
 								}
 							}, 1000);
 						});
@@ -361,7 +360,7 @@
 		
 		initialize: function(optionid){
 			var vars = this.vars;
-			vars.group = 't3form';
+			vars.group = 'canvasform';
 			vars.el = document.getElementById(optionid);
 			
 			var adminlist = $('#module-sliders').find('ul.adminformlist:first');
@@ -378,8 +377,8 @@
 			this.vars.active = profile;
 			this.fillData();
 			
-			if(T3Depend && T3Depend.update){
-				T3Depend.update();
+			if(CANVASDepend && CANVASDepend.update){
+				CANVASDepend.update();
 			}
 		},
 		
@@ -404,7 +403,7 @@
 		fillData: function (){
 			var vars = this.vars,
 				els = this.serializeArray(),
-				profile = T3Depend.profiles[vars.active],
+				profile = CANVASDepend.profiles[vars.active],
 				form = this;
 				
 			if(els.length == 0 || !profile){
@@ -572,7 +571,7 @@
 	};
 
 	$(window).on('load', function() {
-		setTimeout($.proxy(T3Depend.start, T3Depend), 100);
+		setTimeout($.proxy(CANVASDepend.start, CANVASDepend), 100);
 	});
 
 }(jQuery);

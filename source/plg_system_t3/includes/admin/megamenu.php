@@ -1,33 +1,33 @@
 <?php
 /** 
  *------------------------------------------------------------------------------
- * @package       T3 Framework for Joomla!
+ * @package       CANVAS Framework for Joomla!
  *------------------------------------------------------------------------------
- * @copyright     Copyright (C) 2004-2013 JoomlArt.com. All Rights Reserved.
+ * @copyright     Copyright (C) 2004-2013 ThemezArt.com. All Rights Reserved.
  * @license       GNU General Public License version 2 or later; see LICENSE.txt
- * @authors       JoomlArt, JoomlaBamboo, (contribute to this project at github 
- *                & Google group to become co-author)
- * @Google group: https://groups.google.com/forum/#!forum/t3fw
- * @Link:         http://t3-framework.org 
+ * @authors       ThemezArt
+ *                & t3-framework.org as base version
+ * @Google group: https://groups.google.com/forum/#!forum/canvasfw
+ * @Link:         http://themezart.com/canvas-framework 
  *------------------------------------------------------------------------------
  */
 
-class T3AdminMegamenu
+class CANVASAdminMegamenu
 {
 	public static function display()
 	{
-		T3::import('menu/megamenu');
+		CANVAS::import('menu/megamenu');
 		$input = JFactory::getApplication()->input;
 		
 		//params
-		$tplparams = T3::getTplParams();
+		$tplparams = CANVAS::getTplParams();
 		
 		//menu type
-		$menutype = $input->get('t3menu', 'mainmenu');
+		$menutype = $input->get('canvasmenu', 'mainmenu');
 		
 		//accessLevel
-		$t3acl       = (int) $input->get('t3acl', 1);
-		$accessLevel = array(1, $t3acl);
+		$canvasacl       = (int) $input->get('canvasacl', 1);
+		$accessLevel = array(1, $canvasacl);
 		if(in_array(3, $accessLevel)){
 			$accessLevel[] = 2;
 		}
@@ -35,18 +35,18 @@ class T3AdminMegamenu
 		sort($accessLevel);
 		
 		//languages
-		$languages = array(trim($input->get('t3lang', '*')));
+		$languages = array(trim($input->get('canvaslang', '*')));
 		if($languages[0] != '*'){
 			$languages[] = '*';
 		}
 
 		//check config
 		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
-		$mmkey         = $menutype . (($t3acl == 1) ? '' : '-' . $t3acl);
+		$mmkey         = $menutype . (($canvasacl == 1) ? '' : '-' . $canvasacl);
 		$mmconfig      = array();
 
 		if($currentconfig){
-			for ($i = $t3acl; $i >= 1; $i--) {
+			for ($i = $canvasacl; $i >= 1; $i--) {
 				$tmmkey = $menutype . (($i == 1) ? '' : '-' . $i);
 				if(isset($currentconfig[$tmmkey])){
 					$mmconfig = $currentconfig[$tmmkey];
@@ -64,7 +64,7 @@ class T3AdminMegamenu
 		$mmconfig['language'] = $languages;
 
 		//build the menu
-		$menu   = new T3MenuMegamenu($menutype, $mmconfig);
+		$menu   = new CANVASMenuMegamenu($menutype, $mmconfig);
 		$buffer = $menu->render(true);
 		
 		// replace image path
@@ -90,7 +90,7 @@ class T3AdminMegamenu
 		$input         = JFactory::getApplication()->input;
 		$template      = $input->get('template');
 		$mmkey         = $input->get('mmkey', $input->get('menutype', 'mainmenu'));
-		$tplparams     = T3::getTplParams();
+		$tplparams     = CANVAS::getTplParams();
 		
 		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
 
@@ -135,7 +135,7 @@ class T3AdminMegamenu
 
 		die(json_encode(array(
 					'status' => $return,
-					'message' => JText::_($return ? 'T3_NAVIGATION_DELETE_SUCCESSFULLY' : 'T3_NAVIGATION_DELETE_FAILED')
+					'message' => JText::_($return ? 'CANVAS_NAVIGATION_DELETE_SUCCESSFULLY' : 'CANVAS_NAVIGATION_DELETE_FAILED')
 				)
 			)
 		);
@@ -147,19 +147,21 @@ class T3AdminMegamenu
 		$template      = $input->get('template');
 		$mmconfig      = $input->getString('config');
 		$mmkey         = $input->get('mmkey', $input->get('menutype', 'mainmenu'));
-		$tplparams     = T3::getTplParams();
+		$tplparams     = CANVAS::getTplParams();
 
 		if(get_magic_quotes_gpc() && !is_null($mmconfig)){
 			$mmconfig  = stripslashes($mmconfig);
 		} 
 		
-		$currentconfig = $tplparams instanceof JRegistry ? $tplparams->get('mm_config', '') : null;
-		$_reg = new JRegistry;
-		$_reg->loadArray(json_decode($currentconfig, true));
-		$_reg->set($mmkey, json_decode($mmconfig, true));
+		$currentconfig = $tplparams instanceof JRegistry ? json_decode($tplparams->get('mm_config', ''), true) : null;
 
-		$mm_config = $_reg->toString();
+		if (!is_array($currentconfig)) {
+			$currentconfig = array();
+		}
 
+		$currentconfig[$mmkey] = json_decode($mmconfig, true);
+		$currentconfig         = json_encode($currentconfig);
+		
 		//get all other styles that have the same template
 		$db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
@@ -177,7 +179,7 @@ class T3AdminMegamenu
 			$registry->loadString($theme->params);
 
 			//overwrite with new value
-			$registry->set('mm_config', $mm_config);
+			$registry->set('mm_config', $currentconfig);
 
 			$query = $db->getQuery(true);
 			$query
@@ -191,7 +193,7 @@ class T3AdminMegamenu
 
 		die(json_encode(array(
 					'status' => $return,
-					'message' => JText::_($return ? 'T3_NAVIGATION_SAVE_SUCCESSFULLY' : 'T3_NAVIGATION_SAVE_FAILED')
+					'message' => JText::_($return ? 'CANVAS_NAVIGATION_SAVE_SUCCESSFULLY' : 'CANVAS_NAVIGATION_SAVE_FAILED')
 				)
 			)
 		);
@@ -289,13 +291,13 @@ class T3AdminMegamenu
 	 */
 	public static function megamenu()
 	{
-		$tplparams = T3::getTplParams();
+		$tplparams = CANVAS::getTplParams();
 		
 		$url = JFactory::getURI();
-		$url->delVar('t3action');
-		$url->delVar('t3task');
+		$url->delVar('canvasaction');
+		$url->delVar('canvastask');
 		$referer  = $url->toString();
-		$template = T3_TEMPLATE;
+		$template = CANVAS_TEMPLATE;
 		$styleid  = JFactory::getApplication()->input->getCmd('id');
 
 		$mm_type  = ($tplparams && $tplparams instanceof JRegistry) ? $tplparams->get('mm_type', '') : null;
@@ -317,7 +319,7 @@ class T3AdminMegamenu
 			$currentconfig = '"{}"';
 		}
 		
-		include T3_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php';
+		include CANVAS_ADMIN_PATH . '/admin/megamenu/megamenu.tpl.php';
 		
 		exit;
 	}
